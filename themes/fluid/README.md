@@ -1,154 +1,139 @@
-<div align="right">
-  Language:
-  🇺🇸
-  <a title="Chinese" href="docs/zh-CN/README.md">🇨🇳</a>
-  <a title="Russian" href="docs/ru/README.md">🇷🇺</a>
-</div>
-
-# <div align="center"><a title="NexT website repository" href="https://github.com/theme-next/theme-next.org"><img align="center" width="56" height="56" src="https://raw.githubusercontent.com/theme-next/hexo-theme-next/master/source/images/logo.svg?sanitize=true"></a> e x T</div>
-
 <p align="center">
-  «NexT» is a high quality elegant <a href="https://hexo.io">Hexo</a> theme. It is crafted from scratch with love.
-<br>
-<br>
-  <a href="https://www.npmjs.com/package/hexo-theme-next"><img src="https://img.shields.io/github/package-json/v/theme-next/hexo-theme-next?style=flat-square"></a>
-  <a href="https://nodejs.org"><img src="https://img.shields.io/badge/node-%3E=10.9.0-green?style=flat-square"></a>
-  <a href="https://hexo.io"><img src="https://img.shields.io/badge/hexo-%3E=4.0.0-blue?style=flat-square&logo=hexo"></a>
-  <a href="https://github.com/theme-next/hexo-theme-next/blob/master/LICENSE.md"><img src="https://img.shields.io/badge/license-%20AGPL-orange?style=flat-square&logo=gnu"></a>
-<br>
-  <a href="https://bestpractices.coreinfrastructure.org/projects/2625"><img src="https://img.shields.io/cii/level/2625?style=flat-square" title="Core Infrastructure Initiative Best Practices"></a>
-  <a href="https://travis-ci.org/theme-next/hexo-theme-next?branch=master"><img src="https://img.shields.io/travis/theme-next/hexo-theme-next/master?style=flat-square&logo=travis%20ci" title="Travis CI [Linux]"></a>
-  <a href="https://app.codacy.com/manual/theme-next/hexo-theme-next/dashboard"><img src="https://img.shields.io/codacy/grade/72f7fe7609c2438a92069f448e5a341a/master?style=flat-square&logo=codacy" title="Project Grade"></a>
-  <img src="https://img.shields.io/snyk/vulnerabilities/github/theme-next/hexo-theme-next?style=flat-square" title="Vulnerabilities">
-<br>
-  <img src="https://user-images.githubusercontent.com/16272760/63487983-da41b080-c4df-11e9-951c-64883a8a5e9b.png">
+  <img alt="Fluid Logo" src="https://avatars2.githubusercontent.com/t/3419353?s=280&v=4" width="128">
 </p>
 
-## Live Preview
+<p align="center">一款 Material Design 风格的主题</p>
+<p align="center">An elegant Material-Design theme for Hexo</p>
+
+![ScreenShot](https://cdn.jsdelivr.net/gh/fluid-dev/static@master/hexo-theme-fluid/screenshots/index.png)
 
 <p align="center">
-  💟 <a href="https://muse.theme-next.org">Muse</a> | 🔯 <a href="https://mist.theme-next.org">Mist</a> | ♓️ <a href="https://pisces.theme-next.org">Pisces</a> | ♊️ <a href="https://theme-next.org">Gemini</a>
-<br>
-<br>
-  More «NexT» examples <a href="https://github.com/theme-next/awesome-next#live-preview">here</a>.
+  <a title="Hexo Version" target="_blank" href="https://hexo.io/zh-cn/"><img alt="Hexo Version" src="https://img.shields.io/badge/Hexo-%3E%3D%203.0-orange?style=flat"></a>
+  <a title="Node Version" target="_blank" href="https://nodejs.org/zh-cn/"><img alt="Node Version" src="https://img.shields.io/badge/Node-%3E%3D%208.1.0-yellowgreen?style=flat"></a>
+  <a title="License" target="_blank" href="https://github.com/fluid-dev/hexo-theme-fluid/blob/master/LICENSE"><img alt="License" src="https://img.shields.io/github/license/fluid-dev/hexo-theme-fluid.svg?style=flat"></a>
+  <br>
+  <a title="GitHub Release" target="_blank" href="https://github.com/fluid-dev/hexo-theme-fluid/releases"><img alt="GitHub Release" src="https://img.shields.io/github/v/release/fluid-dev/hexo-theme-fluid?style=flat"></a>
+  <a title="GitHub Commits" target="_blank" href="https://github.com/fluid-dev/hexo-theme-fluid/commits/master"><img alt="GitHub Commits" src="https://img.shields.io/github/commit-activity/m/fluid-dev/hexo-theme-fluid.svg?style=flat&color=brightgreen"></a>
+  <a title="Last Commit" target="_blank" href="https://github.com/fluid-dev/hexo-theme-fluid/commits/master"><img alt="Last Commit" src="https://img.shields.io/github/last-commit/fluid-dev/hexo-theme-fluid/master.svg?style=flat&color=FF9900"></a>
+  <br><br>
+  <a title="GitHub Watchers" target="_blank" href="https://github.com/fluid-dev/hexo-theme-fluid/watchers"><img alt="GitHub Watchers" src="https://img.shields.io/github/watchers/fluid-dev/hexo-theme-fluid.svg?label=Watchers&style=social"></a>  
+  <a title="GitHub Stars" target="_blank" href="https://github.com/fluid-dev/hexo-theme-fluid/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/fluid-dev/hexo-theme-fluid.svg?label=Stars&style=social"></a>  
+  <a title="GitHub Forks" target="_blank" href="https://github.com/fluid-dev/hexo-theme-fluid/network/members"><img alt="GitHub Forks" src="https://img.shields.io/github/forks/fluid-dev/hexo-theme-fluid.svg?label=Forks&style=social"></a>  
 </p>
 
-## Installation
+<p align="center">🇨🇳 中文简体  |  <a title="English" href="README_en.md">🇬🇧 English</a></p>
 
-The simplest way to install is to clone the entire repository:
+<p align="center">
+  <span>文档：</span>
+  <a href="https://hexo.fluid-dev.com/docs/">用户手册</a>&nbsp&nbsp&nbsp&nbsp
+  <a href="https://hexo.io/zh-cn/docs/front-matter">文章配置</a>
+</p>
 
-```sh
-$ cd hexo
-$ git clone https://github.com/theme-next/hexo-theme-next themes/next
+<p align="center">
+  <span>预览：</span>
+  <a href="https://hexo.fluid-dev.com/">demo</a>&nbsp&nbsp&nbsp&nbsp
+  <a href="https://zkqiang.cn">zkqiang's blog</a>
+</p>
+
+## 快速开始
+
+#### 1. 搭建 Hexo 博客
+
+如果你还没有 Hexo 博客，请按照 [Hexo 官方文档](https://hexo.io/zh-cn/docs/) 进行安装、建站。
+
+#### 2. 获取主题最新版本
+
+请优先下载 [最新 release 版本](https://github.com/fluid-dev/hexo-theme-fluid/releases)，master 分支无法保证稳定。
+
+下载后解压到 themes 目录下并重命名为 `fluid`。
+
+#### 3. 指定主题
+
+如下修改 Hexo 博客目录中的 `_config.yml`：
+
+```yaml
+theme: fluid  # 指定主题
+
+language: zh-CN  # 指定语言，可不改
 ```
 
-Or you can see [detailed installation instructions][docs-installation-url] if you want any other variant.
+#### 4. 创建「关于页」
 
-## Plugins
+首次使用主题的「关于页」需要手动创建：
 
-NexT supports a large number of third-party plugins, which can be easily configured.
+```bash
+$ hexo new page about
+```
 
-For example, if you want to enable `pjax` on your site, just set `pjax` to `true` in NexT config file:
+创建成功后，编辑博客目录下 `/source/about/index.md`，添加 `layout` 属性。
+
+修改后的文件示例如下：
 
 ```yml
-# Easily enable fast Ajax navigation on your website.
-# Dependencies: https://github.com/theme-next/theme-next-pjax
-pjax: true
+---
+title: about
+date: 2020-02-23 19:20:33
+layout: about
+---
+
+这里写关于页的正文，支持 Markdown, HTML
 ```
 
-Then visit the «Dependencies» link to get the installation instructions of this module.
+## 升级主题
 
-### Configure CDN
+首先强烈建议学习使用[覆盖配置](https://hexo.fluid-dev.com/docs/guide/#%E8%A6%86%E7%9B%96%E9%85%8D%E7%BD%AE)
 
-If you want to specify a CDN link for any plugins, you need to set / update the CDN link.
+然后升级步骤[参照这里](https://hexo.fluid-dev.com/docs/example/#%E6%9B%B4%E6%96%B0%E4%B8%BB%E9%A2%98)
 
-For example, if you want to use `mediumzoom` and load the plugin via CDN, go to NexT config and see:
+## 功能特性
 
-```yml
-vendors:
-  # ...
-  # Some contents...
-  # ...
-  mediumzoom: # Set or update mediumzoom CDN URL.
-```
+- [x] 图片懒加载
+- [x] 自定义代码高亮方案
+- [x] 内置多语言
+- [x] 支持多款评论插件
+- [x] 支持使用[数据文件](https://hexo.io/zh-cn/docs/data-files)存放配置
+- [x] 自定义静态资源 CDN
+- [x] 无比详实的[用户文档](https://hexo.fluid-dev.com/docs/)
+- [x] 内置文章搜索
+- [x] 页脚备案信息
+- [x] 网页访问统计
+- [x] 支持脚注语法
+- [x] 支持 LaTeX 数学公式
+- [x] 支持 mermaid 流程图
+- [x] 音乐播放器
+- [x] 暗色模式
 
-## Update
+## 贡献者
 
-NexT releases new versions every month. You can update to latest master branch by the following command:
+[![contributors](https://opencollective.com/hexo-theme-fluid/contributors.svg?width=890&button=false)](https://github.com/fluid-dev/hexo-theme-fluid/graphs/contributors)
 
-```sh
-$ cd themes/next
-$ git pull
-```
+英文文档翻译：[@EatRice](https://eatrice.top/) [@橙子杀手](https://ruru.eatrice.top)
 
-And if you see any error message during update (something like **«Commit your changes or stash them before you can merge»**), recommended to learn [Hexo data files][docs-data-files-url] feature.\
-However, you can bypass update errors by using the `Commit`, `Stash` or `Reset` commands for local changes. See [here](https://stackoverflow.com/a/15745424/5861495) how to do it.
+其他贡献：[@zhugaoqi](https://github.com/zhugaoqi) [@julydate](https://github.com/julydate)
 
-**If you want to update from v5.1.x to the latest version, read [this][docs-update-5-1-x-url].**
+如你也想贡献代码，可参照[贡献指南](https://hexo.fluid-dev.com/docs/contribute/)
 
-## Feedback
+## 社区
 
-* Visit the [Awesome NexT][awesome-next-url] list to share plugins and tutorials with other users.
-* Join our [Telegram][t-chat-url] / [Gitter][gitter-url] / [Riot][riot-url] chats.
-* [Add or improve translation][i18n-url] in few seconds.
-* Report a bug in [GitHub Issues][issues-bug-url].
-* Request a new feature on [GitHub][issues-feat-url].
-* Vote for [popular feature requests][feat-req-vote-url].
+微信群：扫描二维码添加好友进交流群
 
-## Contributing
+<details>
+    <summary>二维码</summary>
+    <p><b>好友申请备注：fluid</b></p>
+    <p><b>提问之前请先仔细查阅用户文档</b></p>
+    <img width="200" src="https://cdn.jsdelivr.net/gh/fluid-dev/static@master/hexo-theme-fluid/wechat.png" alt="wechat">
+</details>
 
-We welcome you to join the development of NexT. Please see [contributing document][contributing-document-url]. 🤗
+## 支持
 
-Also, we welcome Issue or PR to our [official-plugins][official-plugins-url].
+你可以通过[爱发电](https://afdian.net/@zkqiang)支持我们的开源创作，资金将用于服务器开销以及今后的公共接口服务
 
-## Contributors
+<a href="https://afdian.net/@zkqiang">
+  <img width="300" src="https://static.zkqiang.cn/images/20200715113201.png-slim" alt="support me">
+</a>
 
-[![][contributors-image]][contributors-url]
+其他商业赞助可发送邮件至 zkqiang#126.com (#替换为@)
 
-## Thanks
+## Star 趋势
 
-<p align="center">
-  «NexT» send special thanks to these great services that sponsor our core infrastructure:
-<br>
-<br>
-  <a href="https://github.com"><img align="center" width="100" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"></a>
-  &nbsp;&nbsp;&nbsp;
-  <a href="https://www.netlify.com"><img align="center" width="150" src="https://cdn.netlify.com/15ecf59b59c9d04b88097c6b5d2c7e8a7d1302d0/1b6d6/img/press/logos/full-logo-light.svg"></a>
-<br>
-<br>
-  <sub>GitHub allows us to host the Git repository, Netlify allows us to distribute the documentation.</sub>
-<br>
-<br>
-  <a href="https://crowdin.com"><img align="center" width="180" src="https://support.crowdin.com/assets/logos/crowdin-logo1-small.png"></a>
-<br>
-<br>
-  <sub>Crowdin allows us to translate conveniently the documentation.</sub>
-<br>
-<br>
-  <a href="https://codacy.com"><img align="center" width="155" src="https://user-images.githubusercontent.com/16944225/55026017-623f8f00-5002-11e9-88bf-0d6a5884c6c2.png"></a>
-  &nbsp;&nbsp;&nbsp;
-  <a href="https://travis-ci.com"><img align="center" width="140" src="https://raw.githubusercontent.com/travis-ci/travis-web/master/public/images/logos/TravisCI-Full-Color.png"></a>
-<br>
-<br>
-  <sub>Codacy allows us to monitor code quality, Travis CI allows us to run the test suite.</sub>
-</p>
-
-[docs-installation-url]: https://github.com/theme-next/hexo-theme-next/blob/master/docs/INSTALLATION.md
-[docs-data-files-url]: https://github.com/theme-next/hexo-theme-next/blob/master/docs/DATA-FILES.md
-[docs-update-5-1-x-url]: https://github.com/theme-next/hexo-theme-next/blob/master/docs/UPDATE-FROM-5.1.X.md
-
-[t-news-url]: https://t.me/theme_next_news
-[t-chat-url]: https://t.me/theme_next
-[gitter-url]: https://gitter.im/theme-next
-[riot-url]: https://riot.im/app/#/room/#theme-next:matrix.org
-[i18n-url]: https://i18n.theme-next.org
-
-[awesome-next-url]: https://github.com/theme-next/awesome-next
-[issues-bug-url]: https://github.com/theme-next/hexo-theme-next/issues/new?assignees=&labels=Bug&template=bug-report.md
-[issues-feat-url]: https://github.com/theme-next/hexo-theme-next/issues/new?assignees=&labels=Feature+Request&template=feature-request.md
-[feat-req-vote-url]: https://github.com/theme-next/hexo-theme-next/issues?q=is%3Aopen+is%3Aissue+label%3A%22Feature+Request%22
-
-[contributing-document-url]: https://github.com/theme-next/hexo-theme-next/blob/master/.github/CONTRIBUTING.md
-[official-plugins-url]: https://github.com/theme-next
-[contributors-image]: https://opencollective.com/theme-next/contributors.svg?width=890
-[contributors-url]: https://github.com/theme-next/hexo-theme-next/graphs/contributors
+[![Stargazers over time](https://starchart.cc/fluid-dev/hexo-theme-fluid.svg)](https://starchart.cc/fluid-dev/hexo-theme-fluid)

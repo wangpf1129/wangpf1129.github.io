@@ -9,10 +9,11 @@ gulp.task('lint', () => gulp.src([
   './source/js/**/*.js',
   './scripts/**/*.js'
 ]).pipe(eslint())
-  .pipe(eslint.format()));
+  .pipe(eslint.format())
+  .pipe(eslint.failAfterError()));
 
-gulp.task('lint:stylus', shell.task([
-  'npx stylint ./source/css/'
+gulp.task('lint:ejs', shell.task([
+  'ejslint ./layout/**/*.ejs'
 ]));
 
 gulp.task('validate:config', cb => {
@@ -45,4 +46,4 @@ gulp.task('validate:languages', cb => {
   return errors.length === 0 ? cb() : cb(errors);
 });
 
-gulp.task('default', gulp.series('lint', 'validate:config', 'validate:languages'));
+gulp.task('default', gulp.series('lint', 'lint:ejs', 'validate:config', 'validate:languages'));
