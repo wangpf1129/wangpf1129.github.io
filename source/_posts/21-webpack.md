@@ -12,11 +12,7 @@ categories: vue
 - 官方解释： At its core, webpack is a static module bundler for modern JavaScript applications.
 - 翻译： 从本质上来讲，webpack 是一个现代的JavaScript应用的静态**模块打包**工具
 
-![image-20200922165050262](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200922165050262.png)
-
-
-
-
+![img](https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3378498490,2105022646&fm=26&gp=0.jpg)
 
 
 
@@ -114,7 +110,7 @@ npm install webpack@3.6.0  --save-dev
 - 如果每次使用webpack的命令都需要写上入口和出口作为参数，就很麻烦。
 - 我们要创建一个 webpack.config.js文件
 
-![image-20200922173645764](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200922173645764.png)
+![image-20200922173645764](https://i.loli.net/2020/09/25/Pk7tDBJoyAeibQr.png)
 
 
 
@@ -137,7 +133,7 @@ npm install webpack@3.6.0  --save-dev
   - 首先，会寻找本地的node_modules/.bin路径中对应的命令。
   - 如果没有找到，会去全局的环境变量中寻找。
   - 如何执行我们的build指令呢？   `npm run bulid`
-- ![image-20200922174156285](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200922174156285.png)
+- ![image-20200922174156285](https://i.loli.net/2020/09/26/RItGULf3edK1VSc.png)
 
 
 
