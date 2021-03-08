@@ -18,13 +18,14 @@ categories: JavaScript
 
 ##  增加节点
 
-- ```js
+```js
   dom.append(parent,child)  // 用于新增儿子节点
-  ```
+```
 
-- ```js
+
+```js
   dom.wrap(`<div></div>`)   // 用于新增爸爸节点
-  ```
+```
 
 
 
