@@ -1,10 +1,11 @@
 ---
-title: React学习总结（二）: 生命周期
+title: React之生命周期
 index_img: /img/react.jpg
 date: 2021-01-26 18:44:00
 tags: [React]
 categories: [React]
 ---
+
 ## React 生命周期（旧）
 
 先来看图
@@ -17,51 +18,51 @@ categories: [React]
 初始化阶段：由ReactDOM.render()触发 --- 初次渲染
 
 #### 第一步 constructor()
- 用来初始化属性状态
+用来初始化属性状态
  ```jsx
-   constructor() {
-    super()
-    console.log('constructor--count组件构造器');
-    this.state = {
-      count: 0,
-      message: '我想要吃的'
-    }
+   constructor(){
+  super()
+  console.log('constructor--count组件构造器');
+  this.state = {
+    count: 0,
+    message: '我想要吃的'
+  }
  ```
 #### 第二步 componentWillMount()
 组件将要被挂载阶段 （在组件挂载之前触发）
 ```jsx
   componentWillMount() {
-    console.log('componentWillMount--count组件将要被挂载');
-  }
+  console.log('componentWillMount--count组件将要被挂载');
+}
 ```
 #### 第三步 - render()
-组件渲染在页面上 
+组件渲染在页面上
 ```jsx
-  
-  render() {
-    console.log('render--count组件渲染');
-    const { count } = this.state
-    return (
-      <div className="count">
-        <h2>{count}</h2>
-        <button onClick={this.add}>+1</button>
-        <button onClick={this.force}>强制更新，不改变任何数据状态</button>
-        <br />
-        <div>
-          <h3>我是Count组件</h3>
-          <button onClick={this.changeMessage}>更换子组件信息</button>
-          <CountSon message={this.state.message} />
-        </div>
+
+render() {
+  console.log('render--count组件渲染');
+  const { count } = this.state
+  return (
+    <div className="count">
+      <h2>{count}</h2>
+      <button onClick={this.add}>+1</button>
+      <button onClick={this.force}>强制更新，不改变任何数据状态</button>
+      <br />
+      <div>
+        <h3>我是Count组件</h3>
+        <button onClick={this.changeMessage}>更换子组件信息</button>
+        <CountSon message={this.state.message} />
       </div>
-    )
-  }
+    </div>
+  )
+}
 ```
 #### 第四步  componentDidMount()
 组件挂载完毕后 （在组件挂载之后，只会执行一次）
 ```jsx
   componentDidMount() {
-    console.log('componentDidMount--count组件挂载完毕后');
-  }
+  console.log('componentDidMount--count组件挂载完毕后');
+}
 ```
 这个钩子很常用，我们经常会在这个钩子中做一些初始化的操作，比如：开启定时器，发送网络请求，订阅消息等。
 
@@ -77,44 +78,44 @@ categories: [React]
 
 ```jsx
   componentWillReceiveProps(props) {
-    // 注意， 第一渲染不算， 第二次才触发
-    console.log('componentWillReceiveProps--Count的子组件', props);
-  }
+  // 注意， 第一渲染不算， 第二次才触发
+  console.log('componentWillReceiveProps--Count的子组件', props);
+}
 ```
 
-#### 第二步：  shouldComponentUpdate() 
+#### 第二步：  shouldComponentUpdate()
 组件是否应该被更新----控制组件更新的“阀门”
 
 如果为true就会按照图中所示往下走，如果为false，则将“阀门”关闭，不能往下走了。
 ```jsx
   shouldComponentUpdate() {
-    console.log('shouldComponentUpdate--count组件是否应该被更新');
-    return true
-  **}**
+  console.log('shouldComponentUpdate--count组件是否应该被更新');
+  return true
+    **}**
 ```
 
 #### 第三步： componentWillUpdate()
 
- 组件将要更新
+组件将要更新
 ```jsx
   componentWillUpdate() {
-    console.log('componentWillUpdate--count组件将要更新');
-  }
+  console.log('componentWillUpdate--count组件将要更新');
+}
 ```
 
 #### 第四步：render()
 
 会跟新新的属性对象重新渲染组件
 
-#### 第五步:    componentDidUpdate() 
- 组件更新完毕后触发
- 
- 它接收参数（1.props更新前的，2.state更新前的，3.快照值，（在新的生命周期中会提到））
- 
+#### 第五步:    componentDidUpdate()
+组件更新完毕后触发
+
+它接收参数（1.props更新前的，2.state更新前的，3.快照值，（在新的生命周期中会提到））
+
 ```jsx
  componentDidUpdate(preProps, preState, snapShotValue) {
-    console.log('componentDidUpdate--count组件更新完毕后', preProps, preState, snapShotValue);
-  }
+  console.log('componentDidUpdate--count组件更新完毕后', preProps, preState, snapShotValue);
+}
 ```
 
 
@@ -167,7 +168,7 @@ class Count extends Component {
     console.log('componentDidUpdate--count组件更新完毕后');
   }
 
-  
+
   render() {
     console.log('render--count组件渲染');
     const { count } = this.state
@@ -258,7 +259,7 @@ export default Count
 ` A valid state object (or null) must be returned. You have returned undefined.`
 
 3. 可以传参数
-`参数：新的属性对象(内部数据state)，旧的状态对象（外部数据props）`
+   `参数：新的属性对象(内部数据state)，旧的状态对象（外部数据props）`
 
 官网也提出了，这个钩子不建议使用， 因为 派生状态会导致代码冗余，并使组件难以维护。在这里不过多学习它了。
 
@@ -270,18 +271,19 @@ export default Count
 2. 必须有返回值，返回值 可以是 值，也可以是`null`
 
 ```jsx
-  getSnapshotBeforeUpdate() {
-    console.log('getSnapshotBeforeUpdate--count')
-    return 'Wangpf'
+
+  getSnapshotBeforeUpdate(){
+  console.log('getSnapshotBeforeUpdate--count')
+  return 'Wangpf'
   }
-  
-  
-  componentDidUpdate(preProps, preState, snapShotValue) {
-    console.log('componentDidUpdate--count组件更新完毕后', preProps, preState, snapShotValue);
-    // preProps 外部数据更新前的值
-    // preState 内部数据更新前的值
-    // snapShotValue 是在getDerivedStateFromProps钩子函数中所返回的值
-  }
+
+
+componentDidUpdate(preProps, preState, snapShotValue){
+  console.log('componentDidUpdate--count组件更新完毕后', preProps, preState, snapShotValue);
+  // preProps 外部数据更新前的值
+  // preState 内部数据更新前的值
+  // snapShotValue 是在getDerivedStateFromProps钩子函数中所返回的值
+}
 ```
 
 
@@ -354,4 +356,5 @@ export default News
 3. componentWillUpdate
 
 目前版本17.0.1，目前使用的话，会出现警告，需要加上 前缀 UNSAFE_ 才行， 但官方说了在未来18版本之后很可能彻底废弃，因此不建议使用。
+ 
  
