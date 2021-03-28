@@ -6,8 +6,6 @@ tags: [HTTP]
 categories: [HTTP]
 ---
 
-
-
 ## 情况一:  **Cache-Control:max-age = 60 时**
 
 ![情况一.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0dbc063671b041349511e3beac85d0fe~tplv-k3u1fbpfcp-watermark.image)
