@@ -1,7 +1,11 @@
 ---
-title: Vue3 | Composition API index_img: /img/Composition_API.jpg date: 2021-08-06 18:49:00 tags: [Vue3]
+title: Vue3|Composition_API （全）总结
+index_img: /img/Composition_API.jpg
+date: 2021-08-07 18:48:00
+tags: [Vue3]
 categories: [Vue.js]
 ---
+
 为了能够使用Composition API, 我们需要有一个可以实际使用它的地方。在vue组件中，我们将此位置称为setup
 
 ## setup函数
