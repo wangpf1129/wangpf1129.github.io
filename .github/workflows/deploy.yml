@@ -39,4 +39,3 @@ jobs:
           key: ${{ secrets.SERVER_KEY }}
           passphrase: ${{ secrets.SSHKEYPASSWORD  }}
           script: cd /wangpf/blog/ && touch test.txt
-
