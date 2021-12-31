@@ -16,9 +16,25 @@ jobs:
         env:
           CI: false
 
-      - name: Deploy 
+      - name: Deploy to build branch
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: master # The branch the action should deploy to.
           FOLDER: public # The folder the action should deploy.
+
+      - name: Build the Docker image to tencentyun
+        run: |
+          docker login ccr.ccs.tencentyun.com -u=100016773380 -p=wang1234
+          docker build -t blog:latest .
+          docker tag blog:latest ccr.ccs.tencentyun.com/wangpf/blog:latest
+          docker push ccr.ccs.tencentyun.com/wangpf/blog:latest
+
+      - name: ssh login && run docker
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SERVER_KEY }}
+          passphrase: ${{ secrets.SSHKEYPASSWORD  }}
+          script: cd /wangpf/blog/ && sh docker-deploy.sh
