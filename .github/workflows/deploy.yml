@@ -30,6 +30,7 @@ jobs:
           docker tag blog:latest ccr.ccs.tencentyun.com/wangpf/blog:latest
           docker push ccr.ccs.tencentyun.com/wangpf/blog:latest
 
+
       - name: ssh login && run docker
         uses: appleboy/ssh-action@master
         with:
