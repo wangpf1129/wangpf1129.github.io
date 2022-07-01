@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  hexo: ^5.0.0
+  hexo: ^5.4.2
   hexo-deployer-git: ^2.1.0
   hexo-generator-archive: ^1.0.0
   hexo-generator-category: ^1.0.0

@@ -104,5 +104,5 @@ theme: fluid
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/wwwpppfffzzz/wwwpppfffzzz.github.io
+  repo: https://github.com/wangpf1129/wangpf1129.github.io
   branch: master

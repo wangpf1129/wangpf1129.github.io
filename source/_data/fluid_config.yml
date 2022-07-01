@@ -386,7 +386,7 @@ about: # 关于页需要手动创建，具体请见：https://hexo.fluid-dev.com
   icons: # 更多图标可从 https://hexo.fluid-dev.com/docs/icon/ 查找，class 代表图标的 css class
     - {
         class: 'iconfont icon-github-fill',
-        link: 'https://github.com/wwwpppfffzzz',
+        link: 'https://github.com/wangpf1129',
         tip: 'GitHub',
       }
     # - { class: 'iconfont icon-douban-fill', link: 'https://douban.com', tip: '知乎' }

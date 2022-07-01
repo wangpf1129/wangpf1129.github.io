@@ -8,7 +8,7 @@ categories: jQuery
 ## 前言
 实现了用JQuery的设计思想去封装DOM。
 
-**源代码链接：** https://github.com/wwwpppfffzzz/jQuery-dom/blob/master/src/jquery.js
+**源代码链接：** https://github.com/wangpf1129/jQuery-dom/blob/master/src/jquery.js
 
 
 ## jQuery的思想

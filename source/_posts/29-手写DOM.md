@@ -9,7 +9,7 @@ categories: JavaScript
 # 手写DOM库
 
 因为DOM原生API太难用了
-[源代码链接](https://github.com/wwwpppfffzzz/DOM-Library/blob/master/src/dom.js)
+[源代码链接](https://github.com/wangpf1129/DOM-Library/blob/master/src/dom.js)
 ## 对象风格 
 
 - window.dom  是我们提供的全局对象
