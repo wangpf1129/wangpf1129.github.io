@@ -9,34 +9,34 @@ jobs:
         with:
           persist-credentials: false
 
-#      - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
-#        run: |
-#          npm install
-#          npm run build
-#        env:
-#          CI: false
-#
-#      - name: Deploy to build branch
-#        uses: JamesIves/github-pages-deploy-action@releases/v3
-#        with:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#          BRANCH: master # The branch the action should deploy to.
-#          FOLDER: public # The folder the action should deploy.
-#
-#      - name: Build the Docker image to tencentyun
-#        run: |
-#          docker login ccr.ccs.tencentyun.com -u=100016773380 -p=wang1234
-#          docker build -t blog:latest .
-#          docker tag blog:latest ccr.ccs.tencentyun.com/wangpf/blog:latest
-#          docker push ccr.ccs.tencentyun.com/wangpf/blog:latest
+     - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
+       run: |
+         npm install
+         npm run build
+       env:
+         CI: false
+
+     - name: Deploy to build branch
+       uses: JamesIves/github-pages-deploy-action@releases/v3
+       with:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         BRANCH: master # The branch the action should deploy to.
+         FOLDER: public # The folder the action should deploy.
+
+    #  - name: Build the Docker image to tencentyun
+    #    run: |
+    #      docker login ccr.ccs.tencentyun.com -u=100016773380 -p=wang1234
+    #      docker build -t blog:latest .
+    #      docker tag blog:latest ccr.ccs.tencentyun.com/wangpf/blog:latest
+    #      docker push ccr.ccs.tencentyun.com/wangpf/blog:latest
 
 
-      - name: ssh login && run docker
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-#          key: ${{ secrets.SERVER_KEY }}
-#          passphrase: ${{ secrets.SSHKEYPASSWORD  }}
-          script: cd /wangpf/blog/ && touch test.txt
+#       - name: ssh login && run docker
+#         uses: appleboy/ssh-action@master
+#         with:
+#           host: ${{ secrets.SERVER_HOST }}
+#           username: ${{ secrets.USERNAME }}
+#           password: ${{ secrets.PASSWORD }}
+# #          key: ${{ secrets.SERVER_KEY }}
+# #          passphrase: ${{ secrets.SSHKEYPASSWORD  }}
+#           script: cd /wangpf/blog/ && touch test.txt
