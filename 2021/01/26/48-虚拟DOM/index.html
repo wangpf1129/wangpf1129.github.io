@@ -1,0 +1,709 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/boshi.jpeg">
+  <link rel="icon" type="image/png" href="/img/boshi.jpeg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="wangpf">
+  <meta name="keywords" content="">
+  <title>虚拟DOM和diff算法以及关于key的问题（学习总结） - wpf的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/foundation.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Wangpf's blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/article.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2021-01-26 21:14" pubdate>
+      2021年1月26日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      15
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">虚拟DOM和diff算法以及关于key的问题（学习总结）</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我为了了解虚拟DOM，是为了更好的学习React和Vue。</p>
+<h2 id="虚拟DOM"><a href="#虚拟DOM" class="headerlink" title="虚拟DOM"></a>虚拟DOM</h2><p><strong>先说说虚拟DOM的优点：</strong></p>
+<ol>
+<li>减少DOM操作次数</li>
+</ol>
+<p>虚拟DOM可以把多次操作DOM合并为一次操作， 比如：你需要添加100个元素节点，原生操作的话只能一个一个的添加， 但使用虚拟DOM，它可以把这些操作合并为一个操作，最后一次性的添加到DOM中。</p>
+<ol start="2">
+<li>减少DOM操作范围</li>
+</ol>
+<p>虚拟 DOM 借助 DOM diff 可以把多余的操作省掉，比如你添加 100 个元素节点，其实只有 10 个是新增的，如果用原生来操作，你还是需要一个一个添加进去，而虚拟DOM会根据diff算法来判断只需要添加那些改变的元素节点添加进去即可。</p>
+<h2 id="如何创建虚拟DOM"><a href="#如何创建虚拟DOM" class="headerlink" title="如何创建虚拟DOM"></a>如何创建虚拟DOM</h2><h3 id="1-用React举例：-用React-createElement"><a href="#1-用React举例：-用React-createElement" class="headerlink" title="1. 用React举例：(用React.createElement)"></a>1. 用React举例：(用React.createElement)</h3><div class="hljs"><pre><code class="hljs js">React.createElement(<span class="hljs-string">&#x27;div&#x27;</span>,&#123;<span class="hljs-attr">className</span>:<span class="hljs-string">&#x27;red&#x27;</span>,<span class="hljs-attr">onClick</span>:<span class="hljs-function">()=&gt;</span> &#123;&#125;&#125;,[
+    React.createElement(<span class="hljs-string">&#x27;span&#x27;</span>, &#123;&#125;, <span class="hljs-string">&#x27;span1&#x27;</span>),
+    React.createElement(<span class="hljs-string">&#x27;span&#x27;</span>, &#123;&#125;, <span class="hljs-string">&#x27;span2&#x27;</span>)
+  ]
+)</code></pre></div>
+
+<p>简写即：（React JSX    ）</p>
+<div class="hljs"><pre><code class="hljs jsx">&lt;div className=<span class="hljs-string">&quot;red&quot;</span> onClick=<span class="hljs-string">&quot;&#123;()=&gt; &#123;&#125;&#125;&quot;</span>&gt;
+    &lt;span&gt;span1&lt;/span&gt;
+    &lt;span&gt;span2&lt;/span&gt;
+&lt;/div&gt;</code></pre></div>
+
+<p><strong>简写方法最后会通过 babel 转为 createElement 形式</strong></p>
+<h3 id="2-用Vue举例：-只能在-render-函数里得到-h"><a href="#2-用Vue举例：-只能在-render-函数里得到-h" class="headerlink" title="2. 用Vue举例：(只能在 render 函数里得到 h)"></a>2. 用Vue举例：(只能在 render 函数里得到 h)</h3><div class="hljs"><pre><code class="hljs js">h(<span class="hljs-string">&#x27;div&#x27;</span>, &#123;
+  class: &#x27;red&#x27;,
+  on: &#123;
+    click: <span class="hljs-function">() =&gt;</span> &#123; &#125;
+  &#125;,
+&#125;, [h(<span class="hljs-string">&#x27;span&#x27;</span>,&#123;&#125;,<span class="hljs-string">&#x27;span1&#x27;</span>), h(<span class="hljs-string">&#x27;span&#x27;</span>, &#123;&#125;, <span class="hljs-string">&#x27;span2&#x27;</span>])</code></pre></div>
+
+<p>简写即： (Vue Template)</p>
+<div class="hljs"><pre><code class="hljs Vue">&lt;div class&#x3D;&quot;red&quot; @click&#x3D;&quot;fn&quot;&gt;
+  &lt;span&gt;span1&lt;&#x2F;span&gt;
+  &lt;span&gt;span2&lt;&#x2F;span&gt;
+&lt;&#x2F;div&gt;</code></pre></div>
+
+<p><strong>简写方法最后会通过 vue-loader 转为 h 形式</strong></p>
+<h3 id="虚拟DOM到底是什么"><a href="#虚拟DOM到底是什么" class="headerlink" title="虚拟DOM到底是什么"></a>虚拟DOM到底是什么</h3><p>把真实DOM树，变成js对象树，将之前的和新的作比较，通过diff算法，按照不同的地方进行渲染。</p>
+<p>其实刚刚用React，Vue写的就是虚拟DOM</p>
+<p>它是一个能代表DOM树的对象， 一般会含有 <code>标签名 、 标签属性 、 事件监听 、 子元素以及其他属性等</code></p>
+<h3 id="虚拟DOM的缺点"><a href="#虚拟DOM的缺点" class="headerlink" title="虚拟DOM的缺点"></a>虚拟DOM的缺点</h3><ol>
+<li>需要额外的创建函数，如 createElement 或 h，但可以通过 JSX 来简化成 XML 写法</li>
+<li>严重依赖打包工具、需要添加额外的构建过程。</li>
+</ol>
+<h2 id="diff算法"><a href="#diff算法" class="headerlink" title="diff算法"></a>diff算法</h2><p>使用传统的diff算法进行节点的循环遍历，复杂度是 O(n^3)。(不多说它)</p>
+<h3 id="DOM-diff-是什么？"><a href="#DOM-diff-是什么？" class="headerlink" title="DOM diff 是什么？"></a>DOM diff 是什么？</h3><ul>
+<li>就是一个函数，被称之为 <code>patch</code></li>
+<li>patches = patch(oldVNode,newVnode)</li>
+<li>patches 就是要运行的DOM操作，</li>
+</ul>
+<p>通俗说就是：给我俩个虚拟节点，我给你对应的DOM操作，（这个DOM操作目前不会去立马执行，等到全部虚拟节点都更新完毕后，我再去把该操作一次的执行。）</p>
+<h3 id="DOM-diff-的大概逻辑思路："><a href="#DOM-diff-的大概逻辑思路：" class="headerlink" title="DOM diff 的大概逻辑思路："></a>DOM diff 的大概逻辑思路：</h3><ul>
+<li><strong>Tree diff</strong><ul>
+<li>将新旧两棵DOM树逐层对比，找出哪些节点需要更新</li>
+<li>如果节点是<code>组件</code>就看 Component diff</li>
+<li>如果节点是<code>标签或文本</code>就看 Element diff</li>
+</ul>
+</li>
+<li><strong>Component diff</strong><ul>
+<li>如果节点是组件，就先看组件类型</li>
+<li>类型不同直接替换（删除旧的）</li>
+<li><strong>类型相同则只更新属性</strong></li>
+<li>然后深入组件做 Tree diff（递归）</li>
+</ul>
+</li>
+<li><strong>Element diff</strong><ul>
+<li>如果节点是原生标签，则看标签名</li>
+<li>标签名不同直接替换，<strong>相同则只更新属性</strong></li>
+<li>然后进入标签后代做 Tree diff（递归）</li>
+</ul>
+</li>
+</ul>
+<p>但是，它有个缺点：同级节点对比存在 bug （关于key 的问题）</p>
+<h2 id="key的问题"><a href="#key的问题" class="headerlink" title="key的问题"></a>key的问题</h2><h3 id="面试题：-react-vue（虚拟DOM）中的key有什么作用？-（key的内部实现原理是什么？）"><a href="#面试题：-react-vue（虚拟DOM）中的key有什么作用？-（key的内部实现原理是什么？）" class="headerlink" title="面试题： react/vue（虚拟DOM）中的key有什么作用？ （key的内部实现原理是什么？）"></a>面试题： react/vue（虚拟DOM）中的key有什么作用？ （key的内部实现原理是什么？）</h3><ol>
+<li><p>简单说： key是虚拟DOM对象的标识，在更新显示时key起着重要的作用</p>
+</li>
+<li><p>详细说： 当状态中的数据发生改变时，react/vuew 会根据<code>新数据</code>生成<code>新的虚拟DOM</code>，随后react/vue会进行<code>新虚拟DOM</code>与<code>旧虚拟DOM</code>的diff比较， 比较规则如下：</p>
+<ul>
+<li><code> 新虚拟DOM</code> 中找到了与 <code>旧虚拟DOM</code> 相同<code>key</code><ol>
+<li>若虚拟DOM中内容没变，直接使用之前的真实DOM</li>
+<li>若虚拟DOM中内容发送改变了，则生成新的真实的DOM，随后替换掉页面中之前的真实DOM</li>
+</ol>
+</li>
+<li><code> 新虚拟DOM</code> 中没有找到了与 <code>旧虚拟DOM</code> 相同<code>key</code><ol>
+<li>跟新数据创建新的真实DOM，随后替换到页面</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="面试题：-为什么遍历列表时，key最好不要用index（索引值）？"><a href="#面试题：-为什么遍历列表时，key最好不要用index（索引值）？" class="headerlink" title="面试题： 为什么遍历列表时，key最好不要用index（索引值）？"></a>面试题： 为什么遍历列表时，key最好不要用index（索引值）？</h3><p>用index（索引值）作为key可能会引发的问题：</p>
+<ol>
+<li><p>若数据进行：<strong>逆序添加、逆序删除等破坏顺序操作</strong></p>
+<ul>
+<li>会产生没有必要的真实DOM更新 ==&gt; 页面效果虽然没有问题，但是效率低。</li>
+</ul>
+</li>
+<li><p>如果结构中还包含输入类的DOM：</p>
+<ul>
+<li>会产生错误DOM更新 ==&gt; 页面渲染会有问题</li>
+</ul>
+</li>
+</ol>
+<ol start="3">
+<li>当然如果只是为了 渲染列表，只展示而已， 那用 index 作为key 是没问题的。</li>
+</ol>
+<p>（我这里没有解释，只是给出了结论，如果想看到底为什么，可看推荐文章）</p>
+<p> 关于key问题的文章推荐：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/61064119/answer/766607894">Vue2.0 v-for 中 :key 到底有什么用？</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                <div class="post-meta mr-3">
+                  <i class="iconfont icon-category"></i>
+                  
+                  <a class="hover-with-bg" href="/categories/React/">React</a>
+                  
+                  <a class="hover-with-bg" href="/categories/React/Vuejs/">Vuejs</a>
+                  
+                </div>
+                
+                
+                <div class="post-meta">
+                  <i class="iconfont icon-tags"></i>
+                  
+                  <a class="hover-with-bg" href="/tags/React/">React</a>
+                  
+                  <a class="hover-with-bg" href="/tags/Vuejs/">Vuejs</a>
+                  
+                </div>
+                
+              </div>
+              
+              
+              <div class="post-prevnext row">
+                <article class="post-prev col-6">
+                  
+                  
+                  <a href="/2021/01/31/49-Redux%20%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">
+                    <i class="iconfont icon-arrowleft"></i>
+                    <span class="hidden-mobile">Redux 学习总结</span>
+                    <span class="visible-mobile">上一篇</span>
+                  </a>
+                  
+                </article>
+                <article class="post-next col-6">
+                  
+                  
+                  <a href="/2021/01/26/47-React%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%E4%BA%8C/">
+                    <span class="hidden-mobile">React之生命周期</span>
+                    <span class="visible-mobile">下一篇</span>
+                    <i class="iconfont icon-arrowright"></i>
+                  </a>
+                  
+                </article>
+              </div>
+              
+            </div>
+
+            
+            <!-- Comments -->
+            <article class="comments" id="comments">
+              
+              
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "hjxsDRXYScicliqD8I8JqoTu-gzGzoHsz",
+          app_key: "qUcAEReEqeEVp5wwXJ41uCCp",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+            </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+      <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+    </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    
+      <script  src="/js/lazyload.js" ></script>
+    
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "虚拟DOM和diff算法以及关于key的问题（学习总结）&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "always",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+  
+  
+    <script>
+      !function (e, t, a) {
+        function r() {
+          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
+          requestAnimationFrame(r)
+        }
+
+        function n() {
+          var t = "function" == typeof e.onclick && e.onclick;
+          e.onclick = function (e) {
+            t && t(), o(e)
+          }
+        }
+
+        function o(e) {
+          var a = t.createElement("div");
+          a.className = "heart", s.push({
+            el: a,
+            x: e.clientX - 5,
+            y: e.clientY - 5,
+            scale: 1,
+            alpha: 1,
+            color: c()
+          }), t.body.appendChild(a)
+        }
+
+        function i(e) {
+          var a = t.createElement("style");
+          a.type = "text/css";
+          try {
+            a.appendChild(t.createTextNode(e))
+          } catch (t) {
+            a.styleSheet.cssText = e
+          }
+          t.getElementsByTagName("head")[0].appendChild(a)
+        }
+
+        function c() {
+          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+        }
+
+        var s = [];
+        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
+          setTimeout(e, 1e3 / 60)
+        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
+      }(window, document);
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,787 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/boshi.jpeg">
+  <link rel="icon" type="image/png" href="/img/boshi.jpeg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="wangpf">
+  <meta name="keywords" content="">
+  <title>回调地狱（callback hell） 和 promise - wpf的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/foundation.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Wangpf's blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/article.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-12 17:12" pubdate>
+      2020年8月12日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      18
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">回调地狱（callback hell） 和 promise</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h2 id="1-callback-hell-回调地狱"><a href="#1-callback-hell-回调地狱" class="headerlink" title="1. callback hell  回调地狱"></a>1. callback hell  回调地狱</h2><h3 id="1-1-没有顺序的读取-a-b-c-三个文件"><a href="#1-1-没有顺序的读取-a-b-c-三个文件" class="headerlink" title="1.1 没有顺序的读取 a  b  c 三个文件"></a>1.1 没有顺序的读取 a  b  c 三个文件</h3><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>)
+
+fs.readFile(<span class="hljs-string">&#x27;./a.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err, data</span>) </span>&#123;
+    <span class="hljs-keyword">if</span> (err) &#123;
+        <span class="hljs-comment">// return console.log(&#x27;读取错误&#x27;);</span>
+
+        <span class="hljs-comment">// 抛出异常</span>
+        <span class="hljs-comment">// 1.阻止程序的执行  2. 把错误消息打印到控制台  </span>
+        <span class="hljs-keyword">throw</span> err
+    &#125;
+    <span class="hljs-built_in">console</span>.log(data);
+&#125;)
+fs.readFile(<span class="hljs-string">&#x27;./b.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err, data</span>) </span>&#123;
+    <span class="hljs-keyword">if</span> (err) &#123;
+        <span class="hljs-comment">// return console.log(&#x27;读取错误&#x27;);</span>
+
+        <span class="hljs-comment">// 抛出异常</span>
+        <span class="hljs-comment">// 1.阻止程序的执行  2. 把错误消息打印到控制台  </span>
+        <span class="hljs-keyword">throw</span> err
+    &#125;
+    <span class="hljs-built_in">console</span>.log(data);
+&#125;)
+fs.readFile(<span class="hljs-string">&#x27;./c.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err, data</span>) </span>&#123;
+    <span class="hljs-keyword">if</span> (err) &#123;
+        <span class="hljs-comment">// return console.log(&#x27;读取错误&#x27;);</span>
+
+        <span class="hljs-comment">// 抛出异常</span>
+        <span class="hljs-comment">// 1.阻止程序的执行  2. 把错误消息打印到控制台  </span>
+        <span class="hljs-keyword">throw</span> err
+    &#125;
+    <span class="hljs-built_in">console</span>.log(data);
+&#125;)
+</code></pre></div>
+<div class="hljs"><pre><code class="hljs shell">PS F:\nodejs\Node_test&gt; node .\13.回调地狱.js
+hello aaaa
+hello bbbb
+hello cccc
+PS F:\nodejs\Node_test&gt; node .\13.回调地狱.js
+hello aaaa
+hello cccc
+hello bbbb
+PS F:\nodejs\Node_test&gt; node .\13.回调地狱.js
+hello aaaa
+hello cccc
+hello bbbb</code></pre></div>
+<h3 id="1-2-想要有顺序的分别-读取-a-b-c-三个文件"><a href="#1-2-想要有顺序的分别-读取-a-b-c-三个文件" class="headerlink" title="1.2 想要有顺序的分别 读取 a b c 三个文件"></a>1.2 想要有顺序的分别 读取 a b c 三个文件</h3><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>)
+
+fs.readFile(<span class="hljs-string">&#x27;./a.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err, data</span>) </span>&#123;
+    <span class="hljs-keyword">if</span> (err) &#123;
+        <span class="hljs-comment">// return console.log(&#x27;读取错误&#x27;);</span>
+
+        <span class="hljs-comment">// 抛出异常</span>
+        <span class="hljs-comment">// 1.阻止程序的执行  2. 把错误消息打印到控制台  </span>
+        <span class="hljs-keyword">throw</span> err
+    &#125;
+    <span class="hljs-built_in">console</span>.log(data);
+    fs.readFile(<span class="hljs-string">&#x27;./b.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err, data</span>) </span>&#123;
+        <span class="hljs-keyword">if</span> (err) &#123;
+            <span class="hljs-comment">// return console.log(&#x27;读取错误&#x27;);</span>
+
+            <span class="hljs-comment">// 抛出异常</span>
+            <span class="hljs-comment">// 1.阻止程序的执行  2. 把错误消息打印到控制台  </span>
+            <span class="hljs-keyword">throw</span> err
+        &#125;
+        <span class="hljs-built_in">console</span>.log(data);
+        fs.readFile(<span class="hljs-string">&#x27;./c.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err, data</span>) </span>&#123;
+            <span class="hljs-keyword">if</span> (err) &#123;
+                <span class="hljs-comment">// return console.log(&#x27;读取错误&#x27;);</span>
+
+                <span class="hljs-comment">// 抛出异常</span>
+                <span class="hljs-comment">// 1.阻止程序的执行  2. 把错误消息打印到控制台  </span>
+                <span class="hljs-keyword">throw</span> err
+            &#125;
+            <span class="hljs-built_in">console</span>.log(data);
+        &#125;)
+    &#125;)
+
+&#125;)</code></pre></div>
+<div class="hljs"><pre><code class="hljs shell">PS F:\nodejs\Node_test&gt; node .\13.回调地狱.js
+hello aaaa
+hello bbbb
+hello cccc
+PS F:\nodejs\Node_test&gt; node .\13.回调地狱.js
+hello aaaa
+hello bbbb
+hello cccc
+PS F:\nodejs\Node_test&gt; node .\13.回调地狱.js
+hello aaaa
+hello bbbb
+hello cccc</code></pre></div>
+
+<blockquote>
+<p> 想要有顺序的读取异步操作中的文件 就需要回调函数嵌套，但这样的代码 看起来很乱且维护性低 </p>
+</blockquote>
+<blockquote>
+<p>为了解决这样的问题，（回调地狱嵌套） 这时我们就需要用ES6中的API  <code>promise </code></p>
+</blockquote>
+<h2 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h2><blockquote>
+<p>参考文档 <a target="_blank" rel="noopener" href="https://es6.ruanyifeng.com/#docs/promise">promise 阮一峰</a> 和 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise">promise MDN</a></p>
+</blockquote>
+<h3 id="为什么需要用promise？"><a href="#为什么需要用promise？" class="headerlink" title="为什么需要用promise？"></a>为什么需要用promise？</h3><p>我个人理解有三点：</p>
+<ol>
+<li>在使用ajax调用成功和失败方法时，命名不够规范。</li>
+<li>容易出现回调地狱</li>
+<li>很难进行错误处理</li>
+<li>解决异步</li>
+</ol>
+<h3 id="promise是什么？"><a href="#promise是什么？" class="headerlink" title="promise是什么？"></a>promise是什么？</h3><p>打印出来看看：<br><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4bb8ec4f75084af59036203bd363d7e9~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="promise是什么"></p>
+<p>很显然，promise是一个构造函数，它除了自身有 <strong>resolve 、 reject、 all 、race</strong>方法等，原型上还有<strong>then 、catch</strong> 等我们最常用到的方法。 所以我们 new promise 里面是肯定有 then 、 catch 方法的。</p>
+<h3 id="如何创建一个promise"><a href="#如何创建一个promise" class="headerlink" title="如何创建一个promise"></a>如何创建一个promise</h3><div class="hljs"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">runAsync</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-keyword">const</span> p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;
+    <span class="hljs-comment">// 异步操作</span>
+    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;执行成功&#x27;</span>);
+      resolve(<span class="hljs-string">&#x27;数据&#x27;</span>)
+    &#125;, <span class="hljs-number">1000</span>)
+  &#125;)
+  <span class="hljs-keyword">return</span> p
+&#125;
+
+runAsync()</code></pre></div>
+
+
+<p>其中Promise构造函数接受一个参数，就是<strong>函数</strong>。并且会传入俩个参数：<strong>resolve，reject</strong> 。 分别表示异步操作<strong>执行成功后的回调函数和执行失败后的回调函数</strong>。</p>
+<p>我们将包装一个函数，把promise放在里面并返回它， <strong>这样做的意义在于我们可以使用promise原型上的then,catch方法</strong></p>
+<div class="hljs"><pre><code class="hljs js">runAsync().then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>&#123;
+    <span class="hljs-built_in">console</span>.log(data);
+    <span class="hljs-comment">//后面可以用传过来的数据做些其他操作</span>
+&#125;);</code></pre></div>
+<p>效果展示<br><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/424e9af706c841ee8533e78e42743644~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="效果展示"></p>
+<p>以上就是Promise的作用了，简单的说，<strong>就是能把原来的回调写法分离出来，在异步操作执行完后，用链式操作的形式执行回调函数。</strong></p>
+<h3 id="promise-all-用法"><a href="#promise-all-用法" class="headerlink" title="promise.all 用法"></a>promise.all 用法</h3><p>all方法提供了并行执行异步操作的能力，并且在所有异步操作执行完毕后才执行回调。</p>
+<p>请看下面例子:</p>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">runAsync1</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-keyword">const</span> p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;
+    <span class="hljs-comment">// 异步操作</span>
+    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;执行成功&#x27;</span>);
+      resolve(<span class="hljs-string">&#x27;数据1&#x27;</span>)
+    &#125;, <span class="hljs-number">1000</span>)
+  &#125;)
+  <span class="hljs-keyword">return</span> p
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">runAsync2</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-keyword">const</span> p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;
+    <span class="hljs-comment">// 异步操作</span>
+    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;执行成功&#x27;</span>);
+      resolve(<span class="hljs-string">&#x27;数据2&#x27;</span>)
+    &#125;, <span class="hljs-number">1500</span>)
+  &#125;)
+  <span class="hljs-keyword">return</span> p
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">runAsync3</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-keyword">const</span> p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;
+    <span class="hljs-comment">// 异步操作</span>
+    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;执行成功&#x27;</span>);
+      resolve(<span class="hljs-string">&#x27;数据3&#x27;</span>)
+    &#125;, <span class="hljs-number">2000</span>)
+  &#125;)
+  <span class="hljs-keyword">return</span> p
+&#125;
+
+
+<span class="hljs-built_in">Promise</span>
+  .all([
+    runAsync1(),
+    runAsync2(),
+    runAsync3()
+  ])
+  .then(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(result))</code></pre></div>
+<p><strong>我们用Promise.all 来执行， 并且接受三个数组，里面的值都返回的是Promise对象，然后这三个异步操作并行执行，等它们都执行完毕后，数据才会在then方法里面。即all方法会把所有异步操作的结果放在一个属猪中再传给then。</strong></p>
+<p> <img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c4cefd2b822e4df787213b60947d1d46~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="call方法"></p>
+<h3 id="Promise-race-用法"><a href="#Promise-race-用法" class="headerlink" title="Promise.race 用法"></a>Promise.race 用法</h3><p>用法和Promise.all 一样，只不过all方法是<strong>谁跑得慢，就以谁为准执行回调</strong>， 而race方法就是<strong>谁跑得快，就以谁为准执行回调</strong></p>
+<p>将上面展示的代码 的all方法换成race看看是什么效果</p>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-built_in">Promise</span>
+  .race([
+    runAsync1(),
+    runAsync2(),
+    runAsync3()
+  ])
+  .then(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(result))</code></pre></div>
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9db2c77f359241849d2de2e8d84a7c15~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt=" Promise.race "></p>
+<p>瞧！他会去优先输出最快（1s）的runAsync1函数的数据，</p>
+<p><strong>原因是因为异步处理问题，runAsync1函数的数据并不会等待上面的Promise执行完在开始执行，所以由于时间延迟，优先输出‘数据1’。</strong></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                <div class="post-meta mr-3">
+                  <i class="iconfont icon-category"></i>
+                  
+                  <a class="hover-with-bg" href="/categories/JavaScript/">JavaScript</a>
+                  
+                </div>
+                
+                
+                <div class="post-meta">
+                  <i class="iconfont icon-tags"></i>
+                  
+                  <a class="hover-with-bg" href="/tags/promise/">promise</a>
+                  
+                  <a class="hover-with-bg" href="/tags/es6/">es6</a>
+                  
+                </div>
+                
+              </div>
+              
+              
+              <div class="post-prevnext row">
+                <article class="post-prev col-6">
+                  
+                  
+                  <a href="/2020/08/18/11.%E6%80%BBNode%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93/">
+                    <i class="iconfont icon-arrowleft"></i>
+                    <span class="hidden-mobile">Node基础总结</span>
+                    <span class="visible-mobile">上一篇</span>
+                  </a>
+                  
+                </article>
+                <article class="post-next col-6">
+                  
+                  
+                  <a href="/2020/08/12/09.Mongodb%20%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                    <span class="hidden-mobile">Mongodb数据库的基本使用</span>
+                    <span class="visible-mobile">下一篇</span>
+                    <i class="iconfont icon-arrowright"></i>
+                  </a>
+                  
+                </article>
+              </div>
+              
+            </div>
+
+            
+            <!-- Comments -->
+            <article class="comments" id="comments">
+              
+              
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "hjxsDRXYScicliqD8I8JqoTu-gzGzoHsz",
+          app_key: "qUcAEReEqeEVp5wwXJ41uCCp",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+            </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+      <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+    </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    
+      <script  src="/js/lazyload.js" ></script>
+    
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "回调地狱（callback hell） 和 promise&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "always",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+  
+  
+    <script>
+      !function (e, t, a) {
+        function r() {
+          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
+          requestAnimationFrame(r)
+        }
+
+        function n() {
+          var t = "function" == typeof e.onclick && e.onclick;
+          e.onclick = function (e) {
+            t && t(), o(e)
+          }
+        }
+
+        function o(e) {
+          var a = t.createElement("div");
+          a.className = "heart", s.push({
+            el: a,
+            x: e.clientX - 5,
+            y: e.clientY - 5,
+            scale: 1,
+            alpha: 1,
+            color: c()
+          }), t.body.appendChild(a)
+        }
+
+        function i(e) {
+          var a = t.createElement("style");
+          a.type = "text/css";
+          try {
+            a.appendChild(t.createTextNode(e))
+          } catch (t) {
+            a.styleSheet.cssText = e
+          }
+          t.getElementsByTagName("head")[0].appendChild(a)
+        }
+
+        function c() {
+          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+        }
+
+        var s = [];
+        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
+          setTimeout(e, 1e3 / 60)
+        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
+      }(window, document);
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

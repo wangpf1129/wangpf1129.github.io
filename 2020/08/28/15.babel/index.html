@@ -1,0 +1,670 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/boshi.jpeg">
+  <link rel="icon" type="image/png" href="/img/boshi.jpeg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="wangpf">
+  <meta name="keywords" content="">
+  <title>babel转换器 - wpf的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/foundation.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Wangpf's blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/article.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-28 14:59" pubdate>
+      2020年8月28日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      951 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      12
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">babel转换器</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h2 id="一、配置文件-babelrc"><a href="#一、配置文件-babelrc" class="headerlink" title="一、配置文件.babelrc"></a>一、配置文件.babelrc</h2><p>Babel的配置文件是.babelrc，存放在项目的根目录下。使用Babel的第一步，就是配置这个文件。</p>
+<p>该文件用来设置转码规则和插件，基本格式如下。</p>
+<div class="hljs"><pre><code class="hljs JavaScript">&#123;
+  <span class="hljs-string">&quot;presets&quot;</span>: [],
+  <span class="hljs-string">&quot;plugins&quot;</span>: []
+&#125;
+</code></pre></div>
+<h5 id="presets字段设定转码规则，官方提供以下的规则集，你可以根据需要安装。"><a href="#presets字段设定转码规则，官方提供以下的规则集，你可以根据需要安装。" class="headerlink" title="presets字段设定转码规则，官方提供以下的规则集，你可以根据需要安装。"></a>presets字段设定转码规则，官方提供以下的规则集，你可以根据需要安装。</h5><div class="hljs"><pre><code class="hljs bash"><span class="hljs-comment"># ES2015转码规则</span>
+$ npm install --save-dev babel-preset-es2015
+
+<span class="hljs-comment"># react转码规则</span>
+$ npm install --save-dev babel-preset-react
+````
+<span class="hljs-comment">##### 然后，将这些规则加入.babelrc。</span>
+```JavaScript
+&#123;
+    <span class="hljs-string">&quot;presets&quot;</span>: [
+      <span class="hljs-string">&quot;es2015&quot;</span>,
+      <span class="hljs-string">&quot;react&quot;</span>,
+      <span class="hljs-string">&quot;stage-2&quot;</span>
+    ],
+    <span class="hljs-string">&quot;plugins&quot;</span>: []
+  &#125;</code></pre></div>
+<blockquote>
+<p>注意，以下所有Babel工具和模块的使用，都必须先写好.babelrc。</p>
+</blockquote>
+<h3 id="（前面步骤必不可少）"><a href="#（前面步骤必不可少）" class="headerlink" title="（前面步骤必不可少）"></a>（前面步骤必不可少）</h3><ul>
+<li>babel-cli：命令行转码</li>
+<li>babel-node：babel-cli工具自带一个babel-node命令，提供一个支持ES6的REPL环境</li>
+<li>babel-register：实时转码，所以只适合在开发环境使用</li>
+<li>babel-core：如果某些代码需要调用Babel的API进行转码，就要使用babel-core模块</li>
+</ul>
+<h2 id="二、babel-cli："><a href="#二、babel-cli：" class="headerlink" title="二、babel-cli："></a>二、babel-cli：</h2><p>一种使用方式就是全局安装：<code>npm install -g babel-cli</code>（可以通过 <code>npm root -g</code> 查看全局包安装目录），<br>只要全局安装了 <code>babel-cli</code>，则会在命令行中多出一个命令：<code>babel</code>。</p>
+<p>这里如果使用全局安装的 <code>babel-cli</code> 进行转码是没有问题的，但是问题是如果一旦项目给了别人，<br>别人不知道你使用了这个转码工具，所以解决方式就是将 <code>babel-cli</code> 安装到本地项目中：</p>
+<div class="hljs"><pre><code class="hljs bash">npm install --save-dev babel-cli</code></pre></div>
+
+<p>这种第三方命令行工具如果安装到本地项目，会在 <code>node_modules</code> 中生成一个目录：<code>.bin</code>，<br>然后第三方命令行工具会将对应的可执行文件放到该目录中。</p>
+<p>这样的话，就可以直接在本地项目中使用该第三方命令行工具了。</p>
+<p>对于如何使用，则可以通过配置 <code>package.json</code> 文件中的 <code>scripts</code> 字段来配置使用：</p>
+<div class="hljs"><pre><code class="hljs json">&#123;
+  <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;babel-demo&quot;</span>,
+  <span class="hljs-attr">&quot;scripts&quot;</span>: &#123;
+    <span class="hljs-attr">&quot;test&quot;</span>: <span class="hljs-string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span>,
+    <span class="hljs-attr">&quot;build&quot;</span>: <span class="hljs-string">&quot;babel demo1.js&quot;</span>
+  &#125;,
+  <span class="hljs-attr">&quot;devDependencies&quot;</span>: &#123;
+    <span class="hljs-attr">&quot;babel-cli&quot;</span>: <span class="hljs-string">&quot;^6.22.2&quot;</span>,
+    <span class="hljs-attr">&quot;babel-preset-es2015&quot;</span>: <span class="hljs-string">&quot;^6.22.0&quot;</span>,
+    <span class="hljs-attr">&quot;babel-preset-react&quot;</span>: <span class="hljs-string">&quot;^6.22.0&quot;</span>
+  &#125;
+&#125;</code></pre></div>
+
+<h2 id="三、babel-register（适合开发阶段，实时编码转换）"><a href="#三、babel-register（适合开发阶段，实时编码转换）" class="headerlink" title="三、babel-register（适合开发阶段，实时编码转换）:"></a>三、babel-register（适合开发阶段，实时编码转换）:</h2><p>第一：安装 babel-register</p>
+<div class="hljs"><pre><code class="hljs bash">npm install --save-dev babel-register</code></pre></div>
+
+<p>第二：添加一个傀儡文件(main.js)：</p>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;babel-register&#x27;</span>)
+<span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;你的核心功能代码入口文件模块&#x27;</span>)</code></pre></div>
+
+<p>第三：使用 node 执行 <code>main.js</code>，而不是你的入口文件.</p>
+<h2 id="四、package-json中-scripts-配置说明"><a href="#四、package-json中-scripts-配置说明" class="headerlink" title="四、package.json中 scripts 配置说明"></a>四、package.json中 scripts 配置说明</h2><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-string">&quot;scripts&quot;</span>: &#123;
+   <span class="hljs-string">&quot;test&quot;</span>: <span class="hljs-string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span>,
+   <span class="hljs-string">&quot;dev&quot;</span>: <span class="hljs-string">&quot;node main.js&quot;</span>, <span class="hljs-comment">// 开发时运行这个，babel会帮我们把ES6语法转换为可以识别的ES5语法进去启动</span>
+   <span class="hljs-string">&quot;build&quot;</span>: <span class="hljs-string">&quot;babel src -d dist&quot;</span>, <span class="hljs-comment">//  把开发时使用的ES6语法转换到dist目录下以ES5的语法呈现</span>
+   <span class="hljs-string">&quot;prestart&quot;</span>: <span class="hljs-string">&quot;npm run build&quot;</span>, <span class="hljs-comment">// 会先执行 build 再执行 start</span>
+   <span class="hljs-string">&quot;start&quot;</span>: <span class="hljs-string">&quot;node dist/app.js&quot;</span> <span class="hljs-comment">// 启动app.js 相当于 node app.js</span>
+ &#125;,</code></pre></div>
+
+<h2 id="五、–save-和-–save-dev"><a href="#五、–save-和-–save-dev" class="headerlink" title="五、–save 和 –save-dev"></a>五、–save 和 –save-dev</h2><p>通过 <code>--save</code> 参数安装的包，是将依赖项保存到 package.json 文件中的 dependencies 选项中。<br>通过 <code>--save-dev</code> 参数安装的包，是将依赖项保存到 package.json 文件中的 devDependencies 选项中。</p>
+<p>无论是 <code>--save</code> 或者 <code>--save-dev</code> 安装的包，通过执行 <code>npm install</code> 都会将对应的依赖包安装进来。</p>
+<p>但是，在开发阶段会有一些仅仅用来辅助开发的一些第三方包或是工具，然后最终上线运行（到了生产环境），<br>这些开发依赖项就不再需要了，就可以通过 <code>npm install --production</code> 命令仅仅安装 <code>dependencies</code> 中的<br>依赖项。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                <div class="post-meta mr-3">
+                  <i class="iconfont icon-category"></i>
+                  
+                  <a class="hover-with-bg" href="/categories/babel/">babel</a>
+                  
+                </div>
+                
+                
+                <div class="post-meta">
+                  <i class="iconfont icon-tags"></i>
+                  
+                  <a class="hover-with-bg" href="/tags/es6/">es6</a>
+                  
+                  <a class="hover-with-bg" href="/tags/babel/">babel</a>
+                  
+                </div>
+                
+              </div>
+              
+              
+              <div class="post-prevnext row">
+                <article class="post-prev col-6">
+                  
+                  
+                  <a href="/2020/09/02/17.filter-%E3%80%81map-%E3%80%81reduce-%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8/">
+                    <i class="iconfont icon-arrowleft"></i>
+                    <span class="hidden-mobile">filter()、map()、reduce()函数的使用</span>
+                    <span class="visible-mobile">上一篇</span>
+                  </a>
+                  
+                </article>
+                <article class="post-next col-6">
+                  
+                  
+                  <a href="/2020/08/27/16.es6%E5%9F%BA%E7%A1%80%E6%80%BB%E7%BB%93/">
+                    <span class="hidden-mobile">es6基础语法总结</span>
+                    <span class="visible-mobile">下一篇</span>
+                    <i class="iconfont icon-arrowright"></i>
+                  </a>
+                  
+                </article>
+              </div>
+              
+            </div>
+
+            
+            <!-- Comments -->
+            <article class="comments" id="comments">
+              
+              
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "hjxsDRXYScicliqD8I8JqoTu-gzGzoHsz",
+          app_key: "qUcAEReEqeEVp5wwXJ41uCCp",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+            </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+      <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+    </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    
+      <script  src="/js/lazyload.js" ></script>
+    
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "babel转换器&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "always",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+  
+  
+    <script>
+      !function (e, t, a) {
+        function r() {
+          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
+          requestAnimationFrame(r)
+        }
+
+        function n() {
+          var t = "function" == typeof e.onclick && e.onclick;
+          e.onclick = function (e) {
+            t && t(), o(e)
+          }
+        }
+
+        function o(e) {
+          var a = t.createElement("div");
+          a.className = "heart", s.push({
+            el: a,
+            x: e.clientX - 5,
+            y: e.clientY - 5,
+            scale: 1,
+            alpha: 1,
+            color: c()
+          }), t.body.appendChild(a)
+        }
+
+        function i(e) {
+          var a = t.createElement("style");
+          a.type = "text/css";
+          try {
+            a.appendChild(t.createTextNode(e))
+          } catch (t) {
+            a.styleSheet.cssText = e
+          }
+          t.getElementsByTagName("head")[0].appendChild(a)
+        }
+
+        function c() {
+          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+        }
+
+        var s = [];
+        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
+          setTimeout(e, 1e3 / 60)
+        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
+      }(window, document);
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

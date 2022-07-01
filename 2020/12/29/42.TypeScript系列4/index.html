@@ -1,0 +1,872 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/boshi.jpeg">
+  <link rel="icon" type="image/png" href="/img/boshi.jpeg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="wangpf">
+  <meta name="keywords" content="">
+  <title>TypeScript 学习总结之 接口 - wpf的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/foundation.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Wangpf's blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/article.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-12-29 23:15" pubdate>
+      2020年12月29日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      21
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">TypeScript 学习总结之 接口</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <p>​<br><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/408cfbc308734bd8bcbb8a36c40135d0~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="TypeScript"></p>
+<h2 id="接口-interface"><a href="#接口-interface" class="headerlink" title="接口 interface"></a>接口 interface</h2><blockquote>
+<p>在 TypeScript 学习总结之基础类型 那一章节中，我稍微学习了一下 接口 interface， 对它有了初步了解， 接下来总结的是 TS文档接口这一章节。</p>
+</blockquote>
+<h3 id="函数类型"><a href="#函数类型" class="headerlink" title="函数类型"></a>函数类型</h3><p>以官方文档代码为例， 我分析了几种函数注解的方式：</p>
+<p><strong>方式一:</strong></p>
+<p>（最常见的）</p>
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">interface</span> SearchFunc &#123;
+  (source: <span class="hljs-built_in">string</span>, subString: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">boolean</span>;
+&#125;
+
+<span class="hljs-keyword">let</span> mySearch: SearchFunc;
+mySearch = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">source: <span class="hljs-built_in">string</span>, subString: <span class="hljs-built_in">string</span></span>) </span>&#123;
+  <span class="hljs-keyword">let</span> result = source.search(subString);
+  <span class="hljs-keyword">return</span> result &gt; <span class="hljs-number">-1</span>;
+&#125;</code></pre></div>
+
+<p><strong>方式二:</strong></p>
+<p>// 这种注解方式， 你会发现它同样把函数的实现方式也给实现了。 这样做不太好</p>
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">interface</span> SearchFunc &#123;
+  (source: <span class="hljs-built_in">string</span>, subString: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">boolean</span>;
+&#125;
+
+<span class="hljs-comment">// let mySearch: SearchFunc;</span>
+<span class="hljs-comment">// mySearch = function (source: string, subString: string) &#123;</span>
+<span class="hljs-comment">//   let result = source.search(subString);</span>
+<span class="hljs-comment">//   return result &gt; -1;</span>
+<span class="hljs-comment">// &#125;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mySearch</span>(<span class="hljs-params">source: <span class="hljs-built_in">string</span>, subString: <span class="hljs-built_in">string</span></span>): <span class="hljs-title">boolean</span> </span>&#123;
+  <span class="hljs-keyword">let</span> result = source.search(subString);
+  <span class="hljs-keyword">return</span> result &gt; <span class="hljs-number">-1</span>;
+&#125;</code></pre></div>
+
+<p><strong>方式三：</strong></p>
+<p>// 通过 表达式的方式   你会发现 代码会显得特别长</p>
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">interface</span> SearchFunc &#123;
+  (source: <span class="hljs-built_in">string</span>, subString: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">boolean</span>;
+&#125;
+
+<span class="hljs-keyword">let</span> mySearch: <span class="hljs-function">(<span class="hljs-params">source: <span class="hljs-built_in">string</span>, subString: <span class="hljs-built_in">string</span></span>) =&gt;</span> <span class="hljs-built_in">boolean</span> = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">source: <span class="hljs-built_in">string</span>, subString: <span class="hljs-built_in">string</span></span>): <span class="hljs-title">boolean</span> </span>&#123;
+  <span class="hljs-keyword">let</span> result = source.search(subString);
+  <span class="hljs-keyword">return</span> result &gt; <span class="hljs-number">-1</span>
+&#125;</code></pre></div>
+
+<p><strong>方式四：</strong></p>
+<p> 把方式三  给抽离出来看看 </p>
+<ol>
+<li>使用类型别名：   </li>
+<li>使用 接口 interface （这个和方式一 就一模一样了）)</li>
+</ol>
+<p>// 1.类型别名 方式</p>
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-comment">// 类型别名 方式</span>
+<span class="hljs-keyword">type</span> SearchFunc = <span class="hljs-function">(<span class="hljs-params">source: <span class="hljs-built_in">string</span>, subString: <span class="hljs-built_in">string</span></span>) =&gt;</span> <span class="hljs-built_in">boolean</span>
+
+<span class="hljs-keyword">let</span> mySearch: SearchFunc = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">source: <span class="hljs-built_in">string</span>, subString: <span class="hljs-built_in">string</span></span>): <span class="hljs-title">boolean</span> </span>&#123;
+  <span class="hljs-keyword">let</span> result = source.search(subString);
+  <span class="hljs-keyword">return</span> result &gt; <span class="hljs-number">-1</span>
+&#125;</code></pre></div>
+<p>// 2.接口 interface方式 （最常见的）</p>
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-comment">// 接口 interface</span>
+<span class="hljs-keyword">interface</span> SearchFunc &#123;
+  (source: <span class="hljs-built_in">string</span>, subString: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">boolean</span>
+&#125;
+
+<span class="hljs-keyword">let</span> mySearch: SearchFunc = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">source: <span class="hljs-built_in">string</span>, subString: <span class="hljs-built_in">string</span></span>): <span class="hljs-title">boolean</span> </span>&#123;
+  <span class="hljs-keyword">let</span> result = source.search(subString);
+  <span class="hljs-keyword">return</span> result &gt; <span class="hljs-number">-1</span>
+&#125;</code></pre></div>
+
+
+<h3 id="可索引的类型-接口"><a href="#可索引的类型-接口" class="headerlink" title="可索引的类型 接口"></a>可索引的类型 接口</h3><blockquote>
+<p>可索引的类型的接口   指的就是 数组类型的接口</p>
+</blockquote>
+<p>可索引类型具有一个 索引签名，它描述了对象索引的类型，还有相应的索引返回值类型。</p>
+<p>TypeScript支持两种索引签名：字符串和数字。 可以同时使用两种类型的索引，但是数字索引的返回值必须是字符串索引返回值类型的子类型。 </p>
+<p>示例：</p>
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">interface</span> NumberArray &#123;
+  [index: <span class="hljs-built_in">number</span>]: <span class="hljs-built_in">number</span>
+&#125;
+
+<span class="hljs-keyword">let</span> obj: NumberArray = &#123;
+  <span class="hljs-number">0</span>: <span class="hljs-number">1</span>,   <span class="hljs-comment">// 其实这个索引值 0 1 2 都是字符串 虽然定义的是数字， 但终究会转换成string</span>
+  <span class="hljs-number">1</span>: <span class="hljs-number">2</span>,
+  <span class="hljs-number">2</span>: <span class="hljs-number">3</span>
+&#125;
+
+<span class="hljs-keyword">let</span> arr: NumberArray = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]</code></pre></div>
+
+<p>因为当使用 number来索引时， JavaScript终究会将它转换成string 然后再去索引对象。</p>
+<p><strong>由此可知：在索引签名中， string是包含着number的</strong></p>
+<p>再举个例子:</p>
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">class</span> Animal &#123;
+  name: <span class="hljs-built_in">string</span>;
+&#125;
+<span class="hljs-keyword">class</span> Dog <span class="hljs-keyword">extends</span> Animal &#123;
+  breed: <span class="hljs-built_in">string</span>;
+&#125;
+
+<span class="hljs-comment">// 错误：使用数值型的字符串索引，有时会得到完全不同的Animal!</span>
+<span class="hljs-comment">// interface NotOkay &#123;</span>
+<span class="hljs-comment">//   [x: number]: Animal;</span>
+<span class="hljs-comment">//   [x: string]: Dog;</span>
+<span class="hljs-comment">// &#125;</span>
+
+<span class="hljs-comment">// success</span>
+<span class="hljs-keyword">interface</span> NotOkay &#123;
+  [x: <span class="hljs-built_in">string</span>]: Animal;<span class="hljs-comment">//因为Animal是父类，只能是string</span>
+  [x: <span class="hljs-built_in">number</span>]: Dog; <span class="hljs-comment">// Dog继承了Animal 但索引又想和Animal一样，那么把它换成number即可</span>
+&#125;</code></pre></div>
+<hr>
+<p>再看看 索引的返回值， 索引签名中 规定是什么类型就是什么类型， </p>
+<p>因为 对象中key 一定是字符串，但value 不一定是</p>
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">interface</span> NumberDictionary &#123;
+  [index: <span class="hljs-built_in">string</span>]: <span class="hljs-built_in">number</span>;
+  length: <span class="hljs-built_in">number</span>;    <span class="hljs-comment">// 可以，length是number类型</span>
+  <span class="hljs-comment">// name: string       // 错误，`name`的类型与索引类型返回值的类型不匹配</span>
+  name:<span class="hljs-built_in">number</span>  <span class="hljs-comment">// OK</span>
+&#125;</code></pre></div>
+
+<h3 id="类-类型接口"><a href="#类-类型接口" class="headerlink" title="类 类型接口"></a>类 类型接口</h3><blockquote>
+<p>对 类 的一部分行为进行抽象；</p>
+</blockquote>
+<blockquote>
+<p>类实现所有接口中的属性和方法 &amp;&amp; 对比 对象类： 抽象方法需要实现</p>
+</blockquote>
+<p>与C#或Java里接口的基本作用一样，TypeScript也能够用它来明确的强制一个类去符合某种契约。</p>
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">interface</span> ClockInterface &#123;
+  currentTime: <span class="hljs-built_in">Date</span>;		<span class="hljs-comment">// 定义属性</span>
+  setTime(d: <span class="hljs-built_in">Date</span>): <span class="hljs-built_in">void</span>   <span class="hljs-comment">// 定义方法</span>
+&#125;
+<span class="hljs-comment">// implements  实现   专门用来实现接口</span>
+<span class="hljs-keyword">class</span> Clock <span class="hljs-keyword">implements</span> ClockInterface &#123;
+   currentTime = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();	<span class="hljs-comment">// 实现实现</span>
+   setTime() &#123;   <span class="hljs-comment">// 实现方法</span>
+
+  &#125;
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params">h: <span class="hljs-built_in">number</span>, m: <span class="hljs-built_in">number</span></span>) &#123; &#125;
+&#125;</code></pre></div>
+
+
+
+<p><strong>类继承+类类型接口 示例：</strong></p>
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">interface</span> Alarm &#123;   <span class="hljs-comment">//  警告器</span>
+  alert(): <span class="hljs-built_in">void</span>
+&#125;
+
+<span class="hljs-keyword">interface</span> Light &#123;   <span class="hljs-comment">//  车灯</span>
+  color: <span class="hljs-built_in">string</span>
+  lightOn(): <span class="hljs-built_in">void</span>
+  lightOff(): <span class="hljs-built_in">void</span>
+&#125;
+
+<span class="hljs-keyword">class</span> Door &#123;
+
+&#125;
+<span class="hljs-comment">// 继承 Door （门） 这个类  然后实现   Alarm  接口</span>
+<span class="hljs-keyword">class</span> securityDoor <span class="hljs-keyword">extends</span> Door <span class="hljs-keyword">implements</span> Alarm &#123;
+  alert() &#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;咚咚咚&#x27;</span>);
+
+  &#125;
+&#125;
+
+<span class="hljs-comment">// car 要实现 这个俩个接口的方法和属性</span>
+<span class="hljs-keyword">class</span> car <span class="hljs-keyword">implements</span> Alarm, Light &#123;
+  color = <span class="hljs-string">&#x27;red&#x27;</span>
+  alert() &#123; &#125;
+  lightOn() &#123; &#125;
+  lightOff() &#123; &#125;
+
+&#125;</code></pre></div>
+
+<h3 id="类静态部分与实例部分的区别"><a href="#类静态部分与实例部分的区别" class="headerlink" title="类静态部分与实例部分的区别"></a>类静态部分与实例部分的区别</h3><p>类是具有两个类型的：静态部分的类型和实例的类型</p>
+<p>而constructor 存在于类的静态部分， 所以不再检查的范围内</p>
+<p>因此，类静态部分和实例部分需要单独分开来做</p>
+<p>示例：</p>
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-comment">// 定于一个  闹钟接口</span>
+<span class="hljs-keyword">interface</span> ClockInterface &#123;
+  currentTime: <span class="hljs-built_in">Date</span>
+  getTime(hour: <span class="hljs-built_in">number</span>, mins: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">any</span>
+&#125;
+<span class="hljs-comment">// 定于一个  闹钟构造函数接口</span>
+<span class="hljs-keyword">interface</span> ClockConstructor &#123;
+  <span class="hljs-keyword">new</span>(hour: <span class="hljs-built_in">number</span>, mins: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">any</span>
+&#125;
+
+<span class="hljs-comment">// Clock 去实现 闹钟接口ClockInterface</span>
+<span class="hljs-keyword">class</span> Clock <span class="hljs-keyword">implements</span> ClockInterface &#123;
+  currentTime = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()
+  getTime() &#123;
+
+  &#125;
+&#125;
+
+<span class="hljs-comment">// 定义一个构造函数 createClock 通过构造函数检查构造函数的方式 去 new 一个C</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createClock</span>(<span class="hljs-params">C: ClockConstructor, hour: <span class="hljs-built_in">number</span>, mins: <span class="hljs-built_in">number</span></span>) </span>&#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> C(hour, mins)
+&#125;
+
+<span class="hljs-comment">// 实例化</span>
+<span class="hljs-keyword">let</span> clock = createClock(Clock, <span class="hljs-number">12</span>, <span class="hljs-number">12</span>)</code></pre></div>
+
+<h3 id="接口继承接口"><a href="#接口继承接口" class="headerlink" title="接口继承接口"></a>接口继承接口</h3><p>因为 接口是对对象的形状进行描述； 所以接口可以继承接口，</p>
+<p>和类一样，接口也可以相互继承。 这让我们能够从一个接口里复制成员到另一个接口里，可以更灵活地将接口分割到可重用的模块里。</p>
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">interface</span> Shape &#123;
+  color: <span class="hljs-built_in">string</span>;
+&#125;
+
+<span class="hljs-keyword">interface</span> Square <span class="hljs-keyword">extends</span> Shape &#123;
+  sideLength: <span class="hljs-built_in">number</span>;
+&#125;
+
+<span class="hljs-comment">// 类型断言</span>
+<span class="hljs-comment">// let square = &lt;Square&gt;&#123;&#125;;</span>
+<span class="hljs-keyword">let</span> square = &#123;&#125; <span class="hljs-keyword">as</span> Square
+square.color = <span class="hljs-string">&quot;blue&quot;</span>;
+square.sideLength = <span class="hljs-number">10</span>;</code></pre></div>
+
+
+<h3 id="混合类型"><a href="#混合类型" class="headerlink" title="混合类型"></a>混合类型</h3><p>函数类型的interface ，添加属性的方式来实现 对象的interface</p>
+<p>相当于 函数类型的interface + 对象类型的 interface</p>
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">interface</span> Counter &#123;
+  (start: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">string</span>;   <span class="hljs-comment">// 有点像构造函数</span>
+  interval: <span class="hljs-built_in">number</span>;
+  reset(): <span class="hljs-built_in">void</span>;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getCounter</span>(<span class="hljs-params"></span>): <span class="hljs-title">Counter</span> </span>&#123;
+  <span class="hljs-keyword">let</span> counter = &lt;Counter&gt;<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">start: <span class="hljs-built_in">number</span></span>) </span>&#123; &#125;;  <span class="hljs-comment">// 断言   可以理解为 给 counter 初始值</span>
+  counter.interval = <span class="hljs-number">123</span>;
+  counter.reset = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123; &#125;;
+  <span class="hljs-keyword">return</span> counter;
+&#125;
+
+<span class="hljs-keyword">let</span> c = getCounter();
+c(<span class="hljs-number">10</span>);
+c.reset();
+c.interval = <span class="hljs-number">5.0</span>;</code></pre></div>
+
+
+<h3 id="接口继承类"><a href="#接口继承类" class="headerlink" title="接口继承类"></a>接口继承类</h3><ol>
+<li>接口可以接触接口</li>
+<li>接口可以继承类</li>
+<li>类可以实现接口</li>
+</ol>
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-comment">//   定义 类</span>
+<span class="hljs-keyword">class</span> Control &#123;
+  <span class="hljs-keyword">private</span> state: <span class="hljs-built_in">any</span>;
+&#125;
+
+<span class="hljs-comment">//  接口继承类</span>
+<span class="hljs-keyword">interface</span> SelectableControl <span class="hljs-keyword">extends</span> Control &#123;
+  select(): <span class="hljs-built_in">void</span>;
+&#125;
+
+<span class="hljs-comment">//   类继承类然后实现接口</span>
+<span class="hljs-keyword">class</span> Button <span class="hljs-keyword">extends</span> Control <span class="hljs-keyword">implements</span> SelectableControl &#123;
+  select() &#123; &#125;
+&#125;
+
+<span class="hljs-comment">//  类继承接口</span>
+<span class="hljs-keyword">class</span> TextBox <span class="hljs-keyword">extends</span> Control &#123;
+  select() &#123; &#125;
+&#125;
+
+<span class="hljs-comment">// 错误：“Image”类型缺少“state”属性。</span>
+<span class="hljs-comment">// class Images implements SelectableControl &#123;</span>
+<span class="hljs-comment">//   select() &#123; &#125;</span>
+<span class="hljs-comment">// &#125;</span>
+</code></pre></div>
+
+<p>最后，看了俩遍文档还是有点迷。。。。。 以后多练习练习</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                <div class="post-meta mr-3">
+                  <i class="iconfont icon-category"></i>
+                  
+                  <a class="hover-with-bg" href="/categories/typescript/">typescript</a>
+                  
+                  <a class="hover-with-bg" href="/categories/typescript/JavaScript/">JavaScript</a>
+                  
+                </div>
+                
+                
+                <div class="post-meta">
+                  <i class="iconfont icon-tags"></i>
+                  
+                  <a class="hover-with-bg" href="/tags/typescript/">typescript</a>
+                  
+                </div>
+                
+              </div>
+              
+              
+              <div class="post-prevnext row">
+                <article class="post-prev col-6">
+                  
+                  
+                  <a href="/2020/12/30/43.TypeScript%E7%B3%BB%E5%88%975/">
+                    <i class="iconfont icon-arrowleft"></i>
+                    <span class="hidden-mobile">TypeScript 学习总结之 泛型</span>
+                    <span class="visible-mobile">上一篇</span>
+                  </a>
+                  
+                </article>
+                <article class="post-next col-6">
+                  
+                  
+                  <a href="/2020/12/29/41.TypeScript%E7%B3%BB%E5%88%973/">
+                    <span class="hidden-mobile">TypeScript 学习总结之 类</span>
+                    <span class="visible-mobile">下一篇</span>
+                    <i class="iconfont icon-arrowright"></i>
+                  </a>
+                  
+                </article>
+              </div>
+              
+            </div>
+
+            
+            <!-- Comments -->
+            <article class="comments" id="comments">
+              
+              
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "hjxsDRXYScicliqD8I8JqoTu-gzGzoHsz",
+          app_key: "qUcAEReEqeEVp5wwXJ41uCCp",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+            </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+      <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+    </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    
+      <script  src="/js/lazyload.js" ></script>
+    
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "TypeScript 学习总结之 接口&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "always",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+  
+  
+    <script>
+      !function (e, t, a) {
+        function r() {
+          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
+          requestAnimationFrame(r)
+        }
+
+        function n() {
+          var t = "function" == typeof e.onclick && e.onclick;
+          e.onclick = function (e) {
+            t && t(), o(e)
+          }
+        }
+
+        function o(e) {
+          var a = t.createElement("div");
+          a.className = "heart", s.push({
+            el: a,
+            x: e.clientX - 5,
+            y: e.clientY - 5,
+            scale: 1,
+            alpha: 1,
+            color: c()
+          }), t.body.appendChild(a)
+        }
+
+        function i(e) {
+          var a = t.createElement("style");
+          a.type = "text/css";
+          try {
+            a.appendChild(t.createTextNode(e))
+          } catch (t) {
+            a.styleSheet.cssText = e
+          }
+          t.getElementsByTagName("head")[0].appendChild(a)
+        }
+
+        function c() {
+          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+        }
+
+        var s = [];
+        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
+          setTimeout(e, 1e3 / 60)
+        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
+      }(window, document);
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

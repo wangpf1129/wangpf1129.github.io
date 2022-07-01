@@ -1,0 +1,851 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/boshi.jpeg">
+  <link rel="icon" type="image/png" href="/img/boshi.jpeg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="wangpf">
+  <meta name="keywords" content="">
+  <title>git - wpf的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/foundation.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Wangpf's blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/article.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-23 12:48" pubdate>
+      2020年8月23日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.8k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      21
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">git</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <blockquote>
+<p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Git">维基百科 - Git</a></p>
+</blockquote>
+<h2 id="学习资源介绍"><a href="#学习资源介绍" class="headerlink" title="学习资源介绍"></a>学习资源介绍</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/">Git教程 - 廖雪峰</a></li>
+<li><a target="_blank" rel="noopener" href="http://git.oschina.net/progit/">Pro Git</a></li>
+<li><a target="_blank" rel="noopener" href="http://rogerdudler.github.io/git-guide/index.zh.html">git - 简明指南</a></li>
+<li><a target="_blank" rel="noopener" href="http://backlogtool.com/git-guide/cn/">猴子都能懂的GIT入门</a></li>
+</ul>
+<h2 id="Git-简介"><a href="#Git-简介" class="headerlink" title="Git 简介"></a>Git 简介</h2><ul>
+<li>是什么<ul>
+<li>Git 也是一个版本控制管理软件</li>
+</ul>
+</li>
+<li>有什么用，可以解决什么问题<ul>
+<li>保存历史记录</li>
+<li>多人协作</li>
+</ul>
+</li>
+<li>有了 SVN，为啥要学 Git<ul>
+<li>Git 火</li>
+<li>Git 相对于 SVN 来说，更强大，用户也非常多</li>
+</ul>
+</li>
+<li>怎么用</li>
+<li>Git 的诞生<ul>
+<li><a target="_blank" rel="noopener" href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137402760310626208b4f695940a49e5348b689d095fc000">http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137402760310626208b4f695940a49e5348b689d095fc000</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="Git-使用交互流程"><a href="#Git-使用交互流程" class="headerlink" title="Git 使用交互流程"></a>Git 使用交互流程</h2><p><img src="img/git%E4%BA%A4%E4%BA%92%E6%A8%A1%E5%9E%8B.png" srcset="/img/loading.gif" alt="git交互模型"></p>
+<h2 id="安装和配置-Git-环境"><a href="#安装和配置-Git-环境" class="headerlink" title="安装和配置 Git 环境"></a>安装和配置 Git 环境</h2><ul>
+<li>下载地址：<a target="_blank" rel="noopener" href="https://git-scm.com/">https://git-scm.com/</a></li>
+</ul>
+<h3 id="git-bash-常用命令"><a href="#git-bash-常用命令" class="headerlink" title="git-bash 常用命令"></a>git-bash 常用命令</h3><ul>
+<li>pwd</li>
+<li>ls   查看文件目录<ul>
+<li>ls -a  查看隐藏文件</li>
+</ul>
+</li>
+<li>cd</li>
+<li>mkdir    创建文件</li>
+<li>clear    清屏</li>
+<li>rmdir<ul>
+<li>只能删除空目录</li>
+</ul>
+</li>
+<li>rm<ul>
+<li>rm 文件名</li>
+<li>rm -rf 目录名<ul>
+<li>注：很强大，可以删除非空目录，以及一些比较顽固的文件或者目录 </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="git-bash-文件操作常用目录"><a href="#git-bash-文件操作常用目录" class="headerlink" title="git-bash 文件操作常用目录"></a>git-bash 文件操作常用目录</h3><ul>
+<li>touch：创建文件</li>
+<li>cat 查看文件内容</li>
+<li>less：查看大文本文件内容 （从头开始往下看）</li>
+<li>vi 编辑 ： （visual interface）<ul>
+<li>Esc  退出命令模式</li>
+<li>i  进入插入模式</li>
+<li>:q   退出vi</li>
+<li>:w  保存编辑</li>
+<li>:wq  保存并退出</li>
+<li>:q! 强制退出不保存修改</li>
+<li>vi 的所有操作基本都是命令，这里掌握基本使用就可以了</li>
+<li>有时候使用 git commit 进行提交的时候希望能多写几行提交日志，这时候可以省略 -m 参数进入 vi</li>
+</ul>
+</li>
+</ul>
+<h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><ul>
+<li><code>git init</code><ul>
+<li>初始化一个 Git 仓库</li>
+</ul>
+</li>
+<li><code>git status</code><ul>
+<li>查看当前工作区、暂存区、本地仓库的状态</li>
+</ul>
+</li>
+<li><code>git add</code>   提交到暂存区</li>
+<li><code>git commit</code> 将文件存入文档库<ul>
+<li>示例：<code>git commit -m &quot;日志说明&quot; --author=&quot;操作者姓名 &lt;邮箱&gt;&quot;</code></li>
+<li>执行 <code>git commit</code> 的时候，Git 会要求具有用户名和邮箱的参数选项</li>
+<li>可以通过 <code>git config</code> 命令配置一下用户名和邮箱</li>
+</ul>
+</li>
+<li><code>git log</code>  查看提交日志</li>
+<li><code>gitk</code>     图形化的呈现出提交日志</li>
+</ul>
+<p><strong>总结</strong>：操作 Git 的基本工作流程就是先修改文件，然后执行 <code>git add</code> 命令。<br><code>git add</code> 命令会把文件加入到暂存区，接着就可以执行 <code>git commit</code> 命令，将文件存入文档库，<br>从而形成一次历史记录。</p>
+<ul>
+<li>问题1：关于 Git-bash 中文问题</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/msysgit/msysgit/wiki/Git-for-Windows-Unicode-Support">Git for Windows Unicode Support</a></li>
+<li>问题2：执行 commit 的时候一大堆的信息</li>
+<li>问题3：配置 user.name 和 user.email 问题</li>
+</ul>
+<h3 id="初始化配置"><a href="#初始化配置" class="headerlink" title="初始化配置"></a>初始化配置</h3><div class="hljs"><pre><code class="hljs bash"><span class="hljs-comment"># 设置用户名</span>
+git config --global user.name <span class="hljs-string">&quot;你的名字&quot;</span>
+<span class="hljs-comment"># 配置用户邮箱</span>
+git config --global user.email <span class="hljs-string">&quot;你的常用邮箱&quot;</span>
+<span class="hljs-comment"># 设置 gitk 图形查看工具中文显示默认编码（防止乱码）</span>
+git config --global gui.encoding utf-8
+<span class="hljs-comment"># 查看配置列表项</span>
+git config --list</code></pre></div>
+
+
+<h3 id="添加-删除文件"><a href="#添加-删除文件" class="headerlink" title="添加/删除文件"></a>添加/删除文件</h3><div class="hljs"><pre><code class="hljs bash"><span class="hljs-comment"># 添加指定文件到暂存区</span>
+git add [files1] [files2] ...
+
+<span class="hljs-comment"># 添加指定目录到暂存区，包括子目录</span>
+git add [dir]
+
+<span class="hljs-comment"># 添加当前目录所有文件到暂存区</span>
+git add --all
+gie add .
+
+<span class="hljs-comment"># 停止追踪指定文件，但该文件会保留在工作区 （也就是 把暂存区的文件给退回到工作区）</span>
+git rm  --cached [file]
+
+<span class="hljs-comment"># 改名文件，并且将这个改名的放入暂存区</span>
+git mv [file-original] [file-renamed]</code></pre></div>
+<h3 id="代码提交"><a href="#代码提交" class="headerlink" title="代码提交"></a>代码提交</h3><div class="hljs"><pre><code class="hljs bash"><span class="hljs-comment"># 提交到暂存区到仓库区</span>
+git commit -m [message]
+
+<span class="hljs-comment"># 提交暂存区的指定文件到仓库区</span>
+git commit [file1] [file2] ... -m [message]
+
+<span class="hljs-comment"># 提交工作区自上次commit之后的变化， 直接到仓库去</span>
+<span class="hljs-comment"># (也就是说。 被跟踪过的 即之前在暂存区过的文件 可以直接越过暂存区提交到仓库区)</span>
+git commit -a  -m [message]
+
+<span class="hljs-comment"># 使用一次新的commit， 替代上一次提交</span>
+<span class="hljs-comment"># 如果代码没有任何新变化，则用改写上一次commit的提交信息</span>
+git commit --amend -m [message]</code></pre></div>
+<h3 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h3><div class="hljs"><pre><code class="hljs bash"><span class="hljs-comment"># git rm --cached &lt;file&gt;</span>
+<span class="hljs-comment"># 恢复暂存区的指定文件到工作区</span>
+$ git checkout [file]
+
+<span class="hljs-comment"># 恢复某个commit的指定文件到暂存区和工作区</span>
+$ git checkout [commit] [file]
+
+<span class="hljs-comment"># 恢复暂存区的所有文件到工作区</span>
+$ git checkout .
+
+<span class="hljs-comment"># 重置暂存区的指定文件，与上一次commit保持一致，但工作区不变</span>
+$ git reset [file]
+
+<span class="hljs-comment"># 重置暂存区与工作区，与上一次commit保持一致</span>
+$ git reset --hard
+
+<span class="hljs-comment"># 重置当前分支的指针为指定commit，同时重置暂存区，但工作区不变</span>
+$ git reset [commit]
+
+<span class="hljs-comment"># 重置当前分支的HEAD为指定commit，同时重置暂存区和工作区，与指定commit一致</span>
+$ git reset --hard [commit]
+
+<span class="hljs-comment"># 重置当前HEAD为指定commit，但保持暂存区和工作区不变</span>
+$ git reset --keep [commit]
+
+<span class="hljs-comment"># 新建一个commit，用来撤销指定commit</span>
+<span class="hljs-comment"># 后者的所有变化都将被前者抵消，并且应用到当前分支</span>
+$ git revert [commit]
+
+<span class="hljs-comment"># 暂时将未提交的变化移除，稍后再移入</span>
+$ git stash
+$ git stash pop</code></pre></div>
+<h3 id="分支基本操作"><a href="#分支基本操作" class="headerlink" title="分支基本操作"></a>分支基本操作</h3><div class="hljs"><pre><code class="hljs bash"><span class="hljs-comment"># 列出所有分支</span>
+git branch
+
+<span class="hljs-comment"># 基于当前分支新建一个分支，但依然停留在当前分支</span>
+git branch [branch-name]
+
+<span class="hljs-comment"># 基于当前分支新建一个分支 并切换到该分支</span>
+git checkout -b [branch-name]
+
+<span class="hljs-comment"># 切换到指定分支，并更新工作区</span>
+git checkout [branch-name]
+
+<span class="hljs-comment"># 切换到上一个分支， 交替和上一个分支进行切换</span>
+git checkout - 
+
+<span class="hljs-comment"># 合并指定分支到当前分支</span>
+git merge [branch-name]
+
+<span class="hljs-comment"># 删除分支</span>
+git branch -d [branch-name]</code></pre></div>
+
+<h3 id="远程同步"><a href="#远程同步" class="headerlink" title="远程同步"></a>远程同步</h3><ul>
+<li>remote</li>
+<li>push</li>
+<li>pull</li>
+</ul>
+<h3 id="在线仓库托管服务"><a href="#在线仓库托管服务" class="headerlink" title="在线仓库托管服务"></a>在线仓库托管服务</h3><blockquote>
+<p>一个不知道 github、stackoverflow 的程序员想想都是可悲的</p>
+</blockquote>
+<ul>
+<li>github</li>
+<li>码云</li>
+<li>coding</li>
+</ul>
+<hr>
+<h3 id="Github-Pages"><a href="#Github-Pages" class="headerlink" title="Github Pages"></a>Github Pages</h3><blockquote>
+<p>Github Pages 提供了一个免费在线托管静态资源的服务</p>
+</blockquote>
+<h4 id="使用方法如下："><a href="#使用方法如下：" class="headerlink" title="使用方法如下："></a>使用方法如下：</h4><ul>
+<li>在个人的Github账户中创建一个仓库</li>
+<li>仓库名称必须为 <code>个人账户名称.github.io</code></li>
+<li>往该仓库根目录提交一个 <code>index.html</code>文件</li>
+<li>然后就可以在地址栏输入 <code>个人账户名称.github.io</code> 地址，就可以看到 <code>index.html</code> 网页内容了</li>
+</ul>
+<p>注意：上面的创建仓库名称必须是<code>个人账户名称.github.io</code>，否则无法访问。</p>
+<h3 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h3><blockquote>
+<p>Hexo  是基于Node.js开放的一个静态博客生成器，提供了本地实时预览及部署功能，基本使用方法如下：</p>
+</blockquote>
+<div class="hljs"><pre><code class="hljs shell">npm install  hexo-cli -g
+hexo init blog(这个是文件名字)
+cd blog
+<span class="hljs-meta">#</span><span class="bash"> 启动本地预览服务，默认是 127.0.0.1：4000</span>
+hexo server
+
+<span class="hljs-meta">#</span><span class="bash"> 新建文章</span>
+hexo new 文章标题</code></pre></div>
+
+<p>也可以参考Hexo官方文档 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/%EF%BC%8C%E9%87%8C%E9%9D%A2%E6%9C%89%E5%85%B7%E4%BD%93%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F">https://hexo.io/zh-cn/，里面有具体使用方式</a></p>
+<h3 id="自动发布-Hexo-搭建的静态博客"><a href="#自动发布-Hexo-搭建的静态博客" class="headerlink" title="自动发布 Hexo 搭建的静态博客"></a>自动发布 Hexo 搭建的静态博客</h3><ul>
+<li><p>第一：先修改 <code>_config.yml</code>配置文件，下面是一个示例：</p>
+<div class="hljs"><pre><code class="hljs less"><span class="hljs-attribute">deploy</span>:
+  <span class="hljs-attribute">type</span>: git
+  <span class="hljs-attribute">reop</span>: <span class="hljs-attribute">https</span>:<span class="hljs-comment">//wwwpppfffzzz:Wang1234zzz@github.com/wwwpppfffzzz/wwwpppfffzzz.github.io.git</span></code></pre></div>
+<p>上面配置选项中，一定要注意repo中获取对应的格式加入Github用户名和密码。</p>
+</li>
+<li><p>第二：安装自动发布的插件:</p>
+</li>
+</ul>
+<div class="hljs"><pre><code class="hljs shell">npm install hexo-deployer-git --save</code></pre></div>
+
+<ul>
+<li>第三： 使用命令一键进行发布：</li>
+</ul>
+<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 俩条命令都可以，发布可能有延迟，稍微等待即可</span>
+ hexo generate --deploy
+ hexo deploy --generate</code></pre></div>
+
+<h1 id="注意-如果访问不了-https-xxx-github-io"><a href="#注意-如果访问不了-https-xxx-github-io" class="headerlink" title="注意 如果访问不了 https://xxx.github.io"></a>注意 如果访问不了 <a target="_blank" rel="noopener" href="https://xxx.github.io/">https://xxx.github.io</a></h1><p>需要把本机电脑的 ipv4 协议中的 DNS 服务地址 修改为 114.114.114.114</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                <div class="post-meta mr-3">
+                  <i class="iconfont icon-category"></i>
+                  
+                  <a class="hover-with-bg" href="/categories/git/">git</a>
+                  
+                  <a class="hover-with-bg" href="/categories/git/github/">github</a>
+                  
+                  <a class="hover-with-bg" href="/categories/git/github/hexo/">hexo</a>
+                  
+                </div>
+                
+                
+                <div class="post-meta">
+                  <i class="iconfont icon-tags"></i>
+                  
+                  <a class="hover-with-bg" href="/tags/git/">git</a>
+                  
+                  <a class="hover-with-bg" href="/tags/github/">github</a>
+                  
+                  <a class="hover-with-bg" href="/tags/hexo/">hexo</a>
+                  
+                </div>
+                
+              </div>
+              
+              
+              <div class="post-prevnext row">
+                <article class="post-prev col-6">
+                  
+                  
+                  <a href="/2020/08/23/14.Github/">
+                    <i class="iconfont icon-arrowleft"></i>
+                    <span class="hidden-mobile">github</span>
+                    <span class="visible-mobile">上一篇</span>
+                  </a>
+                  
+                </article>
+                <article class="post-next col-6">
+                  
+                  
+                  <a href="/2020/08/22/12-SVN/">
+                    <span class="hidden-mobile">SVN</span>
+                    <span class="visible-mobile">下一篇</span>
+                    <i class="iconfont icon-arrowright"></i>
+                  </a>
+                  
+                </article>
+              </div>
+              
+            </div>
+
+            
+            <!-- Comments -->
+            <article class="comments" id="comments">
+              
+              
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "hjxsDRXYScicliqD8I8JqoTu-gzGzoHsz",
+          app_key: "qUcAEReEqeEVp5wwXJ41uCCp",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+            </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+      <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+    </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    
+      <script  src="/js/lazyload.js" ></script>
+    
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "git&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "always",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+  
+  
+    <script>
+      !function (e, t, a) {
+        function r() {
+          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
+          requestAnimationFrame(r)
+        }
+
+        function n() {
+          var t = "function" == typeof e.onclick && e.onclick;
+          e.onclick = function (e) {
+            t && t(), o(e)
+          }
+        }
+
+        function o(e) {
+          var a = t.createElement("div");
+          a.className = "heart", s.push({
+            el: a,
+            x: e.clientX - 5,
+            y: e.clientY - 5,
+            scale: 1,
+            alpha: 1,
+            color: c()
+          }), t.body.appendChild(a)
+        }
+
+        function i(e) {
+          var a = t.createElement("style");
+          a.type = "text/css";
+          try {
+            a.appendChild(t.createTextNode(e))
+          } catch (t) {
+            a.styleSheet.cssText = e
+          }
+          t.getElementsByTagName("head")[0].appendChild(a)
+        }
+
+        function c() {
+          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+        }
+
+        var s = [];
+        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
+          setTimeout(e, 1e3 / 60)
+        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
+      }(window, document);
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

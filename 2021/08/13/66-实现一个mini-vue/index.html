@@ -1,0 +1,1140 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/boshi.jpeg">
+  <link rel="icon" type="image/png" href="/img/boshi.jpeg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="wangpf">
+  <meta name="keywords" content="">
+  <title>实现一个简洁版的Mini-Vue - wpf的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/foundation.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Wangpf's blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/article.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2021-08-13 16:08" pubdate>
+      2021年8月13日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      43
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">实现一个简洁版的Mini-Vue</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <p>实现一个简洁版 Mini-Vue</p>
+<h2 id="Vue-三大核心系统"><a href="#Vue-三大核心系统" class="headerlink" title="Vue 三大核心系统"></a>Vue 三大核心系统</h2><p>Vue源码包含三大核心：</p>
+<ol>
+<li>Compiler模块： 编译模板系统</li>
+<li>Runtime模块： 也可以称为Renderer模块，真正渲染的模块</li>
+<li>Reactivity模块： 响应式系统</li>
+</ol>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/142c2d19851a4e9aa327bfd3d7d8978d~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="三大模块系统.png"></p>
+<h2 id="Mini-Vue"><a href="#Mini-Vue" class="headerlink" title="Mini-Vue"></a>Mini-Vue</h2><p>实现一个简洁版的 Mini-Vue， 包含三个模块：</p>
+<ul>
+<li>渲染系统模块</li>
+<li>可响应式系统模块</li>
+<li>应用程序入口模块</li>
+</ul>
+<h3 id="渲染系统模块"><a href="#渲染系统模块" class="headerlink" title="渲染系统模块"></a>渲染系统模块</h3><h4 id="虚拟DOM的优势"><a href="#虚拟DOM的优势" class="headerlink" title="虚拟DOM的优势"></a>虚拟DOM的优势</h4><p>在传统的前端开发中，我们编写自己的HTML，最终被渲染到浏览器上。</p>
+<p>而目前框架都会引入虚拟DOM来对真实的DOM进行抽象，这样做有很多的好处</p>
+<ol>
+<li>首先是可以对真实的元素节点进行抽象，抽象成VNode（虚拟节点），这样方便后续对其进行操作<ol>
+<li>因为对于直接操作DOM来说是有很多限制的，比如diff、clone等等，但是使用js来操作这些就会变得简单</li>
+<li>可以使用js来表达非常多的逻辑，而对于DOM本身来说是非常不方便的</li>
+</ol>
+</li>
+<li>其次是方便实现跨平台，包括你可以将VNode节点渲染成任意你想要的节点<ol>
+<li>比如渲染在WebGL，SSR，Native（ios，Android）上等等</li>
+<li>并且Vue允许你开发属于自己的渲染器（renderer），在其他的平台上渲染</li>
+</ol>
+</li>
+</ol>
+<h2 id="渲染系统的实现"><a href="#渲染系统的实现" class="headerlink" title="渲染系统的实现"></a>渲染系统的实现</h2><p>该模块主要包含三个功能：</p>
+<ol>
+<li><p><strong>h 函数：</strong>用于返回一个VNode对象</p>
+</li>
+<li><p><strong>mount函数：</strong> 用于将VNode挂载在DOM上</p>
+</li>
+<li><p><strong>patch函数：</strong> 用于俩个VNode进行对比，判断如何处理新的VNode</p>
+</li>
+</ol>
+<h3 id="h-函数的实现"><a href="#h-函数的实现" class="headerlink" title="h 函数的实现"></a>h 函数的实现</h3><blockquote>
+<p>h函数的作用就是 生成VNode， 而vnode本质上是一个JavaScript对象</p>
+</blockquote>
+<p>实现一个<strong>h 函数</strong>很简单，直接返回一个VNode对象即可</p>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> h = <span class="hljs-function">(<span class="hljs-params">tag, props, children</span>) =&gt;</span> &#123;
+
+  <span class="hljs-keyword">return</span> &#123;
+    tag,
+    props,
+    children
+  &#125;
+&#125;</code></pre></div>
+
+<h3 id="mount-函数的实现"><a href="#mount-函数的实现" class="headerlink" title="mount 函数的实现"></a>mount 函数的实现</h3><blockquote>
+<p>mount 函数的作用就是 挂载VNode， 将vnode挂载DOM元素上并显示在浏览器上</p>
+</blockquote>
+<p>实现思路：</p>
+<ol>
+<li><p>根据 tag ， 创建HTML元素，并且存到 vnode的el中 （目前只考虑 标签 ，不考虑组件）</p>
+</li>
+<li><p>处理 props 属性 （目前只考虑俩种情况）</p>
+<ol>
+<li>如果以 on 开头，那么就是监听事件</li>
+<li>如果是普通属性直接通过 setAttribute 添加即可</li>
+</ol>
+</li>
+<li><p>处理子节点（只考虑俩种情况：字符串和数组）</p>
+<ol>
+<li>如果是 字符串， 那么就直接设置 textContent</li>
+<li>如果数组，那么就遍历中调用 mount 函数</li>
+</ol>
+</li>
+</ol>
+<p>代码如下：</p>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> h = <span class="hljs-function">(<span class="hljs-params">tag, props, children</span>) =&gt;</span> &#123;
+
+  <span class="hljs-keyword">return</span> &#123;
+    tag,
+    props,
+    children
+  &#125;
+&#125;
+
+
+<span class="hljs-keyword">const</span> mount = <span class="hljs-function">(<span class="hljs-params">vnode, container</span>) =&gt;</span> &#123;
+  <span class="hljs-comment">// 1. 创建 html 元素</span>
+  <span class="hljs-keyword">const</span> el = vnode.el = <span class="hljs-built_in">document</span>.createElement(vnode.tag)
+
+  <span class="hljs-comment">// 2. 处理 props属性</span>
+  <span class="hljs-keyword">if</span> (vnode.props) &#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">in</span> vnode.props) &#123;
+      <span class="hljs-keyword">if</span> (!vnode.props.hasOwnProperty(key)) &#123;<span class="hljs-keyword">return</span>&#125;
+      <span class="hljs-keyword">const</span> value = vnode.props[key]
+
+      <span class="hljs-keyword">if</span> (key.startsWith(<span class="hljs-string">&#x27;on&#x27;</span>)) &#123;
+        el.addEventListener(key.slice(<span class="hljs-number">2</span>).toLowerCase(), value)
+      &#125; <span class="hljs-keyword">else</span> &#123;
+        el.setAttribute(key, value)
+      &#125;
+    &#125;
+  &#125;
+
+  <span class="hljs-comment">// 3. 处理子节点</span>
+  <span class="hljs-keyword">if</span> (vnode.children) &#123;
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> vnode.children === <span class="hljs-string">&#x27;string&#x27;</span>) &#123;
+      el.textContent = vnode.children
+    &#125; <span class="hljs-keyword">else</span> &#123;
+      vnode.children.forEach(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> &#123;
+        mount(item, el)
+      &#125;)
+    &#125;
+  &#125;
+
+  container.appendChild(el)
+&#125;
+</code></pre></div>
+
+<p>这样就能实现简单的渲染啦~</p>
+<div class="hljs"><pre><code class="hljs html">
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;renderer.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
+<span class="javascript">  <span class="hljs-keyword">const</span> vnode = h(<span class="hljs-string">&#x27;div&#x27;</span>, &#123; <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;wangpf&#x27;</span> &#125;, [</span>
+<span class="javascript">    h(<span class="hljs-string">&#x27;h2&#x27;</span>, &#123; <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;title&#x27;</span> &#125;, <span class="hljs-string">&#x27;hello,I am wangpf&#x27;</span>),</span>
+<span class="javascript">    h(<span class="hljs-string">&#x27;div&#x27;</span>, <span class="hljs-literal">null</span>, <span class="hljs-string">&#x27;当前计数：100&#x27;</span>),</span>
+<span class="javascript">    h(<span class="hljs-string">&#x27;button&#x27;</span>, &#123; <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;btn&#x27;</span> &#125;, <span class="hljs-string">&#x27;+1&#x27;</span>)</span>
+  ])
+  
+<span class="javascript">  mount(vnode, <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&#x27;#app&#x27;</span>))</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre></div>
+
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8566def27dbf48908cf54d3acc0773c9~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="test"></p>
+<h3 id="patch-函数"><a href="#patch-函数" class="headerlink" title="patch 函数"></a>patch 函数</h3><blockquote>
+<p>patch 函数作用就是 对比俩个新旧vnode，将不同的给替换掉，运用到了 diff 。</p>
+</blockquote>
+<p>对 patch 函数的实现，分为俩种情况 （n1为旧的vnode，n2为新的vnode）</p>
+<ul>
+<li>n1 和 n2 是不同类型的节点 （删除n1，挂载n2）<ul>
+<li>找到 n1 的 el 父节点，删除原来 n1 节点的el</li>
+<li>挂载 n2 节点 到 n1的el父节点上</li>
+</ul>
+</li>
+<li>n1 和 n2 是相同的节点<ul>
+<li>处理 props 的情况<ul>
+<li>先将新节点的 props 全部挂载到 el 上</li>
+<li>判断旧节点的 props 是否不需要在新节点上， 如果不需要，那么删除对应的属性</li>
+</ul>
+</li>
+<li>处理 children 的情况<ul>
+<li>如果新阶段是一个字符串类型，那么直接替换</li>
+<li>如果新节点是不同一个字符串类型<ul>
+<li>旧节点是一个字符串类型<ul>
+<li>将el 内容 设为 空字符串</li>
+<li>遍历新节点，挂载到el上</li>
+</ul>
+</li>
+<li>旧节点是一个数组类型<ul>
+<li>取出数组最小长度</li>
+<li>遍历所有节点，新节点和旧节点进行 patch 操作</li>
+<li>如果新节点长度大于旧节点，那么剩余的新节点就挂载</li>
+<li>如果旧节点长度大于新节点，那么剩余的旧节点就卸载</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>代码实现：</p>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> patch = <span class="hljs-function">(<span class="hljs-params">n1, n2</span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">if</span> (n1.tag !== n2.tag) &#123;
+    <span class="hljs-keyword">const</span> n1ElParent = n1.el.parentElement
+    n1ElParent.removeChild(n1.el)
+    mount(n2, n1ElParent)
+  &#125; <span class="hljs-keyword">else</span> &#123;
+    <span class="hljs-comment">// 1.取出 element对象，并且在 n2中进行保存</span>
+    <span class="hljs-keyword">const</span> el = n2.el = n1.el
+
+    <span class="hljs-comment">// 2. 处理 props</span>
+    <span class="hljs-keyword">const</span> oldProps = n1.props || &#123;&#125;
+    <span class="hljs-keyword">const</span> newProps = n2.props || &#123;&#125;
+
+    <span class="hljs-comment">// 2.1 获取所有的 newProps 添加到 el</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">in</span> newProps) &#123;
+      <span class="hljs-keyword">if</span> (!newProps.hasOwnProperty(key)) &#123;<span class="hljs-keyword">return</span>&#125;
+      <span class="hljs-keyword">const</span> oldValue = oldProps[key]
+      <span class="hljs-keyword">const</span> newValue = newProps[key]
+      <span class="hljs-keyword">if</span> (oldValue !== newValue) &#123;
+        <span class="hljs-keyword">if</span> (key.startsWith(<span class="hljs-string">&#x27;on&#x27;</span>)) &#123;
+          el.addEventListener(key.slice(<span class="hljs-number">2</span>).toLowerCase(), newValue)
+        &#125; <span class="hljs-keyword">else</span> &#123;
+          el.setAttribute(key, newValue)
+        &#125;
+      &#125;
+    &#125;
+
+    <span class="hljs-comment">// 2.2 删除旧的props</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">in</span> oldProps) &#123;
+      <span class="hljs-keyword">if</span> (!newProps.hasOwnProperty(key)) &#123;<span class="hljs-keyword">return</span>&#125;
+      <span class="hljs-keyword">if</span> (key.startsWith(<span class="hljs-string">&#x27;on&#x27;</span>)) &#123;
+        el.removeEventListener(key.slice(<span class="hljs-number">2</span>).toLowerCase())
+      &#125;
+      <span class="hljs-keyword">if</span> (!(key <span class="hljs-keyword">in</span> newProps)) &#123;
+        el.removeAttribute(key)
+      &#125;
+    &#125;
+
+    <span class="hljs-comment">// 3. 处理 children</span>
+    <span class="hljs-keyword">const</span> oldChildren = n1.children || []
+    <span class="hljs-keyword">const</span> newChildren = n2.children || []
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> newChildren === <span class="hljs-string">&#x27;string&#x27;</span>) &#123; <span class="hljs-comment">// 情况一</span>
+      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> oldChildren === <span class="hljs-string">&#x27;string&#x27;</span>) &#123;
+        <span class="hljs-keyword">if</span> (newChildren !== oldChildren) &#123;
+          el.textContent = newChildren
+        &#125;
+      &#125; <span class="hljs-keyword">else</span> &#123;
+        el.innerHTML = newChildren
+      &#125;
+    &#125; <span class="hljs-keyword">else</span> &#123;  <span class="hljs-comment">// 情况二：newChildren是个数组</span>
+      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> oldChildren === <span class="hljs-string">&#x27;string&#x27;</span>) &#123;
+        el.innerHTML = <span class="hljs-string">&#x27;&#x27;</span>
+        newChildren.forEach(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> &#123;
+          mount(item, el)
+        &#125;)
+      &#125; <span class="hljs-keyword">else</span> &#123;
+        <span class="hljs-comment">// 如果都是数组</span>
+        <span class="hljs-comment">// oldChildren : [v1,v2,v3]</span>
+        <span class="hljs-comment">// newChildren : [v1,v5,v7,v8,v9]</span>
+        <span class="hljs-keyword">const</span> commonLength = <span class="hljs-built_in">Math</span>.min(newChildren.length, oldChildren.length)
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; commonLength; i++) &#123;
+          patch(oldChildren[i], newChildren[i])
+        &#125;
+
+        <span class="hljs-keyword">if</span> (newChildren.length &gt; oldChildren.length) &#123;
+          newChildren.slice(oldChildren.length).forEach(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> &#123;
+            mount(item, el)
+          &#125;)
+        &#125;
+
+        <span class="hljs-keyword">if</span> (newChildren.length &lt; oldChildren.length) &#123;
+          oldChildren.slice(newChildren.length).forEach(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> &#123;
+            el.removeChild(item.el)
+          &#125;)
+        &#125;
+      &#125;
+    &#125;
+  &#125;
+&#125;</code></pre></div>
+
+<div class="hljs"><pre><code class="hljs html">
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;renderer.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
+<span class="javascript">  <span class="hljs-comment">// 1.通过 h 函数创建一个 vnode</span></span>
+<span class="javascript">  <span class="hljs-keyword">const</span> vnode = h(<span class="hljs-string">&#x27;div&#x27;</span>, &#123; <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;wangpf&#x27;</span>, <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;aaa&#x27;</span> &#125;, [</span>
+<span class="javascript">    h(<span class="hljs-string">&#x27;h2&#x27;</span>, &#123; <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;title&#x27;</span> &#125;, <span class="hljs-string">&#x27;hello,I am wangpf&#x27;</span>),</span>
+<span class="javascript">    h(<span class="hljs-string">&#x27;div&#x27;</span>, <span class="hljs-literal">null</span>, <span class="hljs-string">&#x27;当前计数：100&#x27;</span>),</span>
+<span class="javascript">    h(<span class="hljs-string">&#x27;button&#x27;</span>, &#123; <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;btn&#x27;</span> &#125;, <span class="hljs-string">&#x27;+1&#x27;</span>)</span>
+  ])
+  
+<span class="javascript">  <span class="hljs-comment">// 2. 通过 mount 函数， 将 vnode 挂载在div#app上</span></span>
+<span class="javascript">  mount(vnode, <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&#x27;#app&#x27;</span>))</span>
+  
+<span class="javascript">  <span class="hljs-comment">// 3. 创建新的 vnode</span></span>
+<span class="javascript">  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;</span>
+<span class="javascript">    <span class="hljs-keyword">const</span> newVnode = h(<span class="hljs-string">&#x27;div&#x27;</span>, &#123; <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;pf&#x27;</span>, <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;aaa&#x27;</span> &#125;, [</span>
+<span class="javascript">      h(<span class="hljs-string">&#x27;h2&#x27;</span>, &#123; <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;title&#x27;</span> &#125;, <span class="hljs-string">&#x27;hello,I am wangpf&#x27;</span>),</span>
+<span class="javascript">      h(<span class="hljs-string">&#x27;div&#x27;</span>, <span class="hljs-literal">null</span>, <span class="hljs-string">&#x27;当前计数：0&#x27;</span>),</span>
+<span class="javascript">      h(<span class="hljs-string">&#x27;button&#x27;</span>, &#123; <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;btn222&#x27;</span> &#125;, <span class="hljs-string">&#x27;-1&#x27;</span>)</span>
+    ])
+    patch(vnode, newVnode)
+  &#125;, 2000)
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre></div>
+
+<p>当定时器达到2s后, 新的vnode 会替换掉旧的vnode，通过 ptach 函数来diff出不同的地方进行替换。</p>
+<p>大致上这就这样简单的实现一下渲染系统模块，分别有 h函数（返回vnode对象）、mount函数（用于挂载到页面上）、patch函数（对比新旧vnode，更新为最新的）</p>
+<h2 id="响应式系统模块的实现"><a href="#响应式系统模块的实现" class="headerlink" title="响应式系统模块的实现"></a>响应式系统模块的实现</h2><p>响应式模块是vue的重中之重，vue2版本是通过 <code>Object.defineProperty </code> 来进行对数据进行依赖收集劫持的 ， vue3版本是通过 <code>proxy</code> 来实现的</p>
+<h4 id="为什么使用proxy的原因"><a href="#为什么使用proxy的原因" class="headerlink" title="为什么使用proxy的原因"></a>为什么使用proxy的原因</h4><p><a target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/reactivity.html#%E5%A6%82%E4%BD%95%E8%BF%BD%E8%B8%AA%E5%8F%98%E5%8C%96">深入响应式原理 — Vue.js (vuejs.org)</a></p>
+<p>换为 <code>proxy</code> 原因在于 <code>defineProperty </code> 这个API虽然兼容性好，但是不能检测到对象和数组的变化，比如对对象的新增属性，我们需要去手动的给该属性收集依赖（通过**$set**）,才能实现响应式。<br>对于 <code>proxy</code>来说, Proxy 是劫持的整个对象，不需要做特殊处理 （我觉得这个为什么换为 proxy 的根本原因）</p>
+<h4 id="代码实现思路"><a href="#代码实现思路" class="headerlink" title="代码实现思路"></a>代码实现思路</h4><p>雏形的响应式系统： 发布订阅的思想</p>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// 响应式系统模块</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dep</span> </span>&#123;
+  <span class="hljs-keyword">constructor</span>() &#123;
+    <span class="hljs-built_in">this</span>.subscribers = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>()
+  &#125;
+
+  addEffect(effect) &#123;
+    <span class="hljs-built_in">this</span>.subscribers.add(effect)
+  &#125;
+
+  notify() &#123;
+    <span class="hljs-built_in">this</span>.subscribers.forEach(<span class="hljs-function"><span class="hljs-params">effect</span> =&gt;</span> &#123;
+      effect()
+    &#125;)
+  &#125;
+&#125;
+
+
+<span class="hljs-keyword">const</span> info = &#123; <span class="hljs-attr">counter</span>: <span class="hljs-number">100</span> &#125;
+<span class="hljs-keyword">const</span> doubleCounter = <span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-built_in">console</span>.log(info.counter * <span class="hljs-number">2</span>)
+&#125;
+
+<span class="hljs-keyword">const</span> multiplyCounter = <span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-built_in">console</span>.log(info.counter * info.counter)
+&#125;
+
+<span class="hljs-keyword">const</span> dep = <span class="hljs-keyword">new</span> Dep()
+dep.addEffect(doubleCounter)
+dep.addEffect(multiplyCounter)
+
+
+<span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =&gt;</span> &#123;
+  info.counter++
+  dep.notify()
+&#125;, <span class="hljs-number">2000</span>)</code></pre></div>
+
+<p>上述代码有很多不足之处，只要数据发生变化就得手动去调用。</p>
+<p>我们希望数据只要一发生变化，那么就自动的去收集依赖并执行</p>
+<p>所以改进了如下：</p>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> dep = <span class="hljs-keyword">new</span> Dep()
+
+<span class="hljs-keyword">const</span> watchEffect = <span class="hljs-function">(<span class="hljs-params">effect</span>) =&gt;</span> &#123;
+  dep.addEffect(effect)
+&#125;
+
+<span class="hljs-keyword">const</span> info = &#123; <span class="hljs-attr">counter</span>: <span class="hljs-number">100</span> &#125;
+
+watchEffect(<span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-built_in">console</span>.log(info.counter * <span class="hljs-number">2</span>)
+&#125;)
+watchEffect(<span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-built_in">console</span>.log(info.counter * info.counter)
+&#125;)
+
+
+<span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =&gt;</span> &#123;
+  info.counter++
+  dep.notify()
+&#125;, <span class="hljs-number">2000</span>)</code></pre></div>
+
+<p>我就用 watchEffect 来统一管理它， 只不过需要在 watchEffect 函数中执行逻辑。</p>
+<p>但这还是有些不足，比如不知道是谁的逻辑，而且并不是自动收集依赖</p>
+<p>因此，再次进行改进，如下：</p>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// 响应式系统模块</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dep</span> </span>&#123;
+  <span class="hljs-keyword">constructor</span>() &#123;
+    <span class="hljs-built_in">this</span>.subscribers = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>()
+  &#125;
+
+  depend() &#123;
+    <span class="hljs-keyword">if</span> (activeEffect) &#123;
+      <span class="hljs-built_in">this</span>.subscribers.add(activeEffect)
+    &#125;
+  &#125;
+
+  notify() &#123;
+    <span class="hljs-built_in">this</span>.subscribers.forEach(<span class="hljs-function"><span class="hljs-params">effect</span> =&gt;</span> &#123;
+      effect()
+    &#125;)
+  &#125;
+&#125;
+
+<span class="hljs-keyword">const</span> dep = <span class="hljs-keyword">new</span> Dep()
+<span class="hljs-keyword">let</span> activeEffect = <span class="hljs-literal">null</span>
+<span class="hljs-keyword">const</span> watchEffect = <span class="hljs-function">(<span class="hljs-params">effect</span>) =&gt;</span> &#123;
+  activeEffect = effect
+  dep.depend()
+  activeEffect = <span class="hljs-literal">null</span>
+&#125;
+
+<span class="hljs-keyword">const</span> info = &#123; <span class="hljs-attr">counter</span>: <span class="hljs-number">100</span> &#125;
+
+watchEffect(<span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-built_in">console</span>.log(info.counter * <span class="hljs-number">2</span>)
+&#125;)
+watchEffect(<span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-built_in">console</span>.log(info.counter * info.counter)
+&#125;)
+
+
+<span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =&gt;</span> &#123;
+  info.counter++
+  dep.notify()
+&#125;, <span class="hljs-number">2000</span>)</code></pre></div>
+
+<p>用 depend 来取代替 addEffect ， 这样做的目的是 不需要去知道 subscribers 添加的具体是什么</p>
+<p>但是呢， 这样做会使得对 info 整个有依赖， 如果我想监听 info 的某一个属性，所有我们需要有一个数据劫持的方法来实现。</p>
+<p>这时候就可以用vue2响应式原理的思想来实现了， 通过 <code>Object.defineProperty</code> (Vue2响应式原理的核心)</p>
+<h4 id="使用-Object-defineProperty-来实现"><a href="#使用-Object-defineProperty-来实现" class="headerlink" title="使用 Object.defineProperty 来实现"></a>使用 Object.defineProperty 来实现</h4><div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// 响应式系统模块</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dep</span> </span>&#123;
+  <span class="hljs-keyword">constructor</span>() &#123;
+    <span class="hljs-built_in">this</span>.subscribers = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>()
+  &#125;
+
+  depend() &#123;
+    <span class="hljs-keyword">if</span> (activeEffect) &#123;
+      <span class="hljs-built_in">this</span>.subscribers.add(activeEffect)
+    &#125;
+  &#125;
+
+  notify() &#123;
+    <span class="hljs-built_in">this</span>.subscribers.forEach(<span class="hljs-function"><span class="hljs-params">effect</span> =&gt;</span> &#123;
+      effect()
+    &#125;)
+  &#125;
+&#125;
+
+<span class="hljs-keyword">let</span> activeEffect = <span class="hljs-literal">null</span>
+<span class="hljs-keyword">const</span> watchEffect = <span class="hljs-function">(<span class="hljs-params">effect</span>) =&gt;</span> &#123;
+  activeEffect = effect
+  effect()  <span class="hljs-comment">//  vue3 中 watchEffect 就会默认执行一次</span>
+  activeEffect = <span class="hljs-literal">null</span>
+&#125;
+
+
+<span class="hljs-keyword">const</span> targetMap = <span class="hljs-keyword">new</span> <span class="hljs-built_in">WeakMap</span>()
+
+<span class="hljs-keyword">const</span> getDep = <span class="hljs-function">(<span class="hljs-params">target, key</span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">let</span> depsMap = targetMap.get(target)
+  <span class="hljs-keyword">if</span> (!depsMap) &#123;
+    depsMap = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>()
+    targetMap.set(target, depsMap)
+  &#125;
+
+  <span class="hljs-keyword">let</span> dep = depsMap.get(key)
+  <span class="hljs-keyword">if</span> (!dep) &#123;
+    dep = <span class="hljs-keyword">new</span> Dep()
+    depsMap.set(key, dep)
+  &#125;
+  <span class="hljs-keyword">return</span> dep
+&#125;
+
+
+<span class="hljs-comment">// vue2 数据劫持原理</span>
+<span class="hljs-keyword">const</span> reactive = <span class="hljs-function">(<span class="hljs-params">raw</span>) =&gt;</span> &#123;
+  <span class="hljs-built_in">Object</span>.keys(raw).forEach(<span class="hljs-function"><span class="hljs-params">key</span> =&gt;</span> &#123;
+    <span class="hljs-keyword">const</span> dep = getDep(raw, key)
+    <span class="hljs-keyword">let</span> value = raw[key];
+
+    <span class="hljs-built_in">Object</span>.defineProperty(raw, key, &#123;
+      get() &#123;
+        dep.depend()
+        <span class="hljs-keyword">return</span> value
+      &#125;,
+      set(newValue) &#123;
+        <span class="hljs-keyword">if</span> (value !== newValue) &#123;
+          value = newValue
+          dep.notify()
+        &#125;
+      &#125;
+    &#125;)
+  &#125;)
+  <span class="hljs-keyword">return</span> raw
+&#125;</code></pre></div>
+
+<p>实现效果：</p>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> info = reactive(&#123; <span class="hljs-attr">counter</span>: <span class="hljs-number">100</span> &#125;)
+
+watchEffect(<span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-built_in">console</span>.log(info.counter * <span class="hljs-number">2</span>)
+&#125;)
+watchEffect(<span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-built_in">console</span>.log(info.counter * info.counter)
+&#125;)
+
+info.counter++
+
+<span class="hljs-comment">// 70 10000</span>
+<span class="hljs-comment">// 67 202</span>
+<span class="hljs-comment">// 70 10201</span></code></pre></div>
+
+<p><code>defineProperty</code> 已经说过了，所以我们可以使用<code>proxy</code> 对 <strong>reactive 函数</strong>进行重构</p>
+<h4 id="使用-Proxy-来实现"><a href="#使用-Proxy-来实现" class="headerlink" title="使用 Proxy 来实现"></a>使用 Proxy 来实现</h4><div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// vue3 proxy 数据劫持</span>
+<span class="hljs-keyword">const</span> reactive = <span class="hljs-function">(<span class="hljs-params">raw</span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(raw, &#123;
+    get(target, p, receiver) &#123;
+      <span class="hljs-keyword">const</span> dep = getDep(target, p)
+      dep.depend()
+      <span class="hljs-keyword">return</span> target[p]
+    &#125;,
+    set(target, p, newValue, receiver) &#123;
+      <span class="hljs-keyword">const</span> dep = getDep(target, p)
+      target[p] = newValue
+      dep.notify()
+    &#125;
+  &#125;)
+&#125;</code></pre></div>
+
+<h3 id="应用程序入口模块的实现"><a href="#应用程序入口模块的实现" class="headerlink" title="应用程序入口模块的实现"></a>应用程序入口模块的实现</h3><blockquote>
+<p>上述已经实现了 渲染系统模块和响应式系统模块，接下来我们就差最后一步了，模仿一下vue3 使用 createApp函数 作为入口 以及mount函数将其挂载到页面上</p>
+</blockquote>
+<p>从框架的层面来说，我们需要有俩部分内容：</p>
+<ul>
+<li>createApp 用于创建一个app对象</li>
+<li>该app对象有一个 mount 方法，可以将根组件挂载到某一个dom元素上。</li>
+</ul>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> createApp = <span class="hljs-function">(<span class="hljs-params">rootComponent</span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">return</span> &#123;
+    mount(selector) &#123;
+      <span class="hljs-keyword">let</span> isMounted = <span class="hljs-literal">false</span>
+      <span class="hljs-keyword">let</span> preVnode = <span class="hljs-literal">null</span>
+
+      watchEffect(<span class="hljs-function">() =&gt;</span> &#123;
+        <span class="hljs-comment">// 首次需要挂载， 后边就 patch</span>
+        <span class="hljs-keyword">if</span> (!isMounted) &#123;
+          preVnode = rootComponent.render()
+          mount(preVnode, <span class="hljs-built_in">document</span>.querySelector(selector))
+          isMounted = <span class="hljs-literal">true</span>
+        &#125; <span class="hljs-keyword">else</span> &#123;
+          <span class="hljs-keyword">const</span> newVnode = rootComponent.render()
+          patch(preVnode, newVnode)
+          preVnode = newVnode
+        &#125;
+      &#125;)
+    &#125;
+  &#125;
+&#125;</code></pre></div>
+
+<h4 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h4><div class="hljs"><pre><code class="hljs js">  <span class="hljs-comment">// 1. 创建根组件</span>
+<span class="hljs-keyword">const</span> App = &#123;
+  data: reactive(&#123;
+    counter: <span class="hljs-number">0</span>
+  &#125;),
+  render() &#123;
+    <span class="hljs-keyword">return</span> h(<span class="hljs-string">&#x27;div&#x27;</span>, <span class="hljs-literal">null</span>, [
+      h(<span class="hljs-string">&#x27;h2&#x27;</span>, <span class="hljs-literal">null</span>, <span class="hljs-string">`计数:<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.data.counter&#125;</span>`</span>),
+      h(<span class="hljs-string">&#x27;button&#x27;</span>, &#123;
+        onClick: <span class="hljs-function">() =&gt;</span> &#123;<span class="hljs-built_in">this</span>.data.counter++&#125;
+      &#125;, <span class="hljs-string">&#x27;+1&#x27;</span>)
+    ])
+  &#125;
+&#125;
+
+<span class="hljs-comment">// 2. 挂载根组件</span>
+createApp(App).mount(<span class="hljs-string">&#x27;#app&#x27;</span>)</code></pre></div>
+
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/21be39e02a714a96b2f4841610cc8b71~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="test1"></p>
+<p>点击即可完成加一操作！</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                <div class="post-meta mr-3">
+                  <i class="iconfont icon-category"></i>
+                  
+                  <a class="hover-with-bg" href="/categories/Vue-js/">Vue.js</a>
+                  
+                </div>
+                
+                
+                <div class="post-meta">
+                  <i class="iconfont icon-tags"></i>
+                  
+                  <a class="hover-with-bg" href="/tags/Vue3/">Vue3</a>
+                  
+                </div>
+                
+              </div>
+              
+              
+              <div class="post-prevnext row">
+                <article class="post-prev col-6">
+                  
+                  
+                  <a href="/2021/08/23/67-Vue3%E4%B8%AD%E8%BE%85%E5%8A%A9%E5%87%BD%E6%95%B0%E7%9A%84%E6%AD%A3%E7%A1%AE%E4%BD%BF%E7%94%A8/">
+                    <i class="iconfont icon-arrowleft"></i>
+                    <span class="hidden-mobile">如何正确的在vue3中使用vuex的辅助函数</span>
+                    <span class="visible-mobile">上一篇</span>
+                  </a>
+                  
+                </article>
+                <article class="post-next col-6">
+                  
+                  
+                  <a href="/2021/08/07/65-Composition_API/">
+                    <span class="hidden-mobile">Vue3|Composition_API （全）总结</span>
+                    <span class="visible-mobile">下一篇</span>
+                    <i class="iconfont icon-arrowright"></i>
+                  </a>
+                  
+                </article>
+              </div>
+              
+            </div>
+
+            
+            <!-- Comments -->
+            <article class="comments" id="comments">
+              
+              
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "hjxsDRXYScicliqD8I8JqoTu-gzGzoHsz",
+          app_key: "qUcAEReEqeEVp5wwXJ41uCCp",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+            </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+      <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+    </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    
+      <script  src="/js/lazyload.js" ></script>
+    
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "实现一个简洁版的Mini-Vue&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "always",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+  
+  
+    <script>
+      !function (e, t, a) {
+        function r() {
+          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
+          requestAnimationFrame(r)
+        }
+
+        function n() {
+          var t = "function" == typeof e.onclick && e.onclick;
+          e.onclick = function (e) {
+            t && t(), o(e)
+          }
+        }
+
+        function o(e) {
+          var a = t.createElement("div");
+          a.className = "heart", s.push({
+            el: a,
+            x: e.clientX - 5,
+            y: e.clientY - 5,
+            scale: 1,
+            alpha: 1,
+            color: c()
+          }), t.body.appendChild(a)
+        }
+
+        function i(e) {
+          var a = t.createElement("style");
+          a.type = "text/css";
+          try {
+            a.appendChild(t.createTextNode(e))
+          } catch (t) {
+            a.styleSheet.cssText = e
+          }
+          t.getElementsByTagName("head")[0].appendChild(a)
+        }
+
+        function c() {
+          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+        }
+
+        var s = [];
+        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
+          setTimeout(e, 1e3 / 60)
+        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
+      }(window, document);
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

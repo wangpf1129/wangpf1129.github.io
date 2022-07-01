@@ -1,0 +1,755 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/boshi.jpeg">
+  <link rel="icon" type="image/png" href="/img/boshi.jpeg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="wangpf">
+  <meta name="keywords" content="">
+  <title>如何正确的在vue3中使用vuex的辅助函数 - wpf的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/foundation.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Wangpf's blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/article.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2021-08-23 13:38" pubdate>
+      2021年8月23日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      18
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">如何正确的在vue3中使用vuex的辅助函数</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在实际开发中，我们经常会用到 <code>vuex</code> 来对数据进行管理，随着数据越来越多，我们逐渐开始使用一些语法糖来帮助我们快速开发。 即 vuex 中的 <code>mapState、mapGetters、mapMutations、mapActions </code>等辅助函数是我们经常使用到的。</p>
+<h2 id="辅助函数的使用"><a href="#辅助函数的使用" class="headerlink" title="辅助函数的使用"></a>辅助函数的使用</h2><p>在vue2中我们可以通过 options API 在 computed 中来使用 mapState，</p>
+<div class="hljs"><pre><code class="hljs js">computed: mapsState([<span class="hljs-string">&#x27;name&#x27;</span>,<span class="hljs-string">&#x27;age&#x27;</span>])</code></pre></div>
+
+
+<p>在 vue3 中主要是使用 setup 来进行操作时，一般来使用vuex中数据是这样操作的，通过 useStore 这个钩子来得到</p>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; useStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vuex&#x27;</span>
+<span class="hljs-keyword">import</span> &#123; computed &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
+
+setup() &#123;
+  <span class="hljs-keyword">const</span> store = useStore()
+  <span class="hljs-keyword">const</span> name = computed(<span class="hljs-function">() =&gt;</span> store.state.name)
+  <span class="hljs-keyword">const</span> age = computed(<span class="hljs-function">() =&gt;</span> store.state.age)
+  <span class="hljs-keyword">return</span> &#123;
+    name, age
+  &#125;
+&#125;,</code></pre></div>
+
+<p>这样的不足是如果数据多了，那么写起来就尤为麻烦，所以我们想到了辅助函数 mapState 来解决。<br>但是呢，vuex 官方并没有例子来说明如何在setup中去使用辅助函数 mapState。 所以我就尝试着以vue2的形式来写：</p>
+<div class="hljs"><pre><code class="hljs js">setup() &#123;
+  <span class="hljs-keyword">const</span> stateStore = mapState([<span class="hljs-string">&#x27;name&#x27;</span>, <span class="hljs-string">&#x27;age&#x27;</span>])
+  <span class="hljs-keyword">return</span> &#123;
+    ...stateStore
+  &#125;
+&#125;,</code></pre></div>
+<p>但显示到浏览器的结果却发现是这样子的：</p>
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/295e4ad6a59948a3a74474e75e530434~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="mapState.png"></p>
+<p>为什么会返回出函数呢？</p>
+<h2 id="为什么在setup中使用mapState会返回函数？"><a href="#为什么在setup中使用mapState会返回函数？" class="headerlink" title="为什么在setup中使用mapState会返回函数？"></a>为什么在setup中使用mapState会返回函数？</h2><p>我试着去看了一下 mapState 的源码，发现是通过 <code>this.$store</code> 来拿到 store 的值的</p>
+<p>然而在 setup 中是取不到 <strong>this</strong> 的</p>
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6a6e8171d8ad44698dc5b07e282a69d7~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="mapState源码.png"></p>
+<p>其他的辅助函数（mapGetters、mapMutations、mapActions） 同样都是这样类似的处理的。<br>所以通过上面的源码，我们知道：辅助函数就是会返回一个对象，而 key 是字符串， val就是<strong>函数</strong>，<br>类似于：</p>
+<div class="hljs"><pre><code class="hljs js">computed:&#123;
+    ...mapState([<span class="hljs-string">&#x27;name&#x27;</span>,<span class="hljs-string">&#x27;age&#x27;</span>])
+&#125;
+<span class="hljs-comment">// 转换为了：</span>
+&#123; 
+    name: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;&#125;,
+    age:<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;&#125;
+&#125;</code></pre></div>
+<p>所以就明白了为什么在上述的代码中为什么会返回一个函数了。</p>
+<h2 id="封装一个-useState-函数"><a href="#封装一个-useState-函数" class="headerlink" title="封装一个 useState 函数"></a>封装一个 useState 函数</h2><p>明白了其原理后，我们就知道了在 computed 中可以使用mapState， <strong>是因为 computed 本身就是一个函数，它会接收一个函数作为参数。</strong> 我们也知道了辅助函数是 被解析成了一个对象，对象中的属性值是函数。</p>
+<p><strong>那么我们是不是可以试着把这俩个结合起来去封装一个hooks来使用了？</strong></p>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; useStore, mapState &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vuex&#x27;</span>
+<span class="hljs-keyword">import</span> &#123; computed &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
+
+<span class="hljs-keyword">const</span> useState = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">mapper</span>) </span>&#123;
+    <span class="hljs-comment">// mapper： Array | Object</span>
+    <span class="hljs-keyword">const</span> store = useStore()
+    
+    <span class="hljs-comment">//使用辅助函数解析成一个对象</span>
+    <span class="hljs-keyword">const</span> storeStateFns = mapState(mapper)
+    <span class="hljs-keyword">const</span> storeState = &#123;&#125;
+    
+    <span class="hljs-comment">//通过Object.keys拿到对象的所有key值，遍历，取出对应的value值，也就是函数</span>
+    <span class="hljs-built_in">Object</span>.keys(storeStateFns).forEach(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> &#123;
+        <span class="hljs-comment">// 这我们知道辅助函数的内部是通过this.$store来实现的</span>
+        <span class="hljs-comment">// setup中没有this， 所以通过bind来改变this的指向</span>
+        <span class="hljs-keyword">const</span> fn = storeStateFns[item].bind(&#123;$store, store&#125;)
+        <span class="hljs-comment">//拿到函数，作为计算属性的参数，最后在留在一个对象中</span>
+        storeState[item] = computed(fn)
+    &#125;)
+    
+    <span class="hljs-comment">// storeState是一个对象， key是字符串， value值是ref对象</span>
+    <span class="hljs-keyword">return</span> storeState
+&#125;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> useState</code></pre></div>
+<p>然后在组件中就这样使用：</p>
+<div class="hljs"><pre><code class="hljs js">setup() &#123;
+    <span class="hljs-keyword">const</span> stateStore = useState([<span class="hljs-string">&#x27;name&#x27;</span>,<span class="hljs-string">&#x27;age&#x27;</span>]) <span class="hljs-comment">// 使用对象的形式也行</span>
+    <span class="hljs-keyword">return</span> &#123;
+        ...stateStore
+    &#125;
+&#125;</code></pre></div>
+<p>这样就可以在setup中使用辅助函数啦，又可以少些代码了多开心哈~</p>
+<h2 id="封装一个-useMapper-函数"><a href="#封装一个-useMapper-函数" class="headerlink" title="封装一个 useMapper 函数"></a>封装一个 useMapper 函数</h2><p>同样的， 不止是 mapState， <strong>mapGetters</strong> 也是根据相同的思路来进行封装的，所以就稍加改造。如下：</p>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// hooks/useMapper.js</span>
+
+<span class="hljs-keyword">import</span> &#123; computed &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
+<span class="hljs-keyword">import</span> &#123; mapGetters, mapState, useStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vuex&#x27;</span>
+
+<span class="hljs-keyword">const</span> useMapper = <span class="hljs-function">(<span class="hljs-params">mapper, mapFn</span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">const</span> store = useStore()
+
+  <span class="hljs-keyword">const</span> storeStateFns = mapFn(mapper)
+  <span class="hljs-keyword">const</span> storeState = &#123;&#125;
+  <span class="hljs-built_in">Object</span>.keys(storeStateFns).forEach(<span class="hljs-function">(<span class="hljs-params">keyFn</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">const</span> fn = storeStateFns[keyFn].bind(&#123; <span class="hljs-attr">$store</span>: store &#125;)
+    storeState[keyFn] = computed(fn)
+  &#125;)
+
+  <span class="hljs-keyword">return</span> storeState
+&#125;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useState = <span class="hljs-function">(<span class="hljs-params"> mapper</span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">return</span> useMapper(mapper, mapState)
+&#125;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useGetters = <span class="hljs-function">(<span class="hljs-params">mapper</span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">return</span> useMapper(mapper, mapGetters)
+&#125;</code></pre></div>
+
+<p>然后就这样的使用：</p>
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/56efe7485c0a4d16af5adf371e6ec72b~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="示例.png"></p>
+<p><strong>关于 mapMutations、mapActions 是不用进行封装的，原因可以自己想想</strong></p>
+<p>其实哈，使用mutaiton和actions中本来就是去调用方法的，所以直接就是跟辅助函数的属性值挂钩。</p>
+<h2 id="模块化情况下的考虑"><a href="#模块化情况下的考虑" class="headerlink" title="模块化情况下的考虑"></a>模块化情况下的考虑</h2><p>刚刚封装的 useMapper 是没有考虑到模块化的， 在开发时，随着数据的种类越来越多，使用 modules 是不可避免的，所以我们需要对刚刚的 useMapper 进行一下 模块化边缘的处理</p>
+<p>如下：<br>我们需要借助vuex提供的<strong>createNamespacedHelpers</strong>函数来得到模块中的属性</p>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; computed &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
+<span class="hljs-keyword">import</span> &#123; mapGetters, mapState, useStore, createNamespacedHelpers &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vuex&#x27;</span>
+
+<span class="hljs-keyword">const</span> useMapper = <span class="hljs-function">(<span class="hljs-params">mapper, mapFn</span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">const</span> store = useStore()
+
+  <span class="hljs-keyword">const</span> storeStateFns = mapFn(mapper)
+  <span class="hljs-keyword">const</span> storeState = &#123;&#125;
+  <span class="hljs-built_in">Object</span>.keys(storeStateFns).forEach(<span class="hljs-function">(<span class="hljs-params">keyFn</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">const</span> fn = storeStateFns[keyFn].bind(&#123; <span class="hljs-attr">$store</span>: store &#125;)
+    storeState[keyFn] = computed(fn)
+  &#125;)
+
+  <span class="hljs-keyword">return</span> storeState
+&#125;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useState = <span class="hljs-function">(<span class="hljs-params">moduleName, mapper</span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">let</span> mapperFn = mapState
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> moduleName === <span class="hljs-string">&#x27;string&#x27;</span> &amp;&amp; moduleName.length &gt; <span class="hljs-number">0</span>) &#123;
+    mapperFn = createNamespacedHelpers(moduleName).mapState
+  &#125; <span class="hljs-keyword">else</span> &#123;
+    mapper = moduleName
+  &#125;
+  <span class="hljs-keyword">return</span> useMapper(mapper, mapperFn)
+&#125;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useGetters = <span class="hljs-function">(<span class="hljs-params">moduleName, mapper</span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">let</span> mapperFn = mapGetters
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> moduleName === <span class="hljs-string">&#x27;string&#x27;</span> &amp;&amp; moduleName.length &gt; <span class="hljs-number">0</span>) &#123;
+    mapperFn = createNamespacedHelpers(moduleName).mapGetters
+  &#125; <span class="hljs-keyword">else</span> &#123;
+    mapper = moduleName
+  &#125;
+  <span class="hljs-keyword">return</span> useMapper(mapper, mapperFn)
+&#125;</code></pre></div>
+
+<p>使用：</p>
+<div class="hljs"><pre><code class="hljs js">setup()&#123;
+  <span class="hljs-keyword">const</span> storeState = useState([<span class="hljs-string">&#x27;name&#x27;</span>, <span class="hljs-string">&#x27;age&#x27;</span>, <span class="hljs-string">&#x27;six&#x27;</span>])
+  <span class="hljs-keyword">const</span> storeGetters = useGetters([<span class="hljs-string">&#x27;counter&#x27;</span>])
+  <span class="hljs-keyword">const</span> homeState = useState(<span class="hljs-string">&#x27;home&#x27;</span>, [<span class="hljs-string">&#x27;homeCounter&#x27;</span>])
+  <span class="hljs-keyword">return</span> &#123;
+    ...storeState,
+    ...storeGetters,
+    ...homeState
+  &#125;
+&#125;</code></pre></div>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在vue2中习惯了使用辅助函数，但是在vuex文档中没有找到在vue3内如何使用辅助函数，然后一直去使用 computed 来去包裹 store 来获取值，随着数据的增多，使用起来也很麻烦，所以就封装了这样一个函数来提高开发效率。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                <div class="post-meta mr-3">
+                  <i class="iconfont icon-category"></i>
+                  
+                  <a class="hover-with-bg" href="/categories/Vue-js/">Vue.js</a>
+                  
+                </div>
+                
+                
+                <div class="post-meta">
+                  <i class="iconfont icon-tags"></i>
+                  
+                  <a class="hover-with-bg" href="/tags/Vue3/">Vue3</a>
+                  
+                </div>
+                
+              </div>
+              
+              
+              <div class="post-prevnext row">
+                <article class="post-prev col-6">
+                  
+                  
+                  <a href="/2021/11/04/68-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/">
+                    <i class="iconfont icon-arrowleft"></i>
+                    <span class="hidden-mobile">浏览器运行原理</span>
+                    <span class="visible-mobile">上一篇</span>
+                  </a>
+                  
+                </article>
+                <article class="post-next col-6">
+                  
+                  
+                  <a href="/2021/08/13/66-%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAmini-vue/">
+                    <span class="hidden-mobile">实现一个简洁版的Mini-Vue</span>
+                    <span class="visible-mobile">下一篇</span>
+                    <i class="iconfont icon-arrowright"></i>
+                  </a>
+                  
+                </article>
+              </div>
+              
+            </div>
+
+            
+            <!-- Comments -->
+            <article class="comments" id="comments">
+              
+              
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "hjxsDRXYScicliqD8I8JqoTu-gzGzoHsz",
+          app_key: "qUcAEReEqeEVp5wwXJ41uCCp",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+            </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+      <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+    </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    
+      <script  src="/js/lazyload.js" ></script>
+    
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "如何正确的在vue3中使用vuex的辅助函数&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "always",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+  
+  
+    <script>
+      !function (e, t, a) {
+        function r() {
+          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
+          requestAnimationFrame(r)
+        }
+
+        function n() {
+          var t = "function" == typeof e.onclick && e.onclick;
+          e.onclick = function (e) {
+            t && t(), o(e)
+          }
+        }
+
+        function o(e) {
+          var a = t.createElement("div");
+          a.className = "heart", s.push({
+            el: a,
+            x: e.clientX - 5,
+            y: e.clientY - 5,
+            scale: 1,
+            alpha: 1,
+            color: c()
+          }), t.body.appendChild(a)
+        }
+
+        function i(e) {
+          var a = t.createElement("style");
+          a.type = "text/css";
+          try {
+            a.appendChild(t.createTextNode(e))
+          } catch (t) {
+            a.styleSheet.cssText = e
+          }
+          t.getElementsByTagName("head")[0].appendChild(a)
+        }
+
+        function c() {
+          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+        }
+
+        var s = [];
+        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
+          setTimeout(e, 1e3 / 60)
+        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
+      }(window, document);
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

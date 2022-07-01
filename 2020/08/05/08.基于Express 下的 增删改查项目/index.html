@@ -1,0 +1,980 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/boshi.jpeg">
+  <link rel="icon" type="image/png" href="/img/boshi.jpeg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="wangpf">
+  <meta name="keywords" content="">
+  <title>基于Express 下的 增删改查项目 - wpf的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/foundation.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Wangpf's blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/article.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-05 10:57" pubdate>
+      2020年8月5日 上午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      27
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">基于Express 下的 增删改查项目</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="基于Express-下的-增删改查项目"><a href="#基于Express-下的-增删改查项目" class="headerlink" title="基于Express 下的 增删改查项目"></a>基于Express 下的 增删改查项目</h1><h2 id="整体步骤："><a href="#整体步骤：" class="headerlink" title="整体步骤："></a>整体步骤：</h2><ul>
+<li>处理模块</li>
+<li>配置开放静态资源</li>
+<li>配置模板引擎</li>
+<li>简单路由： /students 渲染静态页面</li>
+<li>路由设计</li>
+<li>提取路由模块</li>
+<li>由于接下来一系列的业务操作都需要处理文件数据，所以我们需要封装一个 students.js 模块</li>
+<li>写好  students.js 文件结构<ul>
+<li>find  查询所有学生列表的 API </li>
+<li>findById 查询单个学生的ID</li>
+<li>save   保存学生信息</li>
+<li>updateById   更新学生信息</li>
+<li>deleteById  删除学生信息</li>
+</ul>
+</li>
+<li>实现具体功能<ul>
+<li>通过路由收到请求</li>
+<li>接受请求中的数据（get, post）<ul>
+<li>req.query </li>
+<li>rqe.body</li>
+</ul>
+</li>
+<li>调用数据操作API 处理数据</li>
+<li>根据数据结果给客户端发送响应</li>
+</ul>
+</li>
+<li>业务功能处理顺序<ul>
+<li>列表</li>
+<li>添加</li>
+<li>编辑</li>
+<li>删除</li>
+</ul>
+</li>
+</ul>
+<h2 id="路由设计"><a href="#路由设计" class="headerlink" title="路由设计"></a>路由设计</h2><table>
+<thead>
+<tr>
+<th>请求方法</th>
+<th>请求路径</th>
+<th>get参数</th>
+<th>post参数</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GET</td>
+<td>/</td>
+<td></td>
+<td></td>
+<td>渲染首页</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/new</td>
+<td></td>
+<td></td>
+<td>渲染添加页面</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/new</td>
+<td></td>
+<td>name、age、gender、hobbies</td>
+<td>处理添加请求</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/edit</td>
+<td>id</td>
+<td></td>
+<td>渲染编辑页面</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/edit</td>
+<td></td>
+<td>id、name、age、gender、hobbies</td>
+<td>处理编辑请求</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/delete</td>
+<td>id</td>
+<td></td>
+<td>处理编辑请求</td>
+</tr>
+</tbody></table>
+<h2 id="1-app-js"><a href="#1-app-js" class="headerlink" title="1.app.js"></a>1.app.js</h2><h3 id="用来加载模块和模板引擎"><a href="#用来加载模块和模板引擎" class="headerlink" title="用来加载模块和模板引擎"></a>用来加载模块和模板引擎</h3><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-comment">//  引入express 模块</span>
+<span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>)
+<span class="hljs-keyword">const</span> app = express()
+<span class="hljs-keyword">const</span> bodyParser = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;body-parser&#x27;</span>)
+
+<span class="hljs-comment">// 引入 touter.js 模块（自定义模块）</span>
+<span class="hljs-keyword">const</span> router = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./router&#x27;</span>)
+
+<span class="hljs-comment">// 在express中使用 art-template 模块引擎</span>
+app.engine(<span class="hljs-string">&#x27;html&#x27;</span>, <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express-art-template&#x27;</span>))
+
+<span class="hljs-comment">// 开放静态资源</span>
+app.use(<span class="hljs-string">&#x27;/node_modules/&#x27;</span>, express.static(<span class="hljs-string">&#x27;./node_modules/&#x27;</span>))
+app.use(<span class="hljs-string">&#x27;/public/&#x27;</span>, express.static(<span class="hljs-string">&#x27;./public/&#x27;</span>))
+
+<span class="hljs-comment">//一定要放在 app.use(router) 挂载路由之前</span>
+<span class="hljs-comment">// create application/json parser</span>
+app.use(bodyParser.json())
+<span class="hljs-comment">// create application/x-www-form-urlencoded parser</span>
+app.use(bodyParser.urlencoded(&#123;
+    extended: <span class="hljs-literal">false</span>
+&#125;))
+
+<span class="hljs-comment">// 把 router模块中 的 路由容器挂载在app这个服务上</span>
+app.use(router)
+
+app.listen(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> &#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;running...&#x27;</span>);
+&#125;)</code></pre></div>
+<h2 id="2-router-js"><a href="#2-router-js" class="headerlink" title="2.router.js"></a>2.router.js</h2><h3 id="用来挂载路由"><a href="#用来挂载路由" class="headerlink" title="用来挂载路由"></a>用来挂载路由</h3><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>)
+<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>)
+<span class="hljs-keyword">const</span> Student = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./students.js&#x27;</span>)
+<span class="hljs-comment">// 创建一个路由容器</span>
+<span class="hljs-keyword">const</span> router = express.Router()
+
+
+<span class="hljs-comment">// 把路由都挂载到 router 路由容器中</span>
+router.get(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+   
+&#125;)
+router.get(<span class="hljs-string">&#x27;/new&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+    
+&#125;)
+router.post(<span class="hljs-string">&#x27;/new&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+
+
+&#125;)
+router.get(<span class="hljs-string">&#x27;/edit&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+
+&#125;)
+router.post(<span class="hljs-string">&#x27;/edit&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+
+&#125;)
+router.get(<span class="hljs-string">&#x27;/delete&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+
+&#125;)
+<span class="hljs-built_in">module</span>.exports = router</code></pre></div>
+<h3 id="2-1-调用-获取学生信息的封装函数"><a href="#2-1-调用-获取学生信息的封装函数" class="headerlink" title="2.1  调用  获取学生信息的封装函数"></a>2.1  调用  获取学生信息的封装函数</h3><div class="hljs"><pre><code class="hljs JavaScript">router.get(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+    Student.find(<span class="hljs-function">(<span class="hljs-params">err,students</span>)=&gt;</span>&#123;
+        <span class="hljs-keyword">if</span>(err)&#123;
+        <span class="hljs-keyword">return</span> res.status(<span class="hljs-number">500</span>).send(<span class="hljs-string">&#x27;Servererr..&#x27;</span>)
+        &#125;
+        res.render(<span class="hljs-string">&#x27;index.html&#x27;</span>,&#123;
+            comments: [<span class="hljs-string">&#x27;苹果&#x27;</span>, <span class="hljs-string">&#x27;橘子&#x27;</span>, <span class="hljs-string">&#x27;香蕉&#x27;</span>, <span class="hljs-string">&#x27;菠萝&#x27;</span>],
+            students: students
+        &#125;)
+    &#125;)
+&#125;)</code></pre></div>
+<h3 id="2-2-调用-添加并保存学生信息的封装函数"><a href="#2-2-调用-添加并保存学生信息的封装函数" class="headerlink" title="2.2 调用 添加并保存学生信息的封装函数"></a>2.2 调用 添加并保存学生信息的封装函数</h3><div class="hljs"><pre><code class="hljs JavaScript">router.post(<span class="hljs-string">&#x27;/new&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+
+   Student.save(req.body, <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> &#123;
+        <span class="hljs-keyword">if</span> (err) &#123;
+            <span class="hljs-keyword">return</span> res.status(<span class="hljs-number">500</span>).send(<span class="hljs-string">&#x27;Server err..&#x27;</span>)
+        &#125;
+        res.redirect(<span class="hljs-string">&#x27;/&#x27;</span>)
+    &#125;)
+&#125;)</code></pre></div>
+<h3 id="2-3-1-修改前-前调取-修改该学生的ID"><a href="#2-3-1-修改前-前调取-修改该学生的ID" class="headerlink" title="2.3 1.修改前 前调取 修改该学生的ID"></a>2.3 1.修改前 前调取 修改该学生的ID</h3><div class="hljs"><pre><code class="hljs JavaScript">router.get(<span class="hljs-string">&#x27;/edit&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+    <span class="hljs-comment">// 1. 在客户端的列表页中处理链接问题 （需要有 id 的参数）</span>
+    <span class="hljs-comment">// 2. 获取要编辑的 id</span>
+    <span class="hljs-comment">// console.log(req.query.id);</span>
+    <span class="hljs-comment">// 3. 渲染编辑页面   </span>
+    <span class="hljs-comment">//   根据id 吧学生信息查出来</span>
+    <span class="hljs-comment">//   使用模板引擎来渲染页面</span>
+    Student.findById(<span class="hljs-built_in">parseInt</span>(req.query.id), <span class="hljs-function">(<span class="hljs-params">err, student</span>) =&gt;</span> &#123;
+        <span class="hljs-comment">// req.query.id 是字符串 而我们要的 id 是个 数字型 所以要转换</span>
+        <span class="hljs-keyword">if</span> (err) &#123;
+            <span class="hljs-keyword">return</span> res.status(<span class="hljs-number">500</span>).send(<span class="hljs-string">&#x27;Server err..&#x27;</span>)
+        &#125;
+        <span class="hljs-comment">// console.log(studnet);   id 是多 传过来的数据 就是 该 id 的对象</span>
+        <span class="hljs-comment">// 把 所取到该 id 对象的 值 来渲染到页面上</span>
+        res.render(<span class="hljs-string">&#x27;edit.html&#x27;</span>, &#123;
+            student: student
+        &#125;)
+    &#125;)
+&#125;)</code></pre></div>
+<h3 id="2-3-2-调用-修改学生信息的封装函数"><a href="#2-3-2-调用-修改学生信息的封装函数" class="headerlink" title="2.3 2.调用 修改学生信息的封装函数"></a>2.3 2.调用 修改学生信息的封装函数</h3><div class="hljs"><pre><code class="hljs JavaScript">router.post(<span class="hljs-string">&#x27;/edit&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+    <span class="hljs-comment">// 1. 获取表单数据  req.body </span>
+    <span class="hljs-comment">// console.log(req.body);</span>
+    <span class="hljs-comment">// 2.  更新       Student.updataById()</span>
+    <span class="hljs-comment">//  3.  发送响应</span>
+    Student.updateById(req.body, <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> &#123;
+        <span class="hljs-keyword">if</span> (err) &#123;
+            <span class="hljs-keyword">return</span> res.status(<span class="hljs-number">500</span>).send(<span class="hljs-string">&#x27;Server err..&#x27;</span>)
+        &#125;
+        res.redirect(<span class="hljs-string">&#x27;/&#x27;</span>)
+    &#125;)
+&#125;)</code></pre></div>
+<h3 id="2-4-调用-删除学生信息的封装函数"><a href="#2-4-调用-删除学生信息的封装函数" class="headerlink" title="2.4 调用 删除学生信息的封装函数"></a>2.4 调用 删除学生信息的封装函数</h3><div class="hljs"><pre><code class="hljs JavaScript">router.get(<span class="hljs-string">&#x27;/delete&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+    <span class="hljs-comment">// 1. 在客户端的列表页中处理链接问题 （需要有 id 的参数）</span>
+    <span class="hljs-comment">// 2. 获取要编辑的 id</span>
+    <span class="hljs-built_in">console</span>.log(req.query.id);
+    <span class="hljs-comment">// 3. 渲染编辑页面   </span>
+    <span class="hljs-comment">//   根据id 把学生信息查出来</span>
+    <span class="hljs-comment">//   使用模板引擎来渲染页面</span>
+    Student.deleteById(<span class="hljs-built_in">parseInt</span>(req.query.id), <span class="hljs-function">(<span class="hljs-params">err, student</span>) =&gt;</span> &#123;
+        <span class="hljs-comment">// req.query.id 是字符串 而我们要的 id 是个 数字型 所以要转换</span>
+        <span class="hljs-keyword">if</span> (err) &#123;
+            <span class="hljs-keyword">return</span> res.status(<span class="hljs-number">500</span>).send(<span class="hljs-string">&#x27;Server err..&#x27;</span>)
+        &#125;
+        res.redirect(<span class="hljs-string">&#x27;/&#x27;</span>)
+    &#125;)
+&#125;)</code></pre></div>
+<h2 id="3-students-js"><a href="#3-students-js" class="headerlink" title="3.students.js"></a>3.students.js</h2><h3 id="设计操作文件数据的API模块"><a href="#设计操作文件数据的API模块" class="headerlink" title="设计操作文件数据的API模块"></a>设计操作文件数据的API模块</h3><h4 id="用来处理增删改查数据"><a href="#用来处理增删改查数据" class="headerlink" title="用来处理增删改查数据"></a>用来处理增删改查数据</h4><div class="hljs"><pre><code class="hljs JavaScript">/  数据文件操作模块
+<span class="hljs-comment">// 职责： 操作文件中的数据： 只处理数据 不处理业务</span>
+
+
+<span class="hljs-comment">// 1. 获取所有学生信息列表</span>
+<span class="hljs-built_in">exports</span>.find = <span class="hljs-function">() =&gt;</span> &#123; 
+
+&#125;
+<span class="hljs-comment">// 1.1 通过ID 来获取 该学生的信息</span>
+<span class="hljs-built_in">exports</span>.findById = <span class="hljs-function">() =&gt;</span> &#123; 
+
+&#125;
+<span class="hljs-comment">// 2. 添加保存学生信息</span>
+<span class="hljs-built_in">exports</span>.save = <span class="hljs-function">() =&gt;</span> &#123; 
+
+&#125;
+
+
+<span class="hljs-comment">// 3. 更新学生信息</span>
+<span class="hljs-built_in">exports</span>.updateById = <span class="hljs-function">() =&gt;</span> &#123; 
+
+&#125;
+
+
+<span class="hljs-comment">// 4. 删除学生信息</span>
+<span class="hljs-built_in">exports</span>.delete = <span class="hljs-function">() =&gt;</span> &#123; 
+
+&#125;</code></pre></div>
+<h3 id="3-1-获取所有学生信息封装函数"><a href="#3-1-获取所有学生信息封装函数" class="headerlink" title="3.1 获取所有学生信息封装函数"></a>3.1 获取所有学生信息封装函数</h3><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-built_in">exports</span>.find = <span class="hljs-function">(<span class="hljs-params">callback</span>) =&gt;</span> &#123;
+    fs.readFile(dbPath, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">err, data</span>) =&gt;</span> &#123;
+        <span class="hljs-keyword">if</span> (err) &#123;
+            <span class="hljs-keyword">return</span> callback(err)
+        &#125;
+        <span class="hljs-comment">// err  成功时返回 null  错误返回 err</span>
+        <span class="hljs-comment">// data  成功时返回 data  错误返回 undefined</span>
+        callback(<span class="hljs-literal">null</span>, <span class="hljs-built_in">JSON</span>.parse(data).students)
+    &#125;)
+&#125;
+</code></pre></div>
+<h3 id="3-2-添加并保存学生信息"><a href="#3-2-添加并保存学生信息" class="headerlink" title="3.2 添加并保存学生信息"></a>3.2 添加并保存学生信息</h3><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-comment">// student 表示 添加的值</span>
+<span class="hljs-built_in">exports</span>.save = <span class="hljs-function">(<span class="hljs-params">student, callback</span>) =&gt;</span> &#123;
+    <span class="hljs-comment">// 1. 读文件</span>
+    fs.readFile(dbPath, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">err, data</span>) =&gt;</span> &#123;
+        <span class="hljs-keyword">if</span> (err) &#123;
+            <span class="hljs-keyword">return</span> callback(err)
+        &#125;
+       <span class="hljs-comment">// 2. 转成对象</span>
+        <span class="hljs-keyword">let</span> students = <span class="hljs-built_in">JSON</span>.parse(data).students
+
+        <span class="hljs-comment">// 2.1处理id 唯一  不重复</span>
+        student.id = students[students.length - <span class="hljs-number">1</span>].id + <span class="hljs-number">1</span>
+
+        <span class="hljs-comment">// 3.把用户传递的对象push到数组中</span>
+        students.push(student)
+
+        <span class="hljs-comment">// 4.把对象转成字符串</span>
+        <span class="hljs-keyword">let</span> fileData = <span class="hljs-built_in">JSON</span>.stringify(&#123;
+            students: students
+        &#125;)
+
+        <span class="hljs-comment">// 5.把字符串保存在 文件中</span>
+        fs.writeFile(dbPath, fileData, <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> &#123;
+            <span class="hljs-keyword">if</span> (err) &#123;
+                <span class="hljs-keyword">return</span> callback(err)
+            &#125;
+            callback(<span class="hljs-literal">null</span>)
+        &#125;)
+    &#125;)
+&#125;</code></pre></div>
+<h3 id="3-3-修改学生信息"><a href="#3-3-修改学生信息" class="headerlink" title="3.3  修改学生信息"></a>3.3  修改学生信息</h3><h4 id="3-3-1-获得修改该学生个人ID"><a href="#3-3-1-获得修改该学生个人ID" class="headerlink" title="3.3.1 获得修改该学生个人ID"></a>3.3.1 获得修改该学生个人ID</h4><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 1.1  通过ID 来获取 该学生的信息</span>
+<span class="hljs-built_in">exports</span>.findById = <span class="hljs-function">(<span class="hljs-params">id, callback</span>) =&gt;</span> &#123;
+    fs.readFile(dbPath, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">err, data</span>) =&gt;</span> &#123;
+        <span class="hljs-keyword">if</span> (err) &#123;
+            <span class="hljs-keyword">return</span> callback(err)
+        &#125;
+        <span class="hljs-keyword">let</span> students = <span class="hljs-built_in">JSON</span>.parse(data).students
+        <span class="hljs-keyword">let</span> ret = students.find(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> &#123;
+            <span class="hljs-keyword">return</span> item.id === <span class="hljs-built_in">parseInt</span>(id)
+        &#125;)
+        callback(<span class="hljs-literal">null</span>, ret)
+    &#125;)
+&#125;</code></pre></div>
+
+<h4 id="3-3-2-修改学生信息"><a href="#3-3-2-修改学生信息" class="headerlink" title="3.3.2  修改学生信息"></a>3.3.2  修改学生信息</h4><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 3. 更新学生信息</span>
+<span class="hljs-built_in">exports</span>.updateById = <span class="hljs-function">(<span class="hljs-params">student, callback</span>) =&gt;</span> &#123;
+    <span class="hljs-comment">// 1. 读文件</span>
+    fs.readFile(dbPath, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">err, data</span>) =&gt;</span> &#123;
+        <span class="hljs-keyword">if</span> (err) &#123;
+            <span class="hljs-keyword">return</span> callback(err)
+        &#125;
+        <span class="hljs-comment">// 2. 转成对象</span>
+        <span class="hljs-keyword">let</span> students = <span class="hljs-built_in">JSON</span>.parse(data).students
+        <span class="hljs-comment">// 注意要把 id 改成数字型  因为 更改信息的时候 id会变成字符串</span>
+        <span class="hljs-keyword">let</span> studentsId = <span class="hljs-built_in">parseInt</span>(student.id)
+        <span class="hljs-comment">// 3.需要修改谁， 就把谁的ID找出来     （找出修改的 对象 ）</span>
+        <span class="hljs-comment">// 使用 ES6 中 find 方法来 遍历符合 item.id === studnent.id 条件的时候， find会终止遍历并返回</span>
+        <span class="hljs-keyword">let</span> stu = students.find(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> &#123;
+            <span class="hljs-keyword">return</span> item.id === studentsId
+        &#125;)
+        <span class="hljs-comment">// console.log(stu);  // &#123; id: 1, name: &#x27;朱元璋111&#x27;, gender: 0, age: 22, hobbies: &#x27;写代码&#x27; &#125;</span>
+        <span class="hljs-comment">// 4. 拿到 需要修改的  让它遍历拷贝对象  （ 修改这个被找出来的 对象）</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> key <span class="hljs-keyword">in</span> student) &#123;
+            stu[key] = student[key]
+        &#125;
+        <span class="hljs-comment">// console.log(students);  // 是jsonw文件中的 students 内的 所有对象</span>
+        <span class="hljs-comment">// 5.把对象转成字符串</span>
+        <span class="hljs-keyword">let</span> fileData = <span class="hljs-built_in">JSON</span>.stringify(&#123;
+            students: students
+        &#125;)
+
+        <span class="hljs-comment">// 6.把字符串保存在 文件中</span>
+        fs.writeFile(dbPath, fileData, <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> &#123;
+            <span class="hljs-keyword">if</span> (err) &#123;
+                <span class="hljs-keyword">return</span> callback(err)
+            &#125;
+            callback(<span class="hljs-literal">null</span>)
+        &#125;)
+
+
+
+    &#125;)
+
+&#125;</code></pre></div>
+<h3 id="3-4-删除学生信息"><a href="#3-4-删除学生信息" class="headerlink" title="3.4  删除学生信息"></a>3.4  删除学生信息</h3><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 4. 删除学生信息</span>
+<span class="hljs-built_in">exports</span>.deleteById = <span class="hljs-function">(<span class="hljs-params">id, callback</span>) =&gt;</span> &#123;
+    <span class="hljs-comment">// 1. 读文件</span>
+    fs.readFile(dbPath, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">err, data</span>) =&gt;</span> &#123;
+        <span class="hljs-keyword">if</span> (err) &#123;
+            <span class="hljs-keyword">return</span> callback(err)
+        &#125;
+        <span class="hljs-comment">// 2. 转成对象</span>
+        <span class="hljs-keyword">let</span> students = <span class="hljs-built_in">JSON</span>.parse(data).students
+
+        <span class="hljs-keyword">let</span> deleteID = students.findIndex(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> &#123;
+            <span class="hljs-keyword">return</span> item.id === <span class="hljs-built_in">parseInt</span>(id)
+        &#125;)
+        students.splice(deleteID, <span class="hljs-number">1</span>)
+
+        <span class="hljs-comment">// 4.把对象转成字符串</span>
+        <span class="hljs-keyword">let</span> fileData = <span class="hljs-built_in">JSON</span>.stringify(&#123;
+            students: students
+        &#125;)
+
+        <span class="hljs-comment">// 5.把字符串保存在 文件中</span>
+        fs.writeFile(dbPath, fileData, <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> &#123;
+            <span class="hljs-keyword">if</span> (err) &#123;
+                <span class="hljs-keyword">return</span> callback(err)
+            &#125;
+            callback(<span class="hljs-literal">null</span>)
+        &#125;)
+
+    &#125;)
+&#125;</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                <div class="post-meta mr-3">
+                  <i class="iconfont icon-category"></i>
+                  
+                  <a class="hover-with-bg" href="/categories/Nodejs/">Nodejs</a>
+                  
+                </div>
+                
+                
+                <div class="post-meta">
+                  <i class="iconfont icon-tags"></i>
+                  
+                  <a class="hover-with-bg" href="/tags/Node/">Node</a>
+                  
+                  <a class="hover-with-bg" href="/tags/Express/">Express</a>
+                  
+                </div>
+                
+              </div>
+              
+              
+              <div class="post-prevnext row">
+                <article class="post-prev col-6">
+                  
+                  
+                  <a href="/2020/08/05/02.%E7%AE%80%E5%8D%95%E7%9A%84HTTP%E5%93%8D%E5%BA%94%E8%AF%B7%E6%B1%82/">
+                    <i class="iconfont icon-arrowleft"></i>
+                    <span class="hidden-mobile">使用Node来实现简单的HTTP响应请求</span>
+                    <span class="visible-mobile">上一篇</span>
+                  </a>
+                  
+                </article>
+                <article class="post-next col-6">
+                  
+                  
+                  <a href="/2020/08/04/01.Nodejs%E4%BB%8B%E7%BB%8D/">
+                    <span class="hidden-mobile">Node介绍</span>
+                    <span class="visible-mobile">下一篇</span>
+                    <i class="iconfont icon-arrowright"></i>
+                  </a>
+                  
+                </article>
+              </div>
+              
+            </div>
+
+            
+            <!-- Comments -->
+            <article class="comments" id="comments">
+              
+              
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "hjxsDRXYScicliqD8I8JqoTu-gzGzoHsz",
+          app_key: "qUcAEReEqeEVp5wwXJ41uCCp",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+            </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+      <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+    </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    
+      <script  src="/js/lazyload.js" ></script>
+    
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "基于Express 下的 增删改查项目&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "always",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+  
+  
+    <script>
+      !function (e, t, a) {
+        function r() {
+          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
+          requestAnimationFrame(r)
+        }
+
+        function n() {
+          var t = "function" == typeof e.onclick && e.onclick;
+          e.onclick = function (e) {
+            t && t(), o(e)
+          }
+        }
+
+        function o(e) {
+          var a = t.createElement("div");
+          a.className = "heart", s.push({
+            el: a,
+            x: e.clientX - 5,
+            y: e.clientY - 5,
+            scale: 1,
+            alpha: 1,
+            color: c()
+          }), t.body.appendChild(a)
+        }
+
+        function i(e) {
+          var a = t.createElement("style");
+          a.type = "text/css";
+          try {
+            a.appendChild(t.createTextNode(e))
+          } catch (t) {
+            a.styleSheet.cssText = e
+          }
+          t.getElementsByTagName("head")[0].appendChild(a)
+        }
+
+        function c() {
+          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+        }
+
+        var s = [];
+        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
+          setTimeout(e, 1e3 / 60)
+        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
+      }(window, document);
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,799 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/boshi.jpeg">
+  <link rel="icon" type="image/png" href="/img/boshi.jpeg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="wangpf">
+  <meta name="keywords" content="">
+  <title>Mongodb数据库的基本使用 - wpf的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/foundation.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Wangpf's blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/article.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-12 09:48" pubdate>
+      2020年8月12日 上午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      17
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">Mongodb数据库的基本使用</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h2 id="Mongodb数据库的基本概念"><a href="#Mongodb数据库的基本概念" class="headerlink" title="Mongodb数据库的基本概念"></a>Mongodb数据库的基本概念</h2><ul>
+<li>可以有多个数据库</li>
+<li>一个数据库中可以有多个集合（表）</li>
+<li>一个集合中可以有多个文档（表记录）</li>
+<li>文档结构灵活，没有任何限制</li>
+<li>Mongodb非常灵活，不需要像  MySQL 一样先创建数据库、表、设计表结构<ul>
+<li>这里只需要：当你需要插入数据的时候，只需要指定往哪个数据库的哪个集合操作就可以了</li>
+<li>一切都有Mongodb 来帮你自动完成建库建表这些事儿<div class="hljs"><pre><code class="hljs JavaScript">&#123;
+    qq:&#123;  <span class="hljs-comment">// 集合  </span>
+        user:[ 
+        &#123;<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;张三&#x27;</span>&#125;,  <span class="hljs-comment">// 文档</span>
+        &#123;&#125;,
+        &#123;&#125;,
+        &#123;&#125;,
+        &#123;&#125;
+        ]  
+        products:[
+        &#123;&#125;,
+        &#123;&#125;
+        ]
+    &#125;,
+    taobao:&#123;
+        
+    &#125;,
+    ....
+&#125;</code></pre></div>
+<h2 id="1-启动和关闭数据库"><a href="#1-启动和关闭数据库" class="headerlink" title="1.启动和关闭数据库"></a>1.启动和关闭数据库</h2><h3 id="1-1启动"><a href="#1-1启动" class="headerlink" title="1.1启动"></a>1.1启动</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">  mongodb 默认使用执行 mongod 命令 所处盘符根目录下的 /data/db 作为自己的数据存储目录</span>
+<span class="hljs-meta">#</span><span class="bash"> 所以在第一次执行该命令之前先自己手动创建一个 /data/db</span>
+mongod</code></pre></div>
+
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="如果想要修改默认的数据存储目录，可以："><a href="#如果想要修改默认的数据存储目录，可以：" class="headerlink" title="如果想要修改默认的数据存储目录，可以："></a>如果想要修改默认的数据存储目录，可以：</h3><div class="hljs"><pre><code class="hljs shell">mongod --dbpath = 数据存储目录路径</code></pre></div>
+<h3 id="1-2-关闭"><a href="#1-2-关闭" class="headerlink" title="1.2 关闭"></a>1.2 关闭</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 在开始服务的控制台（cmd） 直接 Ctrl+c 即可停止退出，</span>
+<span class="hljs-meta">#</span><span class="bash"> 或者直接关闭 开启服务的控制台</span>
+</code></pre></div>
+<h2 id="2-连接和退出数据库"><a href="#2-连接和退出数据库" class="headerlink" title="2.连接和退出数据库"></a>2.连接和退出数据库</h2><h3 id="2-1-连接"><a href="#2-1-连接" class="headerlink" title="2.1 连接"></a>2.1 连接</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 在 数据库 bin 的目录下 开启cmd</span>
+<span class="hljs-meta">#</span><span class="bash"> 该命令默认连接本机的 mongodb 服务</span>
+mongo</code></pre></div>
+<h3 id="2-2-退出"><a href="#2-2-退出" class="headerlink" title="2.2 退出"></a>2.2 退出</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 在连接状态输入 <span class="hljs-built_in">exit</span> 退出连接</span>
+exit</code></pre></div>
+<h3 id="2-3基本命令"><a href="#2-3基本命令" class="headerlink" title="2.3基本命令"></a>2.3基本命令</h3><ul>
+<li><code>show dbs</code><ul>
+<li>查看显示所有数据库</li>
+</ul>
+</li>
+<li><code>show collections</code><ul>
+<li>显示当前所有集合</li>
+</ul>
+</li>
+<li><code>db</code><ul>
+<li>查看当前操作的数据库</li>
+</ul>
+</li>
+<li><code>use 数据库名称</code><ul>
+<li>切换到指定的数据库（如果没有会新建）</li>
+</ul>
+</li>
+<li>插入数据</li>
+</ul>
+<h2 id="3-在Nodejs中如何操作使用Mongodb数据"><a href="#3-在Nodejs中如何操作使用Mongodb数据" class="headerlink" title="3.在Nodejs中如何操作使用Mongodb数据"></a>3.在Nodejs中如何操作使用Mongodb数据</h2><h3 id="3-1-使用官方的-mongodb-包来操作"><a href="#3-1-使用官方的-mongodb-包来操作" class="headerlink" title="3.1 使用官方的 mongodb 包来操作"></a>3.1 使用官方的 <code>mongodb</code> 包来操作</h3><ul>
+<li>不推荐使用， 太原生了</li>
+<li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/mongodb">npm mongodb包 下载及指导地址</a><h3 id="3-2-使用第三方包-mongoose-来操作-Mongodb-数据库"><a href="#3-2-使用第三方包-mongoose-来操作-Mongodb-数据库" class="headerlink" title="3.2 使用第三方包 mongoose 来操作  Mongodb 数据库"></a>3.2 使用第三方包 <code>mongoose</code> 来操作  Mongodb 数据库</h3><div class="hljs"><pre><code class="hljs sell">npm i mongoose</code></pre></div></li>
+<li>第三方包 : <code>mongoose</code> 基于 MongoDB 官方的 <code>mongodb</code> 包再一次做了封装</li>
+<li><a target="_blank" rel="noopener" href="https://mongoosejs.com/"><code>mongoose 网址</code></a><h3 id="3-3-简单体验-hello-world"><a href="#3-3-简单体验-hello-world" class="headerlink" title="3.3 简单体验  hello world"></a>3.3 简单体验  hello world</h3><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-keyword">const</span> mongoose = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;mongoose&#x27;</span>);
+<span class="hljs-comment">// 连接 MongoDB数据库     </span>
+<span class="hljs-comment">//  mongodb://localhost:27017/test  以下创建的数据库数据都在 这个 test里</span>
+mongoose.connect(<span class="hljs-string">&#x27;mongodb://localhost:27017/test&#x27;</span>, &#123;
+    useNewUrlParser: <span class="hljs-literal">true</span>,
+    useUnifiedTopology: <span class="hljs-literal">true</span>
+&#125;);
+
+<span class="hljs-comment">// 创建了一个模型  就是在设计数据库</span>
+<span class="hljs-comment">// MongoDB 是动态的，非常灵活。只需要在代码中设计你的数据库就可以了</span>
+<span class="hljs-comment">// mongoose 这个包就可以让你的设计编写过程变得非常简单</span>
+<span class="hljs-keyword">const</span> Cat = mongoose.model(<span class="hljs-string">&#x27;Cat&#x27;</span>, &#123;
+    name: <span class="hljs-built_in">String</span>
+&#125;);
+
+<span class="hljs-comment">// 实例化了一个 Cat</span>
+<span class="hljs-keyword">const</span> kitty = <span class="hljs-keyword">new</span> Cat(&#123;
+    name: <span class="hljs-string">&#x27;Zildjian&#x27;</span>
+&#125;);
+
+<span class="hljs-comment">// 持久化保存了  kitty 实例</span>
+kitty.save().then(<span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;meow&#x27;</span>));</code></pre></div>
+<h3 id="3-4-创建数据库-并创建架构"><a href="#3-4-创建数据库-并创建架构" class="headerlink" title="3.4 创建数据库 并创建架构"></a>3.4 创建数据库 并创建架构</h3><div class="hljs"><pre><code class="hljs JavaScript"> <span class="hljs-keyword">var</span> mongoose = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;mongoose&#x27;</span>);
+
+<span class="hljs-comment">// 1.连接数据库</span>
+mongoose.connect(<span class="hljs-string">&#x27;mongodb://localhost:27017/test&#x27;</span>, &#123;
+    useNewUrlParser: <span class="hljs-literal">true</span>,
+    useUnifiedTopology: <span class="hljs-literal">true</span>
+&#125;);
+<span class="hljs-comment">//  架构</span>
+<span class="hljs-keyword">var</span> Schema = mongoose.Schema;
+
+<span class="hljs-comment">//  2.设计文档结构/架构（表结构）</span>
+<span class="hljs-comment">// 字段名称就是表结构中的属性名称</span>
+<span class="hljs-comment">// 约束的目的是为了保证数据的完整性， 不要有脏数据</span>
+<span class="hljs-keyword">var</span> userSchema = <span class="hljs-keyword">new</span> Schema(&#123;
+    userName: &#123;
+        type: <span class="hljs-built_in">String</span>,
+        required: <span class="hljs-literal">true</span> <span class="hljs-comment">// 这个意思是  该属性不能为空 必须有</span>
+    &#125;,
+    password: &#123;
+        type: <span class="hljs-built_in">String</span>,
+        required: <span class="hljs-literal">true</span>
+    &#125;,
+    email: &#123;
+        type: <span class="hljs-built_in">String</span>
+    &#125;
+&#125;);
+
+<span class="hljs-comment">// 3.将文档结构发布为 模型 model</span>
+<span class="hljs-comment">//  mongoose.model 方法就是用来将一个 架构Schema 发布为一个 model</span>
+<span class="hljs-comment">//  第一参数： 传入一个大写的名词单数 字符串  用来表示你的数据库名称</span>
+<span class="hljs-comment">//              mongoose 会自动将大写名字的字符串生成 小写复数 的集合名称</span>
+<span class="hljs-comment">//             例如 这里的 User  会生成一个 users 集合名称</span>
+<span class="hljs-comment">// 返回值: 模型架构函数</span>
+<span class="hljs-keyword">const</span> User = mongoose.model(<span class="hljs-string">&#x27;User&#x27;</span>, userSchema)
+
+<span class="hljs-comment">// 4. 当我们有了模型构造函数之后 ， 就可以用这个构造函数 对 users 集合中的数据进行 增删改查（CURD）</span></code></pre></div>
+<h4 id="新增数据"><a href="#新增数据" class="headerlink" title="新增数据"></a>新增数据</h4><div class="hljs"><pre><code class="hljs JavaScript"> <span class="hljs-comment">//  新增数据</span>
+<span class="hljs-keyword">let</span> admin = <span class="hljs-keyword">new</span> User(&#123;
+    userName: <span class="hljs-string">&#x27;admin&#x27;</span>,
+    password: <span class="hljs-string">&#x27;123456&#x27;</span>,
+    email: <span class="hljs-string">&#x27;admin@qq.com&#x27;</span>
+&#125;)
+admin.save(<span class="hljs-function">(<span class="hljs-params">err, ret</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">if</span> (err) &#123;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;存储失败&#x27;</span>);
+    &#125; <span class="hljs-keyword">else</span> &#123;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;存储成功&#x27;</span>);
+        <span class="hljs-built_in">console</span>.log(ret);   <span class="hljs-comment">// ret 就是 存储的数据</span>
+    &#125;
+&#125;)
+<span class="hljs-comment">// 下面的就是 ret</span>
+<span class="hljs-comment">// &#123;</span>
+<span class="hljs-comment">//     _id: 5f32a2c76be62230a099314b,</span>
+<span class="hljs-comment">//     userName: &#x27;admin&#x27;,</span>
+<span class="hljs-comment">//     password: &#x27;123456&#x27;,</span>
+<span class="hljs-comment">//     email: &#x27;admin@qq.com&#x27;,</span>
+<span class="hljs-comment">//     __v: 0</span>
+<span class="hljs-comment">//   &#125;</span></code></pre></div>
+<h4 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h4><h5 id="查询所有数据-find"><a href="#查询所有数据-find" class="headerlink" title="查询所有数据  find"></a>查询所有数据  find</h5><div class="hljs"><pre><code class="hljs JavaScript"> User.find(<span class="hljs-function">(<span class="hljs-params">err, ret</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">if</span> (err) &#123;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;查询失败&#x27;</span>);
+    &#125; <span class="hljs-keyword">else</span> &#123;
+        <span class="hljs-built_in">console</span>.log(ret);
+    &#125;
+&#125;)</code></pre></div>
+<h5 id="按条件查询所有符合的数据-find"><a href="#按条件查询所有符合的数据-find" class="headerlink" title="按条件查询所有符合的数据  find"></a>按条件查询所有符合的数据  find</h5><div class="hljs"><pre><code class="hljs JavaScript">User.find(&#123;
+    userName: <span class="hljs-string">&#x27;朱元璋&#x27;</span>
+&#125;, <span class="hljs-function">(<span class="hljs-params">err, ret</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">if</span> (err) &#123;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;查询失败&#x27;</span>);
+    &#125; <span class="hljs-keyword">else</span> &#123;
+        <span class="hljs-built_in">console</span>.log(ret);
+    &#125;
+&#125;)</code></pre></div>
+<h5 id="按条件查询单个的数据-（如果有相同的返回第一个）-findOne"><a href="#按条件查询单个的数据-（如果有相同的返回第一个）-findOne" class="headerlink" title="按条件查询单个的数据 （如果有相同的返回第一个） findOne"></a>按条件查询单个的数据 （如果有相同的返回第一个） findOne</h5><div class="hljs"><pre><code class="hljs JavaScript"> User.findOne(&#123;
+    userName: <span class="hljs-string">&#x27;朱元璋&#x27;</span>
+&#125;, <span class="hljs-function">(<span class="hljs-params">err, ret</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">if</span> (err) &#123;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;查询失败&#x27;</span>);
+    &#125; <span class="hljs-keyword">else</span> &#123;
+        <span class="hljs-built_in">console</span>.log(ret);
+    &#125;
+&#125;)</code></pre></div>
+<h4 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h4><div class="hljs"><pre><code class="hljs JavaScript"> <span class="hljs-comment">// 3.删除数据</span>
+User.remove(&#123;
+    userName: <span class="hljs-string">&#x27;朱元璋&#x27;</span>
+&#125;, <span class="hljs-function">(<span class="hljs-params">err, ret</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">if</span> (err) &#123;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;删除失败&#x27;</span>);
+    &#125; <span class="hljs-keyword">else</span> &#123;
+        <span class="hljs-built_in">console</span>.log(ret);
+    &#125;
+
+&#125;)</code></pre></div>
+
+</li>
+</ul>
+<h4 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h4><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 4.更新数据</span>
+<span class="hljs-comment">// 第一个参数  需要更新的  第二个参数 更新什么</span>
+User.update(&#123;
+    userName: <span class="hljs-string">&#x27;朱元璋&#x27;</span>
+&#125;, &#123;
+    password: <span class="hljs-string">&#x27;123456&#x27;</span>
+&#125;, <span class="hljs-function">(<span class="hljs-params">err, ret</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">if</span> (err) &#123;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;更新失败&#x27;</span>);
+    &#125; <span class="hljs-keyword">else</span> &#123;
+        <span class="hljs-built_in">console</span>.log(ret);
+    &#125;
+&#125;)</code></pre></div>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                <div class="post-meta mr-3">
+                  <i class="iconfont icon-category"></i>
+                  
+                  <a class="hover-with-bg" href="/categories/Mongodb/">Mongodb</a>
+                  
+                </div>
+                
+                
+                <div class="post-meta">
+                  <i class="iconfont icon-tags"></i>
+                  
+                  <a class="hover-with-bg" href="/tags/Node/">Node</a>
+                  
+                  <a class="hover-with-bg" href="/tags/Mongodb/">Mongodb</a>
+                  
+                  <a class="hover-with-bg" href="/tags/mongoose/">mongoose</a>
+                  
+                </div>
+                
+              </div>
+              
+              
+              <div class="post-prevnext row">
+                <article class="post-prev col-6">
+                  
+                  
+                  <a href="/2020/08/12/10.promise/">
+                    <i class="iconfont icon-arrowleft"></i>
+                    <span class="hidden-mobile">回调地狱（callback hell） 和 promise</span>
+                    <span class="visible-mobile">上一篇</span>
+                  </a>
+                  
+                </article>
+                <article class="post-next col-6">
+                  
+                  
+                  <a href="/2020/08/08/07.Express%E7%9A%84%E4%BD%BF%E7%94%A8/">
+                    <span class="hidden-mobile">Express的使用⭐⭐⭐</span>
+                    <span class="visible-mobile">下一篇</span>
+                    <i class="iconfont icon-arrowright"></i>
+                  </a>
+                  
+                </article>
+              </div>
+              
+            </div>
+
+            
+            <!-- Comments -->
+            <article class="comments" id="comments">
+              
+              
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "hjxsDRXYScicliqD8I8JqoTu-gzGzoHsz",
+          app_key: "qUcAEReEqeEVp5wwXJ41uCCp",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+            </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+      <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+    </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    
+      <script  src="/js/lazyload.js" ></script>
+    
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Mongodb数据库的基本使用&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "always",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+  
+  
+    <script>
+      !function (e, t, a) {
+        function r() {
+          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
+          requestAnimationFrame(r)
+        }
+
+        function n() {
+          var t = "function" == typeof e.onclick && e.onclick;
+          e.onclick = function (e) {
+            t && t(), o(e)
+          }
+        }
+
+        function o(e) {
+          var a = t.createElement("div");
+          a.className = "heart", s.push({
+            el: a,
+            x: e.clientX - 5,
+            y: e.clientY - 5,
+            scale: 1,
+            alpha: 1,
+            color: c()
+          }), t.body.appendChild(a)
+        }
+
+        function i(e) {
+          var a = t.createElement("style");
+          a.type = "text/css";
+          try {
+            a.appendChild(t.createTextNode(e))
+          } catch (t) {
+            a.styleSheet.cssText = e
+          }
+          t.getElementsByTagName("head")[0].appendChild(a)
+        }
+
+        function c() {
+          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+        }
+
+        var s = [];
+        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
+          setTimeout(e, 1e3 / 60)
+        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
+      }(window, document);
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

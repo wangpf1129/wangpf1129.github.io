@@ -1,0 +1,669 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/boshi.jpeg">
+  <link rel="icon" type="image/png" href="/img/boshi.jpeg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="wangpf">
+  <meta name="keywords" content="">
+  <title>HTTPS是如何保障数据传输安全的 - wpf的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/foundation.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Wangpf's blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/article.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2021-04-02 17:05" pubdate>
+      2021年4月2日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      15
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">HTTPS是如何保障数据传输安全的</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h2 id="需要对密码学简单认识一下"><a href="#需要对密码学简单认识一下" class="headerlink" title="需要对密码学简单认识一下"></a>需要对密码学简单认识一下</h2><p>什么是对称加密、非对称加密、单向散列、消息认证码、数字签名、证书、PKI 体系</p>
+<p><strong>信息安全</strong></p>
+<ul>
+<li>机密性：信息是否被泄漏。使用对称加密、非对称加密来保证</li>
+<li>完整性：信息是否被修改，使用单向散列、消息认证码、数字签名来保证</li>
+<li>真实性：发送者是否冒名顶替的。使用消息认证码、数字签名来保证</li>
+<li>不可否认性：做过了会不会抵赖。使用数字签名来保证</li>
+</ul>
+<h3 id="对称加密"><a href="#对称加密" class="headerlink" title="对称加密"></a>对称加密</h3><p><strong>实现信息安全的机密性，那么可以使用对称加密</strong></p>
+<p><strong>什么是对称加密：</strong></p>
+<ul>
+<li>使用同一个密钥进行加密解密，算法速度快。</li>
+<li>对称加密常见的算法是 DES 和 AES。</li>
+<li>对称加密算法常用来加密大量内容。</li>
+</ul>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/78083874b76d4995b0d277bb293eb1c0~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="对称加密.png"></p>
+<h3 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h3><p><strong>实现信息安全的机密性，那么可以使用非对称加密</strong></p>
+<p><strong>什么是非对称加密：</strong></p>
+<ul>
+<li>拥有俩个密钥：公钥和私钥，公钥公开的给别人，私钥自己保存着。</li>
+<li>公钥加密后的密文可以使用私钥来解密</li>
+<li>私钥加密后的密文可以使用公钥来解密</li>
+<li>对比与 对称加密要慢上许多</li>
+<li>常见的非对称算法是 RSA</li>
+</ul>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/41f50a747b3e4fc1a5c50cfb08819dda~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="非对称加密.png"></p>
+<p>使用非对称加密算法可以直接加密信息。比如小明生成自己的密钥时，把公钥对外公开。小红想向小明传输信息可使用小明的公钥对消息加密后再发送，然后小明收到后可以用自己的私钥来解密。其他人即时得到加密后的信息也无法破解。</p>
+<p><strong>不过这样使用开销很大，一般现实中使用对称加密来加密原始消息，使用非对称加密来传输用来加密消息的对称密钥，（用非对称加密来加密对称加密的密钥。）</strong></p>
+<h3 id="单向散列（hash）"><a href="#单向散列（hash）" class="headerlink" title="单向散列（hash）"></a>单向散列（hash）</h3><p><strong>可以用单向散列来证明数据的完整性</strong></p>
+<p>不定长的数经散发处理后会压缩成固定长度。其特点是相同的输入一定有相同的输出，不同的输入几乎没有相同的输出，根据输出无法还原输入。</p>
+<p>场景举例：我们再网站上对外公布了一个 10Gb 大小的资源链接和对应的 sha256 哈希值。用户从第三方下载到类似资源后可以做 sha256 散列运算，如果计算的哈希值和我们原始资源的哈希值相同，就表示数据是真实完整的</p>
+<p>常见的散列算法有：MD5(<strong>不安全</strong>)、SHA1、SHA256</p>
+<h3 id="消息认证码（hmac）"><a href="#消息认证码（hmac）" class="headerlink" title="消息认证码（hmac）"></a>消息认证码（hmac）</h3><p><strong>消息认证码就是带密钥的散列函数</strong></p>
+<p><strong>特点：</strong></p>
+<ol>
+<li>大量信息经过处理变成短小固定长度值（有点类似单向散列）</li>
+<li>消息不同或者密钥不同会导致结果不同</li>
+<li>无法从结果“解密”出原始信息</li>
+</ol>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c467eedef60d4d0c9514e4c39888126e~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="消息认证码.png"></p>
+<p><strong>toekn = header（算法名）+ ‘.’ + payload(有用信息) + ‘.’ + hmac(header + ‘.’ + patload,密钥)</strong></p>
+<p>使用场景:JWT 鉴权使用的 token 就用到了消息认证码。当服务器把 token 发送给客户端，客户端下次请求时要带上 token，服务器收到 token 后会截取 header + ‘.’ + payload 做 hmac 运算，得到的结果和 token 的第三部分即 hmac 做对比。</p>
+<h3 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h3><p>小明使用私钥对消息加密即<strong>签名</strong>，其他人使用小明的公钥如果能解密表示消息一定是小明发的。</p>
+<p><strong>签名能防止抵赖的发生，用来保证信息的不可否认性</strong></p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b8f7d6aa8131464f91b8f9f30e0f4132~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="数字签名.png"></p>
+<h3 id="证书与-PKI-体系"><a href="#证书与-PKI-体系" class="headerlink" title="证书与 PKI 体系"></a>证书与 PKI 体系</h3><p>一个证书上包含一些公开的明文信息以及证书颁发者对该信息的签名(私钥加密)。任何人想验证证书信息的真伪，只需要用证书颁发者的公钥对签名进行解密，再和证书上的明文信息做对比即可。</p>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1b882f0b46cb49c3b3b7af869881d2b5~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="image.png"></p>
+<h2 id="HTTPS-是如何做密钥协商的"><a href="#HTTPS-是如何做密钥协商的" class="headerlink" title="HTTPS 是如何做密钥协商的"></a>HTTPS 是如何做密钥协商的</h2><h3 id="什么是-HTTPS"><a href="#什么是-HTTPS" class="headerlink" title="什么是 HTTPS"></a>什么是 HTTPS</h3><p>HTTPS 是超文本传输安全协议,在 HTTP 的基础上通过传输加密和身份认证保证了传输过程的安全性。</p>
+<p><strong>HTTPS = HTTP + SSL</strong></p>
+<h3 id="HTTP-与-HTTPS-的区别"><a href="#HTTP-与-HTTPS-的区别" class="headerlink" title="HTTP 与 HTTPS 的区别"></a>HTTP 与 HTTPS 的区别</h3><ul>
+<li>HTTP 的 url 是 http:// 开头 ， HTTPS 的 url 是 https:// 开头。</li>
+<li>HTTP 使用 80 端口 ， HTTPS 使用 443 端口。</li>
+<li>HTTP 数据传是明文传输，不安全。 HTTPS 数据加密了，可保证数据私密性、完整性、防止中间人攻击。</li>
+</ul>
+<h3 id="SSL-TLS-协议流程（HTTPS-握手过程）"><a href="#SSL-TLS-协议流程（HTTPS-握手过程）" class="headerlink" title="SSL/TLS 协议流程（HTTPS 握手过程）"></a>SSL/TLS 协议流程（HTTPS 握手过程）</h3><p><strong>详细流程：</strong></p>
+<ol>
+<li>浏览器将自己支持的一套加密算法发给服务器，同时发一个浏览器随机数</li>
+<li>服务器向浏览器发送选择的加密算法、服务器生成的随机数、服务器数字证书</li>
+<li>浏览器收到证书后对证书的 CA 签名进行验证，如果验证通过，会从证书中拿到服务器的公钥。</li>
+<li>浏览器对浏览器随机数+服务器随机数进行处理，生成预备主密码。</li>
+<li>浏览器使用服务器的公钥对预备主密码进行加密，发给服务器。</li>
+<li>服务器收到后使用自己的私钥解密出预备主密钥。</li>
+<li>浏览器和服务器分别使用预备主密钥和俩个随机数，生成共享主密钥。</li>
+<li>二者使用共享主密钥，使用对称加密算法加密数据。</li>
+</ol>
+<p><strong>简单的来说：</strong></p>
+<ol>
+<li>浏览器使用 HTTPS 的 url 访问服务器与服务器建立 SSL 连接。</li>
+<li>服务器收到请求行，会发送包含公钥的证书</li>
+<li>浏览器使用公钥加密对称密钥并发送给服务器</li>
+<li>服务器使用私钥解密对称密钥</li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                <div class="post-meta mr-3">
+                  <i class="iconfont icon-category"></i>
+                  
+                  <a class="hover-with-bg" href="/categories/HTTP/">HTTP</a>
+                  
+                </div>
+                
+                
+                <div class="post-meta">
+                  <i class="iconfont icon-tags"></i>
+                  
+                  <a class="hover-with-bg" href="/tags/HTTP/">HTTP</a>
+                  
+                </div>
+                
+              </div>
+              
+              
+              <div class="post-prevnext row">
+                <article class="post-prev col-6">
+                  
+                  
+                  <a href="/2021/05/18/62-methods%E4%B8%ADthis%E6%8C%87%E5%90%91%E9%97%AE%E9%A2%98/">
+                    <i class="iconfont icon-arrowleft"></i>
+                    <span class="hidden-mobile">methods中this指向问题</span>
+                    <span class="visible-mobile">上一篇</span>
+                  </a>
+                  
+                </article>
+                <article class="post-next col-6">
+                  
+                  
+                  <a href="/2021/03/28/60-keep-alive%E5%92%8C%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/">
+                    <span class="hidden-mobile">keep-alive与多路复用</span>
+                    <span class="visible-mobile">下一篇</span>
+                    <i class="iconfont icon-arrowright"></i>
+                  </a>
+                  
+                </article>
+              </div>
+              
+            </div>
+
+            
+            <!-- Comments -->
+            <article class="comments" id="comments">
+              
+              
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "hjxsDRXYScicliqD8I8JqoTu-gzGzoHsz",
+          app_key: "qUcAEReEqeEVp5wwXJ41uCCp",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+            </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+      <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+    </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    
+      <script  src="/js/lazyload.js" ></script>
+    
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "HTTPS是如何保障数据传输安全的&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "always",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+  
+  
+    <script>
+      !function (e, t, a) {
+        function r() {
+          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
+          requestAnimationFrame(r)
+        }
+
+        function n() {
+          var t = "function" == typeof e.onclick && e.onclick;
+          e.onclick = function (e) {
+            t && t(), o(e)
+          }
+        }
+
+        function o(e) {
+          var a = t.createElement("div");
+          a.className = "heart", s.push({
+            el: a,
+            x: e.clientX - 5,
+            y: e.clientY - 5,
+            scale: 1,
+            alpha: 1,
+            color: c()
+          }), t.body.appendChild(a)
+        }
+
+        function i(e) {
+          var a = t.createElement("style");
+          a.type = "text/css";
+          try {
+            a.appendChild(t.createTextNode(e))
+          } catch (t) {
+            a.styleSheet.cssText = e
+          }
+          t.getElementsByTagName("head")[0].appendChild(a)
+        }
+
+        function c() {
+          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+        }
+
+        var s = [];
+        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
+          setTimeout(e, 1e3 / 60)
+        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
+      }(window, document);
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>
