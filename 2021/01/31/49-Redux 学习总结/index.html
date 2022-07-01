@@ -203,18 +203,20 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">Redux 学习总结</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h2 id="redux-是什么"><a href="#redux-是什么" class="headerlink" title="redux 是什么"></a>redux 是什么</h2><ol>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                Redux 学习总结
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h2 id="redux-是什么"><a href="#redux-是什么" class="headerlink" title="redux 是什么"></a>redux 是什么</h2><ol>
 <li>rduex是一个专门用于做状态管理的JS库（注意:不是React插件库）</li>
 <li>它可以在任何框架里使用，也可以在原生JS中使用，但基本与react搭配使用</li>
 <li>作用:集中式管理 多个组件共享的状态</li>
@@ -268,7 +270,7 @@
 </ol>
 <p>小试牛刀，按照上面步骤，相应代码如下：</p>
 <div class="hljs"><pre><code class="hljs jsx"><span class="hljs-comment">// count_reducer JS文件</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">countReducer</span>(<span class="hljs-params">preState =<span class="hljs-number">0</span>, action</span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">countReducer</span>(<span class="hljs-params">preState =<span class="hljs-number">0</span>, action</span>) &#123;
   <span class="hljs-keyword">const</span> &#123; type, data &#125; = action
   <span class="hljs-keyword">const</span> typeMap = &#123;
     <span class="hljs-string">&quot;increment&quot;</span>: preState + data,
@@ -287,28 +289,28 @@
 
 <span class="hljs-keyword">import</span> countReducer <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./count_reducer&#x27;</span>
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> createStore(countReducer)</code></pre></div>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">createStore</span>(countReducer)</code></pre></div>
 
 <div class="hljs"><pre><code class="hljs jsx"><span class="hljs-comment">// 组件 方法代码</span>
 
 <span class="hljs-comment">// render 方法中的  &lt;h2&gt;当前求和为：&#123;store.getState()&#125;&lt;/h2&gt;</span>
 
-  componentDidMount() &#123;
-    store.subscribe(<span class="hljs-function">() =&gt;</span> &#123;
-      <span class="hljs-built_in">this</span>.setState(&#123;&#125;)
+  <span class="hljs-title function_">componentDidMount</span>(<span class="hljs-params"></span>) &#123;
+    store.<span class="hljs-title function_">subscribe</span>(<span class="hljs-function">() =&gt;</span> &#123;
+      <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setState</span>(&#123;&#125;)
     &#125;)
   &#125;
 
   <span class="hljs-comment">// 加法</span>
   increment = <span class="hljs-function">() =&gt;</span> &#123;
-    <span class="hljs-keyword">const</span> &#123; value &#125; = <span class="hljs-built_in">this</span>.currentNum
-    store.dispatch(&#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;increment&quot;</span>, <span class="hljs-attr">data</span>: value * <span class="hljs-number">1</span> &#125;)
+    <span class="hljs-keyword">const</span> &#123; value &#125; = <span class="hljs-variable language_">this</span>.<span class="hljs-property">currentNum</span>
+    store.<span class="hljs-title function_">dispatch</span>(&#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;increment&quot;</span>, <span class="hljs-attr">data</span>: value * <span class="hljs-number">1</span> &#125;)
   &#125;
 
   <span class="hljs-comment">// 减法</span>
   decrement = <span class="hljs-function">() =&gt;</span> &#123;
-    <span class="hljs-keyword">const</span> &#123; value &#125; = <span class="hljs-built_in">this</span>.currentNum
-    store.dispatch(&#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;decrement&quot;</span>, <span class="hljs-attr">data</span>: value * <span class="hljs-number">1</span> &#125;)
+    <span class="hljs-keyword">const</span> &#123; value &#125; = <span class="hljs-variable language_">this</span>.<span class="hljs-property">currentNum</span>
+    store.<span class="hljs-title function_">dispatch</span>(&#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;decrement&quot;</span>, <span class="hljs-attr">data</span>: value * <span class="hljs-number">1</span> &#125;)
   &#125;
 </code></pre></div>
 
@@ -328,32 +330,32 @@
 <p>代码如下(我放在一起了)：</p>
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// constant.js</span>
 <span class="hljs-comment">// 该模块是用于 定义action对象中的type类型的常量值，目的只有一个：便于管理的同时防止单词写错</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> INCREMENT = <span class="hljs-string">&#x27;increment&#x27;</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> DECREMENT = <span class="hljs-string">&#x27;decrement&#x27;</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">INCREMENT</span> = <span class="hljs-string">&#x27;increment&#x27;</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">DECREMENT</span> = <span class="hljs-string">&#x27;decrement&#x27;</span>
 
 
 <span class="hljs-comment">// action.js</span>
-<span class="hljs-keyword">import</span> &#123; INCREMENT,DECREMENT&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./constant&#x27;</span>
+<span class="hljs-keyword">import</span> &#123; <span class="hljs-variable constant_">INCREMENT</span>,<span class="hljs-variable constant_">DECREMENT</span>&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./constant&#x27;</span>
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> createIncrementAction = <span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> (&#123; <span class="hljs-attr">type</span>: INCREMENT, data&#125;)
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> createDecrementAction = <span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> (&#123; <span class="hljs-attr">type</span>: DECREMENT, data&#125;)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">createIncrementAction</span> = data =&gt; (&#123; <span class="hljs-attr">type</span>: <span class="hljs-variable constant_">INCREMENT</span>, data&#125;)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">createDecrementAction</span> = data =&gt; (&#123; <span class="hljs-attr">type</span>: <span class="hljs-variable constant_">DECREMENT</span>, data&#125;)
 
 
 <span class="hljs-comment">// reducer.js 代码部分优化</span>
 <span class="hljs-comment">// 把原来的字符串改为变量名</span>
  <span class="hljs-keyword">const</span> typeMap = &#123;
-    [INCREMENT]: preState + data,
-    [DECREMENT]: preState - data
+    [<span class="hljs-variable constant_">INCREMENT</span>]: preState + data,
+    [<span class="hljs-variable constant_">DECREMENT</span>]: preState - data
   &#125;
 
 <span class="hljs-comment">// 组件  实现方法代码优化</span>
   increment = <span class="hljs-function">() =&gt;</span> &#123;
-    <span class="hljs-keyword">const</span> &#123; value &#125; = <span class="hljs-built_in">this</span>.currentNum
-    store.dispatch(createIncrementAction(value * <span class="hljs-number">1</span>))
+    <span class="hljs-keyword">const</span> &#123; value &#125; = <span class="hljs-variable language_">this</span>.<span class="hljs-property">currentNum</span>
+    store.<span class="hljs-title function_">dispatch</span>(<span class="hljs-title function_">createIncrementAction</span>(value * <span class="hljs-number">1</span>))
   &#125;
   decrement = <span class="hljs-function">() =&gt;</span> &#123;
-    <span class="hljs-keyword">const</span> &#123; value &#125; = <span class="hljs-built_in">this</span>.currentNum
-    store.dispatch(createDecrementAction(value * <span class="hljs-number">1</span>))
+    <span class="hljs-keyword">const</span> &#123; value &#125; = <span class="hljs-variable language_">this</span>.<span class="hljs-property">currentNum</span>
+    store.<span class="hljs-title function_">dispatch</span>(<span class="hljs-title function_">createDecrementAction</span>(value * <span class="hljs-number">1</span>))
   &#125;
 </code></pre></div>
 
@@ -366,25 +368,25 @@
 <li>npm install redux-thunk， 并在store中配置它<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> &#123; createStore,applyMiddleware &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;redux&#x27;</span>
 <span class="hljs-comment">// 用于支持异步action</span>
 <span class="hljs-keyword">import</span> thunk <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;redux-thunk&#x27;</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> createStore(countReducer,applyMiddleware(thunk))</code></pre></div></li>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">createStore</span>(countReducer,<span class="hljs-title function_">applyMiddleware</span>(thunk))</code></pre></div></li>
 <li>创建action的函数不再返回一般对象，而是一个函数，因为函数可以写异步任务。</li>
 <li>异步任务有结果后，发布一个同步的action去真正操作数据</li>
 </ol>
 <p>案例代码如下：</p>
 <div class="hljs"><pre><code class="hljs jsx"><span class="hljs-comment">// action.js</span>
 <span class="hljs-comment">// 处理 异步    它必须返回的是一个 函数</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> createIncrementAsyncAction = <span class="hljs-function">(<span class="hljs-params">data,time</span>) =&gt;</span> &#123;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">createIncrementAsyncAction</span> = (<span class="hljs-params">data,time</span>) =&gt; &#123;
   <span class="hljs-keyword">return</span> <span class="hljs-function">(<span class="hljs-params">dispatch</span>) =&gt;</span> &#123;
     <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
-      dispatch(&#123; <span class="hljs-attr">type</span>: DECREMENT, data &#125;)
+      <span class="hljs-title function_">dispatch</span>(&#123; <span class="hljs-attr">type</span>: <span class="hljs-variable constant_">DECREMENT</span>, data &#125;)
      &#125;,time)
    &#125;
 &#125;
 
 <span class="hljs-comment">// 组件内的</span>
   incrementAsync = <span class="hljs-function">() =&gt;</span> &#123;
-    <span class="hljs-keyword">const</span> &#123; value &#125; = <span class="hljs-built_in">this</span>.currentNum
-    store.dispatch(createIncrementAsyncAction(value * <span class="hljs-number">1</span>, <span class="hljs-number">500</span>))
+    <span class="hljs-keyword">const</span> &#123; value &#125; = <span class="hljs-variable language_">this</span>.<span class="hljs-property">currentNum</span>
+    store.<span class="hljs-title function_">dispatch</span>(<span class="hljs-title function_">createIncrementAsyncAction</span>(value * <span class="hljs-number">1</span>, <span class="hljs-number">500</span>))
   &#125;</code></pre></div>
 
 
@@ -395,14 +397,14 @@
 </ol>
 <h3 id="需要明确俩个核心："><a href="#需要明确俩个核心：" class="headerlink" title="需要明确俩个核心："></a>需要明确俩个核心：</h3><p><strong>Provider 和 connect</strong></p>
 <h4 id="Provider"><a href="#Provider" class="headerlink" title="Provider"></a>Provider</h4><p><strong>Provider</strong> 的目的是让所有组件都能够访问到redux中的数据。</p>
-<div class="hljs"><pre><code class="hljs jsx">ReactDOM.render(
-  &lt;Provider store=&#123;store&#125;&gt;
-    &lt;App /&gt;
-  &lt;/Provider&gt;,
-  <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&quot;root&quot;</span>)
+<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-title class_">ReactDOM</span>.<span class="hljs-title function_">render</span>(
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Provider</span> <span class="hljs-attr">store</span>=<span class="hljs-string">&#123;store&#125;</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">App</span> /&gt;</span></span>
+<span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">Provider</span>&gt;</span></span>,
+  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;root&quot;</span>)
 )</code></pre></div>
 <h4 id="connect"><a href="#connect" class="headerlink" title="connect"></a>connect</h4><p>首先，它的使用是这样子的：</p>
-<div class="hljs"><pre><code class="hljs js">connect(mapStateToProps, mapDispatchToProps)(component)</code></pre></div>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-title function_">connect</span>(mapStateToProps, mapDispatchToProps)(component)</code></pre></div>
 
 <p><strong>mapStateToProps:</strong></p>
 <ul>
@@ -410,17 +412,17 @@
 <li>映射状态，返回值是一个对象</li>
 </ul>
 <div class="hljs"><pre><code class="hljs jsx"><span class="hljs-comment">// 容器组件：</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mapStateToProps</span>(<span class="hljs-params">state</span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">mapStateToProps</span>(<span class="hljs-params">state</span>) &#123;
   <span class="hljs-comment">// 比如 state = &#123; a:123 &#125;</span>
-  <span class="hljs-keyword">return</span> &#123; <span class="hljs-attr">foo</span>: state.a &#125;
+  <span class="hljs-keyword">return</span> &#123; <span class="hljs-attr">foo</span>: state.<span class="hljs-property">a</span> &#125;
 &#125;
 
 <span class="hljs-comment">//  UI组件：</span>
-render()&#123;
+<span class="hljs-title function_">render</span>(<span class="hljs-params"></span>)&#123;
  <span class="hljs-keyword">return</span> (
-  &lt;div&gt;&#123; <span class="hljs-built_in">this</span>.props.foo &#125;&lt;<span class="hljs-regexp">/div&gt;  /</span><span class="hljs-regexp">/ 123</span>
-<span class="hljs-regexp"> )</span>
-<span class="hljs-regexp">&#125;</span></code></pre></div>
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>&#123; this.props.foo &#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>  <span class="hljs-comment">// 123</span>
+ )
+&#125;</code></pre></div>
 
 <p><strong>mapDispatchToProps：</strong></p>
 <ul>
@@ -428,72 +430,88 @@ render()&#123;
 <li>映射操作状态的方法，返回值是一个对象</li>
 </ul>
 <div class="hljs"><pre><code class="hljs jsx"><span class="hljs-comment">// 容器组件：</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mapDispatchToProps</span>(<span class="hljs-params">dispatch</span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">mapDispatchToProps</span>(<span class="hljs-params">dispatch</span>) &#123;
   <span class="hljs-keyword">return</span> &#123;
-     add: <span class="hljs-function"><span class="hljs-params">number</span> =&gt;</span> dispatch(&#123;<span class="hljs-attr">type</span>:<span class="hljs-string">&quot;increment&quot;</span>&#125;,number),
+     <span class="hljs-attr">add</span>: <span class="hljs-function"><span class="hljs-params">number</span> =&gt;</span> <span class="hljs-title function_">dispatch</span>(&#123;<span class="hljs-attr">type</span>:<span class="hljs-string">&quot;increment&quot;</span>&#125;,number),
   &#125;
 &#125;
 
 <span class="hljs-comment">//  UI组件：</span>
-&lt;button onClick=&#123;<span class="hljs-built_in">this</span>.props.add(<span class="hljs-number">1</span>)&#125;&gt; + &lt;/button&gt;</code></pre></div>
+&lt;button onClick=&#123;<span class="hljs-variable language_">this</span>.<span class="hljs-property">props</span>.<span class="hljs-title function_">add</span>(<span class="hljs-number">1</span>)&#125;&gt; + &lt;/button&gt;</code></pre></div>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/React/">React</a>
-                  
-                  <a class="hover-with-bg" href="/categories/React/Redux/">Redux</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/React/">React</a>
-                  
-                  <a class="hover-with-bg" href="/tags/Redux/">Redux</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2021/02/02/50-React%20Hooks/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">React Hooks 学习总结</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2021/01/26/48-%E8%99%9A%E6%8B%9FDOM/">
-                    <span class="hidden-mobile">虚拟DOM和diff算法以及关于key的问题（学习总结）</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/React/">
+                              React
+                            </a>
+                            
+                            <a class="hover-with-bg" href="/categories/React/Redux/">
+                              Redux
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/React/">
+                                  React
+                                </a>
+                                
+                                <a class="hover-with-bg" href="/tags/Redux/">
+                                  Redux
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2021/02/02/50-React%20Hooks/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      React Hooks 学习总结
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2021/01/26/48-%E8%99%9A%E6%8B%9FDOM/">
+                                    <span class="hidden-mobile">
+                                      虚拟DOM和diff算法以及关于key的问题（学习总结）
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -520,26 +538,26 @@ render()&#123;
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

@@ -203,18 +203,20 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">Vue3|Composition_API （全）总结</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <p>为了能够使用Composition API, 我们需要有一个可以实际使用它的地方。在vue组件中，我们将此位置称为setup</p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                Vue3|Composition_API （全）总结
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <p>为了能够使用Composition API, 我们需要有一个可以实际使用它的地方。在vue组件中，我们将此位置称为setup</p>
 <h2 id="setup函数"><a href="#setup函数" class="headerlink" title="setup函数"></a>setup函数</h2><blockquote>
 <p>setup函数是在组件创建之前执行的，setup函数中的props一旦被解析，就将作为Composition API 的入口</p>
 </blockquote>
@@ -229,14 +231,14 @@
 <li>因为props有直接作为参数传递到setup函数中，所以我们可以直接通过参数来使用。</li>
 </ul>
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
-  props: &#123;
-    message: &#123;
-      type: <span class="hljs-built_in">String</span>,
-      <span class="hljs-keyword">default</span>: <span class="hljs-string">&quot;hello&quot;</span>
+  <span class="hljs-attr">props</span>: &#123;
+    <span class="hljs-attr">message</span>: &#123;
+      <span class="hljs-attr">type</span>: <span class="hljs-title class_">String</span>,
+      <span class="hljs-attr">default</span>: <span class="hljs-string">&quot;hello&quot;</span>
     &#125;
   &#125;,
-  setup(props) &#123;
-    consloe.log(props.message)
+  <span class="hljs-title function_">setup</span>(<span class="hljs-params">props</span>) &#123;
+    consloe.<span class="hljs-title function_">log</span>(props.<span class="hljs-property">message</span>)
   &#125;
 &#125;</code></pre></div>
 
@@ -244,10 +246,10 @@
 <p>如果需要结构props，那么需要用到 <code>toRefs</code>函数来完成操作。</p>
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; toRefs &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
 
-setup(props)
+<span class="hljs-title function_">setup</span>(<span class="hljs-params">props</span>)
 &#123;
-  <span class="hljs-keyword">const</span> message = toRefs(props, <span class="hljs-string">&#x27;message&#x27;</span>)
-  <span class="hljs-built_in">console</span>.log(message.value)
+  <span class="hljs-keyword">const</span> message = <span class="hljs-title function_">toRefs</span>(props, <span class="hljs-string">&#x27;message&#x27;</span>)
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(message.<span class="hljs-property">value</span>)
 &#125;</code></pre></div>
 
 <h4 id="context"><a href="#context" class="headerlink" title="context"></a>context</h4><blockquote>
@@ -260,7 +262,7 @@ setup(props)
 </ul>
 <p><strong>！！由于context只是一个普通的JavaScript对象，所以它不是响应式的，这就意味着我们可以安全地对 <code>context</code> 使用 解构</strong></p>
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
-  setup(props, &#123; attrs, slots, emit &#125;) &#123;
+  <span class="hljs-title function_">setup</span>(<span class="hljs-params">props, &#123; attrs, slots, emit &#125;</span>) &#123;
   ...
   &#125;
 &#125;</code></pre></div>
@@ -274,7 +276,7 @@ setup(props)
 <p>返回对象的响应式副本</p>
 </blockquote>
 <p>如果想在setup中定义的数据是具有响应式的，那么就可以使用 <code>reactive</code></p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> state = reactive(&#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;wangpf&#x27;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">18</span> &#125;)</code></pre></div>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> state = <span class="hljs-title function_">reactive</span>(&#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;wangpf&#x27;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">18</span> &#125;)</code></pre></div>
 
 <p>为什么会通过 <code>reactive</code> 就可以变成响应式的呢？</p>
 <ul>
@@ -285,32 +287,32 @@ setup(props)
 <p>注意的俩点：</p>
 <ul>
 <li><p><code>reactive</code> 将解包所有深层的 refs，同时维持着 ref 的响应性</p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> count = ref(<span class="hljs-number">0</span>)
-<span class="hljs-keyword">const</span> obj = reactive(&#123; count &#125;)
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> count = <span class="hljs-title function_">ref</span>(<span class="hljs-number">0</span>)
+<span class="hljs-keyword">const</span> obj = <span class="hljs-title function_">reactive</span>(&#123; count &#125;)
 
 <span class="hljs-comment">// ref 会被解包</span>
-<span class="hljs-built_in">console</span>.log(count.value === obj.value) <span class="hljs-comment">// true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(count.<span class="hljs-property">value</span> === obj.<span class="hljs-property">value</span>) <span class="hljs-comment">// true</span>
 
 <span class="hljs-comment">// 会更新到 &#x27;obj.count&#x27;</span>
-count.value++ 
-<span class="hljs-built_in">console</span>.log(count.value) <span class="hljs-comment">// 1</span>
-<span class="hljs-built_in">console</span>.log(obj.count) <span class="hljs-comment">// 1</span>
+count.<span class="hljs-property">value</span>++ 
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(count.<span class="hljs-property">value</span>) <span class="hljs-comment">// 1</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj.<span class="hljs-property">count</span>) <span class="hljs-comment">// 1</span>
 
 <span class="hljs-comment">// 也会更新到 ref &#x27;count&#x27;</span>
-obj.count++
-<span class="hljs-built_in">console</span>.log(count.value) <span class="hljs-comment">// 2</span>
-<span class="hljs-built_in">console</span>.log(obj,value) <span class="hljs-comment">// 2</span></code></pre></div>
+obj.<span class="hljs-property">count</span>++
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(count.<span class="hljs-property">value</span>) <span class="hljs-comment">// 2</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj,value) <span class="hljs-comment">// 2</span></code></pre></div>
 
 
 </li>
 </ul>
 <ul>
 <li><p>当把 <code>ref</code> 分配给 <code>reactive</code> 时，将会自动解包</p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> count = ref(<span class="hljs-number">1</span>)
-<span class="hljs-keyword">const</span> obj = reactive(&#123; &#125;)
-obj.count = count
-<span class="hljs-built_in">console</span>.log(obj.count) <span class="hljs-comment">// 1</span>
-<span class="hljs-built_in">console</span>.log(obj.count === count.value) <span class="hljs-comment">// true</span></code></pre></div>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> count = <span class="hljs-title function_">ref</span>(<span class="hljs-number">1</span>)
+<span class="hljs-keyword">const</span> obj = <span class="hljs-title function_">reactive</span>(&#123; &#125;)
+obj.<span class="hljs-property">count</span> = count
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj.<span class="hljs-property">count</span>) <span class="hljs-comment">// 1</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj.<span class="hljs-property">count</span> === count.<span class="hljs-property">value</span>) <span class="hljs-comment">// true</span></code></pre></div>
 
 </li>
 </ul>
@@ -329,19 +331,19 @@ obj.count = count
 <h3 id="关于reactive-判断-的API"><a href="#关于reactive-判断-的API" class="headerlink" title="关于reactive 判断 的API"></a>关于reactive 判断 的API</h3><h4 id="isProxy"><a href="#isProxy" class="headerlink" title="isProxy"></a>isProxy</h4><blockquote>
 <p>检查对象是否由 <code>reactive</code> 或 <code>readonly</code> 创建的 proxy</p>
 </blockquote>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> state = reactive(&#123; <span class="hljs-attr">count</span>: <span class="hljs-number">0</span> &#125;)
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> state = <span class="hljs-title function_">reactive</span>(&#123; <span class="hljs-attr">count</span>: <span class="hljs-number">0</span> &#125;)
 <span class="hljs-keyword">const</span> count = <span class="hljs-number">0</span>
-isProxy(state) <span class="hljs-comment">// true</span>
-isProxy(readonly(state)) <span class="hljs-comment">// true</span>
-isProxy(count) <span class="hljs-comment">// false</span></code></pre></div>
+<span class="hljs-title function_">isProxy</span>(state) <span class="hljs-comment">// true</span>
+<span class="hljs-title function_">isProxy</span>(<span class="hljs-title function_">readonly</span>(state)) <span class="hljs-comment">// true</span>
+<span class="hljs-title function_">isProxy</span>(count) <span class="hljs-comment">// false</span></code></pre></div>
 
 <h4 id="isReactive"><a href="#isReactive" class="headerlink" title="isReactive"></a>isReactive</h4><blockquote>
 <p>检查对象是否由 <code>reactive</code> 创建处理的相应手机代理</p>
 </blockquote>
 <p>但如果代理是由 <code>readonly</code>创建的，但包裹了由 <code>reactive</code>创建 另一个代理，也会返回 true</p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> state = reactive(&#123; <span class="hljs-attr">count</span>: <span class="hljs-number">0</span> &#125;)
-isReactive(state) <span class="hljs-comment">// true</span>
-isReactive(readonly(state)) <span class="hljs-comment">// true</span></code></pre></div>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> state = <span class="hljs-title function_">reactive</span>(&#123; <span class="hljs-attr">count</span>: <span class="hljs-number">0</span> &#125;)
+<span class="hljs-title function_">isReactive</span>(state) <span class="hljs-comment">// true</span>
+<span class="hljs-title function_">isReactive</span>(<span class="hljs-title function_">readonly</span>(state)) <span class="hljs-comment">// true</span></code></pre></div>
 
 <h4 id="isReadOnly"><a href="#isReadOnly" class="headerlink" title="isReadOnly"></a>isReadOnly</h4><blockquote>
 <p>检查对象是否由 <code>readonly</code>创建的只读代理</p>
@@ -360,15 +362,15 @@ isReactive(readonly(state)) <span class="hljs-comment">// true</span></code></pr
 </blockquote>
 <h3 id="toRefs"><a href="#toRefs" class="headerlink" title="toRefs"></a>toRefs</h3><p>由于我们使用ES6的解构语法对 reactive 返回的对象进行解构赋值，那么解构后的数据是不具有响应式的</p>
 <p>而使用 toRefs 可以将 reative 返回的对象中的属性都转成 ref 这样我们再次解构出来的数据都是 ref的。</p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> state = reactive(&#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;wangpf&#x27;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">18</span> &#125;);
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> state = <span class="hljs-title function_">reactive</span>(&#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;wangpf&#x27;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">18</span> &#125;);
 <span class="hljs-keyword">const</span> &#123; name, age &#125; = state; <span class="hljs-comment">// 这样解构出来的数据是没有响应式的</span>
 
-<span class="hljs-keyword">const</span> &#123; name, age &#125; = toRefs(state) <span class="hljs-comment">// 这样的解构出来的数据转换成了ref的，是响应式的</span>
+<span class="hljs-keyword">const</span> &#123; name, age &#125; = <span class="hljs-title function_">toRefs</span>(state) <span class="hljs-comment">// 这样的解构出来的数据转换成了ref的，是响应式的</span>
 <span class="hljs-comment">// 上述的做法， 相当于在 state.name 和 name.value 之间建立了连接， 修改任何一个都会引起另外一个变化</span></code></pre></div>
 
 <h3 id="toRef"><a href="#toRef" class="headerlink" title="toRef"></a>toRef</h3><p>如果我们希望转换一个 reactive 对象中的属性为 ref ，那么可以使用 toRef 的方法</p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> state = reactive(&#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;wangpf&#x27;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">18</span> &#125;);
-<span class="hljs-keyword">const</span> name = toRef(state, <span class="hljs-string">&quot;name&quot;</span>); <span class="hljs-comment">// 该 name 是ref的，  </span>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> state = <span class="hljs-title function_">reactive</span>(&#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;wangpf&#x27;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">18</span> &#125;);
+<span class="hljs-keyword">const</span> name = <span class="hljs-title function_">toRef</span>(state, <span class="hljs-string">&quot;name&quot;</span>); <span class="hljs-comment">// 该 name 是ref的，  </span>
 <span class="hljs-comment">// 同样的， name.value 和 state.name 之间建立了连接， 修改会互相影响</span></code></pre></div>
 
 <h3 id="ref其他的API"><a href="#ref其他的API" class="headerlink" title="ref其他的API"></a>ref其他的API</h3><h4 id="unref"><a href="#unref" class="headerlink" title="unref"></a>unref</h4><p>如果想要获取一个ref引用中的value，可以通过 unref 方法：</p>
@@ -394,21 +396,21 @@ isReactive(readonly(state)) <span class="hljs-comment">// true</span></code></pr
 <h3 id="shallowRef"><a href="#shallowRef" class="headerlink" title="shallowRef"></a>shallowRef</h3><blockquote>
 <p>创建一个浅层的ref对象</p>
 </blockquote>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> info = shallowRef(&#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;wangpf&quot;</span> &#125;)
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> info = <span class="hljs-title function_">shallowRef</span>(&#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;wangpf&quot;</span> &#125;)
 
-<span class="hljs-keyword">const</span> changeInfo = <span class="hljs-function">() =&gt;</span> &#123;
-  info.value.name = <span class="hljs-string">&#x27;wpf&#x27;</span>  <span class="hljs-comment">// 此时的修改是不能够实现响应式的</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">changeInfo</span> = (<span class="hljs-params"></span>) =&gt; &#123;
+  info.<span class="hljs-property">value</span>.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;wpf&#x27;</span>  <span class="hljs-comment">// 此时的修改是不能够实现响应式的</span>
 &#125;</code></pre></div>
 
 <h4 id="triggerRef"><a href="#triggerRef" class="headerlink" title="triggerRef"></a>triggerRef</h4><blockquote>
 <p>手动触发和 shallowRef 相关联的副作用</p>
 </blockquote>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> info = shallowRef(&#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;wangpf&quot;</span> &#125;)
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> info = <span class="hljs-title function_">shallowRef</span>(&#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;wangpf&quot;</span> &#125;)
 
-<span class="hljs-keyword">const</span> changeInfo = <span class="hljs-function">() =&gt;</span> &#123;
-  info.value.name = <span class="hljs-string">&#x27;wpf&#x27;</span>  <span class="hljs-comment">// 此时的修改是不能够实现响应式的</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">changeInfo</span> = (<span class="hljs-params"></span>) =&gt; &#123;
+  info.<span class="hljs-property">value</span>.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;wpf&#x27;</span>  <span class="hljs-comment">// 此时的修改是不能够实现响应式的</span>
   <span class="hljs-comment">// 使用 triggerRef 可以触发</span>
-  triggerRef(info)
+  <span class="hljs-title function_">triggerRef</span>(info)
 &#125;</code></pre></div>
 
 <h4 id="customRef"><a href="#customRef" class="headerlink" title="customRef"></a>customRef</h4><blockquote>
@@ -420,19 +422,19 @@ isReactive(readonly(state)) <span class="hljs-comment">// true</span></code></pr
 </ul>
 <h6 id="用-customRef-做的一个防抖案例"><a href="#用-customRef-做的一个防抖案例" class="headerlink" title="用 customRef 做的一个防抖案例"></a>用 customRef 做的一个防抖案例</h6><div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; customRef &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;vue&quot;</span>;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">value, delay = <span class="hljs-number">300</span></span>) </span>&#123;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span>(<span class="hljs-params">value, delay = <span class="hljs-number">300</span></span>) &#123;
   <span class="hljs-keyword">let</span> timer = <span class="hljs-literal">null</span>;
-  <span class="hljs-keyword">return</span> customRef(<span class="hljs-function">(<span class="hljs-params">track, trigger</span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-title function_">customRef</span>(<span class="hljs-function">(<span class="hljs-params">track, trigger</span>) =&gt;</span> &#123;
     <span class="hljs-keyword">return</span> &#123;
-      get() &#123;
-        track();
+      <span class="hljs-title function_">get</span>(<span class="hljs-params"></span>) &#123;
+        <span class="hljs-title function_">track</span>();
         <span class="hljs-keyword">return</span> value;
       &#125;,
-      set(newValue) &#123;
+      <span class="hljs-title function_">set</span>(<span class="hljs-params">newValue</span>) &#123;
         <span class="hljs-built_in">clearTimeout</span>(timer);
         timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
           value = newValue;
-          trigger();
+          <span class="hljs-title function_">trigger</span>();
         &#125;, delay);
       &#125;,
     &#125;;
@@ -442,23 +444,23 @@ isReactive(readonly(state)) <span class="hljs-comment">// true</span></code></pr
 
 <div class="hljs"><pre><code class="hljs vue">
 &lt;template&gt;
-  &lt;input type&#x3D;&quot;text&quot; v-model&#x3D;&quot;message&quot;&#x2F;&gt;
-  &lt;p&gt;&#123;&#123; message &#125;&#125;&lt;&#x2F;p&gt;
-&lt;&#x2F;template&gt;
+  &lt;input type=&quot;text&quot; v-model=&quot;message&quot;/&gt;
+  &lt;p&gt;&#123;&#123; message &#125;&#125;&lt;/p&gt;
+&lt;/template&gt;
 
 &lt;script&gt;
-import useDebounceRef from &quot;..&#x2F;hooks&#x2F;useDebounceRef&quot;;
+import useDebounceRef from &quot;../hooks/useDebounceRef&quot;;
 
 export default &#123;
   name: &quot;Demo2&quot;,
   setup() &#123;
-    const message &#x3D; useDebounceRef(&quot;hello&quot;, 300);
+    const message = useDebounceRef(&quot;hello&quot;, 300);
     return &#123;
       message,
     &#125;;
   &#125;,
 &#125;;
-&lt;&#x2F;script&gt;</code></pre></div>
+&lt;/script&gt;</code></pre></div>
 
 <h3 id="computed"><a href="#computed" class="headerlink" title="computed"></a>computed</h3><blockquote>
 <p>该API 的方法 和 vue2 的一样， 只不过写的地方是在setup函数中了， 但还需注意的点是 computed 返回的值是一个 ref</p>
@@ -466,28 +468,28 @@ export default &#123;
 <ul>
 <li>方式一： 接收一个 getter 函数，并为 getter 函数返回的值，返回一个不变的 ref 对象</li>
 </ul>
-<div class="hljs"><pre><code class="hljs js">    <span class="hljs-keyword">const</span> firstName = ref(<span class="hljs-string">&quot;wangpf&quot;</span>);
-<span class="hljs-keyword">const</span> lastName = ref(<span class="hljs-string">&quot;ok&quot;</span>);
-<span class="hljs-keyword">const</span> fullName = computed(<span class="hljs-function">() =&gt;</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;firstName.value&#125;</span> <span class="hljs-subst">$&#123;lastName.value&#125;</span>`</span>)</code></pre></div>
+<div class="hljs"><pre><code class="hljs js">    <span class="hljs-keyword">const</span> firstName = <span class="hljs-title function_">ref</span>(<span class="hljs-string">&quot;wangpf&quot;</span>);
+<span class="hljs-keyword">const</span> lastName = <span class="hljs-title function_">ref</span>(<span class="hljs-string">&quot;ok&quot;</span>);
+<span class="hljs-keyword">const</span> fullName = <span class="hljs-title function_">computed</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;firstName.value&#125;</span> <span class="hljs-subst">$&#123;lastName.value&#125;</span>`</span>)</code></pre></div>
 
 <ul>
 <li>方式二 ： 接收一个具有 get 和 set 的对象，返回一个可变的（可读写的）ref对象</li>
 </ul>
-<div class="hljs"><pre><code class="hljs js">    <span class="hljs-keyword">const</span> firstName = ref(<span class="hljs-string">&quot;wangpf&quot;</span>);
-<span class="hljs-keyword">const</span> lastName = ref(<span class="hljs-string">&quot;ok&quot;</span>);
-<span class="hljs-keyword">const</span> fullName = computed(&#123;
-  get() &#123;
+<div class="hljs"><pre><code class="hljs js">    <span class="hljs-keyword">const</span> firstName = <span class="hljs-title function_">ref</span>(<span class="hljs-string">&quot;wangpf&quot;</span>);
+<span class="hljs-keyword">const</span> lastName = <span class="hljs-title function_">ref</span>(<span class="hljs-string">&quot;ok&quot;</span>);
+<span class="hljs-keyword">const</span> fullName = <span class="hljs-title function_">computed</span>(&#123;
+  <span class="hljs-title function_">get</span>(<span class="hljs-params"></span>) &#123;
     <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;firstName.value&#125;</span> <span class="hljs-subst">$&#123;lastName.value&#125;</span>`</span>;
   &#125;,
-  set(newValue) &#123;
-    <span class="hljs-keyword">const</span> names = newValue.split(<span class="hljs-string">&quot; &quot;</span>);
-    firstName.value = names[<span class="hljs-number">0</span>];
-    lastName.value = names[<span class="hljs-number">1</span>];
+  <span class="hljs-title function_">set</span>(<span class="hljs-params">newValue</span>) &#123;
+    <span class="hljs-keyword">const</span> names = newValue.<span class="hljs-title function_">split</span>(<span class="hljs-string">&quot; &quot;</span>);
+    firstName.<span class="hljs-property">value</span> = names[<span class="hljs-number">0</span>];
+    lastName.<span class="hljs-property">value</span> = names[<span class="hljs-number">1</span>];
   &#125;,
 &#125;);
-<span class="hljs-keyword">const</span> changeName = <span class="hljs-function">() =&gt;</span> &#123;
-  fullName.value = <span class="hljs-string">&quot;wpf err&quot;</span>;
-  <span class="hljs-built_in">console</span>.log(fullName.value);
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">changeName</span> = (<span class="hljs-params"></span>) =&gt; &#123;
+  fullName.<span class="hljs-property">value</span> = <span class="hljs-string">&quot;wpf err&quot;</span>;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(fullName.<span class="hljs-property">value</span>);
 &#125;;</code></pre></div>
 
 <h3 id="侦听数据的变化-（watch-watchEffect）"><a href="#侦听数据的变化-（watch-watchEffect）" class="headerlink" title="侦听数据的变化 （watch  watchEffect）"></a>侦听数据的变化 （watch  watchEffect）</h3><blockquote>
@@ -502,11 +504,11 @@ export default &#123;
 <p>当侦听到某些响应式数据变化时，我们希望执行某些操作，这个时候就可以用 watchEffect</p>
 </blockquote>
 <p>来看一个案例：</p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> name = ref(<span class="hljs-string">&#x27;wangpf&#x27;</span>)
-<span class="hljs-keyword">const</span> age = ref(<span class="hljs-number">18</span>)
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> name = <span class="hljs-title function_">ref</span>(<span class="hljs-string">&#x27;wangpf&#x27;</span>)
+<span class="hljs-keyword">const</span> age = <span class="hljs-title function_">ref</span>(<span class="hljs-number">18</span>)
 
-watchEffect(<span class="hljs-function">() =&gt;</span> &#123;
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;watchEffect执行了&#x27;</span>, name.value, age.value)
+<span class="hljs-title function_">watchEffect</span>(<span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;watchEffect执行了&#x27;</span>, name.<span class="hljs-property">value</span>, age.<span class="hljs-property">value</span>)
 &#125;)</code></pre></div>
 
 <ul>
@@ -520,13 +522,13 @@ watchEffect(<span class="hljs-function">() =&gt;</span> &#123;
 <li>如果在发生某些情况下，我们希望停止侦听，这个时候我们可以获取 <strong>watchEffect 的返回值函数</strong>， 调用它即可</li>
 </ul>
 <p>看一个案例:</p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> stopWatch = watchEffect(<span class="hljs-function">() =&gt;</span> &#123;
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;watchEffect执行了&#x27;</span>, name.value, age.value)
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> stopWatch = <span class="hljs-title function_">watchEffect</span>(<span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;watchEffect执行了&#x27;</span>, name.<span class="hljs-property">value</span>, age.<span class="hljs-property">value</span>)
 &#125;)
-<span class="hljs-keyword">const</span> changeAge = <span class="hljs-function">() =&gt;</span> &#123;
-  age.value++;
-  <span class="hljs-keyword">if</span> (age.value &gt; <span class="hljs-number">20</span>) &#123;
-    stopWatch() <span class="hljs-comment">// 掉用 watchEffect 的返回值就可以停止侦听了</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">changeAge</span> = (<span class="hljs-params"></span>) =&gt; &#123;
+  age.<span class="hljs-property">value</span>++;
+  <span class="hljs-keyword">if</span> (age.<span class="hljs-property">value</span> &gt; <span class="hljs-number">20</span>) &#123;
+    <span class="hljs-title function_">stopWatch</span>() <span class="hljs-comment">// 掉用 watchEffect 的返回值就可以停止侦听了</span>
   &#125;
 &#125;</code></pre></div>
 
@@ -534,22 +536,22 @@ watchEffect(<span class="hljs-function">() =&gt;</span> &#123;
 <p>用途： 比如在开发中我们需要在侦听函数中执行网络请求，但是在网络请求还没有达到的时候，我们停止了侦听器，或者侦听器侦听函数被再次执行了，这时我们需要把上一次的网络请求 取消掉， 就可以用到该方法了</p>
 </blockquote>
 <p>看了一个案例：</p>
-<div class="hljs"><pre><code class="hljs js">watchEffect(<span class="hljs-function">(<span class="hljs-params">onInvalidate</span>) =&gt;</span> &#123;
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;watchEffect执行了&#x27;</span>, name.value, age.value)
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-title function_">watchEffect</span>(<span class="hljs-function">(<span class="hljs-params">onInvalidate</span>) =&gt;</span> &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;watchEffect执行了&#x27;</span>, name.<span class="hljs-property">value</span>, age.<span class="hljs-property">value</span>)
   <span class="hljs-keyword">const</span> timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;1s后执行的操作&#x27;</span>)
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;1s后执行的操作&#x27;</span>)
   &#125;, <span class="hljs-number">1000</span>)
-  onInvalidate(<span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-title function_">onInvalidate</span>(<span class="hljs-function">() =&gt;</span> &#123;
     <span class="hljs-comment">// 在这里操作一些清除工作</span>
-    clearTimeour(timer)
+    <span class="hljs-title function_">clearTimeour</span>(timer)
   &#125;)
 &#125;)</code></pre></div>
 
 <p>在上述代码中，我们给 watchEffect 传入的函数被回调时，可以获取到一个参数：<strong>onInvalidate</strong> （该参数是一个函数），可以在这个参数中，执行一些清除工作。</p>
 <h5 id="watchEffect-的执行时间（刷新时机）"><a href="#watchEffect-的执行时间（刷新时机）" class="headerlink" title="watchEffect 的执行时间（刷新时机）"></a>watchEffect 的执行时间（刷新时机）</h5><p>在默认情况下 ， 组件的更新会在 watchEffect （副作用函数） 之前执行</p>
-<div class="hljs"><pre><code class="hljs js">  <span class="hljs-keyword">const</span> title = ref(<span class="hljs-literal">null</span>);  <span class="hljs-comment">// 该title 已和 div 标签绑定了</span>
-watchEffect(<span class="hljs-function">() =&gt;</span> &#123;
-  <span class="hljs-built_in">console</span>.log(title.value);
+<div class="hljs"><pre><code class="hljs js">  <span class="hljs-keyword">const</span> title = <span class="hljs-title function_">ref</span>(<span class="hljs-literal">null</span>);  <span class="hljs-comment">// 该title 已和 div 标签绑定了</span>
+<span class="hljs-title function_">watchEffect</span>(<span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(title.<span class="hljs-property">value</span>);
 &#125;);
 <span class="hljs-keyword">return</span> &#123; title &#125;;</code></pre></div>
 
@@ -558,12 +560,12 @@ watchEffect(<span class="hljs-function">() =&gt;</span> &#123;
 <div class="hljs"><pre><code class="hljs js">
 <span class="hljs-comment">// 在组件更新后触发，这样你就可以访问更新的 DOM。</span>
 <span class="hljs-comment">// 注意：这也将推迟副作用的初始运行，直到组件的首次渲染完成。</span>
-watchEffect(
-  () =&gt; &#123;
+<span class="hljs-title function_">watchEffect</span>(
+  <span class="hljs-function">() =&gt;</span> &#123;
     <span class="hljs-comment">/* ... */</span>
   &#125;,
   &#123;
-    flush: <span class="hljs-string">&#x27;post&#x27;</span> <span class="hljs-comment">// 在 DOM元素挂载或更新之后执行，  &quot;pre&quot; 立即执行 （默认的）</span>
+    <span class="hljs-attr">flush</span>: <span class="hljs-string">&#x27;post&#x27;</span> <span class="hljs-comment">// 在 DOM元素挂载或更新之后执行，  &quot;pre&quot; 立即执行 （默认的）</span>
   &#125;
 )</code></pre></div>
 
@@ -578,74 +580,74 @@ watchEffect(
 </ul>
 <h5 id="侦听单个数据源"><a href="#侦听单个数据源" class="headerlink" title="侦听单个数据源"></a>侦听单个数据源</h5><p>想要侦听<strong>单个</strong>数据源的话， 有俩种方法： <strong>传入 getter 函数 或 ref 对象</strong></p>
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">//  侦听  getter </span>
-<span class="hljs-keyword">const</span> state = reactive(&#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;wangpf&#x27;</span> &#125;)
-watch(<span class="hljs-function">() =&gt;</span> state.name, <span class="hljs-function">(<span class="hljs-params">newVal, oldVal</span>) =&gt;</span> &#123;
+<span class="hljs-keyword">const</span> state = <span class="hljs-title function_">reactive</span>(&#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;wangpf&#x27;</span> &#125;)
+<span class="hljs-title function_">watch</span>(<span class="hljs-function">() =&gt;</span> state.<span class="hljs-property">name</span>, <span class="hljs-function">(<span class="hljs-params">newVal, oldVal</span>) =&gt;</span> &#123;
   <span class="hljs-comment">/* ... */</span>
 &#125;)
 
 <span class="hljs-comment">// 侦听 ref</span>
-<span class="hljs-keyword">const</span> name = ref(<span class="hljs-string">&#x27;wamgpf&#x27;</span>)
-watch(name, <span class="hljs-function">(<span class="hljs-params">newVal, oldVal</span>) =&gt;</span> &#123;
+<span class="hljs-keyword">const</span> name = <span class="hljs-title function_">ref</span>(<span class="hljs-string">&#x27;wamgpf&#x27;</span>)
+<span class="hljs-title function_">watch</span>(name, <span class="hljs-function">(<span class="hljs-params">newVal, oldVal</span>) =&gt;</span> &#123;
   <span class="hljs-comment">/* ... */</span>
   <span class="hljs-comment">// 这里的 newVal,oldVal 的值是 是返回的 ref.value 的值</span>
 &#125;)</code></pre></div>
 
 <h5 id="侦听多个数据源"><a href="#侦听多个数据源" class="headerlink" title="侦听多个数据源"></a>侦听多个数据源</h5><p>方法： 传入数组</p>
-<div class="hljs"><pre><code class="hljs js">    <span class="hljs-keyword">const</span> firstName = ref(<span class="hljs-string">&quot;AAA&quot;</span>);
-<span class="hljs-keyword">const</span> lastName = ref(<span class="hljs-string">&quot;bbb&quot;</span>);
-<span class="hljs-keyword">const</span> changeName = <span class="hljs-function">() =&gt;</span> &#123;
-  firstName.value = <span class="hljs-string">&quot;A&quot;</span>;
-  lastName.value = <span class="hljs-string">&quot;b&quot;</span>;
+<div class="hljs"><pre><code class="hljs js">    <span class="hljs-keyword">const</span> firstName = <span class="hljs-title function_">ref</span>(<span class="hljs-string">&quot;AAA&quot;</span>);
+<span class="hljs-keyword">const</span> lastName = <span class="hljs-title function_">ref</span>(<span class="hljs-string">&quot;bbb&quot;</span>);
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">changeName</span> = (<span class="hljs-params"></span>) =&gt; &#123;
+  firstName.<span class="hljs-property">value</span> = <span class="hljs-string">&quot;A&quot;</span>;
+  lastName.<span class="hljs-property">value</span> = <span class="hljs-string">&quot;b&quot;</span>;
 &#125;;
-watch([firstName, lastName], <span class="hljs-function">(<span class="hljs-params">newVal, oldVal</span>) =&gt;</span> &#123;
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;newVal:&quot;</span>, newVal, <span class="hljs-string">&quot;oldVal:&quot;</span>, oldVal);
+<span class="hljs-title function_">watch</span>([firstName, lastName], <span class="hljs-function">(<span class="hljs-params">newVal, oldVal</span>) =&gt;</span> &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;newVal:&quot;</span>, newVal, <span class="hljs-string">&quot;oldVal:&quot;</span>, oldVal);
 &#125;);
 <span class="hljs-comment">// newVal:  [&quot;A&quot;, &quot;b&quot;] oldVal:  [&quot;AAA&quot;, &quot;bbb&quot;]</span></code></pre></div>
 
 <h5 id="侦听响应式对象"><a href="#侦听响应式对象" class="headerlink" title="侦听响应式对象"></a>侦听响应式对象</h5><p>就是侦听 reactive 对象</p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> numbers = reactive([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>])
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> numbers = <span class="hljs-title function_">reactive</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>])
 
-watch(
-  () =&gt; [...numbers],
-  (numbers, prevNumbers) =&gt; &#123;
-    <span class="hljs-built_in">console</span>.log(numbers, prevNumbers)
+<span class="hljs-title function_">watch</span>(
+  <span class="hljs-function">() =&gt;</span> [...numbers],
+  <span class="hljs-function">(<span class="hljs-params">numbers, prevNumbers</span>) =&gt;</span> &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(numbers, prevNumbers)
   &#125;
 )
 
-numbers.push(<span class="hljs-number">5</span>) <span class="hljs-comment">// logs: [1,2,3,4,5] [1,2,3,4]</span></code></pre></div>
+numbers.<span class="hljs-title function_">push</span>(<span class="hljs-number">5</span>) <span class="hljs-comment">// logs: [1,2,3,4,5] [1,2,3,4]</span></code></pre></div>
 
 <p>想要深度侦听嵌套对象或数组时，<strong>需要 deep 设为 true</strong>,</p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> state = reactive(&#123;
-  id: <span class="hljs-number">1</span>,
-  attributes: &#123;
-    name: <span class="hljs-string">&#x27;&#x27;</span>,
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> state = <span class="hljs-title function_">reactive</span>(&#123;
+  <span class="hljs-attr">id</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">attributes</span>: &#123;
+    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;&#x27;</span>,
   &#125;
 &#125;)
 
-watch(
-  () =&gt; state,
-  (state, prevState) =&gt; &#123;
-    <span class="hljs-built_in">console</span>.log(
+<span class="hljs-title function_">watch</span>(
+  <span class="hljs-function">() =&gt;</span> state,
+  <span class="hljs-function">(<span class="hljs-params">state, prevState</span>) =&gt;</span> &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(
       <span class="hljs-string">&#x27;not deep&#x27;</span>,
-      state.attributes.name,
-      prevState.attributes.name
+      state.<span class="hljs-property">attributes</span>.<span class="hljs-property">name</span>,
+      prevState.<span class="hljs-property">attributes</span>.<span class="hljs-property">name</span>
     )
   &#125;
 )
 
-watch(
-  () =&gt; state,
-  (state, prevState) =&gt; &#123;
-    <span class="hljs-built_in">console</span>.log(
+<span class="hljs-title function_">watch</span>(
+  <span class="hljs-function">() =&gt;</span> state,
+  <span class="hljs-function">(<span class="hljs-params">state, prevState</span>) =&gt;</span> &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(
       <span class="hljs-string">&#x27;deep&#x27;</span>,
-      state.attributes.name,
-      prevState.attributes.name
+      state.<span class="hljs-property">attributes</span>.<span class="hljs-property">name</span>,
+      prevState.<span class="hljs-property">attributes</span>.<span class="hljs-property">name</span>
     )
   &#125;,
   &#123; <span class="hljs-attr">deep</span>: <span class="hljs-literal">true</span> &#125;
 )
 
-state.attributes.name = <span class="hljs-string">&#x27;Alex&#x27;</span> <span class="hljs-comment">// 日志: &quot;deep&quot; &quot;Alex&quot; &quot;Alex&quot;</span></code></pre></div>
+state.<span class="hljs-property">attributes</span>.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;Alex&#x27;</span> <span class="hljs-comment">// 日志: &quot;deep&quot; &quot;Alex&quot; &quot;Alex&quot;</span></code></pre></div>
 
 <p>但是会发现 新的值和旧的值是一样的。这时候为了完全侦听，需要使用深拷贝了</p>
 <h2 id="其他API"><a href="#其他API" class="headerlink" title="其他API"></a>其他API</h2><h3 id="生命周期函数"><a href="#生命周期函数" class="headerlink" title="生命周期函数"></a>生命周期函数</h3><p>em…. 去看文档吧，</p>
@@ -663,14 +665,14 @@ state.attributes.name = <span class="hljs-string">&#x27;Alex&#x27;</span> <span 
 <li>要 inject 的 property 的 name</li>
 <li>默认值 (<strong>可选</strong>)</li>
 </ul>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">let</span> count = ref(<span class="hljs-number">100</span>)
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">let</span> count = <span class="hljs-title function_">ref</span>(<span class="hljs-number">100</span>)
 <span class="hljs-keyword">let</span> info = &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;wangpf&quot;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">18</span> &#125;
-provide(<span class="hljs-string">&quot;count&quot;</span>, readonly(count))
-provide(<span class="hljs-string">&quot;info&quot;</span>, readonly(info))   <span class="hljs-comment">// 这里建议使用 readonly 对值进行包裹，防止传递的数据不会被 inject 的组件更改</span>
+<span class="hljs-title function_">provide</span>(<span class="hljs-string">&quot;count&quot;</span>, <span class="hljs-title function_">readonly</span>(count))
+<span class="hljs-title function_">provide</span>(<span class="hljs-string">&quot;info&quot;</span>, <span class="hljs-title function_">readonly</span>(info))   <span class="hljs-comment">// 这里建议使用 readonly 对值进行包裹，防止传递的数据不会被 inject 的组件更改</span>
 
 <span class="hljs-comment">// 在后代组件中 通过 inject 来获取</span>
-<span class="hljs-keyword">const</span> count = inject(<span class="hljs-string">&quot;count&quot;</span>)
-<span class="hljs-keyword">const</span> info = inject(<span class="hljs-string">&quot;info&quot;</span>)</code></pre></div>
+<span class="hljs-keyword">const</span> count = <span class="hljs-title function_">inject</span>(<span class="hljs-string">&quot;count&quot;</span>)
+<span class="hljs-keyword">const</span> info = <span class="hljs-title function_">inject</span>(<span class="hljs-string">&quot;info&quot;</span>)</code></pre></div>
 
 <h3 id="h函数"><a href="#h函数" class="headerlink" title="h函数"></a>h函数</h3><blockquote>
 <p>vue在生成真实DOM之前，会将我们的节点转换成VNode，而VNode组合起来会形成一颗树结构，即 <strong>虚拟DOM</strong></p>
@@ -679,7 +681,7 @@ provide(<span class="hljs-string">&quot;info&quot;</span>, readonly(info))   <sp
 </blockquote>
 <p>h() 函数是一个用于常见 VNode 的一个函数， 其实更准确的命名是 createVNode() 函数，但为了简便 vue 将其简化为 h() 函数</p>
 <p>h() 函数接收三个参数: (标签，属性，后代)</p>
-<div class="hljs"><pre><code class="hljs js">h(
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-title function_">h</span>(
   <span class="hljs-comment">// &#123;String | Object | Function&#125; tag</span>
   <span class="hljs-comment">// 一个 HTML 标签名、一个组件、一个异步组件、或</span>
   <span class="hljs-comment">// 一个函数式组件。</span>
@@ -702,9 +704,9 @@ provide(<span class="hljs-string">&quot;info&quot;</span>, readonly(info))   <sp
   <span class="hljs-comment">// 可选的。</span>
   [
     <span class="hljs-string">&#x27;Some text comes first.&#x27;</span>,
-    h(<span class="hljs-string">&#x27;h1&#x27;</span>, <span class="hljs-string">&#x27;A headline&#x27;</span>),
-    h(MyComponent, &#123;
-      someProp: <span class="hljs-string">&#x27;foobar&#x27;</span>
+    <span class="hljs-title function_">h</span>(<span class="hljs-string">&#x27;h1&#x27;</span>, <span class="hljs-string">&#x27;A headline&#x27;</span>),
+    <span class="hljs-title function_">h</span>(<span class="hljs-title class_">MyComponent</span>, &#123;
+      <span class="hljs-attr">someProp</span>: <span class="hljs-string">&#x27;foobar&#x27;</span>
     &#125;)
   ]
 )</code></pre></div>
@@ -715,14 +717,14 @@ provide(<span class="hljs-string">&quot;info&quot;</span>, readonly(info))   <sp
 <li>可以在 setup 函数选项中使用</li>
 </ul>
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
-  render() &#123;
-    <span class="hljs-keyword">return</span> h(<span class="hljs-string">&#x27;div&#x27;</span>, &#123; <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;app&#x27;</span> &#125;, <span class="hljs-string">&#x27;hello app&#x27;</span>)
+  <span class="hljs-title function_">render</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-title function_">h</span>(<span class="hljs-string">&#x27;div&#x27;</span>, &#123; <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;app&#x27;</span> &#125;, <span class="hljs-string">&#x27;hello app&#x27;</span>)
   &#125;
 &#125;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
-  setup() &#123;
-    <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> h(<span class="hljs-string">&#x27;div&#x27;</span>, &#123; <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;app&#x27;</span> &#125;, <span class="hljs-string">&#x27;hello app&#x27;</span>)
+  <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">h</span>(<span class="hljs-string">&#x27;div&#x27;</span>, &#123; <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;app&#x27;</span> &#125;, <span class="hljs-string">&#x27;hello app&#x27;</span>)
   &#125;
 &#125;</code></pre></div>
 
@@ -781,80 +783,92 @@ teleport :to = <span class="hljs-string">&#x27;#demo&#x27;</span> &gt;
 </ol>
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// plugin_obect.js</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
-  install(app) &#123;
-    app.config.globalProperties.$name = <span class="hljs-string">&quot;wangpf&quot;</span>;
+  <span class="hljs-title function_">install</span>(<span class="hljs-params">app</span>) &#123;
+    app.<span class="hljs-property">config</span>.<span class="hljs-property">globalProperties</span>.<span class="hljs-property">$name</span> = <span class="hljs-string">&quot;wangpf&quot;</span>;
   &#125;,
 &#125;;
 
 <span class="hljs-comment">// main.js</span>
 <span class="hljs-keyword">import</span> plugin_object <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./plugins/plugin_object&quot;</span>;
 
-app.use(plugin_object);
+app.<span class="hljs-title function_">use</span>(plugin_object);
 
 <span class="hljs-comment">// app.vue </span>
 <span class="hljs-keyword">import</span> &#123; getCurrentInstance &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;vue&quot;</span>;
 
-setup()
+<span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>)
 &#123;
-  <span class="hljs-keyword">const</span> Instance = getCurrentInstance();
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Instance&quot;</span>, Instance.appContext.config.globalProperties.$name);
+  <span class="hljs-keyword">const</span> <span class="hljs-title class_">Instance</span> = <span class="hljs-title function_">getCurrentInstance</span>();
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Instance&quot;</span>, <span class="hljs-title class_">Instance</span>.<span class="hljs-property">appContext</span>.<span class="hljs-property">config</span>.<span class="hljs-property">globalProperties</span>.<span class="hljs-property">$name</span>);
 &#125;</code></pre></div>
 
 
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/Vue-js/">Vue.js</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/Vue3/">Vue3</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2021/08/13/66-%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAmini-vue/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">实现一个简洁版的Mini-Vue</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2021/07/19/64-vue3%E5%BC%82%E6%AD%A5%E7%BB%84%E4%BB%B6/">
-                    <span class="hidden-mobile">vue3中的异步组件到底是干啥的？</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/Vue-js/">
+                              Vue.js
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/Vue3/">
+                                  Vue3
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2021/08/13/66-%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAmini-vue/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      实现一个简洁版的Mini-Vue
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2021/07/19/64-vue3%E5%BC%82%E6%AD%A5%E7%BB%84%E4%BB%B6/">
+                                    <span class="hidden-mobile">
+                                      vue3中的异步组件到底是干啥的？
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -881,26 +895,26 @@ setup()
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

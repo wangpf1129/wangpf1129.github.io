@@ -203,18 +203,20 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">DOM事件&amp;事件委托</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h2 id="什么是DOM"><a href="#什么是DOM" class="headerlink" title="什么是DOM"></a>什么是DOM</h2><blockquote>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                DOM事件&amp;事件委托
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h2 id="什么是DOM"><a href="#什么是DOM" class="headerlink" title="什么是DOM"></a>什么是DOM</h2><blockquote>
 <p>文档对象模型（Document Object Model，简称<strong>DOM</strong>），是W3C组织推荐的处理可扩展标记语言（HTML 或者 XML ）的标准<strong>编程接口</strong></p>
 </blockquote>
 <p><strong>简言之，它会将web页面和脚本或程序语言连接起来。</strong></p>
@@ -242,13 +244,13 @@
 <p><strong>代码验证:</strong></p>
 <p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7dec9eb77df04f08ad1659637ebbdfc5~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="代码验证"></p>
 <h3 id="特例"><a href="#特例" class="headerlink" title="特例"></a>特例</h3><p>如果只有一个div被监听了， fn函数分别在捕获节点和冒泡节点监听click事件。</p>
-<div class="hljs"><pre><code class="hljs js">div.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>,f1)   <span class="hljs-comment">// 冒泡</span>
-div.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>,f2,<span class="hljs-literal">true</span>)   <span class="hljs-comment">// 捕获</span></code></pre></div>
+<div class="hljs"><pre><code class="hljs js">div.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>,f1)   <span class="hljs-comment">// 冒泡</span>
+div.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>,f2,<span class="hljs-literal">true</span>)   <span class="hljs-comment">// 捕获</span></code></pre></div>
 <p>请问，谁先执行？<br>答案： 谁先监听谁先执行。</p>
-<h2 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h2><div class="hljs"><pre><code class="hljs js">eventTarget.onclick = funciton(event)&#123;
+<h2 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h2><div class="hljs"><pre><code class="hljs js">eventTarget.<span class="hljs-property">onclick</span> = <span class="hljs-title function_">funciton</span>(<span class="hljs-params">event</span>)&#123;
 	<span class="hljs-comment">// 这个 evnet 就是事件对象，我比较喜欢缩写成 e </span>
 &#125;
-eventTarget.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>)</span>&#123;
+eventTarget.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>,<span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>)&#123;
 	<span class="hljs-comment">// 这个 evnet 就是事件对象，我比较喜欢缩写成 e </span>
 &#125;)</code></pre></div>
 <p>这个 event 是个形参，系统会自动帮我们设定改为事件对象，不需要传递实参过去。</p>
@@ -276,59 +278,71 @@ eventTarget.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>,
 <h2 id="封装事件委托"><a href="#封装事件委托" class="headerlink" title="封装事件委托"></a>封装事件委托</h2><p><strong>要求：</strong><br>写出一个函数 <code>on(&#39;click&#39;,&#39;#div1&#39;,&#39;button&#39;,fn)</code>   当用户点击<code>#div1</code>的button元素时，调用fn函数。要求用事件委托。</p>
 <p><strong>代码展示：</strong><br><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e552062e345a44c69bcaa5a2774c1710~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif"></p>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/DOM/">DOM</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/JavaScript/">JavaScript</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2020/12/12/32-%E8%B7%A8%E5%9F%9F/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">跨域</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2020/12/09/30-%E4%BB%A5jQuery%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3%E5%B0%81%E8%A3%85DOM/">
-                    <span class="hidden-mobile">以jQuery的设计思想封装DOM(总结)</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/DOM/">
+                              DOM
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/JavaScript/">
+                                  JavaScript
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2020/12/12/32-%E8%B7%A8%E5%9F%9F/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      跨域
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2020/12/09/30-%E4%BB%A5jQuery%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3%E5%B0%81%E8%A3%85DOM/">
+                                    <span class="hidden-mobile">
+                                      以jQuery的设计思想封装DOM(总结)
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -355,26 +369,26 @@ eventTarget.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>,
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

@@ -203,44 +203,46 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">使用Node来实现简单的HTTP响应请求</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h1 id="简单的HTTP响应请求"><a href="#简单的HTTP响应请求" class="headerlink" title="简单的HTTP响应请求"></a>简单的HTTP响应请求</h1><h4 id="1-引入http模块"><a href="#1-引入http模块" class="headerlink" title="1. 引入http模块"></a>1. 引入http模块</h4><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-keyword">const</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;http&#x27;</span>);
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                使用Node来实现简单的HTTP响应请求
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h1 id="简单的HTTP响应请求"><a href="#简单的HTTP响应请求" class="headerlink" title="简单的HTTP响应请求"></a>简单的HTTP响应请求</h1><h4 id="1-引入http模块"><a href="#1-引入http模块" class="headerlink" title="1. 引入http模块"></a>1. 引入http模块</h4><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-keyword">const</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;http&#x27;</span>);
 </code></pre></div>
 
-<h4 id="2-创建-server"><a href="#2-创建-server" class="headerlink" title="2.创建 server"></a>2.创建 server</h4><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-keyword">const</span> server = http.createServer();
+<h4 id="2-创建-server"><a href="#2-创建-server" class="headerlink" title="2.创建 server"></a>2.创建 server</h4><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-keyword">const</span> server = http.<span class="hljs-title function_">createServer</span>();
 </code></pre></div>
 <h4 id="3-当客户端请求过来，就会自动触发服务器的-request-请求事件，-然后执行第二个参数：回调函数"><a href="#3-当客户端请求过来，就会自动触发服务器的-request-请求事件，-然后执行第二个参数：回调函数" class="headerlink" title="3. 当客户端请求过来，就会自动触发服务器的 request 请求事件， 然后执行第二个参数：回调函数"></a>3. 当客户端请求过来，就会自动触发服务器的 request 请求事件， 然后执行第二个参数：回调函数</h4><blockquote>
 <ul>
-<li>request 请求事件处理函数 需要接受俩个参数：  </li>
-<li>request 请求对象：请求对象可以用来获取客户端的一些请求信息，例如请求路径</li>
-<li>response 响应对象 ：响应对象可以用来给客户端发送响应信息</li>
+<li>  request 请求事件处理函数 需要接受俩个参数：  </li>
+<li>  request 请求对象：请求对象可以用来获取客户端的一些请求信息，例如请求路径</li>
+<li> response 响应对象 ：响应对象可以用来给客户端发送响应信息</li>
 </ul>
 </blockquote>
-<div class="hljs"><pre><code class="hljs JavaScript">server.on(<span class="hljs-string">&#x27;request&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;收到了客户端的请求了,请求路径是：&#x27;</span> + req.url);
+<div class="hljs"><pre><code class="hljs JavaScript">server.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;request&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;收到了客户端的请求了,请求路径是：&#x27;</span> + req.<span class="hljs-property">url</span>);
     <span class="hljs-comment">// 要根据不同的请求立即发送不同的响应结果</span>
     <span class="hljs-comment">//  1. 获取请求路径</span>
-    <span class="hljs-keyword">const</span> url = req.url;
+    <span class="hljs-keyword">const</span> url = req.<span class="hljs-property">url</span>;
     <span class="hljs-comment">//     req.url  获得到的是端口号之后的那一部分路径</span>
     <span class="hljs-comment">//     也就是说 所有的 url 都是以 / 开头的</span>
 
     <span class="hljs-comment">//  2. 判断路径来处理响应</span>
     <span class="hljs-keyword">if</span> (url == <span class="hljs-string">&#x27;/&#x27;</span>) &#123;
-        res.end(<span class="hljs-string">&#x27;index page&#x27;</span>);
+        res.<span class="hljs-title function_">end</span>(<span class="hljs-string">&#x27;index page&#x27;</span>);
     &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (url == <span class="hljs-string">&#x27;/login&#x27;</span>) &#123;
-        res.end(<span class="hljs-string">&#x27;login page&#x27;</span>);
+        res.<span class="hljs-title function_">end</span>(<span class="hljs-string">&#x27;login page&#x27;</span>);
     &#125; <span class="hljs-keyword">else</span> &#123;
-        res.end(<span class="hljs-string">&#x27;404 Not found.&#x27;</span>)
+        res.<span class="hljs-title function_">end</span>(<span class="hljs-string">&#x27;404 Not found.&#x27;</span>)
     &#125;
 &#125;);
 </code></pre></div>
@@ -249,17 +251,17 @@
 <p>不推荐使用 wirte  因为end的参数就可以接受，并且开发中基本都是一对一的响应</p>
 <div class="hljs"><pre><code class="hljs JavaScript">    <span class="hljs-comment">// response 对象有一个方法： write 可以用来给客户端发送响应数据</span>
     <span class="hljs-comment">// write 可以使用多次 ，但是最后一次一定要使用 end 来结束响应， 否则客户端会一直等待</span>
-     <span class="hljs-keyword">if</span> (req.url == <span class="hljs-string">&#x27;/&#x27;</span>) &#123;
-         res.write(<span class="hljs-string">&#x27;heelo&#x27;</span>);
-         res.write(<span class="hljs-string">&#x27; nonejs&#x27;</span>);
+     <span class="hljs-keyword">if</span> (req.<span class="hljs-property">url</span> == <span class="hljs-string">&#x27;/&#x27;</span>) &#123;
+         res.<span class="hljs-title function_">write</span>(<span class="hljs-string">&#x27;heelo&#x27;</span>);
+         res.<span class="hljs-title function_">write</span>(<span class="hljs-string">&#x27; nonejs&#x27;</span>);
 
-     &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (req.url == <span class="hljs-string">&#x27;/login&#x27;</span>) &#123;
-         res.write(<span class="hljs-string">&#x27;login&#x27;</span>);
+     &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (req.<span class="hljs-property">url</span> == <span class="hljs-string">&#x27;/login&#x27;</span>) &#123;
+         res.<span class="hljs-title function_">write</span>(<span class="hljs-string">&#x27;login&#x27;</span>);
 
-     &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (req.url == <span class="hljs-string">&#x27;/index&#x27;</span>) &#123;
-         res.write(<span class="hljs-string">&#x27;index&#x27;</span>);
+     &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (req.<span class="hljs-property">url</span> == <span class="hljs-string">&#x27;/index&#x27;</span>) &#123;
+         res.<span class="hljs-title function_">write</span>(<span class="hljs-string">&#x27;index&#x27;</span>);
      &#125;
-    res.end();
+    res.<span class="hljs-title function_">end</span>();
     
  <span class="hljs-comment">//  以上的代码方式比较麻烦， 推荐使用直接 end 的同时 加请求信息</span>
 <span class="hljs-comment">// res.end(&#x27;hello nodejs&#x27;);</span></code></pre></div>
@@ -267,13 +269,13 @@
 <hr>
 <h5 id="以下例子证明了-响应内容只能是-字符串-和-二进制-。-对象，数组，布尔值，数值等等都是不行的"><a href="#以下例子证明了-响应内容只能是-字符串-和-二进制-。-对象，数组，布尔值，数值等等都是不行的" class="headerlink" title="以下例子证明了 响应内容只能是 字符串 和 二进制 。  对象，数组，布尔值，数值等等都是不行的"></a>以下例子证明了 响应内容只能是 字符串 和 二进制 。  对象，数组，布尔值，数值等等都是不行的</h5><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-keyword">if</span> (url == <span class="hljs-string">&#x27;/products&#x27;</span>) &#123;
     <span class="hljs-keyword">let</span> products = [&#123;
-       name: <span class="hljs-string">&#x27;苹果&#x27;</span>,
-        price: <span class="hljs-number">5</span>
+       <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;苹果&#x27;</span>,
+        <span class="hljs-attr">price</span>: <span class="hljs-number">5</span>
     &#125;, &#123;
-        name: <span class="hljs-string">&#x27;香蕉&#x27;</span>,
-        price: <span class="hljs-number">3</span>
+        <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;香蕉&#x27;</span>,
+        <span class="hljs-attr">price</span>: <span class="hljs-number">3</span>
     &#125;];
-    res.end(<span class="hljs-built_in">JSON</span>.stringify(products));
+    res.<span class="hljs-title function_">end</span>(<span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(products));
 &#125;;</code></pre></div>
 
 
@@ -281,59 +283,71 @@
 
 
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/Nodejs/">Nodejs</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/Node/">Node</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2020/08/05/05.%E7%95%99%E8%A8%80%E6%9D%BF%E5%8A%9F%E8%83%BD%E7%9A%84%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">使用Node来留言板功能的简单实现</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2020/08/05/08.%E5%9F%BA%E4%BA%8EExpress%20%E4%B8%8B%E7%9A%84%20%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5%E9%A1%B9%E7%9B%AE/">
-                    <span class="hidden-mobile">基于Express 下的 增删改查项目</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/Nodejs/">
+                              Nodejs
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/Node/">
+                                  Node
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2020/08/05/05.%E7%95%99%E8%A8%80%E6%9D%BF%E5%8A%9F%E8%83%BD%E7%9A%84%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      使用Node来留言板功能的简单实现
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2020/08/05/08.%E5%9F%BA%E4%BA%8EExpress%20%E4%B8%8B%E7%9A%84%20%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5%E9%A1%B9%E7%9B%AE/">
+                                    <span class="hidden-mobile">
+                                      基于Express 下的 增删改查项目
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -360,26 +374,26 @@
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

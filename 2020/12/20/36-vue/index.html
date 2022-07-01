@@ -203,18 +203,20 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">Vue 里 computed  和 watch 的区别</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <p>​<br>​</p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                Vue 里 computed  和 watch 的区别
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <p>​<br>​</p>
 <h2 id="computed"><a href="#computed" class="headerlink" title="computed"></a>computed</h2><blockquote>
 <p> 计算属性 ， computed 是用来计算出一个值，这个值在调用的时候会根据依赖的数据显示新的计算结果并自动缓存。 如果依赖不变，computed中的值就不会重新计算。 注意 ：不需要加(),</p>
 </blockquote>
@@ -233,46 +235,47 @@
 </ul>
 <p><strong>所以，对于任何复杂逻辑，都应该使用计算属性</strong></p>
 <ul>
-<li><p>在某些情况，我们可能需要对数据进行一些转化后再显示，或者需要将多个数据结合起来进行显示</p>
-<ul>
-<li>比如我们有firstName和lastName两个变量，我们需要显示完整的名称。</li>
-<li>但是如果多个地方都需要显示完整的名称，我们就需要写多个 </li>
-</ul>
+<li>在某些情况，我们可能需要对数据进行一些转化后再显示，或者需要将多个数据结合起来进行显示<ul>
+<li><p>比如我们有firstName和lastName两个变量，我们需要显示完整的名称。</p>
+</li>
+<li><p>但是如果多个地方都需要显示完整的名称，我们就需要写多个 </p>
 <div class="hljs"><pre><code class="hljs js"> &lt;body&gt;
-  &lt;div id=<span class="hljs-string">&quot;app&quot;</span>&gt;
-    &lt;h2&gt;&#123;&#123;firstName + <span class="hljs-string">&#x27; &#x27;</span> + lastName&#125;&#125;&lt;/h2&gt;
-    &lt;h2&gt;&#123;&#123;firstName&#125;&#125; &#123;&#123;lastName&#125;&#125;&lt;/h2&gt;
-    &lt;h2&gt;&#123;&#123;getFullName()&#125;&#125;&lt;/h2&gt;
-    &lt;h2&gt;&#123;&#123;fullName&#125;&#125;&lt;/h2&gt;
-
-  &lt;/div&gt;
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>&#123;&#123;firstName + &#x27; &#x27; + lastName&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>&#123;&#123;firstName&#125;&#125; &#123;&#123;lastName&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>&#123;&#123;getFullName()&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>&#123;&#123;fullName&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span>
+<span class="language-xml"></span>
+<span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
 &lt;/body&gt;
-&lt;script src=<span class="hljs-string">&quot;../js/vue.js&quot;</span>&gt;&lt;/script&gt;
-&lt;script&gt;
-  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue(&#123;
-    el: <span class="hljs-string">&#x27;#app&#x27;</span>,
-    data: &#123;
-      firstName: <span class="hljs-string">&#x27;Lron&#x27;</span>,
-      lastName: <span class="hljs-string">&#x27;Man&#x27;</span>
-    &#125;,
-    <span class="hljs-comment">// 推荐使用计算属性来操作，因为它会将这些数据进行缓存， 无论打印多少次，它只会调用一次</span>
-    computed: &#123;
-    <span class="hljs-comment">//  计算属性   注意 : 计算的是 属性, </span>
-    <span class="hljs-comment">// 所以这里面的属性 看成一个 对象(用名词形式来表达), 调用时候不用加小括号</span>
-      fullName: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.firstName + <span class="hljs-string">&#x27; &#x27;</span> + <span class="hljs-built_in">this</span>.lastName
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;../js/vue.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span></span>
+<span class="language-javascript"><span class="language-xml">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>,</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">data</span>: &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">firstName</span>: <span class="hljs-string">&#x27;Lron&#x27;</span>,</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">lastName</span>: <span class="hljs-string">&#x27;Man&#x27;</span></span></span>
+<span class="language-javascript"><span class="language-xml">    &#125;,</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-comment">// 推荐使用计算属性来操作，因为它会将这些数据进行缓存， 无论打印多少次，它只会调用一次</span></span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">computed</span>: &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-comment">//  计算属性   注意 : 计算的是 属性, </span></span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-comment">// 所以这里面的属性 看成一个 对象(用名词形式来表达), 调用时候不用加小括号</span></span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">fullName</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">firstName</span> + <span class="hljs-string">&#x27; &#x27;</span> + <span class="hljs-variable language_">this</span>.<span class="hljs-property">lastName</span></span></span>
+<span class="language-javascript"><span class="language-xml"></span></span>
+<span class="language-javascript"><span class="language-xml">      &#125;</span></span>
+<span class="language-javascript"><span class="language-xml">    &#125;,</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">methods</span>: &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-comment">//  不会缓存， 所以有多少次就调用多少次，  没有 computed 划算</span></span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">getFullName</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">firstName</span> + <span class="hljs-string">&#x27; &#x27;</span> + <span class="hljs-variable language_">this</span>.<span class="hljs-property">lastName</span></span></span>
+<span class="language-javascript"><span class="language-xml">      &#125;</span></span>
+<span class="language-javascript"><span class="language-xml">    &#125;</span></span>
+<span class="language-javascript"><span class="language-xml">  &#125;)</span></span>
+<span class="language-javascript"><span class="language-xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre></div>
 
-      &#125;
-    &#125;,
-    methods: &#123;
-      <span class="hljs-comment">//  不会缓存， 所以有多少次就调用多少次，  没有 computed 划算</span>
-      getFullName: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.firstName + <span class="hljs-string">&#x27; &#x27;</span> + <span class="hljs-built_in">this</span>.lastName
-      &#125;
-    &#125;
-  &#125;)
-&lt;/script&gt;</code></pre></div>
-
+</li>
+</ul>
 </li>
 </ul>
 <h2 id="watch"><a href="#watch" class="headerlink" title="watch"></a>watch</h2><p>参考文档：<a target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/api/#watch">vue官方文档：watch</a></p>
@@ -289,35 +292,35 @@
 </ul>
 <p><strong>this.$watch 和 watch 用法一致，只不过写法有些不同，这里不详细说明</strong></p>
 <p>案例：</p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">new</span> Vue(&#123;
-  data: &#123;
-    n: <span class="hljs-number">0</span>,
-    obj: &#123;
-      a: <span class="hljs-string">&quot;a&quot;</span>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;
+  <span class="hljs-attr">data</span>: &#123;
+    <span class="hljs-attr">n</span>: <span class="hljs-number">0</span>,
+    <span class="hljs-attr">obj</span>: &#123;
+      <span class="hljs-attr">a</span>: <span class="hljs-string">&quot;a&quot;</span>
     &#125;
   &#125;,
-  template: <span class="hljs-string">`</span>
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`</span>
 <span class="hljs-string">    &lt;div&gt;</span>
 <span class="hljs-string">      &lt;button @click=&quot;n += 1&quot;&gt;n+1&lt;/button&gt;</span>
 <span class="hljs-string">      &lt;button @click=&quot;obj.a += &#x27;hi&#x27;&quot;&gt;obj.a + &#x27;hi&#x27;&lt;/button&gt;</span>
 <span class="hljs-string">      &lt;button @click=&quot;obj = &#123;a:&#x27;a&#x27;&#125;&quot;&gt;obj = 新对象&lt;/button&gt;</span>
 <span class="hljs-string">    &lt;/div&gt;</span>
 <span class="hljs-string">  `</span>,
-  watch: &#123;
-    n() &#123;
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;n 变了&quot;</span>);
+  <span class="hljs-attr">watch</span>: &#123;
+    <span class="hljs-title function_">n</span>(<span class="hljs-params"></span>) &#123;
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;n 变了&quot;</span>);
     &#125;,
-    obj:&#123;
-      handler: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">val, oldVal</span>) </span>&#123; 
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;obj 变了&quot;</span>)
+    <span class="hljs-attr">obj</span>:&#123;
+      <span class="hljs-attr">handler</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">val, oldVal</span>) &#123; 
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;obj 变了&quot;</span>)
     &#125;,
-      deep: <span class="hljs-literal">true</span> <span class="hljs-comment">// 该属性设定在任何被侦听的对象的 property 改变时都要执行 handler 的回调，不论其被嵌套多深</span>
+      <span class="hljs-attr">deep</span>: <span class="hljs-literal">true</span> <span class="hljs-comment">// 该属性设定在任何被侦听的对象的 property 改变时都要执行 handler 的回调，不论其被嵌套多深</span>
     &#125;,
     <span class="hljs-string">&quot;obj.a&quot;</span>:&#123;
-      handler: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">val, oldVal</span>) </span>&#123; 
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;obj.a 变了&quot;</span>)
+      <span class="hljs-attr">handler</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">val, oldVal</span>) &#123; 
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;obj.a 变了&quot;</span>)
     &#125;,
-      immediate: <span class="hljs-literal">true</span> <span class="hljs-comment">// 该属性设定该回调将会在侦听开始之后被立即调用</span>
+      <span class="hljs-attr">immediate</span>: <span class="hljs-literal">true</span> <span class="hljs-comment">// 该属性设定该回调将会在侦听开始之后被立即调用</span>
     &#125;
   &#125;
 &#125;).$mount(<span class="hljs-string">&quot;#app&quot;</span>);</code></pre></div>
@@ -327,59 +330,71 @@
 <li>如果一个数据需要在发生变化时做一些操作就用 watch</li>
 </ol>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/vue/">vue</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/vue/">vue</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2020/12/21/37.vue%E4%BF%AE%E9%A5%B0%E7%AC%A6/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">Vu sync修饰符</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2020/12/20/35-Vue%E4%BF%A9%E4%B8%AA%E7%89%88%E6%9C%AC/">
-                    <span class="hidden-mobile">vue俩个版本：runtime-compiler和 runtime-only 的区别</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/vue/">
+                              vue
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/vue/">
+                                  vue
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2020/12/21/37.vue%E4%BF%AE%E9%A5%B0%E7%AC%A6/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      Vu sync修饰符
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2020/12/20/35-Vue%E4%BF%A9%E4%B8%AA%E7%89%88%E6%9C%AC/">
+                                    <span class="hidden-mobile">
+                                      vue俩个版本：runtime-compiler和 runtime-only 的区别
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -406,26 +421,26 @@
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

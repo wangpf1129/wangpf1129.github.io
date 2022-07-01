@@ -203,18 +203,20 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">Vue模板语法总结</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h1 id="模板语法⭐"><a href="#模板语法⭐" class="headerlink" title="模板语法⭐"></a>模板语法⭐</h1><h2 id="1-插值操作"><a href="#1-插值操作" class="headerlink" title="1.插值操作"></a>1.插值操作</h2><ul>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                Vue模板语法总结
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h1 id="模板语法⭐"><a href="#模板语法⭐" class="headerlink" title="模板语法⭐"></a>模板语法⭐</h1><h2 id="1-插值操作"><a href="#1-插值操作" class="headerlink" title="1.插值操作"></a>1.插值操作</h2><ul>
 <li>如何将data中的文本数据，插入到HTML中呢？<ul>
 <li>我们已经学习过了，可以通过Mustache语法(也就是双大括号)。</li>
 <li>Mustache: 胡子/胡须.</li>
@@ -227,27 +229,27 @@
 </ul>
 <h3 id="1-1-on-once-的基本使用"><a href="#1-1-on-once-的基本使用" class="headerlink" title="1.1 on-once 的基本使用"></a>1.1 on-once 的基本使用</h3><ul>
 <li>在某些情况下，我们可能不希望界面随意的跟随改变<ul>
-<li>这个时候，我们就可以使用一个Vue的指令</li>
+<li> 这个时候，我们就可以使用一个Vue的指令</li>
 </ul>
 </li>
 </ul>
 <div class="hljs"><pre><code class="hljs JavaScript">&lt;body&gt;
-  &lt;div id=<span class="hljs-string">&quot;app&quot;</span>&gt;
-    &lt;h2&gt;&#123;&#123;message&#125;&#125; &lt;/h2&gt;
-    &lt;!-- v-once 指令 就是 不能修改该变量了 --&gt;
-    &lt;!-- 该指令表示元素和组件只渲染一次，不会随着数据的改变而改变 --&gt;
-    &lt;h2 v-once&gt;&#123;&#123;message&#125;&#125; &lt;/h2&gt;
-  &lt;/div&gt;
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>&#123;&#123;message&#125;&#125; <span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-comment">&lt;!-- v-once 指令 就是 不能修改该变量了 --&gt;</span></span>
+<span class="language-xml">    <span class="hljs-comment">&lt;!-- 该指令表示元素和组件只渲染一次，不会随着数据的改变而改变 --&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">v-once</span>&gt;</span>&#123;&#123;message&#125;&#125; <span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span>
+<span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
 &lt;/body&gt;
-&lt;script src=<span class="hljs-string">&quot;../js/vue.js&quot;</span>&gt;&lt;/script&gt;
-&lt;script&gt;
-  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue(&#123;
-    el: <span class="hljs-string">&#x27;#app&#x27;</span>,
-    data: &#123;
-      message: <span class="hljs-string">&#x27;Hello Vue&#x27;</span>
-    &#125;
-  &#125;)
-&lt;/script&gt;
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;../js/vue.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span></span>
+<span class="language-javascript"><span class="language-xml">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>,</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">data</span>: &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;Hello Vue&#x27;</span></span></span>
+<span class="language-javascript"><span class="language-xml">    &#125;</span></span>
+<span class="language-javascript"><span class="language-xml">  &#125;)</span></span>
+<span class="language-javascript"><span class="language-xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
 </code></pre></div>
 
 <p><img src="https://i.loli.net/2020/09/25/BmxRaKF34jDhCwe.png" srcset="/img/loading.gif" alt="image-20200919213449880"></p>
@@ -265,20 +267,20 @@
 </li>
 </ul>
 <div class="hljs"><pre><code class="hljs JavaScript">&lt;body&gt;
-  &lt;div id=<span class="hljs-string">&quot;app&quot;</span>&gt;
-    &lt;h2&gt;&#123;&#123;url&#125;&#125; &lt;/h2&gt;
-    &lt;h2 v-html=<span class="hljs-string">&#x27;url&#x27;</span>&gt;&lt;/h2&gt;
-  &lt;/div&gt;
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>&#123;&#123;url&#125;&#125; <span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">v-html</span>=<span class="hljs-string">&#x27;url&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span>
+<span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
 &lt;/body&gt;
-&lt;script src=<span class="hljs-string">&quot;../js/vue.js&quot;</span>&gt;&lt;/script&gt;
-&lt;script&gt;
-  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue(&#123;
-    el: <span class="hljs-string">&#x27;#app&#x27;</span>,
-    data: &#123;
-      url: <span class="hljs-string">&#x27;&lt;a href=&quot;https://www.baidu.com&quot;&gt;百度一下&lt;/a&gt;&#x27;</span>
-    &#125;
-  &#125;)
-&lt;/script&gt;</code></pre></div>
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;../js/vue.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span></span>
+<span class="language-javascript"><span class="language-xml">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>,</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">data</span>: &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;&lt;a href=&quot;https://www.baidu.com&quot;&gt;百度一下&lt;/a&gt;&#x27;</span></span></span>
+<span class="language-javascript"><span class="language-xml">    &#125;</span></span>
+<span class="language-javascript"><span class="language-xml">  &#125;)</span></span>
+<span class="language-javascript"><span class="language-xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre></div>
 
 
 
@@ -289,21 +291,21 @@
 <li></li>
 </ul>
 <div class="hljs"><pre><code class="hljs JavaScript">&lt;body&gt;
-  &lt;div id=<span class="hljs-string">&quot;app&quot;</span>&gt;
-    &lt;h2&gt;&#123;&#123;message&#125;&#125;,haha &lt;/h2&gt;
-    &lt;!-- 会覆盖 hahha 不常用v-text  --&gt;
-    &lt;h2 v-text=<span class="hljs-string">&#x27;message&#x27;</span>&gt;hahha&lt;/h2&gt;
-  &lt;/div&gt;
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>&#123;&#123;message&#125;&#125;,haha <span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-comment">&lt;!-- 会覆盖 hahha 不常用v-text  --&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">v-text</span>=<span class="hljs-string">&#x27;message&#x27;</span>&gt;</span>hahha<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span>
+<span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
 &lt;/body&gt;
-&lt;script src=<span class="hljs-string">&quot;../js/vue.js&quot;</span>&gt;&lt;/script&gt;
-&lt;script&gt;
-  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue(&#123;
-    el: <span class="hljs-string">&#x27;#app&#x27;</span>,
-    data: &#123;
-      message: <span class="hljs-string">&#x27;hello vue&#x27;</span>
-    &#125;
-  &#125;)
-&lt;/script&gt;</code></pre></div>
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;../js/vue.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span></span>
+<span class="language-javascript"><span class="language-xml">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>,</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">data</span>: &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;hello vue&#x27;</span></span></span>
+<span class="language-javascript"><span class="language-xml">    &#125;</span></span>
+<span class="language-javascript"><span class="language-xml">  &#125;)</span></span>
+<span class="language-javascript"><span class="language-xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre></div>
 
 
 
@@ -319,21 +321,21 @@
 </ul>
 <p><img src="https://i.loli.net/2020/09/25/7F1aZ5Y92KXQCoc.png" srcset="/img/loading.gif" alt="image-20200919213843348"></p>
 <div class="hljs"><pre><code class="hljs JavaScript">&lt;body&gt;
-  &lt;div id=<span class="hljs-string">&quot;app&quot;</span>&gt;
-    &lt;h2&gt;&#123;&#123;message&#125;&#125; &lt;/h2&gt;
-    &lt;!-- 不解析  message  只显示  &#123;&#123;message&#125;&#125; 这个文本 --&gt;
-    &lt;h2 v-pre&gt;&#123;&#123;message&#125;&#125;&lt;/h2&gt;
-  &lt;/div&gt;
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>&#123;&#123;message&#125;&#125; <span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-comment">&lt;!-- 不解析  message  只显示  &#123;&#123;message&#125;&#125; 这个文本 --&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">v-pre</span>&gt;</span>&#123;&#123;message&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span>
+<span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
 &lt;/body&gt;
-&lt;script src=<span class="hljs-string">&quot;../js/vue.js&quot;</span>&gt;&lt;/script&gt;
-&lt;script&gt;
-  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue(&#123;
-    el: <span class="hljs-string">&#x27;#app&#x27;</span>,
-    data: &#123;
-      message: <span class="hljs-string">&#x27;hello vue&#x27;</span>
-    &#125;
-  &#125;)
-&lt;/script&gt;</code></pre></div>
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;../js/vue.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span></span>
+<span class="language-javascript"><span class="language-xml">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>,</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">data</span>: &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;hello vue&#x27;</span></span></span>
+<span class="language-javascript"><span class="language-xml">    &#125;</span></span>
+<span class="language-javascript"><span class="language-xml">  &#125;)</span></span>
+<span class="language-javascript"><span class="language-xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre></div>
 
 
 
@@ -344,27 +346,27 @@
 </ul>
 <div class="hljs"><pre><code class="hljs JavaScript">&lt;style&gt;
   [v-cloak] &#123;
-    display: none;
+    <span class="hljs-attr">display</span>: none;
   &#125;
 &lt;/style&gt;
 &lt;!-- 在刷新之前不希望把 &#123;message&#125;&#125; 以这种形式显示出来 --&gt;
 
-&lt;body&gt;
-  &lt;div id=<span class="hljs-string">&quot;app&quot;</span>&gt;
-    &lt;h2 v-cloak&gt;&#123;&#123;message&#125;&#125; &lt;/h2&gt;
-  &lt;/div&gt;
-&lt;/body&gt;
-&lt;script src=<span class="hljs-string">&quot;../js/vue.js&quot;</span>&gt;&lt;/script&gt;
-&lt;script&gt;
-  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
-    <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue(&#123;
-      el: <span class="hljs-string">&#x27;#app&#x27;</span>,
-      data: &#123;
-        message: <span class="hljs-string">&#x27;hello vue&#x27;</span>
-      &#125;
-    &#125;)
-  &#125;, <span class="hljs-number">1000</span>)
-&lt;/script&gt;</code></pre></div>
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></span>
+<span class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">v-cloak</span>&gt;</span>&#123;&#123;message&#125;&#125; <span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span>
+<span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></span>
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;../js/vue.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span></span>
+<span class="language-javascript"><span class="language-xml">  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>,</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">data</span>: &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">        <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;hello vue&#x27;</span></span></span>
+<span class="language-javascript"><span class="language-xml">      &#125;</span></span>
+<span class="language-javascript"><span class="language-xml">    &#125;)</span></span>
+<span class="language-javascript"><span class="language-xml">  &#125;, <span class="hljs-number">1000</span>)</span></span>
+<span class="language-javascript"><span class="language-xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre></div>
 
 <h2 id="2-绑定属性-v-bind的使用"><a href="#2-绑定属性-v-bind的使用" class="headerlink" title="2. 绑定属性   v-bind的使用"></a>2. 绑定属性   v-bind的使用</h2><ul>
 <li><p>除了内容需要动态来决定外，某些属性我们也希望动态来绑定。</p>
@@ -380,20 +382,18 @@
 <li><strong>预期：any (with argument) | Object (without argument)</strong></li>
 <li><strong>参数：attrOrProp (optional)</strong></li>
 </ul>
-</li>
-</ul>
-  <div class="hljs"><pre><code class="hljs JavaScript">&lt;body&gt;
-  &lt;div id=<span class="hljs-string">&quot;app&quot;</span>&gt;
+<div class="hljs"><pre><code class="hljs JavaScript">&lt;body&gt;
+  &lt;div id=&quot;app&quot;&gt;
     &lt;!-- 错误 : 这里不能使用 Msutache 语法 urlImages --&gt;
-    &lt;!-- <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;&#123;&#123;urlImage&#125;&#125;&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span> --&gt;</span>
-<span class="xml">    <span class="hljs-comment">&lt;!-- 使用 v-bind指令 来绑定属性 --&gt;</span></span>
-<span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>&#123;&#123;message&#125;&#125; <span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span>
+    &lt;!-- &lt;img src=&quot;&#123;&#123;urlImage&#125;&#125;&quot; alt=&quot;&quot;&gt; --&gt;
+    &lt;!-- 使用 v-bind指令 来绑定属性 --&gt;
+    &lt;h2&gt;&#123;&#123;message&#125;&#125; &lt;/h2&gt;
     &lt;img v-bind:src=&quot;urlImage&quot; alt=&quot;&quot;&gt;
     &lt;!-- v-bind 提供了一个语法糖 v-bind 对应的是 :  --&gt;
     &lt;img :src=&quot;urlImage&quot; alt=&quot;&quot;&gt;
   &lt;/div&gt;
-<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></span>
-<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;../js/vue.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+&lt;/body&gt;
+&lt;script src=&quot;../js/vue.js&quot;&gt;&lt;/script&gt;
 &lt;script&gt;
   const app = new Vue(&#123;
     el: &#x27;#app&#x27;,
@@ -402,18 +402,18 @@
       urlImage: &#x27;https://i0.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png@2200w_400h_1o.webp&#x27;
     &#125;
   &#125;)
-<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre></div>
+&lt;/script&gt;</code></pre></div>
 
-<p>  <img src="https://i.loli.net/2020/09/25/6ANtm94IQCjJsvr.png" srcset="/img/loading.gif" alt="image-20200919215146368"></p>
+<p><img src="https://i.loli.net/2020/09/25/6ANtm94IQCjJsvr.png" srcset="/img/loading.gif" alt="image-20200919215146368"></p>
+</li>
+</ul>
 <h3 id="2-1-v-bind-绑定-class-对象语法"><a href="#2-1-v-bind-绑定-class-对象语法" class="headerlink" title="2.1 v-bind 绑定 class  (对象语法)"></a>2.1 v-bind 绑定 class  (对象语法)</h3><ul>
 <li><p>绑定方式：对象语法</p>
 <ul>
 <li>对象语法的含义是:class后面跟的是一个对象。</li>
 <li>对象语法有下面这些用法：</li>
 </ul>
-</li>
-</ul>
- <div class="hljs"><pre><code class="hljs HTML">用法一：直接通过&#123;&#125;绑定一个类
+<div class="hljs"><pre><code class="hljs HTML">用法一：直接通过&#123;&#125;绑定一个类
 <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">:class</span>=<span class="hljs-string">&quot;&#123;&#x27;active&#x27;: isActive&#125;&quot;</span>&gt;</span>Hello World<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
 
 用法二：也可以通过判断，传入多个值
@@ -428,6 +428,8 @@
 <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;title&quot;</span> <span class="hljs-attr">:class</span>=<span class="hljs-string">&quot;classes&quot;</span>&gt;</span>Hello World<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
 </code></pre></div>
 
+</li>
+</ul>
 <h3 id="2-2-v-bind-绑定-style"><a href="#2-2-v-bind-绑定-style" class="headerlink" title="2.2 v-bind 绑定 style"></a>2.2 v-bind 绑定 style</h3><p><strong>:style=”{color: currentColor, fontSize: fontSize + ‘px’}”</strong></p>
 <ul>
 <li>style后面跟的是一个对象类型<ul>
@@ -437,20 +439,20 @@
 </li>
 </ul>
 <div class="hljs"><pre><code class="hljs JavaScript">&lt;body&gt;
-  &lt;div id=<span class="hljs-string">&quot;app&quot;</span>&gt;
-    &lt;!-- <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">:style</span>=<span class="hljs-string">&quot;&#123;CSS属性名:&#x27;value属性值&#x27;&#125;&quot;</span>&gt;</span>&#123;&#123;message&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span> --&gt;
-    &lt;h2 :style=<span class="hljs-string">&quot;&#123;fontSize:&#x27;50px&#x27;,color:&#x27;red&#x27;&#125;&quot;</span>&gt;&#123;&#123;message&#125;&#125;&lt;/h2&gt;
-  &lt;/div&gt;
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-comment">&lt;!-- &lt;h2 :style=&quot;&#123;CSS属性名:&#x27;value属性值&#x27;&#125;&quot;&gt;&#123;&#123;message&#125;&#125;&lt;/h2&gt; --&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">:style</span>=<span class="hljs-string">&quot;&#123;fontSize:&#x27;50px&#x27;,color:&#x27;red&#x27;&#125;&quot;</span>&gt;</span>&#123;&#123;message&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span>
+<span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
 &lt;/body&gt;
-&lt;script src=<span class="hljs-string">&quot;../js/vue.js&quot;</span>&gt;&lt;/script&gt;
-&lt;script&gt;
-  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue(&#123;
-    el: <span class="hljs-string">&#x27;#app&#x27;</span>,
-    data: &#123;
-      message: <span class="hljs-string">&#x27;hello vue&#x27;</span>,
-    &#125;
-  &#125;)
-&lt;/script&gt;</code></pre></div>
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;../js/vue.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span></span>
+<span class="language-javascript"><span class="language-xml">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>,</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">data</span>: &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;hello vue&#x27;</span>,</span></span>
+<span class="language-javascript"><span class="language-xml">    &#125;</span></span>
+<span class="language-javascript"><span class="language-xml">  &#125;)</span></span>
+<span class="language-javascript"><span class="language-xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre></div>
 
 
 
@@ -477,49 +479,49 @@
 </li>
 </ul>
 <div class="hljs"><pre><code class="hljs JavaScript">&lt;body&gt;
-  &lt;div id=<span class="hljs-string">&quot;app&quot;</span>&gt;
-    &lt;h2&gt;&#123;&#123;firstName + <span class="hljs-string">&#x27; &#x27;</span> + lastName&#125;&#125;&lt;/h2&gt;
-    &lt;h2&gt;&#123;&#123;firstName&#125;&#125; &#123;&#123;lastName&#125;&#125;&lt;/h2&gt;
-    &lt;h2&gt;&#123;&#123;getFullName()&#125;&#125;&lt;/h2&gt;
-    &lt;h2&gt;&#123;&#123;fullName&#125;&#125;&lt;/h2&gt;
-
-  &lt;/div&gt;
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>&#123;&#123;firstName + &#x27; &#x27; + lastName&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>&#123;&#123;firstName&#125;&#125; &#123;&#123;lastName&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>&#123;&#123;getFullName()&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>&#123;&#123;fullName&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span>
+<span class="language-xml"></span>
+<span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
 &lt;/body&gt;
-&lt;script src=<span class="hljs-string">&quot;../js/vue.js&quot;</span>&gt;&lt;/script&gt;
-&lt;script&gt;
-  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue(&#123;
-    el: <span class="hljs-string">&#x27;#app&#x27;</span>,
-    data: &#123;
-      firstName: <span class="hljs-string">&#x27;Lron&#x27;</span>,
-      lastName: <span class="hljs-string">&#x27;Man&#x27;</span>
-    &#125;,
-    <span class="hljs-comment">// 推荐使用计算属性来操作，因为它会将这些数据进行缓存， 无论打印多少次，它只会调用一次</span>
-    computed: &#123; <span class="hljs-comment">//  计算属性   注意 : 计算的是 属性,  所以这里面的属性 看成一个 对象(用名词形式来表达), 调用时候不用加小括号</span>
-      fullName: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.firstName + <span class="hljs-string">&#x27; &#x27;</span> + <span class="hljs-built_in">this</span>.lastName
-
-      &#125;
-    &#125;,
-    methods: &#123;
-      <span class="hljs-comment">//  不会缓存， 所以有多少次就调用多少次，  没有 computed 划算</span>
-      getFullName: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.firstName + <span class="hljs-string">&#x27; &#x27;</span> + <span class="hljs-built_in">this</span>.lastName
-      &#125;
-    &#125;
-  &#125;)
-&lt;/script&gt;</code></pre></div>
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;../js/vue.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span></span>
+<span class="language-javascript"><span class="language-xml">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>,</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">data</span>: &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">firstName</span>: <span class="hljs-string">&#x27;Lron&#x27;</span>,</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">lastName</span>: <span class="hljs-string">&#x27;Man&#x27;</span></span></span>
+<span class="language-javascript"><span class="language-xml">    &#125;,</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-comment">// 推荐使用计算属性来操作，因为它会将这些数据进行缓存， 无论打印多少次，它只会调用一次</span></span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">computed</span>: &#123; <span class="hljs-comment">//  计算属性   注意 : 计算的是 属性,  所以这里面的属性 看成一个 对象(用名词形式来表达), 调用时候不用加小括号</span></span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">fullName</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">firstName</span> + <span class="hljs-string">&#x27; &#x27;</span> + <span class="hljs-variable language_">this</span>.<span class="hljs-property">lastName</span></span></span>
+<span class="language-javascript"><span class="language-xml"></span></span>
+<span class="language-javascript"><span class="language-xml">      &#125;</span></span>
+<span class="language-javascript"><span class="language-xml">    &#125;,</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">methods</span>: &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-comment">//  不会缓存， 所以有多少次就调用多少次，  没有 computed 划算</span></span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">getFullName</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">firstName</span> + <span class="hljs-string">&#x27; &#x27;</span> + <span class="hljs-variable language_">this</span>.<span class="hljs-property">lastName</span></span></span>
+<span class="language-javascript"><span class="language-xml">      &#125;</span></span>
+<span class="language-javascript"><span class="language-xml">    &#125;</span></span>
+<span class="language-javascript"><span class="language-xml">  &#125;)</span></span>
+<span class="language-javascript"><span class="language-xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre></div>
 
 <h3 id="3-3-计算属性的setter和getter"><a href="#3-3-计算属性的setter和getter" class="headerlink" title="3.3 计算属性的setter和getter"></a>3.3 计算属性的setter和getter</h3><blockquote>
 <p>每个计算属性都有 set 和 get 方法 ，但一般我们不用去设置 set 方法， 只用 get 的方法  只读属性</p>
 </blockquote>
-<div class="hljs"><pre><code class="hljs JavaScript">computed:&#123;
-    fullName:&#123;
-        get()&#123;&#125;,
-        set()&#123;&#125;
+<div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-attr">computed</span>:&#123;
+    <span class="hljs-attr">fullName</span>:&#123;
+        <span class="hljs-title function_">get</span>(<span class="hljs-params"></span>)&#123;&#125;,
+        <span class="hljs-title function_">set</span>(<span class="hljs-params"></span>)&#123;&#125;
     &#125;
 &#125;
 <span class="hljs-comment">// 由于不经常用set， 如果只用 get方法的话 可以直接简化的成下面的。 </span>
-	fullName()&#123;
+	<span class="hljs-title function_">fullName</span>(<span class="hljs-params"></span>)&#123;
         
     &#125;</code></pre></div>
 
@@ -541,7 +543,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="4-1-v-on-基本语法"><a href="#4-1-v-on-基本语法" class="headerlink" title="4.1 v-on 基本语法"></a>4.1 v-on 基本语法</h3>  <div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<h3 id="4-1-v-on-基本语法"><a href="#4-1-v-on-基本语法" class="headerlink" title="4.1 v-on 基本语法"></a>4.1 v-on 基本语法</h3>  <div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span> /&gt;</span>
@@ -557,27 +559,27 @@
       <span class="hljs-comment">&lt;!-- &lt;input type=&quot;text&quot; v-on:keyup=&quot;&quot;&gt; --&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;node_modules/vue/dist/vue.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
-<span class="javascript">      <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue(&#123;</span>
-<span class="javascript">        el: <span class="hljs-string">&quot;#app&quot;</span>,</span>
-        data: &#123;
-<span class="javascript">          message: <span class="hljs-string">&quot;Hello Vue.js!&quot;</span></span>
-        &#125;,
-        /**
-         * 实例选项 methods，存储模板中使用的方法
-         */
-        methods: &#123;
-   
-          onClick() &#123;
-<span class="javascript">            <span class="hljs-built_in">window</span>.alert(<span class="hljs-string">&quot;hello&quot;</span>);</span>
-          &#125;
-        &#125;
-      &#125;);
-    <span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span>
+<span class="language-javascript">      <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;</span>
+<span class="language-javascript">        <span class="hljs-attr">el</span>: <span class="hljs-string">&quot;#app&quot;</span>,</span>
+<span class="language-javascript">        <span class="hljs-attr">data</span>: &#123;</span>
+<span class="language-javascript">          <span class="hljs-attr">message</span>: <span class="hljs-string">&quot;Hello Vue.js!&quot;</span></span>
+<span class="language-javascript">        &#125;,</span>
+<span class="language-javascript">        <span class="hljs-comment">/**</span></span>
+<span class="hljs-comment"><span class="language-javascript">         * 实例选项 methods，存储模板中使用的方法</span></span>
+<span class="hljs-comment"><span class="language-javascript">         */</span></span>
+<span class="language-javascript">        <span class="hljs-attr">methods</span>: &#123;</span>
+<span class="language-javascript">   </span>
+<span class="language-javascript">          <span class="hljs-title function_">onClick</span>(<span class="hljs-params"></span>) &#123;</span>
+<span class="language-javascript">            <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">alert</span>(<span class="hljs-string">&quot;hello&quot;</span>);</span>
+<span class="language-javascript">          &#125;</span>
+<span class="language-javascript">        &#125;</span>
+<span class="language-javascript">      &#125;);</span>
+<span class="language-javascript">    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 
-<h3 id="4-2-处理函数的-this-指向"><a href="#4-2-处理函数的-this-指向" class="headerlink" title="4.2 处理函数的 this 指向"></a>4.2 处理函数的 this 指向</h3><div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<h3 id="4-2-处理函数的-this-指向"><a href="#4-2-处理函数的-this-指向" class="headerlink" title="4.2 处理函数的 this 指向"></a>4.2 处理函数的 this 指向</h3><div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span> /&gt;</span>
@@ -590,34 +592,34 @@
       <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;onClick2&quot;</span>&gt;</span>测试2<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;node_modules/vue/dist/vue.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
-<span class="javascript">      <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue(&#123;</span>
-<span class="javascript">        el: <span class="hljs-string">&quot;#app&quot;</span>,</span>
-        data: &#123;
-<span class="javascript">          message: <span class="hljs-string">&quot;Hello Vue.js!&quot;</span></span>
-        &#125;,
-        methods: &#123;
-          onClick() &#123;
-<span class="javascript">            <span class="hljs-comment">// 事件处理函数中的 this 指向的是 Vue 实例对象，也就是 app</span></span>
-<span class="javascript">            <span class="hljs-comment">// 注意：事件处理函数不能使用箭头函数定义</span></span>
-<span class="javascript">            <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span> === app);</span>
-
-<span class="javascript">            <span class="hljs-built_in">this</span>.message = <span class="hljs-string">&quot;hello&quot;</span>;</span>
-          &#125;,
-
-<span class="javascript">          <span class="hljs-comment">// 注意：箭头函数定义的 methods 其中的 this 指向的是 window</span></span>
-<span class="javascript">          <span class="hljs-comment">// 除非你不需要在函数中访问 Vue 实例 this，你可以定义箭头函数</span></span>
-<span class="javascript">          <span class="hljs-comment">// 何必呢？</span></span>
-<span class="javascript">          onClick2: <span class="hljs-function">() =&gt;</span> &#123;</span>
-<span class="javascript">            <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>);</span>
-          &#125;
-        &#125;
-      &#125;);
-    <span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span>
+<span class="language-javascript">      <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;</span>
+<span class="language-javascript">        <span class="hljs-attr">el</span>: <span class="hljs-string">&quot;#app&quot;</span>,</span>
+<span class="language-javascript">        <span class="hljs-attr">data</span>: &#123;</span>
+<span class="language-javascript">          <span class="hljs-attr">message</span>: <span class="hljs-string">&quot;Hello Vue.js!&quot;</span></span>
+<span class="language-javascript">        &#125;,</span>
+<span class="language-javascript">        <span class="hljs-attr">methods</span>: &#123;</span>
+<span class="language-javascript">          <span class="hljs-title function_">onClick</span>(<span class="hljs-params"></span>) &#123;</span>
+<span class="language-javascript">            <span class="hljs-comment">// 事件处理函数中的 this 指向的是 Vue 实例对象，也就是 app</span></span>
+<span class="language-javascript">            <span class="hljs-comment">// 注意：事件处理函数不能使用箭头函数定义</span></span>
+<span class="language-javascript">            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span> === app);</span>
+<span class="language-javascript"></span>
+<span class="language-javascript">            <span class="hljs-variable language_">this</span>.<span class="hljs-property">message</span> = <span class="hljs-string">&quot;hello&quot;</span>;</span>
+<span class="language-javascript">          &#125;,</span>
+<span class="language-javascript"></span>
+<span class="language-javascript">          <span class="hljs-comment">// 注意：箭头函数定义的 methods 其中的 this 指向的是 window</span></span>
+<span class="language-javascript">          <span class="hljs-comment">// 除非你不需要在函数中访问 Vue 实例 this，你可以定义箭头函数</span></span>
+<span class="language-javascript">          <span class="hljs-comment">// 何必呢？</span></span>
+<span class="language-javascript">          <span class="hljs-attr">onClick2</span>: <span class="hljs-function">() =&gt;</span> &#123;</span>
+<span class="language-javascript">            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>);</span>
+<span class="language-javascript">          &#125;</span>
+<span class="language-javascript">        &#125;</span>
+<span class="language-javascript">      &#125;);</span>
+<span class="language-javascript">    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 
-<h3 id="4-3-v-on-的参数传递问题"><a href="#4-3-v-on-的参数传递问题" class="headerlink" title="4.3 v-on 的参数传递问题"></a>4.3 v-on 的参数传递问题</h3><div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<h3 id="4-3-v-on-的参数传递问题"><a href="#4-3-v-on-的参数传递问题" class="headerlink" title="4.3 v-on 的参数传递问题"></a>4.3 v-on 的参数传递问题</h3><div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
@@ -645,25 +647,25 @@
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;../js/vue.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
-<span class="javascript">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue(&#123;</span>
-<span class="javascript">    el: <span class="hljs-string">&#x27;#app&#x27;</span>,</span>
-    data: &#123;
-
-    &#125;,
-    methods: &#123;
-      btn1() &#123;
-<span class="javascript">        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;btn1&#x27;</span>);</span>
-      &#125;,
-      btn2(event) &#123;
-<span class="javascript">        <span class="hljs-built_in">console</span>.log(event);</span>
-      &#125;,
-      btn3(abc, event) &#123;
-<span class="javascript">        <span class="hljs-built_in">console</span>.log(abc, event);</span>
-      &#125;
-    &#125;
-  &#125;)
-<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span>
+<span class="language-javascript">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;</span>
+<span class="language-javascript">    <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>,</span>
+<span class="language-javascript">    <span class="hljs-attr">data</span>: &#123;</span>
+<span class="language-javascript"></span>
+<span class="language-javascript">    &#125;,</span>
+<span class="language-javascript">    <span class="hljs-attr">methods</span>: &#123;</span>
+<span class="language-javascript">      <span class="hljs-title function_">btn1</span>(<span class="hljs-params"></span>) &#123;</span>
+<span class="language-javascript">        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;btn1&#x27;</span>);</span>
+<span class="language-javascript">      &#125;,</span>
+<span class="language-javascript">      <span class="hljs-title function_">btn2</span>(<span class="hljs-params">event</span>) &#123;</span>
+<span class="language-javascript">        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(event);</span>
+<span class="language-javascript">      &#125;,</span>
+<span class="language-javascript">      <span class="hljs-title function_">btn3</span>(<span class="hljs-params">abc, event</span>) &#123;</span>
+<span class="language-javascript">        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(abc, event);</span>
+<span class="language-javascript">      &#125;</span>
+<span class="language-javascript">    &#125;</span>
+<span class="language-javascript">  &#125;)</span>
+<span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 
@@ -676,7 +678,7 @@
 <li>.native - 监听组件根元素的原生事件。</li>
 <li>.once - 只触发一次回调。</li>
 </ul>
-<div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
@@ -684,13 +686,13 @@
   <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span>
-<span class="css">  <span class="hljs-selector-class">.my</span> &#123;</span>
-    width: 100px;
-    height: 100px;
-    background-color: pink;
-  &#125;
-<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span>
+<span class="language-css">  <span class="hljs-selector-class">.my</span> &#123;</span>
+<span class="language-css">    <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;</span>
+<span class="language-css">    <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;</span>
+<span class="language-css">    <span class="hljs-attribute">background-color</span>: pink;</span>
+<span class="language-css">  &#125;</span>
+<span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>.stop : 调用 event.stopPropagation() 阻止冒泡事件<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
@@ -713,28 +715,28 @@
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;../js/vue.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
-<span class="javascript">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue(&#123;</span>
-<span class="javascript">    el: <span class="hljs-string">&#x27;#app&#x27;</span>,</span>
-    data: &#123;
-<span class="javascript">      message: <span class="hljs-string">&#x27;hello vue&#x27;</span>,</span>
-    &#125;,
-    methods: &#123;
-      divClick() &#123;
-<span class="javascript">        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;div&#x27;</span>);</span>
-      &#125;,
-      btnClick() &#123;
-<span class="javascript">        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;btn&#x27;</span>);</span>
-      &#125;,
-      inpClick() &#123;
-<span class="javascript">        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;inp&#x27;</span>);</span>
-      &#125;,
-      keyup() &#123;
-<span class="javascript">        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;keyup&#x27;</span>);</span>
-      &#125;
-    &#125;
-  &#125;)
-<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span>
+<span class="language-javascript">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;</span>
+<span class="language-javascript">    <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>,</span>
+<span class="language-javascript">    <span class="hljs-attr">data</span>: &#123;</span>
+<span class="language-javascript">      <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;hello vue&#x27;</span>,</span>
+<span class="language-javascript">    &#125;,</span>
+<span class="language-javascript">    <span class="hljs-attr">methods</span>: &#123;</span>
+<span class="language-javascript">      <span class="hljs-title function_">divClick</span>(<span class="hljs-params"></span>) &#123;</span>
+<span class="language-javascript">        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;div&#x27;</span>);</span>
+<span class="language-javascript">      &#125;,</span>
+<span class="language-javascript">      <span class="hljs-title function_">btnClick</span>(<span class="hljs-params"></span>) &#123;</span>
+<span class="language-javascript">        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;btn&#x27;</span>);</span>
+<span class="language-javascript">      &#125;,</span>
+<span class="language-javascript">      <span class="hljs-title function_">inpClick</span>(<span class="hljs-params"></span>) &#123;</span>
+<span class="language-javascript">        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;inp&#x27;</span>);</span>
+<span class="language-javascript">      &#125;,</span>
+<span class="language-javascript">      <span class="hljs-title function_">keyup</span>(<span class="hljs-params"></span>) &#123;</span>
+<span class="language-javascript">        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;keyup&#x27;</span>);</span>
+<span class="language-javascript">      &#125;</span>
+<span class="language-javascript">    &#125;</span>
+<span class="language-javascript">  &#125;)</span>
+<span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 
@@ -750,8 +752,8 @@
 </ul>
 <h3 id="5-2-v-if-和-v-show-的区别"><a href="#5-2-v-if-和-v-show-的区别" class="headerlink" title="5.2 v-if 和 v-show 的区别"></a>5.2 v-if 和 v-show 的区别</h3><ul>
 <li>v-if条件渲染，如果条件为 false ， 则不渲染元素<ul>
-<li>true 渲染 DOM</li>
-<li>false 不渲染 DOM</li>
+<li> true 渲染 DOM</li>
+<li> false 不渲染 DOM</li>
 </ul>
 </li>
 <li>v-show 条件显示，无论条件的真假始终都渲染元素<ul>
@@ -764,7 +766,7 @@
 <blockquote>
 <p>一般来说， <code>v-if</code> 有更高的切换开销， 而 <code>v-show</code> 有更高的初始渲染开销。 因此、如果需要非常频繁地切换，则使用 <code>v-show</code> 较好； 如果在运行时条件很少改变，则使用<code>v-if</code> 较好</p>
 </blockquote>
-<div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
@@ -785,21 +787,21 @@
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;../js/vue.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
-<span class="javascript">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue(&#123;</span>
-<span class="javascript">    el: <span class="hljs-string">&#x27;#app&#x27;</span>,</span>
-    data: &#123;
-<span class="javascript">      message: <span class="hljs-string">&#x27;hello vue&#x27;</span>,</span>
-<span class="javascript">      isShow: <span class="hljs-literal">false</span></span>
-    &#125;
-  &#125;)
-<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span>
+<span class="language-javascript">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;</span>
+<span class="language-javascript">    <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>,</span>
+<span class="language-javascript">    <span class="hljs-attr">data</span>: &#123;</span>
+<span class="language-javascript">      <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;hello vue&#x27;</span>,</span>
+<span class="language-javascript">      <span class="hljs-attr">isShow</span>: <span class="hljs-literal">false</span></span>
+<span class="language-javascript">    &#125;</span>
+<span class="language-javascript">  &#125;)</span>
+<span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 
 
 
-<h2 id="6-循环遍历"><a href="#6-循环遍历" class="headerlink" title="6.循环遍历"></a>6.循环遍历</h2><h3 id="6-1-v-for-遍历数组"><a href="#6-1-v-for-遍历数组" class="headerlink" title="6.1 v-for 遍历数组"></a>6.1 v-for 遍历数组</h3><div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<h2 id="6-循环遍历"><a href="#6-循环遍历" class="headerlink" title="6.循环遍历"></a>6.循环遍历</h2><h3 id="6-1-v-for-遍历数组"><a href="#6-1-v-for-遍历数组" class="headerlink" title="6.1 v-for 遍历数组"></a>6.1 v-for 遍历数组</h3><div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
@@ -816,32 +818,32 @@
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;../js/vue.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
-<span class="javascript">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue(&#123;</span>
-<span class="javascript">    el: <span class="hljs-string">&#x27;#app&#x27;</span>,</span>
-    data: &#123;
-<span class="javascript">      names: [<span class="hljs-string">&#x27;张三&#x27;</span>, <span class="hljs-string">&#x27;李四&#x27;</span>, <span class="hljs-string">&#x27;王五&#x27;</span>]</span>
-    &#125;
-  &#125;)
-<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span>
+<span class="language-javascript">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;</span>
+<span class="language-javascript">    <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>,</span>
+<span class="language-javascript">    <span class="hljs-attr">data</span>: &#123;</span>
+<span class="language-javascript">      <span class="hljs-attr">names</span>: [<span class="hljs-string">&#x27;张三&#x27;</span>, <span class="hljs-string">&#x27;李四&#x27;</span>, <span class="hljs-string">&#x27;王五&#x27;</span>]</span>
+<span class="language-javascript">    &#125;</span>
+<span class="language-javascript">  &#125;)</span>
+<span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 
 <h3 id="6-2-检测数组更新"><a href="#6-2-检测数组更新" class="headerlink" title="6.2 检测数组更新"></a>6.2 检测数组更新</h3><p> <strong>这些常见的数组操作方法都会正常的进行视图更新：</strong></p>
-<div class="hljs"><pre><code class="hljs JavaScript">push();
-pop();
-shift();
-unshift();
-splice();
-sort();
-reverse();</code></pre></div>
+<div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-title function_">push</span>();
+<span class="hljs-title function_">pop</span>();
+<span class="hljs-title function_">shift</span>();
+<span class="hljs-title function_">unshift</span>();
+<span class="hljs-title function_">splice</span>();
+<span class="hljs-title function_">sort</span>();
+<span class="hljs-title function_">reverse</span>();</code></pre></div>
 
 <p><strong>或者直接对数组进行重新赋值：</strong></p>
 <div class="hljs"><pre><code class="hljs JavaScript">实例.数组 = 新的数组;</code></pre></div>
 
 
 
-<h3 id="6-3-v-for-遍历对象"><a href="#6-3-v-for-遍历对象" class="headerlink" title="6.3 v-for 遍历对象"></a>6.3 v-for 遍历对象</h3><div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<h3 id="6-3-v-for-遍历对象"><a href="#6-3-v-for-遍历对象" class="headerlink" title="6.3 v-for 遍历对象"></a>6.3 v-for 遍历对象</h3><div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
@@ -863,18 +865,18 @@ reverse();</code></pre></div>
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;../js/vue.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
-<span class="javascript">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue(&#123;</span>
-<span class="javascript">    el: <span class="hljs-string">&#x27;#app&#x27;</span>,</span>
-    data: &#123;
-      info: &#123;
-<span class="javascript">        name: <span class="hljs-string">&#x27;wpf&#x27;</span>,</span>
-        age: 18,
-<span class="javascript">        sex: <span class="hljs-string">&#x27;男&#x27;</span></span>
-      &#125;
-    &#125;
-  &#125;)
-<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span>
+<span class="language-javascript">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;</span>
+<span class="language-javascript">    <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>,</span>
+<span class="language-javascript">    <span class="hljs-attr">data</span>: &#123;</span>
+<span class="language-javascript">      <span class="hljs-attr">info</span>: &#123;</span>
+<span class="language-javascript">        <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;wpf&#x27;</span>,</span>
+<span class="language-javascript">        <span class="hljs-attr">age</span>: <span class="hljs-number">18</span>,</span>
+<span class="language-javascript">        <span class="hljs-attr">sex</span>: <span class="hljs-string">&#x27;男&#x27;</span></span>
+<span class="language-javascript">      &#125;</span>
+<span class="language-javascript">    &#125;</span>
+<span class="language-javascript">  &#125;)</span>
+<span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 
@@ -904,7 +906,7 @@ reverse();</code></pre></div>
 </ul>
 </li>
 </ul>
-<div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
@@ -922,14 +924,14 @@ reverse();</code></pre></div>
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;../js/vue.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
-<span class="javascript">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue(&#123;</span>
-<span class="javascript">    el: <span class="hljs-string">&#x27;#app&#x27;</span>,</span>
-    data: &#123;
-<span class="javascript">      message: <span class="hljs-string">&#x27;hello vue&#x27;</span>,</span>
-    &#125;
-  &#125;)
-<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span>
+<span class="language-javascript">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;</span>
+<span class="language-javascript">    <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>,</span>
+<span class="language-javascript">    <span class="hljs-attr">data</span>: &#123;</span>
+<span class="language-javascript">      <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;hello vue&#x27;</span>,</span>
+<span class="language-javascript">    &#125;</span>
+<span class="language-javascript">  &#125;)</span>
+<span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 
@@ -960,7 +962,7 @@ reverse();</code></pre></div>
 </ul>
 </li>
 </ul>
-<div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
@@ -989,17 +991,17 @@ reverse();</code></pre></div>
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;../js/vue.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
-<span class="javascript">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue(&#123;</span>
-<span class="javascript">    el: <span class="hljs-string">&#x27;#app&#x27;</span>,</span>
-    data: &#123;
-<span class="javascript">      message: <span class="hljs-string">&#x27;hello vue&#x27;</span>,</span>
-<span class="javascript">      isAgree: <span class="hljs-literal">false</span>,</span>
-      hobbies: [],
-<span class="javascript">      originHobbies: [<span class="hljs-string">&#x27;足球&#x27;</span>, <span class="hljs-string">&#x27;篮球&#x27;</span>, <span class="hljs-string">&#x27;羽毛球&#x27;</span>, <span class="hljs-string">&#x27;排球&#x27;</span>]</span>
-    &#125;
-  &#125;)
-<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span>
+<span class="language-javascript">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;</span>
+<span class="language-javascript">    <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>,</span>
+<span class="language-javascript">    <span class="hljs-attr">data</span>: &#123;</span>
+<span class="language-javascript">      <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;hello vue&#x27;</span>,</span>
+<span class="language-javascript">      <span class="hljs-attr">isAgree</span>: <span class="hljs-literal">false</span>,</span>
+<span class="language-javascript">      <span class="hljs-attr">hobbies</span>: [],</span>
+<span class="language-javascript">      <span class="hljs-attr">originHobbies</span>: [<span class="hljs-string">&#x27;足球&#x27;</span>, <span class="hljs-string">&#x27;篮球&#x27;</span>, <span class="hljs-string">&#x27;羽毛球&#x27;</span>, <span class="hljs-string">&#x27;排球&#x27;</span>]</span>
+<span class="language-javascript">    &#125;</span>
+<span class="language-javascript">  &#125;)</span>
+<span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 
@@ -1019,7 +1021,7 @@ reverse();</code></pre></div>
 </li>
 </ul>
 <p><img src="https://i.loli.net/2020/09/25/HrvkQnG3p6jBtzd.png" srcset="/img/loading.gif" alt="image-20200920162613143"></p>
-<h3 id="7-4-v-model-修饰符的使用"><a href="#7-4-v-model-修饰符的使用" class="headerlink" title="7.4 v-model 修饰符的使用"></a>7.4 v-model 修饰符的使用</h3><div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<h3 id="7-4-v-model-修饰符的使用"><a href="#7-4-v-model-修饰符的使用" class="headerlink" title="7.4 v-model 修饰符的使用"></a>7.4 v-model 修饰符的使用</h3><div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
@@ -1047,16 +1049,16 @@ reverse();</code></pre></div>
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;../js/vue.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
-<span class="javascript">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue(&#123;</span>
-<span class="javascript">    el: <span class="hljs-string">&#x27;#app&#x27;</span>,</span>
-    data: &#123;
-<span class="javascript">      message: <span class="hljs-string">&#x27;hello vue&#x27;</span>,</span>
-      age: 18,
-<span class="javascript">      name: <span class="hljs-string">&#x27;&#x27;</span></span>
-    &#125;
-  &#125;)
-<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span>
+<span class="language-javascript">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;</span>
+<span class="language-javascript">    <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>,</span>
+<span class="language-javascript">    <span class="hljs-attr">data</span>: &#123;</span>
+<span class="language-javascript">      <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;hello vue&#x27;</span>,</span>
+<span class="language-javascript">      <span class="hljs-attr">age</span>: <span class="hljs-number">18</span>,</span>
+<span class="language-javascript">      <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;&#x27;</span></span>
+<span class="language-javascript">    &#125;</span>
+<span class="language-javascript">  &#125;)</span>
+<span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 
@@ -1065,59 +1067,71 @@ reverse();</code></pre></div>
 
 
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/vue/">vue</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/vue/">vue</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2020/09/25/19-Vue%E7%BB%84%E4%BB%B6%E5%8C%96%E5%BC%80%E5%8F%91/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">Vue组件化开发</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2020/09/02/17.filter-%E3%80%81map-%E3%80%81reduce-%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8/">
-                    <span class="hidden-mobile">filter()、map()、reduce()函数的使用</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/vue/">
+                              vue
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/vue/">
+                                  vue
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2020/09/25/19-Vue%E7%BB%84%E4%BB%B6%E5%8C%96%E5%BC%80%E5%8F%91/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      Vue组件化开发
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2020/09/02/17.filter-%E3%80%81map-%E3%80%81reduce-%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8/">
+                                    <span class="hidden-mobile">
+                                      filter()、map()、reduce()函数的使用
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -1144,26 +1158,26 @@ reverse();</code></pre></div>
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

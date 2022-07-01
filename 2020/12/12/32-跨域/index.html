@@ -203,18 +203,20 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">跨域</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h2 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h2><blockquote>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                跨域
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h2 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h2><blockquote>
 <p>同源策略（Same-Origin-Policy） 最早是由 Netscape 公司提出，是浏览器的一种安全策略。</p>
 </blockquote>
 <p><strong>即 不同源的页面之间，不准互相访问数据</strong></p>
@@ -236,29 +238,29 @@
 <h3 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h3><p>因为CORS与AJAX没有什么差别，只不过浏览器发现是AJAX请求跨源，就会在请求中自动添加一些附加的头信息。因此我们只需要以此判断是否可以跨域，在响应头中加入一些信息即可。</p>
 <p>所以，CORS跨域的关键是在服务器，只要服务器实现了CORS接口，即可跨源通信。</p>
 <p>简单请求：</p>
-<div class="hljs"><pre><code class="hljs js">response.setHeader(<span class="hljs-string">&#x27;Access-Control-Allow-Origin&#x27;</span>, <span class="hljs-string">&#x27;http://wangpf.com:9990&#x27;</span>)</code></pre></div>
+<div class="hljs"><pre><code class="hljs js">response.<span class="hljs-title function_">setHeader</span>(<span class="hljs-string">&#x27;Access-Control-Allow-Origin&#x27;</span>, <span class="hljs-string">&#x27;http://wangpf.com:9990&#x27;</span>)</code></pre></div>
 <p>注意：它的值要么是请求时Origin字段的值（<strong>协议 + 域名 + 端口</strong>），要么是一个<code>*</code>，表示接受任意域名的请求。</p>
 <p><strong>AJAX 和服务器代码展示：</strong></p>
 <p><code>http://wangpf.com:9990中的js内容：</code></p>
 <div class="hljs"><pre><code class="hljs js">
-<span class="hljs-keyword">const</span> req = <span class="hljs-keyword">new</span> XMLHttpRequest()
-req.open(<span class="hljs-string">&#x27;GET&#x27;</span>, <span class="hljs-string">&#x27;http://qq.com:8888/friends.json&#x27;</span>)
-req.send()
-req.onreadystatechange = <span class="hljs-function">() =&gt;</span> &#123;
-  <span class="hljs-keyword">if</span> (req.readyState === <span class="hljs-number">4</span>) &#123;
-    <span class="hljs-keyword">if</span> (req.status &gt;= <span class="hljs-number">200</span> &amp;&amp; req.status &lt; <span class="hljs-number">300</span>) &#123;
-      <span class="hljs-built_in">console</span>.log(req.response);
+<span class="hljs-keyword">const</span> req = <span class="hljs-keyword">new</span> <span class="hljs-title class_">XMLHttpRequest</span>()
+req.<span class="hljs-title function_">open</span>(<span class="hljs-string">&#x27;GET&#x27;</span>, <span class="hljs-string">&#x27;http://qq.com:8888/friends.json&#x27;</span>)
+req.<span class="hljs-title function_">send</span>()
+req.<span class="hljs-property">onreadystatechange</span> = <span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-keyword">if</span> (req.<span class="hljs-property">readyState</span> === <span class="hljs-number">4</span>) &#123;
+    <span class="hljs-keyword">if</span> (req.<span class="hljs-property">status</span> &gt;= <span class="hljs-number">200</span> &amp;&amp; req.<span class="hljs-property">status</span> &lt; <span class="hljs-number">300</span>) &#123;
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(req.<span class="hljs-property">response</span>);
     &#125;
   &#125;
 &#125;</code></pre></div>
 <p><code>http://qq.com:8888 中服务端内容</code></p>
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">if</span>(path === <span class="hljs-string">&#x27;friends.json&#x27;</span>)&#123;
-  response.statusCode = <span class="hljs-number">200</span>
-    response.setHeader(<span class="hljs-string">&#x27;Content-Type&#x27;</span>, <span class="hljs-string">&#x27;text/json;charset=utf-8&#x27;</span>)
+  response.<span class="hljs-property">statusCode</span> = <span class="hljs-number">200</span>
+    response.<span class="hljs-title function_">setHeader</span>(<span class="hljs-string">&#x27;Content-Type&#x27;</span>, <span class="hljs-string">&#x27;text/json;charset=utf-8&#x27;</span>)
     <span class="hljs-comment">// console.log(request.headers[&#x27;referer&#x27;]); </span>
-    response.setHeader(<span class="hljs-string">&#x27;Access-Control-Allow-Origin&#x27;</span>, <span class="hljs-string">&#x27;http://wangpf.com:9990&#x27;</span>)
-    response.write(fs.readFileSync(<span class="hljs-string">&#x27;./public/friends.json&#x27;</span>))
-    response.end()
+    response.<span class="hljs-title function_">setHeader</span>(<span class="hljs-string">&#x27;Access-Control-Allow-Origin&#x27;</span>, <span class="hljs-string">&#x27;http://wangpf.com:9990&#x27;</span>)
+    response.<span class="hljs-title function_">write</span>(fs.<span class="hljs-title function_">readFileSync</span>(<span class="hljs-string">&#x27;./public/friends.json&#x27;</span>))
+    response.<span class="hljs-title function_">end</span>()
   &#125;</code></pre></div>
 
 <h2 id="JSONP-实现跨域"><a href="#JSONP-实现跨域" class="headerlink" title="JSONP 实现跨域"></a>JSONP 实现跨域</h2><p><strong>什么是JSONP？</strong></p>
@@ -284,84 +286,98 @@ req.onreadystatechange = <span class="hljs-function">() =&gt;</span> &#123;
 <li>JSONP 就是利用 script标签的跨域能力来发送请求的（<strong>这也是jsonp跨域只能用get请求的原因所在</strong>）</li>
 </ul>
 <h3 id="封装一个JSONP函数"><a href="#封装一个JSONP函数" class="headerlink" title="封装一个JSONP函数"></a>封装一个JSONP函数</h3><div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">//封装JSONP函数  使用JSONP 实现</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">JSONP</span>(<span class="hljs-params">url</span>) </span>&#123;
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;
-    <span class="hljs-keyword">const</span> random = <span class="hljs-string">&#x27;WangpfCallbackName&#x27;</span> + <span class="hljs-built_in">Math</span>.random()
-    <span class="hljs-built_in">window</span>[random] = <span class="hljs-function">(<span class="hljs-params">data</span>) =&gt;</span> &#123;
-      resolve(data)
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">JSONP</span>(<span class="hljs-params">url</span>) &#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">const</span> random = <span class="hljs-string">&#x27;WangpfCallbackName&#x27;</span> + <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>()
+    <span class="hljs-variable language_">window</span>[random] = <span class="hljs-function">(<span class="hljs-params">data</span>) =&gt;</span> &#123;
+      <span class="hljs-title function_">resolve</span>(data)
     &#125;
-    <span class="hljs-keyword">const</span> script = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;script&#x27;</span>)
-    script.src = <span class="hljs-string">`<span class="hljs-subst">$&#123;url&#125;</span>?callback=<span class="hljs-subst">$&#123;random&#125;</span>`</span>
-    <span class="hljs-built_in">document</span>.body.appendChild(script)
-    script.onload = <span class="hljs-function">() =&gt;</span> &#123;
-      script.remove()
+    <span class="hljs-keyword">const</span> script = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;script&#x27;</span>)
+    script.<span class="hljs-property">src</span> = <span class="hljs-string">`<span class="hljs-subst">$&#123;url&#125;</span>?callback=<span class="hljs-subst">$&#123;random&#125;</span>`</span>
+    <span class="hljs-variable language_">document</span>.<span class="hljs-property">body</span>.<span class="hljs-title function_">appendChild</span>(script)
+    script.<span class="hljs-property">onload</span> = <span class="hljs-function">() =&gt;</span> &#123;
+      script.<span class="hljs-title function_">remove</span>()
     &#125;
-    script.onerror = <span class="hljs-function">() =&gt;</span> &#123;
-      reject()
+    script.<span class="hljs-property">onerror</span> = <span class="hljs-function">() =&gt;</span> &#123;
+      <span class="hljs-title function_">reject</span>()
     &#125;
   &#125;)
 &#125;
 
-JSONP(<span class="hljs-string">&#x27;http://qq.com:8888/friends.js&#x27;</span>)
-  .then(<span class="hljs-function">(<span class="hljs-params">data</span>) =&gt;</span> &#123;
-    <span class="hljs-built_in">console</span>.log(data);
+<span class="hljs-title class_">JSON</span>P(<span class="hljs-string">&#x27;http://qq.com:8888/friends.js&#x27;</span>)
+  .<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">data</span>) =&gt;</span> &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data);
   &#125;)</code></pre></div>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/ajax/">ajax</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/AJAX/">AJAX</a>
-                  
-                  <a class="hover-with-bg" href="/tags/HTTP/">HTTP</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2020/12/17/33-MVC/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">JavaScript中的MVC</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2020/12/11/31-DOM%E4%BA%8B%E4%BB%B6%E5%92%8C%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/">
-                    <span class="hidden-mobile">DOM事件&事件委托</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/ajax/">
+                              ajax
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/AJAX/">
+                                  AJAX
+                                </a>
+                                
+                                <a class="hover-with-bg" href="/tags/HTTP/">
+                                  HTTP
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2020/12/17/33-MVC/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      JavaScript中的MVC
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2020/12/11/31-DOM%E4%BA%8B%E4%BB%B6%E5%92%8C%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/">
+                                    <span class="hidden-mobile">
+                                      DOM事件&事件委托
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -388,26 +404,26 @@ JSONP(<span class="hljs-string">&#x27;http://qq.com:8888/friends.js&#x27;</span>
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

@@ -203,80 +203,82 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">Vu sync修饰符</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <p>​</p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                Vu sync修饰符
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <p>​</p>
 <h2 id="sync修饰符"><a href="#sync修饰符" class="headerlink" title=".sync修饰符"></a>.sync修饰符</h2><p>在某些情况下，我们可能需要对一个 prop 进行“双向绑定”。</p>
 <p>简单的方法是 <strong>子组件向父组件发送一个事件，父组件监听该事件，然后更新prop</strong></p>
 <h3 id="简单的栗子：父子组件通信"><a href="#简单的栗子：父子组件通信" class="headerlink" title="简单的栗子：父子组件通信"></a>简单的栗子：父子组件通信</h3><p><strong>父组件：</strong></p>
 <div class="hljs"><pre><code class="hljs js">&lt;template&gt;
-  &lt;div id=<span class="hljs-string">&quot;FatherCom&quot;</span>&gt;
-    &lt;h4&gt;我是父组件&lt;/h4&gt;
-    &lt;div v-show=<span class="hljs-string">&quot;show&quot;</span>&gt;能看得见我吗？&lt;/div&gt;
-    &lt;hr&gt;
-    &lt;ChildCom :show=<span class="hljs-string">&quot;show&quot;</span> @update:show=<span class="hljs-string">&quot;update_show&quot;</span>/&gt;
-  &lt;/div&gt;
-&lt;/template&gt;
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;FatherCom&quot;</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>我是父组件<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-show</span>=<span class="hljs-string">&quot;show&quot;</span>&gt;</span>能看得见我吗？<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">hr</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">ChildCom</span> <span class="hljs-attr">:show</span>=<span class="hljs-string">&quot;show&quot;</span> @<span class="hljs-attr">update:show</span>=<span class="hljs-string">&quot;update_show&quot;</span>/&gt;</span></span>
+<span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span>
 
-&lt;script&gt;
-  <span class="hljs-keyword">import</span> ChildCom <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./ChildCom&#x27;</span>
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span></span>
+<span class="language-javascript"><span class="language-xml">  <span class="hljs-keyword">import</span> <span class="hljs-title class_">ChildCom</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./ChildCom&#x27;</span></span></span>
+<span class="language-javascript"><span class="language-xml"></span></span>
+<span class="language-javascript"><span class="language-xml">  <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;FatherCom&#x27;</span>,</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">components</span>: &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-title class_">ChildCom</span></span></span>
+<span class="language-javascript"><span class="language-xml">    &#125;,</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-title function_">data</span>(<span class="hljs-params"></span>) &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-keyword">return</span> &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">        <span class="hljs-attr">show</span>: <span class="hljs-literal">true</span></span></span>
+<span class="language-javascript"><span class="language-xml">      &#125;</span></span>
+<span class="language-javascript"><span class="language-xml">    &#125;,</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">methods</span>: &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-title function_">update_show</span>(<span class="hljs-params">val</span>) &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">        <span class="hljs-variable language_">this</span>.<span class="hljs-property">show</span> = val</span></span>
+<span class="language-javascript"><span class="language-xml">      &#125;</span></span>
+<span class="language-javascript"><span class="language-xml">    &#125;</span></span>
+<span class="language-javascript"><span class="language-xml">  &#125;</span></span>
+<span class="language-javascript"><span class="language-xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
 
-  <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
-    name: <span class="hljs-string">&#x27;FatherCom&#x27;</span>,
-    components: &#123;
-      ChildCom
-    &#125;,
-    data() &#123;
-      <span class="hljs-keyword">return</span> &#123;
-        show: <span class="hljs-literal">true</span>
-      &#125;
-    &#125;,
-    methods: &#123;
-      update_show(val) &#123;
-        <span class="hljs-built_in">this</span>.show = val
-      &#125;
-    &#125;
-  &#125;
-&lt;/script&gt;
-
-&lt;style scoped&gt;
-
-&lt;/style&gt;</code></pre></div>
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">scoped</span>&gt;</span></span>
+<span class="language-xml"></span>
+<span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span></span></code></pre></div>
 
 
 
 <p><strong>子组件：</strong></p>
 <div class="hljs"><pre><code class="hljs js">&lt;template&gt;
-  &lt;div id=<span class="hljs-string">&quot;ChildCom&quot;</span>&gt;
-    &lt;h4&gt;我是子组件&lt;/h4&gt;
-    &lt;button @click=<span class="hljs-string">&quot;handle&quot;</span> &gt;显示/隐藏&lt;/button&gt;
-  &lt;/div&gt;
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;ChildCom&quot;</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>我是子组件<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;handle&quot;</span> &gt;</span>显示/隐藏<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+<span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
 &lt;/template&gt;
 
-&lt;script&gt;
-  <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
-    name: <span class="hljs-string">&#x27;ChildCom&#x27;</span>,
-    props:[<span class="hljs-string">&#x27;show&#x27;</span>],
-    methods:&#123;
-      handle()&#123;
-        <span class="hljs-built_in">this</span>.$emit(<span class="hljs-string">&#x27;update:show&#x27;</span>,!<span class="hljs-built_in">this</span>.show)
-      &#125;
-    &#125;
-  &#125;
-&lt;/script&gt;
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span></span>
+<span class="language-javascript"><span class="language-xml">  <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;ChildCom&#x27;</span>,</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">props</span>:[<span class="hljs-string">&#x27;show&#x27;</span>],</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">methods</span>:&#123;</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-title function_">handle</span>(<span class="hljs-params"></span>)&#123;</span></span>
+<span class="language-javascript"><span class="language-xml">        <span class="hljs-variable language_">this</span>.$emit(<span class="hljs-string">&#x27;update:show&#x27;</span>,!<span class="hljs-variable language_">this</span>.<span class="hljs-property">show</span>)</span></span>
+<span class="language-javascript"><span class="language-xml">      &#125;</span></span>
+<span class="language-javascript"><span class="language-xml">    &#125;</span></span>
+<span class="language-javascript"><span class="language-xml">  &#125;</span></span>
+<span class="language-javascript"><span class="language-xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
 
-&lt;style scoped&gt;
-
-&lt;/style&gt;</code></pre></div>
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">scoped</span>&gt;</span></span>
+<span class="language-xml"></span>
+<span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span></span></code></pre></div>
 
 
 <p>但是以上父组件定义 自定义事件的步骤过于繁琐了。</p>
@@ -288,73 +290,85 @@
 <p>这样设置父组件就不再需要单独再去绑定@update:show事件了 。</p>
 <p><strong>修改代码:</strong></p>
 <div class="hljs"><pre><code class="hljs js">&lt;template&gt;
-  &lt;div id=<span class="hljs-string">&quot;FatherCom&quot;</span>&gt;
-    &lt;h4&gt;我是父组件&lt;/h4&gt;
-    &lt;div v-show=<span class="hljs-string">&quot;show&quot;</span>&gt;能看得见我吗？&lt;/div&gt;
-    &lt;hr&gt;
-    &lt;!--<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">ChildCom</span> <span class="hljs-attr">:show</span>=<span class="hljs-string">&quot;show&quot;</span> @<span class="hljs-attr">update:show</span>=<span class="hljs-string">&quot;update_show&quot;</span>/&gt;</span></span>--&gt;
-     &lt;ChildCom :show.sync=<span class="hljs-string">&quot;show&quot;</span> /&gt;
-  &lt;/div&gt;
-&lt;/template&gt;</code></pre></div>
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;FatherCom&quot;</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>我是父组件<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-show</span>=<span class="hljs-string">&quot;show&quot;</span>&gt;</span>能看得见我吗？<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">hr</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-comment">&lt;!--&lt;ChildCom :show=&quot;show&quot; @update:show=&quot;update_show&quot;/&gt;--&gt;</span></span>
+<span class="language-xml">     <span class="hljs-tag">&lt;<span class="hljs-name">ChildCom</span> <span class="hljs-attr">:show.sync</span>=<span class="hljs-string">&quot;show&quot;</span> /&gt;</span></span>
+<span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span></code></pre></div>
 
-<div class="hljs"><pre><code class="hljs js">handle()&#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-title function_">handle</span>(<span class="hljs-params"></span>)&#123;
       	<span class="hljs-comment">// 这里要求用 `update:myPropName` 方式命名</span>
-       <span class="hljs-built_in">this</span>.$emit(<span class="hljs-string">&#x27;update:show&#x27;</span>,!<span class="hljs-built_in">this</span>.show)
+       <span class="hljs-variable language_">this</span>.$emit(<span class="hljs-string">&#x27;update:show&#x27;</span>,!<span class="hljs-variable language_">this</span>.<span class="hljs-property">show</span>)
      &#125;</code></pre></div>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/vue/">vue</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/vue/">vue</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2020/12/21/38.nodejs%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">node.js中使用nodemailer插件发送邮件 (学习总结)</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2020/12/20/36-vue/">
-                    <span class="hidden-mobile">Vue 里 computed  和 watch 的区别</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/vue/">
+                              vue
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/vue/">
+                                  vue
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2020/12/21/38.nodejs%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      node.js中使用nodemailer插件发送邮件 (学习总结)
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2020/12/20/36-vue/">
+                                    <span class="hidden-mobile">
+                                      Vue 里 computed  和 watch 的区别
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -381,26 +395,26 @@
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

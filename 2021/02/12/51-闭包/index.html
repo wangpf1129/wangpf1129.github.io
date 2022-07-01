@@ -203,39 +203,41 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">什么是闭包？闭包的用途是什么？闭包的缺点是什么？</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <p><strong>闭包：</strong> 函数 和 函数内部可以访问到的变量 总和就是一个闭包</p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                什么是闭包？闭包的用途是什么？闭包的缺点是什么？
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <p><strong>闭包：</strong> 函数 和 函数内部可以访问到的变量 总和就是一个闭包</p>
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// 变量foo  + fn函数 就是闭包</span>
 <span class="hljs-keyword">let</span> foo = <span class="hljs-string">&#x27;111&#x27;</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>)</span>&#123;
-<span class="hljs-built_in">console</span>.log(foo)
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">fn</span>(<span class="hljs-params"></span>)&#123;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(foo)
 &#125;
-fn()  <span class="hljs-comment">// 111</span></code></pre></div>
+<span class="hljs-title function_">fn</span>()  <span class="hljs-comment">// 111</span></code></pre></div>
 <h3 id="闭包的用途："><a href="#闭包的用途：" class="headerlink" title="闭包的用途："></a>闭包的用途：</h3><ul>
 <li>间接访问一个变量 ,让这个变量始终保持再内存中</li>
 </ul>
 <p><strong>即 隐藏局部变量，暴露操作函数</strong></p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> createAdd = <span class="hljs-function">()=&gt;</span>&#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> <span class="hljs-title function_">createAdd</span> = (<span class="hljs-params"></span>)=&gt;&#123;
     <span class="hljs-keyword">let</span> n = <span class="hljs-number">0</span>
     <span class="hljs-keyword">return</span> <span class="hljs-function">()=&gt;</span>&#123;
         n += <span class="hljs-number">1</span>
-        <span class="hljs-built_in">console</span>.log(n)
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(n)
     &#125;
 &#125;
 
-<span class="hljs-keyword">const</span> add = createAdd()
-add() <span class="hljs-comment">// 1</span>
-add() <span class="hljs-comment">// 2</span></code></pre></div>
+<span class="hljs-keyword">const</span> add = <span class="hljs-title function_">createAdd</span>()
+<span class="hljs-title function_">add</span>() <span class="hljs-comment">// 1</span>
+<span class="hljs-title function_">add</span>() <span class="hljs-comment">// 2</span></code></pre></div>
 
 <h3 id="闭包的缺点："><a href="#闭包的缺点：" class="headerlink" title="闭包的缺点："></a>闭包的缺点：</h3><ul>
 <li>由于闭包会使变量始终保存在内存中，所以内存消耗会很大。</li>
@@ -247,59 +249,71 @@ add() <span class="hljs-comment">// 2</span></code></pre></div>
 </ul>
 <p><strong>立即执行函数的作用：</strong> 创建一个独立的作用域。这个作用域的变量，外面访问不到(即避免变量污染) </p>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/JavaScript/">JavaScript</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/JavaScript/">JavaScript</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2021/02/12/52.%E7%BB%91%E5%AE%9Athis%E6%8C%87%E5%90%91/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">call、apply、bind 的用法分别是什么？</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2021/02/02/50-React%20Hooks/">
-                    <span class="hidden-mobile">React Hooks 学习总结</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/JavaScript/">
+                              JavaScript
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/JavaScript/">
+                                  JavaScript
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2021/02/12/52.%E7%BB%91%E5%AE%9Athis%E6%8C%87%E5%90%91/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      call、apply、bind 的用法分别是什么？
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2021/02/02/50-React%20Hooks/">
+                                    <span class="hidden-mobile">
+                                      React Hooks 学习总结
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -326,26 +340,26 @@ add() <span class="hljs-comment">// 2</span></code></pre></div>
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

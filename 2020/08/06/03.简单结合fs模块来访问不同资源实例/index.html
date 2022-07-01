@@ -203,50 +203,52 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">使用Node来简单结合fs模块来访问不同资源实例</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h1 id="简单结合fs模块来访问不同资源实例"><a href="#简单结合fs模块来访问不同资源实例" class="headerlink" title="简单结合fs模块来访问不同资源实例"></a>简单结合fs模块来访问不同资源实例</h1><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-keyword">const</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;http&#x27;</span>);
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                使用Node来简单结合fs模块来访问不同资源实例
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h1 id="简单结合fs模块来访问不同资源实例"><a href="#简单结合fs模块来访问不同资源实例" class="headerlink" title="简单结合fs模块来访问不同资源实例"></a>简单结合fs模块来访问不同资源实例</h1><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-keyword">const</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;http&#x27;</span>);
 <span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>);
-<span class="hljs-keyword">const</span> server = http.createServer();
-server.on(<span class="hljs-string">&#x27;request&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
-    <span class="hljs-keyword">const</span> url = req.url;
+<span class="hljs-keyword">const</span> server = http.<span class="hljs-title function_">createServer</span>();
+server.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;request&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">const</span> url = req.<span class="hljs-property">url</span>;
     <span class="hljs-keyword">if</span> (url === <span class="hljs-string">&#x27;/&#x27;</span>) &#123;
-        fs.readFile(<span class="hljs-string">&#x27;./resource/index.html&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">error, data</span>) =&gt;</span> &#123;
+        fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./resource/index.html&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">error, data</span>) =&gt;</span> &#123;
             <span class="hljs-keyword">if</span> (error) &#123;
-                res.setHeader(<span class="hljs-string">&#x27;Content-Type&#x27;</span>, <span class="hljs-string">&#x27;text/plain,charset=utf-8&#x27;</span>);
-                res.end(<span class="hljs-string">&#x27;文件读取失败，请稍后再试&#x27;</span>);
+                res.<span class="hljs-title function_">setHeader</span>(<span class="hljs-string">&#x27;Content-Type&#x27;</span>, <span class="hljs-string">&#x27;text/plain,charset=utf-8&#x27;</span>);
+                res.<span class="hljs-title function_">end</span>(<span class="hljs-string">&#x27;文件读取失败，请稍后再试&#x27;</span>);
             &#125; <span class="hljs-keyword">else</span> &#123;
                 <span class="hljs-comment">// data 默认是 二进制数据， 可以通过   toString 转换为咱们能识别的字符串</span>
                 <span class="hljs-comment">// res.end()  支持俩种数据格式    一种是 二进制，  一种是 字符串</span>
-                res.setHeader(<span class="hljs-string">&#x27;Content-Type&#x27;</span>, <span class="hljs-string">&#x27;text/html,charset=utf-8&#x27;</span>);
-                res.end(data);
+                res.<span class="hljs-title function_">setHeader</span>(<span class="hljs-string">&#x27;Content-Type&#x27;</span>, <span class="hljs-string">&#x27;text/html,charset=utf-8&#x27;</span>);
+                res.<span class="hljs-title function_">end</span>(data);
             &#125;;
         &#125;);
     &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (url === <span class="hljs-string">&#x27;/images&#x27;</span>) &#123;
-        fs.readFile(<span class="hljs-string">&#x27;./resource/images/3.jpg&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">error, data</span>) =&gt;</span> &#123;
+        fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./resource/images/3.jpg&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">error, data</span>) =&gt;</span> &#123;
             <span class="hljs-keyword">if</span> (error) &#123;
-                res.setHeader(<span class="hljs-string">&#x27;Content-Type&#x27;</span>, <span class="hljs-string">&#x27;	text/plain,charset=utf-8&#x27;</span>);
-                res.end(<span class="hljs-string">&#x27;图片读取失败，请稍后再试&#x27;</span>);
+                res.<span class="hljs-title function_">setHeader</span>(<span class="hljs-string">&#x27;Content-Type&#x27;</span>, <span class="hljs-string">&#x27;	text/plain,charset=utf-8&#x27;</span>);
+                res.<span class="hljs-title function_">end</span>(<span class="hljs-string">&#x27;图片读取失败，请稍后再试&#x27;</span>);
             &#125; <span class="hljs-keyword">else</span> &#123;
             <span class="hljs-comment">// 注意：尽量图片尽量不要跟编码格式，它有自己独有的编码格式</span>
-                res.setHeader(<span class="hljs-string">&#x27;Content-Type&#x27;</span>, <span class="hljs-string">&#x27;	image/jpeg&#x27;</span>);
-                res.end(data);
+                res.<span class="hljs-title function_">setHeader</span>(<span class="hljs-string">&#x27;Content-Type&#x27;</span>, <span class="hljs-string">&#x27;	image/jpeg&#x27;</span>);
+                res.<span class="hljs-title function_">end</span>(data);
             &#125;;
         &#125;);
     &#125;
 
 &#125;);
-server.listen(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> &#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;服务器启动成功，可以通过 http://127.0.0.1:3000/ 来访问&#x27;</span>);
+server.<span class="hljs-title function_">listen</span>(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;服务器启动成功，可以通过 http://127.0.0.1:3000/ 来访问&#x27;</span>);
 
 &#125;)</code></pre></div>
 
@@ -255,82 +257,94 @@ server.listen(<span class="hljs-number">3000</span>, <span class="hljs-function"
 </blockquote>
 <div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-keyword">const</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;http&#x27;</span>);
 <span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>);
-<span class="hljs-keyword">const</span> server = http.createServer();
-server.on(<span class="hljs-string">&#x27;request&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
-    <span class="hljs-keyword">let</span> url = req.url;
+<span class="hljs-keyword">const</span> server = http.<span class="hljs-title function_">createServer</span>();
+server.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;request&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">let</span> url = req.<span class="hljs-property">url</span>;
     <span class="hljs-keyword">let</span> wwwDir = <span class="hljs-string">&#x27;F:/nodejs/Node_test/resource&#x27;</span>;
     <span class="hljs-keyword">let</span> filePath = <span class="hljs-string">&#x27;/index.html&#x27;</span>;
     <span class="hljs-comment">//  默认的 是 /   所以 客户端中出现的就是 /index.html 这个文件内容</span>
     <span class="hljs-keyword">if</span> (url !== <span class="hljs-string">&#x27;/&#x27;</span>) &#123;
         filePath = url;
     &#125;;
-    fs.readFile(wwwDir + filePath, <span class="hljs-function">(<span class="hljs-params">err, data</span>) =&gt;</span> &#123;
+    fs.<span class="hljs-title function_">readFile</span>(wwwDir + filePath, <span class="hljs-function">(<span class="hljs-params">err, data</span>) =&gt;</span> &#123;
         <span class="hljs-keyword">if</span> (err) &#123;
-            <span class="hljs-keyword">return</span> res.end(<span class="hljs-string">&#x27;404 Not Found.&#x27;</span>);
+            <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">end</span>(<span class="hljs-string">&#x27;404 Not Found.&#x27;</span>);
         &#125;
-        res.end(data);
+        res.<span class="hljs-title function_">end</span>(data);
     &#125;);
 
 &#125;);
-server.listen(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> &#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;服务器启动成功，可以通过 http://127.0.0.1:3000/ 来访问&#x27;</span>);
+server.<span class="hljs-title function_">listen</span>(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;服务器启动成功，可以通过 http://127.0.0.1:3000/ 来访问&#x27;</span>);
 &#125;);</code></pre></div>
 
 
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/Nodejs/">Nodejs</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/Node/">Node</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2020/08/08/06.%E6%A8%A1%E5%9D%97%E7%B3%BB%E7%BB%9F/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">Node的模板系统</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2020/08/05/04.%E6%A8%A1%E4%BB%BFApache%E5%8A%9F%E8%83%BD%E6%9D%A5%E5%AE%8C%E6%88%90%E7%9B%AE%E5%BD%95%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93/">
-                    <span class="hidden-mobile">使用Node来模仿Apache功能来完成目录列表渲染</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/Nodejs/">
+                              Nodejs
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/Node/">
+                                  Node
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2020/08/08/06.%E6%A8%A1%E5%9D%97%E7%B3%BB%E7%BB%9F/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      Node的模板系统
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2020/08/05/04.%E6%A8%A1%E4%BB%BFApache%E5%8A%9F%E8%83%BD%E6%9D%A5%E5%AE%8C%E6%88%90%E7%9B%AE%E5%BD%95%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93/">
+                                    <span class="hidden-mobile">
+                                      使用Node来模仿Apache功能来完成目录列表渲染
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -357,26 +371,26 @@ server.listen(<span class="hljs-number">3000</span>, <span class="hljs-function"
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

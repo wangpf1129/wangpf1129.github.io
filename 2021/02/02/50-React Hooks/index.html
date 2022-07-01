@@ -203,67 +203,69 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">React Hooks 学习总结</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c3b4f5a08e744902bf7dada96f605578~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="React Hooks"></p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                React Hooks 学习总结
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c3b4f5a08e744902bf7dada96f605578~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="React Hooks"></p>
 <h2 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h2><p><strong>基本使用:</strong></p>
 <div class="hljs"><pre><code class="hljs jsx"><span class="hljs-comment">// 这里可以任意命名，因为返回的是数组，数组解构</span>
-<span class="hljs-keyword">const</span> [state, setState] = useState(initialState);
+<span class="hljs-keyword">const</span> [state, setState] = <span class="hljs-title function_">useState</span>(initialState);
 
-<span class="hljs-keyword">const</span> [n,setN] = React.useState(<span class="hljs-number">0</span>)
-<span class="hljs-keyword">const</span> [user,setUser] = React.useState(&#123;<span class="hljs-attr">name</span>:<span class="hljs-string">&quot;张三&quot;</span>&#125;)</code></pre></div>
+<span class="hljs-keyword">const</span> [n,setN] = <span class="hljs-title class_">React</span>.<span class="hljs-title function_">useState</span>(<span class="hljs-number">0</span>)
+<span class="hljs-keyword">const</span> [user,setUser] = <span class="hljs-title class_">React</span>.<span class="hljs-title function_">useState</span>(&#123;<span class="hljs-attr">name</span>:<span class="hljs-string">&quot;张三&quot;</span>&#125;)</code></pre></div>
 
 <h3 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h3><h4 id="1-不可局部更新"><a href="#1-不可局部更新" class="headerlink" title="1. 不可局部更新"></a><strong>1. 不可局部更新</strong></h4><p>如果state是一个对象，是不可以合并属性的。</p>
-<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> React, &#123; useState &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>
+<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span>, &#123; useState &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-keyword">const</span> [user, setUser] = useState(&#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Wangpf&quot;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">18</span> &#125;)
-  <span class="hljs-keyword">const</span> changeState = <span class="hljs-function">() =&gt;</span> &#123;
-    setUser(&#123;
-      name: <span class="hljs-string">&quot;Mark&quot;</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-keyword">const</span> [user, setUser] = <span class="hljs-title function_">useState</span>(&#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Wangpf&quot;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">18</span> &#125;)
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">changeState</span> = (<span class="hljs-params"></span>) =&gt; &#123;
+    <span class="hljs-title function_">setUser</span>(&#123;
+      <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Mark&quot;</span>
     &#125;)
   &#125;
   <span class="hljs-keyword">return</span> (
-    &lt;div&gt;
-      &lt;h2&gt;名字：&#123;user.name&#125;&lt;/h2&gt;
-      &lt;h2&gt;年龄：&#123;user.age&#125;&lt;/h2&gt;
-      &lt;button onClick=&#123;changeState&#125;&gt;改变&lt;/button&gt;
-    &lt;/div&gt;
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>名字：&#123;user.name&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>年龄：&#123;user.age&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;changeState&#125;</span>&gt;</span>改变<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
   )
 &#125;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> App</code></pre></div>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">App</span></code></pre></div>
 
 <p>看代码所示，当我点击按钮时，它会把名字改为 Mark ，<strong>但是 age 会显示不见</strong>， 这就是因为它不会局部更新，不会帮我们合并属性，因此需要我们自己加上。</p>
-<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> changeState = <span class="hljs-function">() =&gt;</span> &#123;
-    setUser(&#123;
+<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">changeState</span> = (<span class="hljs-params"></span>) =&gt; &#123;
+    <span class="hljs-title function_">setUser</span>(&#123;
       ...user,
-      name: <span class="hljs-string">&quot;Mark&quot;</span>
+      <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Mark&quot;</span>
     &#125;)
   &#125;</code></pre></div>
 
 <h4 id="2-地址会变"><a href="#2-地址会变" class="headerlink" title="2. 地址会变"></a><strong>2. 地址会变</strong></h4><p>setState(obj)，如果<strong>obj</strong>地址不变，那么React就认为数据没有变化。</p>
 <p>意思就是，我们不能在原来的数据上进行操作，而是重新写一个新的对象来覆盖之前的。</p>
 <h4 id="useState-和-setState-都可以接收函数"><a href="#useState-和-setState-都可以接收函数" class="headerlink" title="useState 和 setState 都可以接收函数"></a>useState 和 setState 都可以接收函数</h4><div class="hljs"><pre><code class="hljs jsx"><span class="hljs-comment">// useState</span>
- <span class="hljs-keyword">const</span> [user, setUser] = useState(<span class="hljs-function">() =&gt;</span> &#123;
+ <span class="hljs-keyword">const</span> [user, setUser] = <span class="hljs-title function_">useState</span>(<span class="hljs-function">() =&gt;</span> &#123;
    <span class="hljs-keyword">return</span> &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Wangpf&quot;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">18</span> &#125;
   &#125;)
 
 <span class="hljs-comment">// setState</span>
-  <span class="hljs-keyword">const</span> changeState = <span class="hljs-function">() =&gt;</span> &#123;
-    setUser(<span class="hljs-function">(<span class="hljs-params">user</span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">changeState</span> = (<span class="hljs-params"></span>) =&gt; &#123;
+    <span class="hljs-title function_">setUser</span>(<span class="hljs-function">(<span class="hljs-params">user</span>) =&gt;</span> &#123;
       <span class="hljs-keyword">return</span> &#123;
         ...user,
-        name: <span class="hljs-string">&quot;Mark&quot;</span>
+        <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Mark&quot;</span>
       &#125;
     &#125;)
   &#125;</code></pre></div>
@@ -271,7 +273,8 @@
 <li>Effect Hook 可以让你在函数组件中执行副作用操作(用于模拟类组件中的生命周期钩子)</li>
 <li>React中的副作用操作:<div class="hljs"><pre><code> 发ajax请求数据获取
  设置订阅 / 启动定时器
- 手动更改真实DOM</code></pre></div>
+ 手动更改真实DOM
+</code></pre></div>
 </li>
 <li>语法和说明:<ul>
 <li><div class="hljs"><pre><code class="jsx">     useEffect(() =&gt; &#123;
@@ -316,52 +319,52 @@
 <ol>
 <li>const XxxContext = React.createContext()</li>
 <li>渲染子组时，外面包裹xxxContext.Provider, 通过value属性给后代组件传递数据：<ul>
-<li>&lt;xxxContext.Provider value={数据}&gt;<br>子组件<br>&lt;/xxxContext.Provider&gt;</li>
+<li> &lt;xxxContext.Provider value={数据}&gt;<br>  子组件<br>  &lt;/xxxContext.Provider&gt;</li>
 </ul>
 </li>
 <li>后代组件读取数据<ul>
-<li>const {数据} = useContext(xxxContext)</li>
+<li> const {数据} = useContext(xxxContext)</li>
 </ul>
 </li>
 </ol>
 <p>适合用于祖孙组件的通信</p>
 <p><strong>使用代码如下：</strong></p>
-<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> React, &#123; createContext, useContext, useState &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>
+<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span>, &#123; createContext, useContext, useState &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>
 
-<span class="hljs-keyword">const</span> Context = createContext(<span class="hljs-literal">null</span>)
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-keyword">const</span> [count, setCount] = useState(<span class="hljs-number">0</span>)
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">Context</span> = <span class="hljs-title function_">createContext</span>(<span class="hljs-literal">null</span>)
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-keyword">const</span> [count, setCount] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">0</span>)
   <span class="hljs-keyword">return</span> (
-    &lt;Context.Provider value=&#123;&#123; count, setCount &#125;&#125;&gt;
-      &lt;div&gt;
-        &lt;A /&gt;
-      &lt;/div&gt;
-    &lt;/Context.Provider&gt;
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Context.Provider</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&#123;&#123;</span> <span class="hljs-attr">count</span>, <span class="hljs-attr">setCount</span> &#125;&#125;&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">A</span> /&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">Context.Provider</span>&gt;</span></span>
   )
 &#125;
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">A</span>(<span class="hljs-params"></span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">A</span>(<span class="hljs-params"></span>) &#123;
   <span class="hljs-keyword">return</span> (
-    &lt;div&gt;
-      &lt;h2&gt;我是A组件&lt;/h2&gt;
-      &lt;B /&gt;
-    &lt;/div&gt;
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>我是A组件<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">B</span> /&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
   )
 &#125;
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">B</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-keyword">const</span> &#123; count, setCount &#125; = useContext(Context)
-  <span class="hljs-keyword">const</span> increment = <span class="hljs-function">() =&gt;</span> &#123;
-    setCount(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> n + <span class="hljs-number">1</span>)
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">B</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-keyword">const</span> &#123; count, setCount &#125; = <span class="hljs-title function_">useContext</span>(<span class="hljs-title class_">Context</span>)
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">increment</span> = (<span class="hljs-params"></span>) =&gt; &#123;
+    <span class="hljs-title function_">setCount</span>(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> n + <span class="hljs-number">1</span>)
   &#125;
   <span class="hljs-keyword">return</span> (
-    &lt;div&gt;
-      &lt;h3&gt;我是B组件&lt;/h3&gt;
-      &lt;div&gt;count:&#123;count&#125;&lt;/div&gt;
-      &lt;button onClick=&#123;increment&#125;&gt;+<span class="hljs-number">1</span>&lt;/button&gt;
-    &lt;/div&gt;
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>我是B组件<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>count:&#123;count&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;increment&#125;</span>&gt;</span>+1<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
   )
 &#125;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> App</code></pre></div>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">App</span></code></pre></div>
 
 
 <h2 id="useReducer"><a href="#useReducer" class="headerlink" title="useReducer"></a>useReducer</h2><blockquote>
@@ -369,118 +372,118 @@
 </blockquote>
 <p><strong>逻辑步骤：</strong></p>
 <ol>
-<li><p>创建初始值 <code>initialState</code></p>
+<li><p> 创建初始值 <code>initialState</code></p>
 </li>
-<li><p>创建所有操作 <code>reducer = (state, action)=&gt;&#123;&#125;</code></p>
+<li><p> 创建所有操作 <code>reducer = (state, action)=&gt;&#123;&#125;</code></p>
 </li>
-<li><p>传给 <code>useReducer</code>，得到读写的API</p>
+<li><p> 传给 <code>useReducer</code>，得到读写的API</p>
 </li>
-<li><p>调用并写 <code>&#123;&#123;type:'操作类型'&#125;&#125;</code></p>
+<li><p> 调用并写 <code>&#123;&#123;type:'操作类型'&#125;&#125;</code></p>
 </li>
 </ol>
 <p><strong>详细代码如下：</strong></p>
 <div class="hljs"><pre><code class="hljs jsx"><span class="hljs-comment">// 初始化状态</span>
 <span class="hljs-keyword">const</span> initialState = &#123; <span class="hljs-attr">count</span>: <span class="hljs-number">0</span> &#125;
-<span class="hljs-keyword">const</span> reducer = <span class="hljs-function">(<span class="hljs-params">state, action</span>) =&gt;</span> &#123;
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">reducer</span> = (<span class="hljs-params">state, action</span>) =&gt; &#123;
   <span class="hljs-keyword">const</span> &#123; type, data &#125; = action
   <span class="hljs-keyword">if</span> (type === <span class="hljs-string">&#x27;increment&#x27;</span>) &#123;
-    <span class="hljs-keyword">return</span> &#123; <span class="hljs-attr">count</span>: state.count + data &#125;
+    <span class="hljs-keyword">return</span> &#123; <span class="hljs-attr">count</span>: state.<span class="hljs-property">count</span> + data &#125;
   &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (type === <span class="hljs-string">&#x27;decrement&#x27;</span>) &#123;
-    <span class="hljs-keyword">return</span> &#123; <span class="hljs-attr">count</span>: state.count - data &#125;
+    <span class="hljs-keyword">return</span> &#123; <span class="hljs-attr">count</span>: state.<span class="hljs-property">count</span> - data &#125;
   &#125; <span class="hljs-keyword">else</span> &#123;
-    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&#x27;unknown type&#x27;</span>)
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;unknown type&#x27;</span>)
   &#125;
 &#125;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">A</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-keyword">const</span> [state, dispatch] = useReducer(reducer, initialState)
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">A</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-keyword">const</span> [state, dispatch] = <span class="hljs-title function_">useReducer</span>(reducer, initialState)
   <span class="hljs-keyword">const</span> &#123; count &#125; = state
 
-  <span class="hljs-keyword">const</span> increment = <span class="hljs-function">() =&gt;</span> &#123;
-    dispatch(&#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;increment&quot;</span>, <span class="hljs-attr">data</span>: <span class="hljs-number">1</span> &#125;)
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">increment</span> = (<span class="hljs-params"></span>) =&gt; &#123;
+    <span class="hljs-title function_">dispatch</span>(&#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;increment&quot;</span>, <span class="hljs-attr">data</span>: <span class="hljs-number">1</span> &#125;)
   &#125;
-  <span class="hljs-keyword">const</span> decrement = <span class="hljs-function">() =&gt;</span> &#123;
-    dispatch(&#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;decrement&quot;</span>, <span class="hljs-attr">data</span>: <span class="hljs-number">2</span> &#125;)
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">decrement</span> = (<span class="hljs-params"></span>) =&gt; &#123;
+    <span class="hljs-title function_">dispatch</span>(&#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;decrement&quot;</span>, <span class="hljs-attr">data</span>: <span class="hljs-number">2</span> &#125;)
   &#125;
 
   <span class="hljs-keyword">return</span> (
-    &lt;div&gt;
-      &lt;h2&gt;我是A组件&lt;/h2&gt;
-      &lt;h4&gt;count:&#123;count&#125;&lt;/h4&gt;
-      &lt;button onClick=&#123;increment&#125;&gt;加&lt;/button&gt;
-      &lt;button onClick=&#123;decrement&#125;&gt;减&lt;/button&gt;
-    &lt;/div&gt;
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>我是A组件<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>count:&#123;count&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;increment&#125;</span>&gt;</span>加<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;decrement&#125;</span>&gt;</span>减<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
   )
 &#125;</code></pre></div>
 
 <h2 id="useMemo"><a href="#useMemo" class="headerlink" title="useMemo"></a>useMemo</h2><p>通过一个实例，来理解下 useMemo的用法。</p>
-<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> React, &#123; useState &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-keyword">const</span> [n, setN] = useState(<span class="hljs-number">0</span>)
-  <span class="hljs-keyword">const</span> [m, setM] = useState(<span class="hljs-number">0</span>)
-  <span class="hljs-keyword">const</span> updateN = <span class="hljs-function">() =&gt;</span> &#123;
-    setN(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> n + <span class="hljs-number">1</span>)
+<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span>, &#123; useState &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-keyword">const</span> [n, setN] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">0</span>)
+  <span class="hljs-keyword">const</span> [m, setM] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">0</span>)
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">updateN</span> = (<span class="hljs-params"></span>) =&gt; &#123;
+    <span class="hljs-title function_">setN</span>(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> n + <span class="hljs-number">1</span>)
   &#125;
-  <span class="hljs-keyword">const</span> updateM = <span class="hljs-function">() =&gt;</span> &#123;
-    setM(<span class="hljs-function"><span class="hljs-params">m</span> =&gt;</span> m + <span class="hljs-number">1</span>)
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">updateM</span> = (<span class="hljs-params"></span>) =&gt; &#123;
+    <span class="hljs-title function_">setM</span>(<span class="hljs-function"><span class="hljs-params">m</span> =&gt;</span> m + <span class="hljs-number">1</span>)
   &#125;
   <span class="hljs-keyword">return</span> (
-    &lt;div&gt;
-      &lt;button onClick=&#123;updateN&#125;&gt;update n &#123;n&#125;&lt;/button&gt;
-      &lt;button onClick=&#123;updateM&#125;&gt;update m &#123;m&#125;&lt;/button&gt;
-      &lt;A data=&#123;m&#125; /&gt;
-    &lt;/div&gt;
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;updateN&#125;</span>&gt;</span>update n &#123;n&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;updateM&#125;</span>&gt;</span>update m &#123;m&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">A</span> <span class="hljs-attr">data</span>=<span class="hljs-string">&#123;m&#125;</span> /&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
   )
 &#125;
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">A</span>(<span class="hljs-params">props</span>) </span>&#123;
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;A组件执行了&#x27;</span>);
-  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>A组件：&#123;props.data&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">A</span>(<span class="hljs-params">props</span>) &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;A组件执行了&#x27;</span>);
+  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>A组件：&#123;props.data&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
 &#125;
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> App</code></pre></div>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">App</span></code></pre></div>
 <p>注意打印console.log的位置。</p>
 <p>当我们点击APP组件的更新N的按钮时候，A组件会发生改变，但是M是没有改变的啊。</p>
 <p>结论：不管我们是否改变了A组件的数据，我们会发现A组件会被重新渲染的。这就意味着性能的损耗。</p>
 <p>因此，为了优化这个，React.memo 就派上用场了。<br>只需把A组件改为：</p>
-<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> A = React.memo(<span class="hljs-function">(<span class="hljs-params">props</span>) =&gt;</span> &#123;
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;A组件执行了&#x27;</span>);
-  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>A组件：&#123;props.data&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> A = <span class="hljs-title class_">React</span>.<span class="hljs-title function_">memo</span>(<span class="hljs-function">(<span class="hljs-params">props</span>) =&gt;</span> &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;A组件执行了&#x27;</span>);
+  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>A组件：&#123;props.data&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
 &#125;)</code></pre></div>
 <p>这样，只有APP组件的M数据不发生改变，那么A组件就不会重新渲染。</p>
 <p>但是！！这样有个BUG，</p>
 <p>当我给A组件绑定一个事件时，</p>
-<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> React, &#123; useState, memo &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>
+<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span>, &#123; useState, memo &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-keyword">const</span> [n, setN] = useState(<span class="hljs-number">0</span>)
-  <span class="hljs-keyword">const</span> [m, setM] = useState(<span class="hljs-number">0</span>)
-  <span class="hljs-keyword">const</span> updateN = <span class="hljs-function">() =&gt;</span> &#123;
-    setN(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> n + <span class="hljs-number">1</span>)
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-keyword">const</span> [n, setN] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">0</span>)
+  <span class="hljs-keyword">const</span> [m, setM] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">0</span>)
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">updateN</span> = (<span class="hljs-params"></span>) =&gt; &#123;
+    <span class="hljs-title function_">setN</span>(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> n + <span class="hljs-number">1</span>)
   &#125;
-  <span class="hljs-keyword">const</span> updateM = <span class="hljs-function">() =&gt;</span> &#123;
-    setM(<span class="hljs-function"><span class="hljs-params">m</span> =&gt;</span> m + <span class="hljs-number">1</span>)
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">updateM</span> = (<span class="hljs-params"></span>) =&gt; &#123;
+    <span class="hljs-title function_">setM</span>(<span class="hljs-function"><span class="hljs-params">m</span> =&gt;</span> m + <span class="hljs-number">1</span>)
   &#125;
-  <span class="hljs-keyword">const</span> changeA = <span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">changeA</span> = (<span class="hljs-params"></span>) =&gt; &#123;
 
   &#125;
   <span class="hljs-keyword">return</span> (
-    &lt;div&gt;
-      &lt;button onClick=&#123;updateN&#125;&gt;update n &#123;n&#125;&lt;/button&gt;
-      &lt;button onClick=&#123;updateM&#125;&gt;update m &#123;m&#125;&lt;/button&gt;
-      &lt;A data=&#123;m&#125; onClick=&#123;changeA&#125; /&gt;
-    &lt;/div&gt;
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;updateN&#125;</span>&gt;</span>update n &#123;n&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;updateM&#125;</span>&gt;</span>update m &#123;m&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">A</span> <span class="hljs-attr">data</span>=<span class="hljs-string">&#123;m&#125;</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;changeA&#125;</span> /&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
   )
 &#125;
 
-<span class="hljs-keyword">const</span> A = memo(<span class="hljs-function">(<span class="hljs-params">props</span>) =&gt;</span> &#123;
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;A组件执行了&#x27;</span>);
-  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;props.changeA&#125;</span>&gt;</span>A组件：&#123;props.data&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+<span class="hljs-keyword">const</span> A = <span class="hljs-title function_">memo</span>(<span class="hljs-function">(<span class="hljs-params">props</span>) =&gt;</span> &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;A组件执行了&#x27;</span>);
+  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;props.changeA&#125;</span>&gt;</span>A组件：&#123;props.data&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
 &#125;)
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> App</code></pre></div>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">App</span></code></pre></div>
 
 <p>这样，即时我不该关于A组件的任何数据，A组件也会随着发生渲染，</p>
 <p>问题的原因是因为：当我们重新渲染APP组件时，它会自动调用该changeA事件，那么它就会改变A组件的渲染。</p>
 <p>解决该问题的方法就是： 使用 useMemo</p>
-<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> changeA = useMemo(<span class="hljs-function">() =&gt;</span> &#123;
+<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> changeA = <span class="hljs-title function_">useMemo</span>(<span class="hljs-function">() =&gt;</span> &#123;
 
 &#125;,[])</code></pre></div>
 
@@ -506,11 +509,11 @@
 </ul>
 <p><strong>因此， useCallback 出来了</strong></p>
 <h3 id="useCallback"><a href="#useCallback" class="headerlink" title="useCallback"></a>useCallback</h3><p>下面俩个是等价的。</p>
-<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> changeA = useMemo(<span class="hljs-function">() =&gt;</span> &#123;
-   <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">m</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(m)
+<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> changeA = <span class="hljs-title function_">useMemo</span>(<span class="hljs-function">() =&gt;</span> &#123;
+   <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">m</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(m)
  &#125;, [])
 
-<span class="hljs-keyword">const</span> changeA = useCallback(<span class="hljs-function"><span class="hljs-params">m</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(m), [])</code></pre></div>
+<span class="hljs-keyword">const</span> changeA = <span class="hljs-title function_">useCallback</span>(<span class="hljs-function"><span class="hljs-params">m</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(m), [])</code></pre></div>
 
 
 
@@ -519,69 +522,69 @@
 <p>为什么是对象的原因请看用处二</p>
 <p><strong>用处一： 获取 元素，可以做一些操作元素之类</strong></p>
 <p>通过如下简单实例可以明白</p>
-<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> React, &#123; useRef &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>
+<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span>, &#123; useRef &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-keyword">const</span> inputRef = useRef(<span class="hljs-literal">null</span>)
-  <span class="hljs-keyword">const</span> onclick = <span class="hljs-function">() =&gt;</span> &#123;
-    <span class="hljs-built_in">console</span>.log(inputRef.current);  <span class="hljs-comment">// 获得到input元素</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-keyword">const</span> inputRef = <span class="hljs-title function_">useRef</span>(<span class="hljs-literal">null</span>)
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">onclick</span> = (<span class="hljs-params"></span>) =&gt; &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(inputRef.<span class="hljs-property">current</span>);  <span class="hljs-comment">// 获得到input元素</span>
   &#125;
   <span class="hljs-keyword">return</span> (
-    &lt;div&gt;
-      &lt;input type=<span class="hljs-string">&quot;text&quot;</span> ref=&#123;inputRef&#125; /&gt;
-      &lt;button onClick=&#123;onclick&#125;&gt;获取input&lt;/button&gt;
-    &lt;/div&gt;
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&#123;inputRef&#125;</span> /&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;onclick&#125;</span>&gt;</span>获取input<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
   )
 &#125;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> App</code></pre></div>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">App</span></code></pre></div>
 
 <p><strong>用处二：保持可变变量</strong></p>
 <p>目的： 如果需要一个值，在组件不断render时保持不变</p>
 <p>返回的ref对象在组件的整个生命周期内保持不变</p>
 <p>举个常见的场景: 对定时器的清除操作。</p>
 <p>我们需要确保 setInterval 的执行结果timer的引用，才能准确的清除对应的定时器。</p>
-<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> React, &#123; useEffect, useRef &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>
+<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span>, &#123; useEffect, useRef &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-keyword">const</span> timerRef = useRef()
-  useEffect(<span class="hljs-function">() =&gt;</span> &#123;
-    timerRef.current = <span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =&gt;</span> &#123;
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;timerRef&#x27;</span>);
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-keyword">const</span> timerRef = <span class="hljs-title function_">useRef</span>()
+  <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> &#123;
+    timerRef.<span class="hljs-property">current</span> = <span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =&gt;</span> &#123;
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;timerRef&#x27;</span>);
     &#125;, <span class="hljs-number">1000</span>);
     <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> &#123;
-      timerRef.current &amp;&amp; <span class="hljs-built_in">clearInterval</span>(timerRef.current)
+      timerRef.<span class="hljs-property">current</span> &amp;&amp; <span class="hljs-built_in">clearInterval</span>(timerRef.<span class="hljs-property">current</span>)
     &#125;
   &#125;, [])
 
   <span class="hljs-keyword">return</span> (
-    &lt;div&gt;
-      App....
-    &lt;/div&gt;
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">      App....</span>
+<span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
   )
 &#125;
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> App</code></pre></div>
-<h3 id="forwardRef"><a href="#forwardRef" class="headerlink" title="forwardRef"></a>forwardRef</h3><div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> React, &#123; useRef, forwardRef, useEffect &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-keyword">const</span> btnRef = useRef(<span class="hljs-literal">null</span>)
-  useEffect(<span class="hljs-function">() =&gt;</span> &#123;
-    <span class="hljs-built_in">console</span>.log(btnRef.current);
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">App</span></code></pre></div>
+<h3 id="forwardRef"><a href="#forwardRef" class="headerlink" title="forwardRef"></a>forwardRef</h3><div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span>, &#123; useRef, forwardRef, useEffect &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-keyword">const</span> btnRef = <span class="hljs-title function_">useRef</span>(<span class="hljs-literal">null</span>)
+  <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(btnRef.<span class="hljs-property">current</span>);
   &#125;, [])
 
   <span class="hljs-keyword">return</span> (
-    &lt;div&gt;
-      &lt;Button ref=&#123;btnRef&#125; /&gt;
-    &lt;/div&gt;
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&#123;btnRef&#125;</span> /&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
   )
 &#125;
-<span class="hljs-keyword">const</span> Button = forwardRef(<span class="hljs-function">(<span class="hljs-params">props, ref</span>) =&gt;</span> &#123;
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">Button</span> = <span class="hljs-title function_">forwardRef</span>(<span class="hljs-function">(<span class="hljs-params">props, ref</span>) =&gt;</span> &#123;
   <span class="hljs-keyword">return</span> (
-    &lt;div&gt;
-      &lt;button ref=&#123;ref&#125; &#123;...props&#125;&gt;按钮&lt;/button&gt;
-    &lt;/div&gt;
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&#123;ref&#125;</span> &#123;<span class="hljs-attr">...props</span>&#125;&gt;</span>按钮<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
   )
 &#125;)
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> App</code></pre></div>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">App</span></code></pre></div>
 
 <p>React 会将  <code>&lt;Button ref=&#123;ref&#125; /&gt;</code>元素的 ref 作为第二个参数传递给 React.forwardRef 函数中的渲染函数。</p>
 <p>该渲染函数会将 ref 传递给 <code>&lt;button ref=&#123;ref&#125; /&gt; </code> 元素。</p>
@@ -591,116 +594,128 @@
 <h2 id="自定义-Hook"><a href="#自定义-Hook" class="headerlink" title="自定义 Hook"></a>自定义 Hook</h2><p>做一个hooks来实现渲染列表以及删除列表</p>
 <p><strong>组件：</strong></p>
 <div class="hljs"><pre><code class="hljs jsx"><span class="hljs-comment">// App组件</span>
-<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>
 <span class="hljs-keyword">import</span> useList <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./hooks/useList&#x27;</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-keyword">const</span> &#123; list, deleteIndex &#125; = useList()
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-keyword">const</span> &#123; list, deleteIndex &#125; = <span class="hljs-title function_">useList</span>()
   <span class="hljs-keyword">return</span> (
-    &lt;div&gt;
-      &lt;h2&gt;小说列表&lt;/h2&gt;
-      &#123;
-        list ?
-          (<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span></span>
-<span class="xml">            &#123;list.map((item, index) =&gt; (</span>
-              &lt;li key=&#123;item.id&#125;&gt;&#123;item.name&#125;
-                &lt;button onClick=&#123;() =&gt; &#123; deleteIndex(index) &#125;&#125;&gt;删除&lt;/button&gt;
-<span class="xml">              <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span>
-<span class="xml">            )</span>
-<span class="xml">            )&#125;</span>
-<span class="xml">          <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></span>) :
-          (<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>加载中....<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span>)
-      &#125;
-    &lt;/div&gt;
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>小说列表<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span>
+<span class="language-xml">      &#123;</span>
+<span class="language-xml">        list ?</span>
+<span class="language-xml">          (<span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span></span>
+<span class="language-xml">            &#123;list.map((item, index) =&gt; (</span>
+<span class="language-xml">              <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;item.id&#125;</span>&gt;</span>&#123;item.name&#125;</span>
+<span class="language-xml">                <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;()</span> =&gt;</span> &#123; deleteIndex(index) &#125;&#125;&gt;删除<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+<span class="language-xml">              <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span>
+<span class="language-xml">            )</span>
+<span class="language-xml">            )&#125;</span>
+<span class="language-xml">          <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>) :</span>
+<span class="language-xml">          (<span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>加载中....<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>)</span>
+<span class="language-xml">      &#125;</span>
+<span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
   )
 &#125;
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> App</code></pre></div>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">App</span></code></pre></div>
 
 <p><strong>自定义hook：</strong></p>
 <div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> &#123; useState, useEffect &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>
 <span class="hljs-keyword">import</span> &#123;nanoid &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;nanoid&#x27;</span>
 
-<span class="hljs-keyword">const</span> useList = <span class="hljs-function">() =&gt;</span> &#123;
-  <span class="hljs-keyword">const</span> [list, setList] = useState(<span class="hljs-literal">null</span>)
-  useEffect(<span class="hljs-function">() =&gt;</span> &#123;
-    ajax().then(<span class="hljs-function"><span class="hljs-params">list</span> =&gt;</span> &#123;
-      setList(list)
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">useList</span> = (<span class="hljs-params"></span>) =&gt; &#123;
+  <span class="hljs-keyword">const</span> [list, setList] = <span class="hljs-title function_">useState</span>(<span class="hljs-literal">null</span>)
+  <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> &#123;
+    <span class="hljs-title function_">ajax</span>().<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">list</span> =&gt;</span> &#123;
+      <span class="hljs-title function_">setList</span>(list)
     &#125;)
   &#125;, [])
   <span class="hljs-keyword">return</span> &#123;
-    list: list,
-    setList: setList,
-    deleteIndex: <span class="hljs-function"><span class="hljs-params">index</span> =&gt;</span> &#123;
-      setList(list.slice(<span class="hljs-number">0</span>,index).concat(list.slice(index+<span class="hljs-number">1</span>)))
+    <span class="hljs-attr">list</span>: list,
+    <span class="hljs-attr">setList</span>: setList,
+    <span class="hljs-attr">deleteIndex</span>: <span class="hljs-function"><span class="hljs-params">index</span> =&gt;</span> &#123;
+      <span class="hljs-title function_">setList</span>(list.<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span>,index).<span class="hljs-title function_">concat</span>(list.<span class="hljs-title function_">slice</span>(index+<span class="hljs-number">1</span>)))
     &#125;
   &#125;
 &#125;
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> useList
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ajax</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">ajax</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;
     <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
-      resolve([
-        &#123;<span class="hljs-attr">id</span>: nanoid(),<span class="hljs-attr">name</span>:<span class="hljs-string">&quot;小王子&quot;</span>&#125;,
-        &#123;<span class="hljs-attr">id</span>: nanoid(),<span class="hljs-attr">name</span>:<span class="hljs-string">&quot;明朝那些事儿&quot;</span>&#125;,
-        &#123;<span class="hljs-attr">id</span>: nanoid(),<span class="hljs-attr">name</span>:<span class="hljs-string">&quot;三体&quot;</span>&#125;,
+      <span class="hljs-title function_">resolve</span>([
+        &#123;<span class="hljs-attr">id</span>: <span class="hljs-title function_">nanoid</span>(),<span class="hljs-attr">name</span>:<span class="hljs-string">&quot;小王子&quot;</span>&#125;,
+        &#123;<span class="hljs-attr">id</span>: <span class="hljs-title function_">nanoid</span>(),<span class="hljs-attr">name</span>:<span class="hljs-string">&quot;明朝那些事儿&quot;</span>&#125;,
+        &#123;<span class="hljs-attr">id</span>: <span class="hljs-title function_">nanoid</span>(),<span class="hljs-attr">name</span>:<span class="hljs-string">&quot;三体&quot;</span>&#125;,
       ])
     &#125;,<span class="hljs-number">2000</span>)
   &#125;)
 &#125;</code></pre></div>
 
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/React/">React</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/React/">React</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2021/02/12/51-%E9%97%AD%E5%8C%85/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">什么是闭包？闭包的用途是什么？闭包的缺点是什么？</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2021/01/31/49-Redux%20%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">
-                    <span class="hidden-mobile">Redux 学习总结</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/React/">
+                              React
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/React/">
+                                  React
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2021/02/12/51-%E9%97%AD%E5%8C%85/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      什么是闭包？闭包的用途是什么？闭包的缺点是什么？
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2021/01/31/49-Redux%20%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">
+                                    <span class="hidden-mobile">
+                                      Redux 学习总结
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -727,26 +742,26 @@
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

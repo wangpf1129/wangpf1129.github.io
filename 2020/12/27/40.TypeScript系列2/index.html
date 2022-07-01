@@ -203,220 +203,236 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">TypeScript学习总结之函数</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <p>​<br><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/408cfbc308734bd8bcbb8a36c40135d0~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="TypeScript"></p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                TypeScript学习总结之函数
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <p>​<br><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/408cfbc308734bd8bcbb8a36c40135d0~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="TypeScript"></p>
 <h2 id="函数的注解方式"><a href="#函数的注解方式" class="headerlink" title="函数的注解方式"></a>函数的注解方式</h2><h3 id="函数声明的注解方式"><a href="#函数声明的注解方式" class="headerlink" title="函数声明的注解方式"></a>函数声明的注解方式</h3><blockquote>
 <p>注解 参数和返回值</p>
 </blockquote>
-<div class="hljs"><pre><code class="hljs ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params">a: <span class="hljs-built_in">number</span>, b: <span class="hljs-built_in">number</span></span>): <span class="hljs-title">number</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">test</span>(<span class="hljs-params">a: <span class="hljs-built_in">number</span>, b: <span class="hljs-built_in">number</span></span>): <span class="hljs-built_in">number</span> &#123;
   <span class="hljs-keyword">return</span> a + b
 &#125;
 
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test1</span>(<span class="hljs-params">a: <span class="hljs-built_in">number</span>, b: <span class="hljs-built_in">number</span></span>): <span class="hljs-title">void</span> </span>&#123;
-  <span class="hljs-built_in">console</span>.log(a + b);
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">test1</span>(<span class="hljs-params">a: <span class="hljs-built_in">number</span>, b: <span class="hljs-built_in">number</span></span>): <span class="hljs-built_in">void</span> &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a + b);
 &#125;
 
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test2</span>(<span class="hljs-params">a: <span class="hljs-built_in">number</span>, b: <span class="hljs-built_in">number</span></span>): <span class="hljs-title">never</span> </span>&#123;
-  <span class="hljs-built_in">console</span>.log(a + b);
-  <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>()
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">test2</span>(<span class="hljs-params">a: <span class="hljs-built_in">number</span>, b: <span class="hljs-built_in">number</span></span>): <span class="hljs-built_in">never</span> &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a + b);
+  <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>()
 &#125;</code></pre></div>
 
 <h3 id="函数表达式的注解方式"><a href="#函数表达式的注解方式" class="headerlink" title="函数表达式的注解方式"></a>函数表达式的注解方式</h3><p>// 不用给 function 后边写注解， 因为会根据前边的注解来做类型推断</p>
-<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">let</span> test: <span class="hljs-function">(<span class="hljs-params">a: <span class="hljs-built_in">number</span>, b: <span class="hljs-built_in">number</span></span>) =&gt;</span> <span class="hljs-built_in">number</span> = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) </span>&#123;
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">let</span> <span class="hljs-attr">test</span>: <span class="hljs-function">(<span class="hljs-params">a: <span class="hljs-built_in">number</span>, b: <span class="hljs-built_in">number</span></span>) =&gt;</span> <span class="hljs-built_in">number</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) &#123;
   <span class="hljs-keyword">return</span> a + b
 &#125;
 
-<span class="hljs-keyword">let</span> test1: <span class="hljs-function">(<span class="hljs-params">a: <span class="hljs-built_in">number</span>, b: <span class="hljs-built_in">number</span></span>) =&gt;</span> <span class="hljs-built_in">void</span> = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) </span>&#123;
-  <span class="hljs-built_in">console</span>.log(a + b);
+<span class="hljs-keyword">let</span> <span class="hljs-attr">test1</span>: <span class="hljs-function">(<span class="hljs-params">a: <span class="hljs-built_in">number</span>, b: <span class="hljs-built_in">number</span></span>) =&gt;</span> <span class="hljs-built_in">void</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a + b);
 
 &#125;
 
-<span class="hljs-keyword">let</span> test2: <span class="hljs-function">(<span class="hljs-params">a: <span class="hljs-built_in">number</span>, b: <span class="hljs-built_in">number</span></span>) =&gt;</span> <span class="hljs-built_in">never</span> = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) </span>&#123;
-  <span class="hljs-built_in">console</span>.log(a + b);
-  <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>()
+<span class="hljs-keyword">let</span> <span class="hljs-attr">test2</span>: <span class="hljs-function">(<span class="hljs-params">a: <span class="hljs-built_in">number</span>, b: <span class="hljs-built_in">number</span></span>) =&gt;</span> <span class="hljs-built_in">never</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a + b);
+  <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>()
 &#125;</code></pre></div>
 
 <h3 id="可选参数和默认参数"><a href="#可选参数和默认参数" class="headerlink" title="可选参数和默认参数"></a>可选参数和默认参数</h3><p><strong>// 默认：传递给一个函数的参数个数必须与函数期望的参数个数一致。</strong></p>
-<div class="hljs"><pre><code class="hljs ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buildName</span>(<span class="hljs-params">firstName: <span class="hljs-built_in">string</span>, lastName: <span class="hljs-built_in">string</span></span>) </span>&#123;
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">buildName</span>(<span class="hljs-params">firstName: <span class="hljs-built_in">string</span>, lastName: <span class="hljs-built_in">string</span></span>) &#123;
   <span class="hljs-keyword">return</span> firstName + <span class="hljs-string">&quot; &quot;</span> + lastName;
 &#125;
 
-<span class="hljs-keyword">let</span> result1 = buildName(<span class="hljs-string">&quot;Bob&quot;</span>);          <span class="hljs-comment">// 少一个参数        // error, too few parameters</span>
-<span class="hljs-keyword">let</span> result2 = buildName(<span class="hljs-string">&quot;Bob&quot;</span>, <span class="hljs-string">&quot;Adams&quot;</span>, <span class="hljs-string">&quot;Sr.&quot;</span>);  <span class="hljs-comment">// 多一个参数  // error, too many parameters</span>
-<span class="hljs-keyword">let</span> result3 = buildName(<span class="hljs-string">&quot;Bob&quot;</span>, <span class="hljs-string">&quot;Adams&quot;</span>);         <span class="hljs-comment">// ah, just right</span></code></pre></div>
+<span class="hljs-keyword">let</span> result1 = <span class="hljs-title function_">buildName</span>(<span class="hljs-string">&quot;Bob&quot;</span>);          <span class="hljs-comment">// 少一个参数        // error, too few parameters</span>
+<span class="hljs-keyword">let</span> result2 = <span class="hljs-title function_">buildName</span>(<span class="hljs-string">&quot;Bob&quot;</span>, <span class="hljs-string">&quot;Adams&quot;</span>, <span class="hljs-string">&quot;Sr.&quot;</span>);  <span class="hljs-comment">// 多一个参数  // error, too many parameters</span>
+<span class="hljs-keyword">let</span> result3 = <span class="hljs-title function_">buildName</span>(<span class="hljs-string">&quot;Bob&quot;</span>, <span class="hljs-string">&quot;Adams&quot;</span>);         <span class="hljs-comment">// ah, just right</span></code></pre></div>
 
 <h4 id="可选参数"><a href="#可选参数" class="headerlink" title="可选参数"></a>可选参数</h4><p><strong>// 注意：可选参数必须要放在必选参数的后边，否则会报错。</strong></p>
-<div class="hljs"><pre><code class="hljs ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buildName</span>(<span class="hljs-params">firstName: <span class="hljs-built_in">string</span>, lastName?: <span class="hljs-built_in">string</span></span>) </span>&#123;
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">buildName</span>(<span class="hljs-params">firstName: <span class="hljs-built_in">string</span>, lastName?: <span class="hljs-built_in">string</span></span>) &#123;
   <span class="hljs-keyword">if</span> (lastName)
       <span class="hljs-keyword">return</span> firstName + <span class="hljs-string">&quot; &quot;</span> + lastName;
   <span class="hljs-keyword">else</span>
       <span class="hljs-keyword">return</span> firstName;
 &#125;
 
-<span class="hljs-keyword">let</span> result1 = buildName(<span class="hljs-string">&quot;Bob&quot;</span>);  <span class="hljs-comment">// is OK</span>
-<span class="hljs-keyword">let</span> result2 = buildName(<span class="hljs-string">&quot;Bob&quot;</span>, <span class="hljs-string">&quot;Adams&quot;</span>, <span class="hljs-string">&quot;Sr.&quot;</span>);  <span class="hljs-comment">// 错误，多个一参数</span>
-<span class="hljs-keyword">let</span> result3 = buildName(<span class="hljs-string">&quot;Bob&quot;</span>, <span class="hljs-string">&quot;Adams&quot;</span>);  <span class="hljs-comment">//  is OK</span></code></pre></div>
+<span class="hljs-keyword">let</span> result1 = <span class="hljs-title function_">buildName</span>(<span class="hljs-string">&quot;Bob&quot;</span>);  <span class="hljs-comment">// is OK</span>
+<span class="hljs-keyword">let</span> result2 = <span class="hljs-title function_">buildName</span>(<span class="hljs-string">&quot;Bob&quot;</span>, <span class="hljs-string">&quot;Adams&quot;</span>, <span class="hljs-string">&quot;Sr.&quot;</span>);  <span class="hljs-comment">// 错误，多个一参数</span>
+<span class="hljs-keyword">let</span> result3 = <span class="hljs-title function_">buildName</span>(<span class="hljs-string">&quot;Bob&quot;</span>, <span class="hljs-string">&quot;Adams&quot;</span>);  <span class="hljs-comment">//  is OK</span></code></pre></div>
 
 
-<h4 id="默认值"><a href="#默认值" class="headerlink" title="默认值"></a>默认值</h4><div class="hljs"><pre><code class="hljs ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buildName</span>(<span class="hljs-params">firstName: <span class="hljs-built_in">string</span>, lastName = &quot;Smith&quot;</span>) </span>&#123;
+<h4 id="默认值"><a href="#默认值" class="headerlink" title="默认值"></a>默认值</h4><div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">buildName</span>(<span class="hljs-params">firstName: <span class="hljs-built_in">string</span>, lastName = <span class="hljs-string">&quot;Smith&quot;</span></span>) &#123;
   <span class="hljs-keyword">return</span> firstName + <span class="hljs-string">&quot; &quot;</span> + lastName;
 &#125;
 
-<span class="hljs-keyword">let</span> result1 = buildName(<span class="hljs-string">&quot;Bob&quot;</span>);                  <span class="hljs-comment">// works correctly now, returns &quot;Bob Smith&quot;</span>
-<span class="hljs-keyword">let</span> result2 = buildName(<span class="hljs-string">&quot;Bob&quot;</span>, <span class="hljs-literal">undefined</span>);       <span class="hljs-comment">// still works, also returns &quot;Bob Smith&quot;</span>
-<span class="hljs-built_in">console</span>.log(result1, result2);  <span class="hljs-comment">//  Bob Smith Bob Smith</span></code></pre></div>
+<span class="hljs-keyword">let</span> result1 = <span class="hljs-title function_">buildName</span>(<span class="hljs-string">&quot;Bob&quot;</span>);                  <span class="hljs-comment">// works correctly now, returns &quot;Bob Smith&quot;</span>
+<span class="hljs-keyword">let</span> result2 = <span class="hljs-title function_">buildName</span>(<span class="hljs-string">&quot;Bob&quot;</span>, <span class="hljs-literal">undefined</span>);       <span class="hljs-comment">// still works, also returns &quot;Bob Smith&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result1, result2);  <span class="hljs-comment">//  Bob Smith Bob Smith</span></code></pre></div>
 
 <h4 id="剩余参数"><a href="#剩余参数" class="headerlink" title="剩余参数"></a>剩余参数</h4><p><strong>// …restOfName: string[] 一定要放在最后边，和ES6的扩展运算符一样</strong></p>
-<div class="hljs"><pre><code class="hljs ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buildName</span>(<span class="hljs-params">firstName: <span class="hljs-built_in">string</span>, lastName = &#x27;Smith&#x27;, ...restOfName: <span class="hljs-built_in">string</span>[]</span>) </span>&#123;
-  <span class="hljs-keyword">return</span> firstName + <span class="hljs-string">&quot; &quot;</span> + lastName + restOfName.join(<span class="hljs-string">&quot; &quot;</span>);
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">buildName</span>(<span class="hljs-params">firstName: <span class="hljs-built_in">string</span>, lastName = <span class="hljs-string">&#x27;Smith&#x27;</span>, ...restOfName: <span class="hljs-built_in">string</span>[]</span>) &#123;
+  <span class="hljs-keyword">return</span> firstName + <span class="hljs-string">&quot; &quot;</span> + lastName + restOfName.<span class="hljs-title function_">join</span>(<span class="hljs-string">&quot; &quot;</span>);
 &#125;
 
-<span class="hljs-keyword">let</span> employeeName = buildName(<span class="hljs-string">&quot;Joseph&quot;</span>, <span class="hljs-string">&quot;Samuel&quot;</span>, <span class="hljs-string">&quot;Lucas&quot;</span>);</code></pre></div>
+<span class="hljs-keyword">let</span> employeeName = <span class="hljs-title function_">buildName</span>(<span class="hljs-string">&quot;Joseph&quot;</span>, <span class="hljs-string">&quot;Samuel&quot;</span>, <span class="hljs-string">&quot;Lucas&quot;</span>);</code></pre></div>
 
-<h4 id="解构赋值在TS中的使用"><a href="#解构赋值在TS中的使用" class="headerlink" title="解构赋值在TS中的使用"></a>解构赋值在TS中的使用</h4><div class="hljs"><pre><code class="hljs ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params"></span></span>
-<span class="hljs-function"><span class="hljs-params">  &#123; a, b &#125;: &#123; a: <span class="hljs-built_in">number</span>, b: <span class="hljs-built_in">number</span> &#125; = &#123; a: 1, b: 2 &#125;</span></span>
-<span class="hljs-function"><span class="hljs-params"></span>) </span>&#123;
+<h4 id="解构赋值在TS中的使用"><a href="#解构赋值在TS中的使用" class="headerlink" title="解构赋值在TS中的使用"></a>解构赋值在TS中的使用</h4><div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">test</span>(<span class="hljs-params"></span>
+<span class="hljs-params">  &#123; a, b &#125;: &#123; a: <span class="hljs-built_in">number</span>, b: <span class="hljs-built_in">number</span> &#125; = &#123; a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span> &#125;</span>
+<span class="hljs-params"></span>) &#123;
   <span class="hljs-keyword">return</span> a + b
 &#125;
-<span class="hljs-built_in">console</span>.log(test());  <span class="hljs-comment">//  3</span></code></pre></div>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">test</span>());  <span class="hljs-comment">//  3</span></code></pre></div>
 
 
 <h3 id="this指向"><a href="#this指向" class="headerlink" title="this指向"></a>this指向</h3><p>有时候我我们需要在函数中使用this来去指定那个示例对象, TS提供俩种方式</p>
 <p><strong>方式一： 使用箭头函数 + 配置noImplicitThis = true (不配置 this是any)</strong></p>
 <div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">let</span> deck = &#123;
-  suits: [<span class="hljs-string">&quot;hearts&quot;</span>, <span class="hljs-string">&quot;spades&quot;</span>, <span class="hljs-string">&quot;clubs&quot;</span>, <span class="hljs-string">&quot;diamonds&quot;</span>],
-  cards: <span class="hljs-built_in">Array</span>(<span class="hljs-number">52</span>),
-  createCardPicker: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-attr">suits</span>: [<span class="hljs-string">&quot;hearts&quot;</span>, <span class="hljs-string">&quot;spades&quot;</span>, <span class="hljs-string">&quot;clubs&quot;</span>, <span class="hljs-string">&quot;diamonds&quot;</span>],
+  <span class="hljs-attr">cards</span>: <span class="hljs-title class_">Array</span>(<span class="hljs-number">52</span>),
+  <span class="hljs-attr">createCardPicker</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
     <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> &#123;
-      <span class="hljs-keyword">let</span> pickedCard = <span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">52</span>);
-      <span class="hljs-keyword">let</span> pickedSuit = <span class="hljs-built_in">Math</span>.floor(pickedCard / <span class="hljs-number">13</span>);
+      <span class="hljs-keyword">let</span> pickedCard = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * <span class="hljs-number">52</span>);
+      <span class="hljs-keyword">let</span> pickedSuit = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(pickedCard / <span class="hljs-number">13</span>);
 
-      <span class="hljs-keyword">return</span> &#123; suit: <span class="hljs-built_in">this</span>.suits[pickedSuit], card: pickedCard % <span class="hljs-number">13</span> &#125;;
+      <span class="hljs-keyword">return</span> &#123; <span class="hljs-attr">suit</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">suits</span>[pickedSuit], <span class="hljs-attr">card</span>: pickedCard % <span class="hljs-number">13</span> &#125;;
     &#125;
   &#125;
 &#125;
 
-<span class="hljs-keyword">let</span> cardPicker = deck.createCardPicker();
-<span class="hljs-keyword">let</span> pickedCard = cardPicker();
+<span class="hljs-keyword">let</span> cardPicker = deck.<span class="hljs-title function_">createCardPicker</span>();
+<span class="hljs-keyword">let</span> pickedCard = <span class="hljs-title function_">cardPicker</span>();
 
-alert(<span class="hljs-string">&quot;card: &quot;</span> + pickedCard.card + <span class="hljs-string">&quot; of &quot;</span> + pickedCard.suit);</code></pre></div>
+<span class="hljs-title function_">alert</span>(<span class="hljs-string">&quot;card: &quot;</span> + pickedCard.<span class="hljs-property">card</span> + <span class="hljs-string">&quot; of &quot;</span> + pickedCard.<span class="hljs-property">suit</span>);</code></pre></div>
 
 <p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/765e95cadcb24e5486c3d171087d1fc0~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="this"></p>
 <p><strong>方式二：使用 interface</strong></p>
-<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">interface</span> Card &#123;
-  suit: <span class="hljs-built_in">string</span>
-  card: <span class="hljs-built_in">number</span>
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Card</span> &#123;
+  <span class="hljs-attr">suit</span>: <span class="hljs-built_in">string</span>
+  <span class="hljs-attr">card</span>: <span class="hljs-built_in">number</span>
 &#125;
-<span class="hljs-keyword">interface</span> Deck &#123;
-  suits: <span class="hljs-built_in">string</span>[]
-  cards: <span class="hljs-built_in">number</span>[]
-  createCardPicker(<span class="hljs-built_in">this</span>: Deck): <span class="hljs-function">() =&gt;</span> Card
+<span class="hljs-keyword">interface</span> <span class="hljs-title class_">Deck</span> &#123;
+  <span class="hljs-attr">suits</span>: <span class="hljs-built_in">string</span>[]
+  <span class="hljs-attr">cards</span>: <span class="hljs-built_in">number</span>[]
+  <span class="hljs-title function_">createCardPicker</span>(<span class="hljs-attr">this</span>: <span class="hljs-title class_">Deck</span>): <span class="hljs-function">() =&gt;</span> <span class="hljs-title class_">Card</span>
 &#125;
 
-<span class="hljs-keyword">let</span> deck: Deck = &#123; 
-  suits: [<span class="hljs-string">&quot;hearts&quot;</span>, <span class="hljs-string">&quot;spades&quot;</span>, <span class="hljs-string">&quot;clubs&quot;</span>, <span class="hljs-string">&quot;diamonds&quot;</span>],
-  cards: <span class="hljs-built_in">Array</span>(<span class="hljs-number">52</span>),
-  createCardPicker: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+<span class="hljs-keyword">let</span> <span class="hljs-attr">deck</span>: <span class="hljs-title class_">Deck</span> = &#123; 
+  <span class="hljs-attr">suits</span>: [<span class="hljs-string">&quot;hearts&quot;</span>, <span class="hljs-string">&quot;spades&quot;</span>, <span class="hljs-string">&quot;clubs&quot;</span>, <span class="hljs-string">&quot;diamonds&quot;</span>],
+  <span class="hljs-attr">cards</span>: <span class="hljs-title class_">Array</span>(<span class="hljs-number">52</span>),
+  <span class="hljs-attr">createCardPicker</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
     <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> &#123;
-      <span class="hljs-keyword">let</span> pickedCard = <span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">52</span>);
-      <span class="hljs-keyword">let</span> pickedSuit = <span class="hljs-built_in">Math</span>.floor(pickedCard / <span class="hljs-number">13</span>);
+      <span class="hljs-keyword">let</span> pickedCard = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * <span class="hljs-number">52</span>);
+      <span class="hljs-keyword">let</span> pickedSuit = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(pickedCard / <span class="hljs-number">13</span>);
 
-      <span class="hljs-keyword">return</span> &#123; suit: <span class="hljs-built_in">this</span>.suits[pickedSuit], card: pickedCard % <span class="hljs-number">13</span> &#125;;
+      <span class="hljs-keyword">return</span> &#123; <span class="hljs-attr">suit</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">suits</span>[pickedSuit], <span class="hljs-attr">card</span>: pickedCard % <span class="hljs-number">13</span> &#125;;
     &#125;
   &#125;
 &#125;
 
-<span class="hljs-keyword">let</span> cardPicker = deck.createCardPicker();
-<span class="hljs-keyword">let</span> pickedCard = cardPicker();
+<span class="hljs-keyword">let</span> cardPicker = deck.<span class="hljs-title function_">createCardPicker</span>();
+<span class="hljs-keyword">let</span> pickedCard = <span class="hljs-title function_">cardPicker</span>();
 
-alert(<span class="hljs-string">&quot;card: &quot;</span> + pickedCard.card + <span class="hljs-string">&quot; of &quot;</span> + pickedCard.suit);</code></pre></div>
+<span class="hljs-title function_">alert</span>(<span class="hljs-string">&quot;card: &quot;</span> + pickedCard.<span class="hljs-property">card</span> + <span class="hljs-string">&quot; of &quot;</span> + pickedCard.<span class="hljs-property">suit</span>);</code></pre></div>
 <p>这样 this 就会指向 Deck</p>
 <p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2f923f0409cc48988fc79821dc1b35f7~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="this指向"></p>
 <h3 id="函数的重载"><a href="#函数的重载" class="headerlink" title="函数的重载"></a>函数的重载</h3><p>// 官网的例子太麻烦了， 我以 翻转字符串或者数字来举例</p>
 <div class="hljs"><pre><code class="hljs ts"><span class="hljs-comment">// 翻转 字符串或者数字</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reverse</span>(<span class="hljs-params">foo: <span class="hljs-built_in">string</span></span>): <span class="hljs-title">string</span></span>
-<span class="hljs-function"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reverse</span>(<span class="hljs-params">foo: <span class="hljs-built_in">number</span></span>): <span class="hljs-title">number</span></span></span>
-<span class="hljs-function"><span class="hljs-function"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reverse</span>(<span class="hljs-params">foo: <span class="hljs-built_in">string</span> | <span class="hljs-built_in">number</span></span>) </span>&#123;</span></span>
-<span class="hljs-function"><span class="hljs-function">  <span class="hljs-title">if</span> (<span class="hljs-params"><span class="hljs-keyword">typeof</span> foo === &#x27;<span class="hljs-built_in">string</span>&#x27;</span>) </span>&#123;</span>
-<span class="hljs-function">    <span class="hljs-title">return</span> <span class="hljs-title">foo</span>.<span class="hljs-title">split</span>(<span class="hljs-params">&#x27;&#x27;</span>).<span class="hljs-title">reverse</span>(<span class="hljs-params"></span>).<span class="hljs-title">join</span>(<span class="hljs-params">&#x27;&#x27;</span>)</span>
-<span class="hljs-function">  &#125;</span>
-<span class="hljs-function"></span>
-<span class="hljs-function">  <span class="hljs-title">if</span> (<span class="hljs-params"><span class="hljs-keyword">typeof</span> foo === &#x27;<span class="hljs-built_in">number</span>&#x27;</span>) </span>&#123;
-    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Number</span>(foo.toString().split(<span class="hljs-string">&#x27;&#x27;</span>).reverse().join(<span class="hljs-string">&#x27;&#x27;</span>))
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">reverse</span>(<span class="hljs-params">foo: <span class="hljs-built_in">string</span></span>): <span class="hljs-built_in">string</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">reverse</span>(<span class="hljs-params">foo: <span class="hljs-built_in">number</span></span>): <span class="hljs-built_in">number</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">reverse</span>(<span class="hljs-params">foo: <span class="hljs-built_in">string</span> | <span class="hljs-built_in">number</span></span>) &#123;
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> foo === <span class="hljs-string">&#x27;string&#x27;</span>) &#123;
+    <span class="hljs-keyword">return</span> foo.<span class="hljs-title function_">split</span>(<span class="hljs-string">&#x27;&#x27;</span>).<span class="hljs-title function_">reverse</span>().<span class="hljs-title function_">join</span>(<span class="hljs-string">&#x27;&#x27;</span>)
+  &#125;
+
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> foo === <span class="hljs-string">&#x27;number&#x27;</span>) &#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Number</span>(foo.<span class="hljs-title function_">toString</span>().<span class="hljs-title function_">split</span>(<span class="hljs-string">&#x27;&#x27;</span>).<span class="hljs-title function_">reverse</span>().<span class="hljs-title function_">join</span>(<span class="hljs-string">&#x27;&#x27;</span>))
   &#125;
 &#125;
-<span class="hljs-built_in">console</span>.log(reverse(‘<span class="hljs-number">123456</span>’));  <span class="hljs-comment">// 字符串类型的 &#x27;654321&#x27;</span>
-<span class="hljs-built_in">console</span>.log(reverse(<span class="hljs-number">123456</span>));  <span class="hljs-comment">// 数字类型的 654321</span></code></pre></div>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">reverse</span>(‘<span class="hljs-number">123456</span>’));  <span class="hljs-comment">// 字符串类型的 &#x27;654321&#x27;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">reverse</span>(<span class="hljs-number">123456</span>));  <span class="hljs-comment">// 数字类型的 654321</span></code></pre></div>
 <p>看着是不是好像没什么太大的区别?</p>
 <p><strong>// 其实 typescript 重载的意义在于 表意更清楚</strong></p>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/typescript/">typescript</a>
-                  
-                  <a class="hover-with-bg" href="/categories/typescript/JavaScript/">JavaScript</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/typescript/">typescript</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2020/12/29/41.TypeScript%E7%B3%BB%E5%88%973/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">TypeScript 学习总结之 类</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2020/12/26/39.TypeScript%E7%B3%BB%E5%88%971/">
-                    <span class="hidden-mobile">TypeScript学习总结之基础类型</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/typescript/">
+                              typescript
+                            </a>
+                            
+                            <a class="hover-with-bg" href="/categories/typescript/JavaScript/">
+                              JavaScript
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/typescript/">
+                                  typescript
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2020/12/29/41.TypeScript%E7%B3%BB%E5%88%973/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      TypeScript 学习总结之 类
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2020/12/26/39.TypeScript%E7%B3%BB%E5%88%971/">
+                                    <span class="hidden-mobile">
+                                      TypeScript学习总结之基础类型
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -443,26 +459,26 @@ alert(<span class="hljs-string">&quot;card: &quot;</span> + pickedCard.card + <s
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

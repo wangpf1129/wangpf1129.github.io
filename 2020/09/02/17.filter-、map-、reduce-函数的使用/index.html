@@ -203,40 +203,42 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">filter()、map()、reduce()函数的使用</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h1 id="高阶函数-filter-map-reduce-的使用"><a href="#高阶函数-filter-map-reduce-的使用" class="headerlink" title="高阶函数  filter,map,reduce 的使用"></a>高阶函数  filter,map,reduce 的使用</h1><h3 id="使用一个例子类说明-filter、map、reduce的使用及好处"><a href="#使用一个例子类说明-filter、map、reduce的使用及好处" class="headerlink" title="使用一个例子类说明 filter、map、reduce的使用及好处"></a>使用一个例子类说明 filter、map、reduce的使用及好处</h3><h4 id="需求：-1-将数组小于100的挑选出来"><a href="#需求：-1-将数组小于100的挑选出来" class="headerlink" title="需求： 1. 将数组小于100的挑选出来"></a>需求： 1. 将数组小于100的挑选出来</h4><h4 id="需求：-2-将挑选出来的数组的元素乘以-2"><a href="#需求：-2-将挑选出来的数组的元素乘以-2" class="headerlink" title="需求：  2. 将挑选出来的数组的元素乘以 2"></a>需求：  2. 将挑选出来的数组的元素乘以 2</h4><h4 id="需求：-3-把最终的数组中的元素相加"><a href="#需求：-3-把最终的数组中的元素相加" class="headerlink" title="需求： 3. 把最终的数组中的元素相加"></a>需求： 3. 把最终的数组中的元素相加</h4><h4 id="一、-用ES5基本语法来写"><a href="#一、-用ES5基本语法来写" class="headerlink" title="一、 用ES5基本语法来写"></a>一、 用ES5基本语法来写</h4><div class="hljs"><pre><code class="hljs JavaScript"> <span class="hljs-keyword">const</span> nums = [<span class="hljs-number">10</span>, <span class="hljs-number">15</span>, <span class="hljs-number">124</span>, <span class="hljs-number">118</span>, <span class="hljs-number">23</span>, <span class="hljs-number">121</span>, <span class="hljs-number">98.48</span>]
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                filter()、map()、reduce()函数的使用
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h1 id="高阶函数-filter-map-reduce-的使用"><a href="#高阶函数-filter-map-reduce-的使用" class="headerlink" title="高阶函数  filter,map,reduce 的使用"></a>高阶函数  filter,map,reduce 的使用</h1><h3 id="使用一个例子类说明-filter、map、reduce的使用及好处"><a href="#使用一个例子类说明-filter、map、reduce的使用及好处" class="headerlink" title="使用一个例子类说明 filter、map、reduce的使用及好处"></a>使用一个例子类说明 filter、map、reduce的使用及好处</h3><h4 id="需求：-1-将数组小于100的挑选出来"><a href="#需求：-1-将数组小于100的挑选出来" class="headerlink" title="需求： 1. 将数组小于100的挑选出来"></a>需求： 1. 将数组小于100的挑选出来</h4><h4 id="需求：-2-将挑选出来的数组的元素乘以-2"><a href="#需求：-2-将挑选出来的数组的元素乘以-2" class="headerlink" title="需求：  2. 将挑选出来的数组的元素乘以 2"></a>需求：  2. 将挑选出来的数组的元素乘以 2</h4><h4 id="需求：-3-把最终的数组中的元素相加"><a href="#需求：-3-把最终的数组中的元素相加" class="headerlink" title="需求： 3. 把最终的数组中的元素相加"></a>需求： 3. 把最终的数组中的元素相加</h4><h4 id="一、-用ES5基本语法来写"><a href="#一、-用ES5基本语法来写" class="headerlink" title="一、 用ES5基本语法来写"></a>一、 用ES5基本语法来写</h4><div class="hljs"><pre><code class="hljs JavaScript"> <span class="hljs-keyword">const</span> nums = [<span class="hljs-number">10</span>, <span class="hljs-number">15</span>, <span class="hljs-number">124</span>, <span class="hljs-number">118</span>, <span class="hljs-number">23</span>, <span class="hljs-number">121</span>, <span class="hljs-number">98.48</span>]
 <span class="hljs-comment">// 1.需求 取出所有小于 100 的数字</span>
 <span class="hljs-keyword">let</span> newNums = []
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> n <span class="hljs-keyword">of</span> nums) &#123;
   <span class="hljs-keyword">if</span> (n &lt; <span class="hljs-number">100</span>) &#123;
-    newNums.push(n)
+    newNums.<span class="hljs-title function_">push</span>(n)
   &#125;
 &#125;
-<span class="hljs-built_in">console</span>.log(newNums);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(newNums);
 
 <span class="hljs-comment">// 2. 需求  将小于100的数字 都 乘 2</span>
 <span class="hljs-keyword">let</span> new2Nums = []
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> n <span class="hljs-keyword">of</span> newNums) &#123;
-  new2Nums.push(n * <span class="hljs-number">2</span>)
+  new2Nums.<span class="hljs-title function_">push</span>(n * <span class="hljs-number">2</span>)
 &#125;
-<span class="hljs-built_in">console</span>.log(new2Nums);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(new2Nums);
 
 <span class="hljs-comment">// 3. 需求 将 new2Nums 数组中的数字 加起来</span>
 <span class="hljs-keyword">let</span> result = <span class="hljs-number">0</span>
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> n <span class="hljs-keyword">of</span> new2Nums) &#123;
   result += n
 &#125;
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">parseInt</span>(result));</code></pre></div>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-built_in">parseInt</span>(result));</code></pre></div>
 
 <h4 id="二、使用-filter、map、reduce-来写"><a href="#二、使用-filter、map、reduce-来写" class="headerlink" title="二、使用 filter、map、reduce 来写"></a>二、使用 filter、map、reduce 来写</h4><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 1.需求 取出所有小于 100 的数字</span>
 
@@ -244,88 +246,100 @@
 <span class="hljs-comment">// 1. filter 中的参数是一个回调函数 有一个要求： 返回的必须是一个布尔值</span>
 <span class="hljs-comment">// true: 当返回true时， 函数内部会自动将这次回调的 n 加入到新的数组中</span>
 <span class="hljs-comment">// false： 当返回的是false， 函数内部会过滤掉这次的n</span>
-<span class="hljs-keyword">let</span> newNums = nums.filter(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) </span>&#123; <span class="hljs-comment">// n 表示 nums 数组中的元素</span>
+<span class="hljs-keyword">let</span> newNums = nums.<span class="hljs-title function_">filter</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) &#123; <span class="hljs-comment">// n 表示 nums 数组中的元素</span>
   <span class="hljs-keyword">return</span> n &lt; <span class="hljs-number">100</span>
 &#125;)
-<span class="hljs-built_in">console</span>.log(newNums);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(newNums);
 
 <span class="hljs-comment">// 2. 需求  将小于100的数字 都 乘 2</span>
 
 <span class="hljs-comment">// map函数的使用，  参数一个回调函数，  </span>
 <span class="hljs-comment">// Array.map() 方法返回一个新数组，此方法可以以一个函数为参数，循环数组的每一个元素，函数将数组中的元素接收为单个参数。</span>
-<span class="hljs-keyword">let</span> new2Nums = newNums.map(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) </span>&#123;
+<span class="hljs-keyword">let</span> new2Nums = newNums.<span class="hljs-title function_">map</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) &#123;
   <span class="hljs-keyword">return</span> n * <span class="hljs-number">2</span>
 &#125;)
-<span class="hljs-built_in">console</span>.log(new2Nums);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(new2Nums);
 
 <span class="hljs-comment">// 3. 需求 将 new2Nums 数组中的数字 加起来</span>
 
 <span class="hljs-comment">// reduce函数的使用</span>
 <span class="hljs-comment">//  reduce作用对数组中所有的内容进行汇总  第一个参数是 回调函数， 第二个参数是 初始化值</span>
-<span class="hljs-keyword">let</span> result = new2Nums.reduce(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">preValue, n</span>) </span>&#123;
+<span class="hljs-keyword">let</span> result = new2Nums.<span class="hljs-title function_">reduce</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">preValue, n</span>) &#123;
   <span class="hljs-keyword">return</span> preValue + n
 &#125;, <span class="hljs-number">0</span>)
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">parseInt</span>(result));</code></pre></div>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-built_in">parseInt</span>(result));</code></pre></div>
 
 <h4 id="使用链式编程-写出最简单的一行搞定的代码"><a href="#使用链式编程-写出最简单的一行搞定的代码" class="headerlink" title="使用链式编程 写出最简单的一行搞定的代码"></a>使用链式编程 写出最简单的一行搞定的代码</h4><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 使用高阶函数的链式编程来进行写：</span>
-<span class="hljs-keyword">let</span> result = <span class="hljs-built_in">parseInt</span>(nums.filter(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> n &lt; <span class="hljs-number">100</span>).map(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> n * <span class="hljs-number">2</span>).reduce(<span class="hljs-function">(<span class="hljs-params">preValue, n</span>) =&gt;</span> preValue + n, <span class="hljs-number">0</span>))
- <span class="hljs-built_in">console</span>.log(result);</code></pre></div>
+<span class="hljs-keyword">let</span> result = <span class="hljs-built_in">parseInt</span>(nums.<span class="hljs-title function_">filter</span>(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> n &lt; <span class="hljs-number">100</span>).<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> n * <span class="hljs-number">2</span>).<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">preValue, n</span>) =&gt;</span> preValue + n, <span class="hljs-number">0</span>))
+ <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result);</code></pre></div>
 
 
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/es6/">es6</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/es6/">es6</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2020/09/25/18.Vue%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">Vue模板语法总结</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2020/08/28/15.babel/">
-                    <span class="hidden-mobile">babel转换器</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/es6/">
+                              es6
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/es6/">
+                                  es6
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2020/09/25/18.Vue%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      Vue模板语法总结
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2020/08/28/15.babel/">
+                                    <span class="hidden-mobile">
+                                      babel转换器
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -352,26 +366,26 @@
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

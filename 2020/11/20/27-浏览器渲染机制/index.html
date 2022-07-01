@@ -203,18 +203,20 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">浏览器渲染机制过程</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h2 id="以下是浏览器渲染机制必经过程"><a href="#以下是浏览器渲染机制必经过程" class="headerlink" title="以下是浏览器渲染机制必经过程"></a>以下是浏览器渲染机制必经过程</h2><ul>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                浏览器渲染机制过程
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h2 id="以下是浏览器渲染机制必经过程"><a href="#以下是浏览器渲染机制必经过程" class="headerlink" title="以下是浏览器渲染机制必经过程"></a>以下是浏览器渲染机制必经过程</h2><ul>
 <li>根据HTML构建HTML树（DOM）</li>
 <li>根据CSS构建CSS树（CSSDOM）</li>
 <li>将这俩棵树合并成一棵树（Reder Tree）</li>
@@ -244,59 +246,71 @@
 <li>布局完成后，浏览器会立即发出<code> Paint Setup</code> 和 <code>Paint</code> 事件，按照算出来的规则，将渲染树转换成屏幕上的像素</li>
 </ul>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/">浏览器</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/">浏览器</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2020/11/28/28-%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JavaScript/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">你不知道的JavaScript</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2020/11/19/26-%E4%B8%AA%E4%BA%BA%E7%90%86%E8%A7%A3%E7%9A%84CSS%E6%96%87%E6%A1%A3%E6%B5%81/">
-                    <span class="hidden-mobile">个人理解的CSS文档流</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/">
+                              浏览器
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/">
+                                  浏览器
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2020/11/28/28-%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JavaScript/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      你不知道的JavaScript
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2020/11/19/26-%E4%B8%AA%E4%BA%BA%E7%90%86%E8%A7%A3%E7%9A%84CSS%E6%96%87%E6%A1%A3%E6%B5%81/">
+                                    <span class="hidden-mobile">
+                                      个人理解的CSS文档流
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -323,26 +337,26 @@
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

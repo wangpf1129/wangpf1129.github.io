@@ -203,18 +203,20 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">虚拟DOM和diff算法以及关于key的问题（学习总结）</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我为了了解虚拟DOM，是为了更好的学习React和Vue。</p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                虚拟DOM和diff算法以及关于key的问题（学习总结）
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我为了了解虚拟DOM，是为了更好的学习React和Vue。</p>
 <h2 id="虚拟DOM"><a href="#虚拟DOM" class="headerlink" title="虚拟DOM"></a>虚拟DOM</h2><p><strong>先说说虚拟DOM的优点：</strong></p>
 <ol>
 <li>减少DOM操作次数</li>
@@ -224,31 +226,31 @@
 <li>减少DOM操作范围</li>
 </ol>
 <p>虚拟 DOM 借助 DOM diff 可以把多余的操作省掉，比如你添加 100 个元素节点，其实只有 10 个是新增的，如果用原生来操作，你还是需要一个一个添加进去，而虚拟DOM会根据diff算法来判断只需要添加那些改变的元素节点添加进去即可。</p>
-<h2 id="如何创建虚拟DOM"><a href="#如何创建虚拟DOM" class="headerlink" title="如何创建虚拟DOM"></a>如何创建虚拟DOM</h2><h3 id="1-用React举例：-用React-createElement"><a href="#1-用React举例：-用React-createElement" class="headerlink" title="1. 用React举例：(用React.createElement)"></a>1. 用React举例：(用React.createElement)</h3><div class="hljs"><pre><code class="hljs js">React.createElement(<span class="hljs-string">&#x27;div&#x27;</span>,&#123;<span class="hljs-attr">className</span>:<span class="hljs-string">&#x27;red&#x27;</span>,<span class="hljs-attr">onClick</span>:<span class="hljs-function">()=&gt;</span> &#123;&#125;&#125;,[
-    React.createElement(<span class="hljs-string">&#x27;span&#x27;</span>, &#123;&#125;, <span class="hljs-string">&#x27;span1&#x27;</span>),
-    React.createElement(<span class="hljs-string">&#x27;span&#x27;</span>, &#123;&#125;, <span class="hljs-string">&#x27;span2&#x27;</span>)
+<h2 id="如何创建虚拟DOM"><a href="#如何创建虚拟DOM" class="headerlink" title="如何创建虚拟DOM"></a>如何创建虚拟DOM</h2><h3 id="1-用React举例：-用React-createElement"><a href="#1-用React举例：-用React-createElement" class="headerlink" title="1. 用React举例：(用React.createElement)"></a>1. 用React举例：(用React.createElement)</h3><div class="hljs"><pre><code class="hljs js"><span class="hljs-title class_">React</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;div&#x27;</span>,&#123;<span class="hljs-attr">className</span>:<span class="hljs-string">&#x27;red&#x27;</span>,<span class="hljs-attr">onClick</span>:<span class="hljs-function">()=&gt;</span> &#123;&#125;&#125;,[
+    <span class="hljs-title class_">React</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;span&#x27;</span>, &#123;&#125;, <span class="hljs-string">&#x27;span1&#x27;</span>),
+    <span class="hljs-title class_">React</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;span&#x27;</span>, &#123;&#125;, <span class="hljs-string">&#x27;span2&#x27;</span>)
   ]
 )</code></pre></div>
 
 <p>简写即：（React JSX    ）</p>
 <div class="hljs"><pre><code class="hljs jsx">&lt;div className=<span class="hljs-string">&quot;red&quot;</span> onClick=<span class="hljs-string">&quot;&#123;()=&gt; &#123;&#125;&#125;&quot;</span>&gt;
-    &lt;span&gt;span1&lt;/span&gt;
-    &lt;span&gt;span2&lt;/span&gt;
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>span1<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span>
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>span2<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span>
 &lt;/div&gt;</code></pre></div>
 
 <p><strong>简写方法最后会通过 babel 转为 createElement 形式</strong></p>
-<h3 id="2-用Vue举例：-只能在-render-函数里得到-h"><a href="#2-用Vue举例：-只能在-render-函数里得到-h" class="headerlink" title="2. 用Vue举例：(只能在 render 函数里得到 h)"></a>2. 用Vue举例：(只能在 render 函数里得到 h)</h3><div class="hljs"><pre><code class="hljs js">h(<span class="hljs-string">&#x27;div&#x27;</span>, &#123;
-  class: &#x27;red&#x27;,
-  on: &#123;
-    click: <span class="hljs-function">() =&gt;</span> &#123; &#125;
+<h3 id="2-用Vue举例：-只能在-render-函数里得到-h"><a href="#2-用Vue举例：-只能在-render-函数里得到-h" class="headerlink" title="2. 用Vue举例：(只能在 render 函数里得到 h)"></a>2. 用Vue举例：(只能在 render 函数里得到 h)</h3><div class="hljs"><pre><code class="hljs js"><span class="hljs-title function_">h</span>(<span class="hljs-string">&#x27;div&#x27;</span>, &#123;
+  <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;red&#x27;</span>,
+  <span class="hljs-attr">on</span>: &#123;
+    <span class="hljs-attr">click</span>: <span class="hljs-function">() =&gt;</span> &#123; &#125;
   &#125;,
-&#125;, [h(<span class="hljs-string">&#x27;span&#x27;</span>,&#123;&#125;,<span class="hljs-string">&#x27;span1&#x27;</span>), h(<span class="hljs-string">&#x27;span&#x27;</span>, &#123;&#125;, <span class="hljs-string">&#x27;span2&#x27;</span>])</code></pre></div>
+&#125;, [<span class="hljs-title function_">h</span>(<span class="hljs-string">&#x27;span&#x27;</span>,&#123;&#125;,<span class="hljs-string">&#x27;span1&#x27;</span>), <span class="hljs-title function_">h</span>(<span class="hljs-string">&#x27;span&#x27;</span>, &#123;&#125;, <span class="hljs-string">&#x27;span2&#x27;</span>])</code></pre></div>
 
 <p>简写即： (Vue Template)</p>
-<div class="hljs"><pre><code class="hljs Vue">&lt;div class&#x3D;&quot;red&quot; @click&#x3D;&quot;fn&quot;&gt;
-  &lt;span&gt;span1&lt;&#x2F;span&gt;
-  &lt;span&gt;span2&lt;&#x2F;span&gt;
-&lt;&#x2F;div&gt;</code></pre></div>
+<div class="hljs"><pre><code class="hljs Vue">&lt;div class=&quot;red&quot; @click=&quot;fn&quot;&gt;
+  &lt;span&gt;span1&lt;/span&gt;
+  &lt;span&gt;span2&lt;/span&gt;
+&lt;/div&gt;</code></pre></div>
 
 <p><strong>简写方法最后会通过 vue-loader 转为 h 形式</strong></p>
 <h3 id="虚拟DOM到底是什么"><a href="#虚拟DOM到底是什么" class="headerlink" title="虚拟DOM到底是什么"></a>虚拟DOM到底是什么</h3><p>把真实DOM树，变成js对象树，将之前的和新的作比较，通过diff算法，按照不同的地方进行渲染。</p>
@@ -306,80 +308,92 @@
 </ol>
 <h3 id="面试题：-为什么遍历列表时，key最好不要用index（索引值）？"><a href="#面试题：-为什么遍历列表时，key最好不要用index（索引值）？" class="headerlink" title="面试题： 为什么遍历列表时，key最好不要用index（索引值）？"></a>面试题： 为什么遍历列表时，key最好不要用index（索引值）？</h3><p>用index（索引值）作为key可能会引发的问题：</p>
 <ol>
-<li><p>若数据进行：<strong>逆序添加、逆序删除等破坏顺序操作</strong></p>
-<ul>
+<li>若数据进行：<strong>逆序添加、逆序删除等破坏顺序操作</strong><ul>
 <li>会产生没有必要的真实DOM更新 ==&gt; 页面效果虽然没有问题，但是效率低。</li>
 </ul>
 </li>
-<li><p>如果结构中还包含输入类的DOM：</p>
-<ul>
+<li>如果结构中还包含输入类的DOM：<ul>
 <li>会产生错误DOM更新 ==&gt; 页面渲染会有问题</li>
 </ul>
 </li>
-</ol>
-<ol start="3">
 <li>当然如果只是为了 渲染列表，只展示而已， 那用 index 作为key 是没问题的。</li>
 </ol>
 <p>（我这里没有解释，只是给出了结论，如果想看到底为什么，可看推荐文章）</p>
 <p> 关于key问题的文章推荐：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/61064119/answer/766607894">Vue2.0 v-for 中 :key 到底有什么用？</a></p>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/React/">React</a>
-                  
-                  <a class="hover-with-bg" href="/categories/React/Vuejs/">Vuejs</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/React/">React</a>
-                  
-                  <a class="hover-with-bg" href="/tags/Vuejs/">Vuejs</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2021/01/31/49-Redux%20%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">Redux 学习总结</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2021/01/26/47-React%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%E4%BA%8C/">
-                    <span class="hidden-mobile">React之生命周期</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/React/">
+                              React
+                            </a>
+                            
+                            <a class="hover-with-bg" href="/categories/React/Vuejs/">
+                              Vuejs
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/React/">
+                                  React
+                                </a>
+                                
+                                <a class="hover-with-bg" href="/tags/Vuejs/">
+                                  Vuejs
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2021/01/31/49-Redux%20%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      Redux 学习总结
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2021/01/26/47-React%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%E4%BA%8C/">
+                                    <span class="hidden-mobile">
+                                      React之生命周期
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -406,26 +420,26 @@
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

@@ -17,20 +17,10 @@
   <meta name="description" content="">
   <meta name="author" content="wangpf">
   <meta name="keywords" content="">
-  <title>methods中this指向问题 - wpf的博客</title>
+  <title>标签 - express - wpf的博客</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
-
-  
-    
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/foundation.min.css" />
-  
-
-  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -53,7 +43,7 @@
 
 
 <body>
-  <header style="height: 70vh;">
+  <header style="height: 80vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -147,7 +137,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/article.jpg') no-repeat center center;
+         style="background: url('/img/tages.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -155,40 +145,6 @@
             <span class="h2" id="subtitle">
               
             </span>
-
-            
-              
-  <div class="mt-3 post-meta">
-    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2021-05-18 17:05" pubdate>
-      2021年5月18日 下午
-    </time>
-  </div>
-
-
-<div class="mt-1">
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      210 字
-    </span>
-  
-
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      2
-       分钟
-    </span>
-  
-
-  
-  
-</div>
 
             
           </div>
@@ -201,144 +157,37 @@
 
   <main>
     
+      <div class="container nopadding-md">
+        <div class="py-5" id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<div class="list-group">
+  <p class="h4">共计 1 篇文章</p>
+  <hr>
+  
+    
       
-
-  <div class="container-fluid">
-    <div class="row">
-      <div class="d-none d-lg-block col-lg-2"></div>
-      <div class="col-lg-8 nopadding-md">
-        <div class="container nopadding-md" id="board-ctn">
-          <div class="py-5" id="board">
-            <article class="post-content mx-auto" id="post">
-              <!-- SEO header -->
-              <h1 style="display: none">
-                methods中this指向问题
-              </h1>
-              
-                  <div class="markdown-body" id="post-body">
-                    <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在看Vue文档时，提到了 methdos中的函数是不能使用箭头函数的</p>
-<p>这其实在Vue文档中已经给出答案了，因为 箭头函数是没有this 的， 默认this指向是指向上一级作用域。</p>
-<p>所有如果我们在methods中的函数使用箭头函数的话，那么this指向将会指向上一级作用域， 则就是 window了。</p>
-<h3 id="那么Vue是如何将methods中的函数this指向改变的？"><a href="#那么Vue是如何将methods中的函数this指向改变的？" class="headerlink" title="那么Vue是如何将methods中的函数this指向改变的？"></a>那么Vue是如何将methods中的函数this指向改变的？</h3><p>我们在Vue源码中可以找到答案，通过对methods中的所有函数进行遍历，并且使用bind方法来绑定this</p>
-<ol>
-<li>先对methods对象中的所有函数进行遍历，将函数取出。</li>
-<li>并把函数中的this通过bind方法绑定到 publicThis 这个变量上</li>
-<li>而这个变量是 实例上的 proxy</li>
-</ol>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/57485f5d5993448ea793dab98b8642a9~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="image.png"></p>
-
-                  </div>
-                  <hr>
-                  <div>
-                    <div class="post-metas mb-3">
-                      
-                        <div class="post-meta mr-3">
-                          <i class="iconfont icon-category"></i>
-                          
-                            <a class="hover-with-bg" href="/categories/HTTP/">
-                              HTTP
-                            </a>
-                            
-                        </div>
-                        
-                          
-                            <div class="post-meta">
-                              <i class="iconfont icon-tags"></i>
-                              
-                                <a class="hover-with-bg" href="/tags/HTTP/">
-                                  HTTP
-                                </a>
-                                
-                            </div>
-                            
-                    </div>
-                    
-                        
-                          <div class="post-prevnext row">
-                            <article class="post-prev col-6">
-                              
-                                
-                                  <a href="/2021/06/03/63-%E5%88%86%E6%9E%90Key%E7%9A%84%E4%BD%9C%E7%94%A8/">
-                                    <i class="iconfont icon-arrowleft"></i>
-                                    <span class="hidden-mobile">
-                                      从Vue3源码中分析key的作用
-                                    </span>
-                                    <span class="visible-mobile">
-                                      上一篇
-                                    </span>
-                                  </a>
-                                  
-                            </article>
-                            <article class="post-next col-6">
-                              
-                                
-                                  <a href="/2021/04/02/61-HTTPS/">
-                                    <span class="hidden-mobile">
-                                      HTTPS是如何保障数据传输安全的
-                                    </span>
-                                    <span class="visible-mobile">
-                                      下一篇
-                                    </span>
-                                    <i class="iconfont icon-arrowright"></i>
-                                  </a>
-                                  
-                            </article>
-                          </div>
-                          
-                  </div>
-
-                  
-                    <!-- Comments -->
-                    <article class="comments" id="comments">
-                      
-                        
-  <div id="vcomments"></div>
-  <script type="text/javascript">
-    function loadValine() {
-      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
-        new Valine({
-          el: "#vcomments",
-          app_id: "hjxsDRXYScicliqD8I8JqoTu-gzGzoHsz",
-          app_key: "qUcAEReEqeEVp5wwXJ41uCCp",
-          placeholder: "说点什么",
-          path: window.location.pathname,
-          avatar: "retro",
-          meta: ["nick","mail","link"],
-          pageSize: "10",
-          lang: "zh-CN",
-          highlight: true,
-          recordIP: false,
-          serverURLs: "",
-        });
-      });
-    }
-    waitElementVisible('vcomments', loadValine);
-  </script>
-  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
-      powered by Valine.</a></noscript>
+      <p class="h5">2020</p>
+    
+    <a href="/2020/08/18/11.%E6%80%BBNode%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">Node基础总结</span>
+      <time style="float: right;">08-18</time>
+    </a>
+  
+</div>
 
 
-                    </article>
-                    
-            </article>
+
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      
-        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-          <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
-</div>
-
-        </div>
-        
-    </div>
-  </div>
-
-  <!-- Custom -->
-  
-
     
   </main>
 
@@ -427,8 +276,6 @@
 
   
     
-      <script  src="/js/lazyload.js" ></script>
-    
   
 
 
@@ -444,31 +291,6 @@
 
 
 
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
-  <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
-
 
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
@@ -476,7 +298,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "methods中this指向问题&nbsp;",
+        "标签 - express&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
@@ -491,21 +313,6 @@
 
 
 
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "always",
-      
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
-  </script>
-
 
 
   <script  src="/js/local-search.js" ></script>
@@ -519,20 +326,6 @@
   </script>
 
 
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
-      }
-    );
-  </script>
 
 
 

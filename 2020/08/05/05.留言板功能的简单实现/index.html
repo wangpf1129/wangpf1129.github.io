@@ -203,25 +203,27 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">使用Node来留言板功能的简单实现</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h1 id="留言板功能的简单实现"><a href="#留言板功能的简单实现" class="headerlink" title="留言板功能的简单实现"></a>留言板功能的简单实现</h1><ul>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                使用Node来留言板功能的简单实现
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h1 id="留言板功能的简单实现"><a href="#留言板功能的简单实现" class="headerlink" title="留言板功能的简单实现"></a>留言板功能的简单实现</h1><ul>
 <li>先来说一下url模块</li>
 <li><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-keyword">const</span> url = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;url&#x27;</span>)
-<span class="hljs-keyword">let</span> obj = url.parse(<span class="hljs-string">&#x27;http://localhost:3000/pinglun?name=%E7%8E%8B%E9%B9%8F%E9%A3%9E&amp;message=%E7%8E%8B%E9%B9%8F%E9%A3%9E%E7%8E%8B%E9%B9%8F%E9%A3%9E%E7%8E%8B%E9%B9%8F%E9%A3%9E&#x27;</span>, <span class="hljs-literal">true</span>) 
+<span class="hljs-keyword">let</span> obj = url.<span class="hljs-title function_">parse</span>(<span class="hljs-string">&#x27;http://localhost:3000/pinglun?name=%E7%8E%8B%E9%B9%8F%E9%A3%9E&amp;message=%E7%8E%8B%E9%B9%8F%E9%A3%9E%E7%8E%8B%E9%B9%8F%E9%A3%9E%E7%8E%8B%E9%B9%8F%E9%A3%9E&#x27;</span>, <span class="hljs-literal">true</span>) 
  <span class="hljs-comment">//加个true， 可以把 query对象 解析为 对象  这样就可以拿到提交表单的 名字 和 评论 了</span>
-<span class="hljs-built_in">console</span>.log(obj);  <span class="hljs-comment">// 返回的是 url模块中 的相关信息</span>
-<span class="hljs-built_in">console</span>.log(obj.query); <span class="hljs-comment">// 返回的是 url路径 ? 之后的信息</span>
-<span class="hljs-built_in">console</span>.log(obj.query.name); 
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj);  <span class="hljs-comment">// 返回的是 url模块中 的相关信息</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj.<span class="hljs-property">query</span>); <span class="hljs-comment">// 返回的是 url路径 ? 之后的信息</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj.<span class="hljs-property">query</span>.<span class="hljs-property">name</span>); 
 </code></pre></div>
 
 </li>
@@ -246,29 +248,29 @@
 
 <span class="hljs-keyword">var</span> comments = [
   &#123;
-    name: <span class="hljs-string">&#x27;张三&#x27;</span>,
-    message: <span class="hljs-string">&#x27;今天天气不错！&#x27;</span>,
-    dateTime: <span class="hljs-string">&#x27;2015-10-16&#x27;</span>
+    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;张三&#x27;</span>,
+    <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;今天天气不错！&#x27;</span>,
+    <span class="hljs-attr">dateTime</span>: <span class="hljs-string">&#x27;2015-10-16&#x27;</span>
   &#125;,
   &#123;
-    name: <span class="hljs-string">&#x27;张三2&#x27;</span>,
-    message: <span class="hljs-string">&#x27;今天天气不错！&#x27;</span>,
-    dateTime: <span class="hljs-string">&#x27;2015-10-16&#x27;</span>
+    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;张三2&#x27;</span>,
+    <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;今天天气不错！&#x27;</span>,
+    <span class="hljs-attr">dateTime</span>: <span class="hljs-string">&#x27;2015-10-16&#x27;</span>
   &#125;,
   &#123;
-    name: <span class="hljs-string">&#x27;张三3&#x27;</span>,
-    message: <span class="hljs-string">&#x27;今天天气不错！&#x27;</span>,
-    dateTime: <span class="hljs-string">&#x27;2015-10-16&#x27;</span>
+    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;张三3&#x27;</span>,
+    <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;今天天气不错！&#x27;</span>,
+    <span class="hljs-attr">dateTime</span>: <span class="hljs-string">&#x27;2015-10-16&#x27;</span>
   &#125;,
   &#123;
-    name: <span class="hljs-string">&#x27;张三4&#x27;</span>,
-    message: <span class="hljs-string">&#x27;今天天气不错！&#x27;</span>,
-    dateTime: <span class="hljs-string">&#x27;2015-10-16&#x27;</span>
+    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;张三4&#x27;</span>,
+    <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;今天天气不错！&#x27;</span>,
+    <span class="hljs-attr">dateTime</span>: <span class="hljs-string">&#x27;2015-10-16&#x27;</span>
   &#125;,
   &#123;
-    name: <span class="hljs-string">&#x27;张三5&#x27;</span>,
-    message: <span class="hljs-string">&#x27;今天天气不错！&#x27;</span>,
-    dateTime: <span class="hljs-string">&#x27;2015-10-16&#x27;</span>
+    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;张三5&#x27;</span>,
+    <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;今天天气不错！&#x27;</span>,
+    <span class="hljs-attr">dateTime</span>: <span class="hljs-string">&#x27;2015-10-16&#x27;</span>
   &#125;
 ]
 
@@ -280,41 +282,41 @@
 <span class="hljs-comment">// 结论：对于我们来讲，其实只需要判定，如果你的请求路径是 /pinglun 的时候，那我就认为你提交表单的请求过来了</span>
 
 http
-  .createServer(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) </span>&#123; <span class="hljs-comment">// 简写方式，该函数会直接被注册为 server 的 request 请求事件处理函数</span>
+  .<span class="hljs-title function_">createServer</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) &#123; <span class="hljs-comment">// 简写方式，该函数会直接被注册为 server 的 request 请求事件处理函数</span>
     <span class="hljs-comment">// 使用 url.parse 方法将路径解析为一个方便操作的对象，第二个参数为 true 表示直接将查询字符串转为一个对象（通过 query 属性来访问）</span>
-    <span class="hljs-keyword">var</span> parseObj = url.parse(req.url, <span class="hljs-literal">true</span>)
+    <span class="hljs-keyword">var</span> parseObj = url.<span class="hljs-title function_">parse</span>(req.<span class="hljs-property">url</span>, <span class="hljs-literal">true</span>)
 
     <span class="hljs-comment">// 单独获取不包含查询字符串的路径部分（该路径不包含 ? 之后的内容）</span>
-    <span class="hljs-keyword">var</span> pathname = parseObj.pathname  <span class="hljs-comment">// 其实这个就相当于了 req.url</span>
+    <span class="hljs-keyword">var</span> pathname = parseObj.<span class="hljs-property">pathname</span>  <span class="hljs-comment">// 其实这个就相当于了 req.url</span>
 
     <span class="hljs-keyword">if</span> (pathname === <span class="hljs-string">&#x27;/&#x27;</span>) &#123;
-      fs.readFile(<span class="hljs-string">&#x27;./views/index.html&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err, data</span>) </span>&#123;
+      fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./views/index.html&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">err, data</span>) &#123;
         <span class="hljs-keyword">if</span> (err) &#123;
-          <span class="hljs-keyword">return</span> res.end(<span class="hljs-string">&#x27;404 Not Found.&#x27;</span>)
+          <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">end</span>(<span class="hljs-string">&#x27;404 Not Found.&#x27;</span>)
         &#125;
-        <span class="hljs-keyword">var</span> htmlStr = template.render(data.toString(), &#123;
-          comments: comments
+        <span class="hljs-keyword">var</span> htmlStr = template.<span class="hljs-title function_">render</span>(data.<span class="hljs-title function_">toString</span>(), &#123;
+          <span class="hljs-attr">comments</span>: comments
         &#125;)
-        res.end(htmlStr)
+        res.<span class="hljs-title function_">end</span>(htmlStr)
       &#125;)
     &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (pathname === <span class="hljs-string">&#x27;/post&#x27;</span>) &#123;
       <span class="hljs-comment">// 其它的都处理成 404 找不到</span>
-      fs.readFile(<span class="hljs-string">&#x27;./views/post.html&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err, data</span>) </span>&#123;
+      fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./views/post.html&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">err, data</span>) &#123;
         <span class="hljs-keyword">if</span> (err) &#123;
-          <span class="hljs-keyword">return</span> res.end(<span class="hljs-string">&#x27;404 Not Found.&#x27;</span>)
+          <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">end</span>(<span class="hljs-string">&#x27;404 Not Found.&#x27;</span>)
         &#125;
-        res.end(data)
+        res.<span class="hljs-title function_">end</span>(data)
       &#125;)
-    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (pathname.indexOf(<span class="hljs-string">&#x27;/public/&#x27;</span>) === <span class="hljs-number">0</span>) &#123;
+    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (pathname.<span class="hljs-title function_">indexOf</span>(<span class="hljs-string">&#x27;/public/&#x27;</span>) === <span class="hljs-number">0</span>) &#123;
       <span class="hljs-comment">//    如果请求路径是以 /public/ 开头的，则我认为你要获取 public 中的某个资源</span>
       <span class="hljs-comment">//    所以我们就直接可以把请求路径当作文件路径来直接进行读取</span>
       
       <span class="hljs-comment">// 注意 读取 文件 一定要 加 . 这样才能找到该路径</span>
-      fs.readFile(<span class="hljs-string">&#x27;.&#x27;</span> + pathname, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err, data</span>) </span>&#123;
+      fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;.&#x27;</span> + pathname, <span class="hljs-keyword">function</span> (<span class="hljs-params">err, data</span>) &#123;
         <span class="hljs-keyword">if</span> (err) &#123;
-          <span class="hljs-keyword">return</span> res.end(<span class="hljs-string">&#x27;404 Not Found.&#x27;</span>)
+          <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">end</span>(<span class="hljs-string">&#x27;404 Not Found.&#x27;</span>)
         &#125;
-        res.end(data)
+        res.<span class="hljs-title function_">end</span>(data)
       &#125;)
     &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (pathname === <span class="hljs-string">&#x27;/pinglun&#x27;</span>) &#123;
       <span class="hljs-comment">// 注意：这个时候无论 /pinglun?xxx 之后是什么，我都不用担心了，因为我的 pathname 是不包含 ? 之后的那个路径</span>
@@ -327,9 +329,9 @@ http
       <span class="hljs-comment">//    2. 将当前时间日期添加到数据对象中，然后存储到数组中</span>
       <span class="hljs-comment">//    3. 让用户重定向跳转到首页 /</span>
       <span class="hljs-comment">//       当用户重新请求 / 的时候，我数组中的数据已经发生变化了，所以用户看到的页面也就变了</span>
-      <span class="hljs-keyword">var</span> comment = parseObj.query
-      comment.dateTime = <span class="hljs-string">&#x27;2017-11-2 17:11:22&#x27;</span>
-      comments.unshift(comment)
+      <span class="hljs-keyword">var</span> comment = parseObj.<span class="hljs-property">query</span>
+      comment.<span class="hljs-property">dateTime</span> = <span class="hljs-string">&#x27;2017-11-2 17:11:22&#x27;</span>
+      comments.<span class="hljs-title function_">unshift</span>(comment)
       <span class="hljs-comment">// 服务端这个时候已经把数据存储好了，接下来就是让用户重新请求 / 首页，就可以看到最新的留言内容了</span>
 
       <span class="hljs-comment">// 如何通过服务器让客户端重定向？</span>
@@ -339,80 +341,94 @@ http
       <span class="hljs-comment">//        setHeader</span>
       <span class="hljs-comment">// 如果客户端发现收到服务器的响应的状态码是 302 就会自动去响应头中找 Location ，然后对该地址发起新的请求</span>
       <span class="hljs-comment">// 所以你就能看到客户端自动跳转了</span>
-      res.statusCode = <span class="hljs-number">302</span>
-      res.setHeader(<span class="hljs-string">&#x27;Location&#x27;</span>, <span class="hljs-string">&#x27;/&#x27;</span>)
-      res.end()
+      res.<span class="hljs-property">statusCode</span> = <span class="hljs-number">302</span>
+      res.<span class="hljs-title function_">setHeader</span>(<span class="hljs-string">&#x27;Location&#x27;</span>, <span class="hljs-string">&#x27;/&#x27;</span>)
+      res.<span class="hljs-title function_">end</span>()
     &#125; <span class="hljs-keyword">else</span> &#123;
       <span class="hljs-comment">// 其它的都处理成 404 找不到</span>
-      fs.readFile(<span class="hljs-string">&#x27;./views/404.html&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err, data</span>) </span>&#123;
+      fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./views/404.html&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">err, data</span>) &#123;
         <span class="hljs-keyword">if</span> (err) &#123;
-          <span class="hljs-keyword">return</span> res.end(<span class="hljs-string">&#x27;404 Not Found.&#x27;</span>)
+          <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">end</span>(<span class="hljs-string">&#x27;404 Not Found.&#x27;</span>)
         &#125;
-        res.end(data)
+        res.<span class="hljs-title function_">end</span>(data)
       &#125;)
     &#125;
   &#125;)
-  .listen(<span class="hljs-number">3000</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;running...&#x27;</span>)
+  .<span class="hljs-title function_">listen</span>(<span class="hljs-number">3000</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;running...&#x27;</span>)
   &#125;)
 </code></pre></div>
 
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/Nodejs/">Nodejs</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/Node/">Node</a>
-                  
-                  <a class="hover-with-bg" href="/tags/art-template%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/">art-template模板引擎</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2020/08/05/04.%E6%A8%A1%E4%BB%BFApache%E5%8A%9F%E8%83%BD%E6%9D%A5%E5%AE%8C%E6%88%90%E7%9B%AE%E5%BD%95%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">使用Node来模仿Apache功能来完成目录列表渲染</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2020/08/05/02.%E7%AE%80%E5%8D%95%E7%9A%84HTTP%E5%93%8D%E5%BA%94%E8%AF%B7%E6%B1%82/">
-                    <span class="hidden-mobile">使用Node来实现简单的HTTP响应请求</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/Nodejs/">
+                              Nodejs
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/Node/">
+                                  Node
+                                </a>
+                                
+                                <a class="hover-with-bg" href="/tags/art-template%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/">
+                                  art-template模板引擎
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2020/08/05/04.%E6%A8%A1%E4%BB%BFApache%E5%8A%9F%E8%83%BD%E6%9D%A5%E5%AE%8C%E6%88%90%E7%9B%AE%E5%BD%95%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      使用Node来模仿Apache功能来完成目录列表渲染
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2020/08/05/02.%E7%AE%80%E5%8D%95%E7%9A%84HTTP%E5%93%8D%E5%BA%94%E8%AF%B7%E6%B1%82/">
+                                    <span class="hidden-mobile">
+                                      使用Node来实现简单的HTTP响应请求
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -439,26 +455,26 @@ http
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

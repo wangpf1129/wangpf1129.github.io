@@ -203,23 +203,25 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">React学习总结（一）：组件</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h2 id="前言，"><a href="#前言，" class="headerlink" title="前言，"></a>前言，</h2><p>好久没学习了，现在正式开始学习React啦~</p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                React学习总结（一）：组件
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h2 id="前言，"><a href="#前言，" class="headerlink" title="前言，"></a>前言，</h2><p>好久没学习了，现在正式开始学习React啦~</p>
 <p>之前有大概了解过React，了解过React的实现原理，所以我打算直接从 <code>组件</code> 来开始我的React学习之旅</p>
 <h2 id="元素与组件"><a href="#元素与组件" class="headerlink" title="元素与组件"></a>元素与组件</h2><p><strong>React元素：</strong></p>
-<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> div = React.createElement(<span class="hljs-string">&quot;div&quot;</span>,...)</code></pre></div>
+<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> div = <span class="hljs-title class_">React</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&quot;div&quot;</span>,...)</code></pre></div>
 <p><strong>React组件：</strong></p>
-<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> Div = <span class="hljs-function">() =&gt;</span> React.createElement(<span class="hljs-string">&quot;div&quot;</span>,...)</code></pre></div>
+<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Div</span> = (<span class="hljs-params"></span>) =&gt; <span class="hljs-title class_">React</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&quot;div&quot;</span>,...)</code></pre></div>
 
 <p>元素和组件的区别就在于 组件必须返回的是一个函数，并且命名首字母要大写！</p>
 <h2 id="什么是组件"><a href="#什么是组件" class="headerlink" title="什么是组件"></a>什么是组件</h2><ul>
@@ -227,20 +229,20 @@
 <li>比如Vue中，一个构造选项就可以表示一个组件。</li>
 <li>在React官方中说到，组件的本质就是JavaScript函数</li>
 </ul>
-<h2 id="React的俩种组件：函数组件与-class-组件"><a href="#React的俩种组件：函数组件与-class-组件" class="headerlink" title="React的俩种组件：函数组件与 class 组件"></a>React的俩种组件：函数组件与 class 组件</h2><h3 id="函数组件"><a href="#函数组件" class="headerlink" title="函数组件"></a>函数组件</h3><div class="hljs"><pre><code class="hljs jsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Welcome</span>(<span class="hljs-params">props</span>) </span>&#123;
-  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello, &#123;props.name&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>;
+<h2 id="React的俩种组件：函数组件与-class-组件"><a href="#React的俩种组件：函数组件与-class-组件" class="headerlink" title="React的俩种组件：函数组件与 class 组件"></a>React的俩种组件：函数组件与 class 组件</h2><h3 id="函数组件"><a href="#函数组件" class="headerlink" title="函数组件"></a>函数组件</h3><div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Welcome</span>(<span class="hljs-params">props</span>) &#123;
+  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello, &#123;props.name&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>;
 &#125;</code></pre></div>
 <p>使用方法：</p>
-<div class="hljs"><pre><code class="hljs jsx">&lt;Welcome name=<span class="hljs-string">&quot;Wangpf&quot;</span>/&gt;</code></pre></div>
+<div class="hljs"><pre><code class="hljs jsx">&lt;<span class="hljs-title class_">Welcome</span> name=<span class="hljs-string">&quot;Wangpf&quot;</span>/&gt;</code></pre></div>
 
-<h3 id="class组件"><a href="#class组件" class="headerlink" title="class组件"></a>class组件</h3><div class="hljs"><pre><code class="hljs jsx"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Welcome</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;
-  render() &#123;
-    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello, &#123;this.props.name&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>;
+<h3 id="class组件"><a href="#class组件" class="headerlink" title="class组件"></a>class组件</h3><div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Welcome</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">React.Component</span> &#123;
+  <span class="hljs-title function_">render</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello, &#123;this.props.name&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>;
   &#125;
 &#125;</code></pre></div>
 
 <p>使用方法：</p>
-<div class="hljs"><pre><code class="hljs jsx">&lt;Welcome name=<span class="hljs-string">&quot;Wangpf&quot;</span>/&gt;</code></pre></div>
+<div class="hljs"><pre><code class="hljs jsx">&lt;<span class="hljs-title class_">Welcome</span> name=<span class="hljs-string">&quot;Wangpf&quot;</span>/&gt;</code></pre></div>
 
 <p>上述两个组件在 React 里是等效的。</p>
 <h2 id="那么-lt-Welcome-gt-会被翻译为-React-createElement-…"><a href="#那么-lt-Welcome-gt-会被翻译为-React-createElement-…" class="headerlink" title="那么 &lt;Welcome /&gt; 会被翻译为 React.createElement(….)"></a>那么 <code>&lt;Welcome /&gt;</code> 会被翻译为 React.createElement(….)</h2><p>我用 <a href="">babel online</a> 来演示一下</p>
@@ -255,64 +257,64 @@
 <li>如果传入的是一个<code>类</code>，则会在类前面加个 new（这会导致执行constructor），获取一个组件对象，然后调用对象的render方法，<code>获取其返回值</code></li>
 </ol>
 <h2 id="小试牛刀"><a href="#小试牛刀" class="headerlink" title="小试牛刀"></a>小试牛刀</h2><p><strong>分别用俩种组件方式来写props(外部数据，传参)、state（内部数据）：</strong></p>
-<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
+<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
 <span class="hljs-keyword">import</span> <span class="hljs-string">&quot;./style.css&quot;</span>;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) &#123;
   <span class="hljs-keyword">return</span> (
-    &lt;div className=<span class="hljs-string">&quot;App&quot;</span>&gt;
-      父组件
-      &lt;Son messageForSon=<span class="hljs-string">&quot;我是你的老大&quot;</span> /&gt;
-    &lt;/div&gt;
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;App&quot;</span>&gt;</span></span>
+<span class="language-xml">      父组件</span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Son</span> <span class="hljs-attr">messageForSon</span>=<span class="hljs-string">&quot;我是你的老大&quot;</span> /&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
   );
 &#125;
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Son</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;
-  <span class="hljs-keyword">constructor</span>() &#123;
-    <span class="hljs-built_in">super</span>()
-    <span class="hljs-built_in">this</span>.state = &#123;
-      n: <span class="hljs-number">0</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Son</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">React.Component</span> &#123;
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-variable language_">super</span>()
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span> = &#123;
+      <span class="hljs-attr">n</span>: <span class="hljs-number">0</span>
     &#125;
   &#125;
 
-  render() &#123;
+  <span class="hljs-title function_">render</span>(<span class="hljs-params"></span>) &#123;
     <span class="hljs-keyword">return</span> (
-      &lt;div className=<span class="hljs-string">&quot;Son&quot;</span>&gt;
-        子组件
-        &lt;span&gt; n: &#123;<span class="hljs-built_in">this</span>.state.n&#125; &lt;/span&gt;
-        &lt;button onClick=&#123;<span class="hljs-function">() =&gt;</span> &#123; <span class="hljs-built_in">this</span>.add() &#125;&#125;&gt; +<span class="hljs-number">1</span>&lt;/button&gt;
-        &lt;p&gt;我是子组件，父组件对我说：&#123;<span class="hljs-built_in">this</span>.props.messageForSon&#125;&lt;/p&gt;
-        &lt;Grandson messageForGrandson=<span class="hljs-string">&quot;我是你的老大,你是我老大的孙子&quot;</span> /&gt;
-      &lt;/div&gt;
+      <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;Son&quot;</span>&gt;</span></span>
+<span class="language-xml">        子组件</span>
+<span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span> n: &#123;this.state.n&#125; <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;()</span> =&gt;</span> &#123; this.add() &#125;&#125;&gt; +1<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>我是子组件，父组件对我说：&#123;this.props.messageForSon&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Grandson</span> <span class="hljs-attr">messageForGrandson</span>=<span class="hljs-string">&quot;我是你的老大,你是我老大的孙子&quot;</span> /&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
     )
   &#125;
 
-  add() &#123;
+  <span class="hljs-title function_">add</span>(<span class="hljs-params"></span>) &#123;
     <span class="hljs-comment">// this.setState(&#123;</span>
     <span class="hljs-comment">//   n: this.state.n + 1</span>
     <span class="hljs-comment">// &#125;)</span>
 
-    <span class="hljs-built_in">this</span>.setState(<span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> &#123;
-      <span class="hljs-keyword">const</span> n = state.n + <span class="hljs-number">1</span>
+    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setState</span>(<span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> &#123;
+      <span class="hljs-keyword">const</span> n = state.<span class="hljs-property">n</span> + <span class="hljs-number">1</span>
       <span class="hljs-comment">// console.log(n);</span>
       <span class="hljs-keyword">return</span> &#123; n &#125;
     &#125;)
   &#125;
  &#125;
 
-<span class="hljs-keyword">const</span> Grandson = <span class="hljs-function">(<span class="hljs-params">props</span>) =&gt;</span> &#123;
-  <span class="hljs-keyword">const</span> [n, setN] = React.useState(<span class="hljs-number">0</span>)
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">Grandson</span> = (<span class="hljs-params">props</span>) =&gt; &#123;
+  <span class="hljs-keyword">const</span> [n, setN] = <span class="hljs-title class_">React</span>.<span class="hljs-title function_">useState</span>(<span class="hljs-number">0</span>)
   <span class="hljs-keyword">return</span> (
-    &lt;div className=<span class="hljs-string">&quot;Grandson&quot;</span>&gt;
-      孙组件
-      &lt;span&gt; n : &#123;n&#125; &lt;/span&gt;
-      &lt;button onClick=&#123;<span class="hljs-function">() =&gt;</span> &#123; setN(n + <span class="hljs-number">1</span>) &#125;&#125;&gt; +<span class="hljs-number">1</span>&lt;/button&gt;
-      &lt;p&gt;我是孙组件，子组件对我说：&#123;props.messageForGrandson&#125;&lt;/p&gt;
-    &lt;/div&gt;
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;Grandson&quot;</span>&gt;</span></span>
+<span class="language-xml">      孙组件</span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span> n : &#123;n&#125; <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;()</span> =&gt;</span> &#123; setN(n + 1) &#125;&#125;&gt; +1<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>我是孙组件，子组件对我说：&#123;props.messageForGrandson&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
   )
 &#125;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> App</code></pre></div>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">App</span></code></pre></div>
 <p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/edfe90e98e6d482baad5706cf115978e~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="俩种组件的书写方式"></p>
 <h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p><strong>使用props（外部数据）</strong></p>
 <ul>
@@ -328,59 +330,71 @@
 </li>
 </ul>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/React/">React</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/React/">React</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2021/01/26/47-React%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%E4%BA%8C/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">React之生命周期</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2021/01/09/45-Docker%20%E5%AE%89%E8%A3%85/">
-                    <span class="hidden-mobile">node.js中使用nodemailer插件发送邮件 (学习总结)</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/React/">
+                              React
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/React/">
+                                  React
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2021/01/26/47-React%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%E4%BA%8C/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      React之生命周期
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2021/01/09/45-Docker%20%E5%AE%89%E8%A3%85/">
+                                    <span class="hidden-mobile">
+                                      node.js中使用nodemailer插件发送邮件 (学习总结)
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -407,26 +421,26 @@
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

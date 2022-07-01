@@ -203,33 +203,35 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">TypeScript 学习总结之 类</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <p>​<br><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/408cfbc308734bd8bcbb8a36c40135d0~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="TypeScript"></p>
-<h2 id="类的注解方式"><a href="#类的注解方式" class="headerlink" title="类的注解方式"></a>类的注解方式</h2><div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">class</span> Animal &#123;
-  name: <span class="hljs-built_in">string</span>;
-  <span class="hljs-keyword">constructor</span>(<span class="hljs-params">theName: <span class="hljs-built_in">string</span></span>) &#123; <span class="hljs-built_in">this</span>.name = theName; &#125;
-  move(distanceInMeters: <span class="hljs-built_in">number</span> = <span class="hljs-number">0</span>) &#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.name&#125;</span> moved <span class="hljs-subst">$&#123;distanceInMeters&#125;</span>m.`</span>);
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                TypeScript 学习总结之 类
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <p>​<br><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/408cfbc308734bd8bcbb8a36c40135d0~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="TypeScript"></p>
+<h2 id="类的注解方式"><a href="#类的注解方式" class="headerlink" title="类的注解方式"></a>类的注解方式</h2><div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Animal</span> &#123;
+  <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">theName: <span class="hljs-built_in">string</span></span>) &#123; <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = theName; &#125;
+  <span class="hljs-title function_">move</span>(<span class="hljs-params">distanceInMeters: <span class="hljs-built_in">number</span> = <span class="hljs-number">0</span></span>) &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-variable language_">this</span>.name&#125;</span> moved <span class="hljs-subst">$&#123;distanceInMeters&#125;</span>m.`</span>);
   &#125;
 &#125;</code></pre></div>
 
 <h3 id="继承中super"><a href="#继承中super" class="headerlink" title="继承中super"></a>继承中super</h3><p><strong>// 注意这个super， 如果在constructor内就是默认指 构造函数 。</strong></p>
 <p><strong>// 如果在constructor外部（除了constructor），这个super 就是指的 父类 （Animal）。</strong></p>
-<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">class</span> Snake <span class="hljs-keyword">extends</span> Animal &#123;
-  <span class="hljs-keyword">constructor</span>(<span class="hljs-params">name: <span class="hljs-built_in">string</span></span>) &#123; <span class="hljs-built_in">super</span>(name); &#125;  <span class="hljs-comment">// 这里的super  =&gt; constructor Animal(theName: string) : Animal</span>
-  move(distanceInMeters = <span class="hljs-number">5</span>) &#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Slithering...&quot;</span>);
-    <span class="hljs-built_in">super</span>.move(distanceInMeters);  <span class="hljs-comment">// 这里的 super =&gt; 父类 Animal</span>
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Snake</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Animal</span> &#123;
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">name: <span class="hljs-built_in">string</span></span>) &#123; <span class="hljs-variable language_">super</span>(name); &#125;  <span class="hljs-comment">// 这里的super  =&gt; constructor Animal(theName: string) : Animal</span>
+  <span class="hljs-title function_">move</span>(<span class="hljs-params">distanceInMeters = <span class="hljs-number">5</span></span>) &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Slithering...&quot;</span>);
+    <span class="hljs-variable language_">super</span>.<span class="hljs-title function_">move</span>(distanceInMeters);  <span class="hljs-comment">// 这里的 super =&gt; 父类 Animal</span>
   &#125;
 &#125;</code></pre></div>
 
@@ -244,11 +246,11 @@
 <li>子类可以调用</li>
 <li>实例可以调用</li>
 </ul>
-<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">class</span> Animal &#123;
-  <span class="hljs-keyword">public</span> name: <span class="hljs-built_in">string</span>;
-  <span class="hljs-keyword">public</span> <span class="hljs-keyword">constructor</span>(<span class="hljs-params">theName: <span class="hljs-built_in">string</span></span>) &#123; <span class="hljs-built_in">this</span>.name = theName; &#125;
-  <span class="hljs-keyword">public</span> move(distanceInMeters: <span class="hljs-built_in">number</span>) &#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.name&#125;</span> moved <span class="hljs-subst">$&#123;distanceInMeters&#125;</span>m.`</span>);
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Animal</span> &#123;
+  <span class="hljs-keyword">public</span> <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params">theName: <span class="hljs-built_in">string</span></span>) &#123; <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = theName; &#125;
+  <span class="hljs-keyword">public</span> <span class="hljs-title function_">move</span>(<span class="hljs-params">distanceInMeters: <span class="hljs-built_in">number</span></span>) &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-variable language_">this</span>.name&#125;</span> moved <span class="hljs-subst">$&#123;distanceInMeters&#125;</span>m.`</span>);
   &#125;
 &#125;</code></pre></div>
 
@@ -257,24 +259,24 @@
 <li>只能自身调用</li>
 </ul>
 <p>// 当我把 Animal 类中的 构造函数变成私有, 如下:</p>
-<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">class</span> Animal &#123;
-  <span class="hljs-keyword">public</span> name: <span class="hljs-built_in">string</span>;
-  <span class="hljs-keyword">private</span> <span class="hljs-keyword">constructor</span>(<span class="hljs-params">theName: <span class="hljs-built_in">string</span></span>) &#123; <span class="hljs-built_in">this</span>.name = theName; &#125;
-  <span class="hljs-keyword">public</span> move(distanceInMeters: <span class="hljs-built_in">number</span> = <span class="hljs-number">0</span>) &#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.name&#125;</span> moved <span class="hljs-subst">$&#123;distanceInMeters&#125;</span>m.`</span>);
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Animal</span> &#123;
+  <span class="hljs-keyword">public</span> <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;
+  <span class="hljs-keyword">private</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params">theName: <span class="hljs-built_in">string</span></span>) &#123; <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = theName; &#125;
+  <span class="hljs-keyword">public</span> <span class="hljs-title function_">move</span>(<span class="hljs-params">distanceInMeters: <span class="hljs-built_in">number</span> = <span class="hljs-number">0</span></span>) &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-variable language_">this</span>.name&#125;</span> moved <span class="hljs-subst">$&#123;distanceInMeters&#125;</span>m.`</span>);
   &#125;
 &#125;
 
-<span class="hljs-keyword">class</span> Snake <span class="hljs-keyword">extends</span> Animal &#123;
-  <span class="hljs-keyword">constructor</span>(<span class="hljs-params">name: <span class="hljs-built_in">string</span></span>) &#123; <span class="hljs-built_in">super</span>(name); &#125;
-  move(distanceInMeters = <span class="hljs-number">5</span>) &#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Slithering...&quot;</span>);
-    <span class="hljs-built_in">super</span>.move(distanceInMeters);
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Snake</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Animal</span> &#123;
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">name: <span class="hljs-built_in">string</span></span>) &#123; <span class="hljs-variable language_">super</span>(name); &#125;
+  <span class="hljs-title function_">move</span>(<span class="hljs-params">distanceInMeters = <span class="hljs-number">5</span></span>) &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Slithering...&quot;</span>);
+    <span class="hljs-variable language_">super</span>.<span class="hljs-title function_">move</span>(distanceInMeters);
   &#125;
 &#125;
 
-<span class="hljs-keyword">let</span> sam = <span class="hljs-keyword">new</span> Snake(<span class="hljs-string">&quot;Sammy the Python&quot;</span>);
-sam.move();</code></pre></div>
+<span class="hljs-keyword">let</span> sam = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Snake</span>(<span class="hljs-string">&quot;Sammy the Python&quot;</span>);
+sam.<span class="hljs-title function_">move</span>();</code></pre></div>
 <p>当我把 构造函数变成私有属性时, 编辑器会提示说  我子类(Snake)继承不了<br><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/13dfba4196e34680b9a27f352ae5cc92~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="private"></p>
 <p>// 当我把 Animal 中的 move 方法设为 private 时, 会出现如下报错:<br><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/72ed13d2a70c4aa780b40af21f168732~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="private"></p>
 <p><strong>因此 , 可证明  private  只能自身调用,  子类和实例不能调用.</strong></p>
@@ -282,38 +284,38 @@ sam.move();</code></pre></div>
 <p>protected修饰符与 private修饰符的行为很相似，但有一点不同， protected成员在派生类中仍然可以访问。</p>
 </blockquote>
 <p>也就是说 protected 可以自身调用,也可以子类调用.</p>
-<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">class</span> Animal &#123;
-  <span class="hljs-keyword">public</span> name: <span class="hljs-built_in">string</span>;
-  <span class="hljs-keyword">public</span> <span class="hljs-keyword">constructor</span>(<span class="hljs-params">theName: <span class="hljs-built_in">string</span></span>) &#123; <span class="hljs-built_in">this</span>.name = theName; &#125;
-  <span class="hljs-keyword">protected</span> move(distanceInMeters: <span class="hljs-built_in">number</span> = <span class="hljs-number">0</span>) &#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.name&#125;</span> moved <span class="hljs-subst">$&#123;distanceInMeters&#125;</span>m.`</span>);
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Animal</span> &#123;
+  <span class="hljs-keyword">public</span> <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params">theName: <span class="hljs-built_in">string</span></span>) &#123; <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = theName; &#125;
+  <span class="hljs-keyword">protected</span> <span class="hljs-title function_">move</span>(<span class="hljs-params">distanceInMeters: <span class="hljs-built_in">number</span> = <span class="hljs-number">0</span></span>) &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-variable language_">this</span>.name&#125;</span> moved <span class="hljs-subst">$&#123;distanceInMeters&#125;</span>m.`</span>);
   &#125;
 &#125;
 
-<span class="hljs-keyword">class</span> Snake <span class="hljs-keyword">extends</span> Animal &#123;
-  <span class="hljs-keyword">constructor</span>(<span class="hljs-params">name: <span class="hljs-built_in">string</span></span>) &#123; <span class="hljs-built_in">super</span>(name); &#125;
-  move(distanceInMeters = <span class="hljs-number">5</span>) &#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Slithering...&quot;</span>);
-    <span class="hljs-built_in">super</span>.move(distanceInMeters);
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Snake</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Animal</span> &#123;
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">name: <span class="hljs-built_in">string</span></span>) &#123; <span class="hljs-variable language_">super</span>(name); &#125;
+  <span class="hljs-title function_">move</span>(<span class="hljs-params">distanceInMeters = <span class="hljs-number">5</span></span>) &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Slithering...&quot;</span>);
+    <span class="hljs-variable language_">super</span>.<span class="hljs-title function_">move</span>(distanceInMeters);
   &#125;
 &#125;
 
-<span class="hljs-keyword">let</span> jack = <span class="hljs-keyword">new</span> Animal(<span class="hljs-string">&#x27;jack&#x27;</span>)
-jack.move()   <span class="hljs-comment">// 报错,</span></code></pre></div>
+<span class="hljs-keyword">let</span> jack = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Animal</span>(<span class="hljs-string">&#x27;jack&#x27;</span>)
+jack.<span class="hljs-title function_">move</span>()   <span class="hljs-comment">// 报错,</span></code></pre></div>
 
 <p>这时,在编辑器上, 实例调用move方法会报错,<br><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7baff8b10ad1472189dc44c3a19325ec~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="protected"> </p>
-<h3 id="readonly-只读-修饰符"><a href="#readonly-只读-修饰符" class="headerlink" title="readonly(只读)修饰符"></a>readonly(只读)修饰符</h3><div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">class</span> Octopus &#123;
-  <span class="hljs-keyword">public</span> <span class="hljs-keyword">readonly</span> name: <span class="hljs-built_in">string</span>;   <span class="hljs-comment">// readonly 要放在 public 这种访问属性修饰符 后面</span>
-  <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> numberOfLegs: <span class="hljs-built_in">number</span> = <span class="hljs-number">8</span>;
-  <span class="hljs-keyword">constructor</span>(<span class="hljs-params">theName: <span class="hljs-built_in">string</span></span>) &#123;   
-    <span class="hljs-built_in">this</span>.name = theName;
+<h3 id="readonly-只读-修饰符"><a href="#readonly-只读-修饰符" class="headerlink" title="readonly(只读)修饰符"></a>readonly(只读)修饰符</h3><div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Octopus</span> &#123;
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">readonly</span> <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;   <span class="hljs-comment">// readonly 要放在 public 这种访问属性修饰符 后面</span>
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> <span class="hljs-attr">numberOfLegs</span>: <span class="hljs-built_in">number</span> = <span class="hljs-number">8</span>;
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">theName: <span class="hljs-built_in">string</span></span>) &#123;   
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = theName;
   &#125;
-  <span class="hljs-keyword">readonly</span> say() &#123;   <span class="hljs-comment">// 错误 : 修饰符仅可出现在属性声明或索引签名中</span>
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;hi&#x27;</span>);
+  <span class="hljs-keyword">readonly</span> <span class="hljs-title function_">say</span>(<span class="hljs-params"></span>) &#123;   <span class="hljs-comment">// 错误 : 修饰符仅可出现在属性声明或索引签名中</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;hi&#x27;</span>);
   &#125;
 &#125;
-<span class="hljs-keyword">let</span> dad = <span class="hljs-keyword">new</span> Octopus(<span class="hljs-string">&quot;Man with the 8 strong legs&quot;</span>);
-dad.name = <span class="hljs-string">&quot;Man with the 3-piece suit&quot;</span>; <span class="hljs-comment">// 错误! name 是只读的.</span></code></pre></div>
+<span class="hljs-keyword">let</span> dad = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Octopus</span>(<span class="hljs-string">&quot;Man with the 8 strong legs&quot;</span>);
+dad.<span class="hljs-property">name</span> = <span class="hljs-string">&quot;Man with the 3-piece suit&quot;</span>; <span class="hljs-comment">// 错误! name 是只读的.</span></code></pre></div>
 
 <p>readonly 注意事项:</p>
 <ul>
@@ -325,20 +327,20 @@ dad.name = <span class="hljs-string">&quot;Man with the 3-piece suit&quot;</span
 <h3 id="参数属性"><a href="#参数属性" class="headerlink" title="参数属性"></a>参数属性</h3><blockquote>
 <p>简写写法</p>
 </blockquote>
-<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">class</span> Animal1 &#123;
-  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> name: <span class="hljs-built_in">string</span></span>) &#123; &#125;
-  move(distanceInMeters: <span class="hljs-built_in">number</span> = <span class="hljs-number">0</span>) &#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.name&#125;</span> moved <span class="hljs-subst">$&#123;distanceInMeters&#125;</span>m.`</span>);
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Animal1</span> &#123;
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> name: <span class="hljs-built_in">string</span></span>) &#123; &#125;
+  <span class="hljs-title function_">move</span>(<span class="hljs-params">distanceInMeters: <span class="hljs-built_in">number</span> = <span class="hljs-number">0</span></span>) &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-variable language_">this</span>.name&#125;</span> moved <span class="hljs-subst">$&#123;distanceInMeters&#125;</span>m.`</span>);
   &#125;
 &#125;
 
 <span class="hljs-comment">// 等价于</span>
 
-<span class="hljs-keyword">class</span> Animal2 &#123;
-  <span class="hljs-keyword">private</span> name: <span class="hljs-built_in">string</span>
-  <span class="hljs-keyword">constructor</span>(<span class="hljs-params">name: <span class="hljs-built_in">string</span></span>) &#123; <span class="hljs-built_in">this</span>.name = name &#125;
-  move(distanceInMeters: <span class="hljs-built_in">number</span> = <span class="hljs-number">0</span>) &#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.name&#125;</span> moved <span class="hljs-subst">$&#123;distanceInMeters&#125;</span>m.`</span>);
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Animal2</span> &#123;
+  <span class="hljs-keyword">private</span> <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">name: <span class="hljs-built_in">string</span></span>) &#123; <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = name &#125;
+  <span class="hljs-title function_">move</span>(<span class="hljs-params">distanceInMeters: <span class="hljs-built_in">number</span> = <span class="hljs-number">0</span></span>) &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-variable language_">this</span>.name&#125;</span> moved <span class="hljs-subst">$&#123;distanceInMeters&#125;</span>m.`</span>);
   &#125;
 &#125;</code></pre></div>
 
@@ -347,47 +349,47 @@ dad.name = <span class="hljs-string">&quot;Man with the 3-piece suit&quot;</span
 </blockquote>
 <div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">let</span> passcode = <span class="hljs-string">&quot;secret passcode&quot;</span>;
 
-<span class="hljs-keyword">class</span> Employee &#123;
-  <span class="hljs-keyword">private</span> _fullName: <span class="hljs-built_in">string</span> = <span class="hljs-string">&#x27;jack&#x27;</span>;
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Employee</span> &#123;
+  <span class="hljs-keyword">private</span> <span class="hljs-attr">_fullName</span>: <span class="hljs-built_in">string</span> = <span class="hljs-string">&#x27;jack&#x27;</span>;
 
-  get fullName(): <span class="hljs-built_in">string</span> &#123;
-    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>._fullName;
+  <span class="hljs-keyword">get</span> <span class="hljs-title function_">fullName</span>(): <span class="hljs-built_in">string</span> &#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">_fullName</span>;
   &#125;
 
-  set fullName(newName: <span class="hljs-built_in">string</span>) &#123;
+  <span class="hljs-keyword">set</span> <span class="hljs-title function_">fullName</span>(<span class="hljs-params">newName: <span class="hljs-built_in">string</span></span>) &#123;
     <span class="hljs-keyword">if</span> (passcode &amp;&amp; passcode == <span class="hljs-string">&quot;secret passcode&quot;</span>) &#123;
-      <span class="hljs-built_in">this</span>._fullName = newName;
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">_fullName</span> = newName;
     &#125;
     <span class="hljs-keyword">else</span> &#123;
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Error: Unauthorized update of employee!&quot;</span>);
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Error: Unauthorized update of employee!&quot;</span>);
     &#125;
   &#125;
 &#125;
 
-<span class="hljs-keyword">let</span> employee = <span class="hljs-keyword">new</span> Employee();
-<span class="hljs-built_in">console</span>.log(employee.fullName);  <span class="hljs-comment">// jack</span>
+<span class="hljs-keyword">let</span> employee = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Employee</span>();
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(employee.<span class="hljs-property">fullName</span>);  <span class="hljs-comment">// jack</span>
 
-<span class="hljs-built_in">console</span>.log(employee.fullName = <span class="hljs-string">&#x27;new jack&#x27;</span>);  <span class="hljs-comment">// new jack</span></code></pre></div>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(employee.<span class="hljs-property">fullName</span> = <span class="hljs-string">&#x27;new jack&#x27;</span>);  <span class="hljs-comment">// new jack</span></code></pre></div>
 
 
 <h3 id="静态属性"><a href="#静态属性" class="headerlink" title="静态属性"></a>静态属性</h3><blockquote>
 <p>这个也是 不属于 TS 新有的知识,   学到这里,我发现其实我们大都是还是在复习JS, 要学好TS前提是JS基础一定要好啊</p>
 </blockquote>
-<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">class</span> Grid &#123;
-    <span class="hljs-keyword">static</span> origin = &#123;x: <span class="hljs-number">0</span>, y: <span class="hljs-number">0</span>&#125;;
-    calculateDistanceFromOrigin(point: &#123;x: <span class="hljs-built_in">number</span>; y: <span class="hljs-built_in">number</span>;&#125;) &#123;
-        <span class="hljs-keyword">let</span> xDist = (point.x - Grid.origin.x);
-        <span class="hljs-keyword">let</span> yDist = (point.y - Grid.origin.y);
-        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.sqrt(xDist * xDist + yDist * yDist) / <span class="hljs-built_in">this</span>.scale;
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Grid</span> &#123;
+    <span class="hljs-keyword">static</span> origin = &#123;<span class="hljs-attr">x</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">y</span>: <span class="hljs-number">0</span>&#125;;
+    <span class="hljs-title function_">calculateDistanceFromOrigin</span>(<span class="hljs-params">point: &#123;x: <span class="hljs-built_in">number</span>; y: <span class="hljs-built_in">number</span>;&#125;</span>) &#123;
+        <span class="hljs-keyword">let</span> xDist = (point.<span class="hljs-property">x</span> - <span class="hljs-title class_">Grid</span>.<span class="hljs-property">origin</span>.<span class="hljs-property">x</span>);
+        <span class="hljs-keyword">let</span> yDist = (point.<span class="hljs-property">y</span> - <span class="hljs-title class_">Grid</span>.<span class="hljs-property">origin</span>.<span class="hljs-property">y</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">sqrt</span>(xDist * xDist + yDist * yDist) / <span class="hljs-variable language_">this</span>.<span class="hljs-property">scale</span>;
     &#125;
-    <span class="hljs-keyword">constructor</span> (<span class="hljs-params"><span class="hljs-keyword">public</span> scale: <span class="hljs-built_in">number</span></span>) &#123; &#125;
+    <span class="hljs-title function_">constructor</span> (<span class="hljs-keyword">public</span> <span class="hljs-attr">scale</span>: <span class="hljs-built_in">number</span>) &#123; &#125;
 &#125;
 
-<span class="hljs-keyword">let</span> grid1 = <span class="hljs-keyword">new</span> Grid(<span class="hljs-number">1.0</span>);  <span class="hljs-comment">// 1x scale</span>
-<span class="hljs-keyword">let</span> grid2 = <span class="hljs-keyword">new</span> Grid(<span class="hljs-number">5.0</span>);  <span class="hljs-comment">// 5x scale</span>
+<span class="hljs-keyword">let</span> grid1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Grid</span>(<span class="hljs-number">1.0</span>);  <span class="hljs-comment">// 1x scale</span>
+<span class="hljs-keyword">let</span> grid2 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Grid</span>(<span class="hljs-number">5.0</span>);  <span class="hljs-comment">// 5x scale</span>
 
-<span class="hljs-built_in">console</span>.log(grid1.calculateDistanceFromOrigin(&#123;x: <span class="hljs-number">10</span>, y: <span class="hljs-number">10</span>&#125;));
-<span class="hljs-built_in">console</span>.log(grid2.calculateDistanceFromOrigin(&#123;x: <span class="hljs-number">10</span>, y: <span class="hljs-number">10</span>&#125;));</code></pre></div>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(grid1.<span class="hljs-title function_">calculateDistanceFromOrigin</span>(&#123;<span class="hljs-attr">x</span>: <span class="hljs-number">10</span>, <span class="hljs-attr">y</span>: <span class="hljs-number">10</span>&#125;));
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(grid2.<span class="hljs-title function_">calculateDistanceFromOrigin</span>(&#123;<span class="hljs-attr">x</span>: <span class="hljs-number">10</span>, <span class="hljs-attr">y</span>: <span class="hljs-number">10</span>&#125;));</code></pre></div>
 
 <h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><blockquote>
 <p>抽象类: 能够提供其他类的基类  , 它们一般不会直接被实例化</p>
@@ -397,22 +399,22 @@ dad.name = <span class="hljs-string">&quot;Man with the 3-piece suit&quot;</span
 <li>无法创建实例</li>
 <li>在抽象类中 抽象方法一定要实现  (这一点和接口很像)</li>
 </ol>
-<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> Animal &#123;
-  <span class="hljs-keyword">abstract</span> makeSound(): <span class="hljs-built_in">void</span>;
-  move(): <span class="hljs-built_in">void</span> &#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;我在移动&#x27;</span>);
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Animal</span> &#123;
+  <span class="hljs-keyword">abstract</span> <span class="hljs-title function_">makeSound</span>(): <span class="hljs-built_in">void</span>;
+  <span class="hljs-title function_">move</span>(): <span class="hljs-built_in">void</span> &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;我在移动&#x27;</span>);
   &#125;
 &#125;
 
-<span class="hljs-keyword">class</span> Dog <span class="hljs-keyword">extends</span> Animal &#123;
-  makeSound() &#123;   <span class="hljs-comment">// 一定要去定义这个方法，  因为抽象类中包含这个抽象方法</span>
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;汪汪汪&#x27;</span>);
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Dog</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Animal</span> &#123;
+  <span class="hljs-title function_">makeSound</span>(<span class="hljs-params"></span>) &#123;   <span class="hljs-comment">// 一定要去定义这个方法，  因为抽象类中包含这个抽象方法</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;汪汪汪&#x27;</span>);
   &#125;
 &#125;
 
-<span class="hljs-keyword">class</span> Cat <span class="hljs-keyword">extends</span> Animal &#123;
-  makeSound() &#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;喵喵喵&#x27;</span>);
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Cat</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Animal</span> &#123;
+  <span class="hljs-title function_">makeSound</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;喵喵喵&#x27;</span>);
 
   &#125;
 &#125;</code></pre></div>
@@ -422,99 +424,113 @@ dad.name = <span class="hljs-string">&quot;Man with the 3-piece suit&quot;</span
 <li>定义类的时候, 定义了一个类型;</li>
 <li>定义类的时候, 定义了一个构造函数;</li>
 </ol>
-<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">class</span> Greeter &#123;
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Greeter</span> &#123;
   <span class="hljs-keyword">static</span> standardGreeting = <span class="hljs-string">&quot;Hello, there&quot;</span>;  <span class="hljs-comment">// 静态属性</span>
-  greeting: <span class="hljs-built_in">string</span>;
-  greet() &#123;
-      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.greeting) &#123;
-          <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello, &quot;</span> + <span class="hljs-built_in">this</span>.greeting;
+  <span class="hljs-attr">greeting</span>: <span class="hljs-built_in">string</span>;
+  <span class="hljs-title function_">greet</span>(<span class="hljs-params"></span>) &#123;
+      <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">greeting</span>) &#123;
+          <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello, &quot;</span> + <span class="hljs-variable language_">this</span>.<span class="hljs-property">greeting</span>;
       &#125;
       <span class="hljs-keyword">else</span> &#123;
-          <span class="hljs-keyword">return</span> Greeter.standardGreeting;
+          <span class="hljs-keyword">return</span> <span class="hljs-title class_">Greeter</span>.<span class="hljs-property">standardGreeting</span>;
       &#125;
   &#125;
 &#125;
 
-<span class="hljs-keyword">let</span> greeter1: Greeter;   <span class="hljs-comment">// 定义类型</span>
-greeter1 = <span class="hljs-keyword">new</span> Greeter();   
-<span class="hljs-built_in">console</span>.log(greeter1.greet());
+<span class="hljs-keyword">let</span> <span class="hljs-attr">greeter1</span>: <span class="hljs-title class_">Greeter</span>;   <span class="hljs-comment">// 定义类型</span>
+greeter1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Greeter</span>();   
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(greeter1.<span class="hljs-title function_">greet</span>());
 
-<span class="hljs-keyword">let</span> greeterMaker: <span class="hljs-keyword">typeof</span> Greeter = Greeter;    <span class="hljs-comment">// 定义类型</span>
-greeterMaker.standardGreeting = <span class="hljs-string">&quot;Hey there!&quot;</span>;  
+<span class="hljs-keyword">let</span> <span class="hljs-attr">greeterMaker</span>: <span class="hljs-keyword">typeof</span> <span class="hljs-title class_">Greeter</span> = <span class="hljs-title class_">Greeter</span>;    <span class="hljs-comment">// 定义类型</span>
+greeterMaker.<span class="hljs-property">standardGreeting</span> = <span class="hljs-string">&quot;Hey there!&quot;</span>;  
 
-<span class="hljs-keyword">let</span> greeter2: Greeter = <span class="hljs-keyword">new</span> greeterMaker();  
-<span class="hljs-built_in">console</span>.log(greeter2.greet());</code></pre></div>
+<span class="hljs-keyword">let</span> <span class="hljs-attr">greeter2</span>: <span class="hljs-title class_">Greeter</span> = <span class="hljs-keyword">new</span> <span class="hljs-title function_">greeterMaker</span>();  
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(greeter2.<span class="hljs-title function_">greet</span>());</code></pre></div>
 
 
 <ol start="3">
 <li>把类当做接口使用</li>
 </ol>
-<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">class</span> Point &#123;
-    x: <span class="hljs-built_in">number</span>;
-    y: <span class="hljs-built_in">number</span>;
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Point</span> &#123;
+    <span class="hljs-attr">x</span>: <span class="hljs-built_in">number</span>;
+    <span class="hljs-attr">y</span>: <span class="hljs-built_in">number</span>;
 &#125;
 
-<span class="hljs-keyword">interface</span> Point3d <span class="hljs-keyword">extends</span> Point &#123;
-    z: <span class="hljs-built_in">number</span>;
+<span class="hljs-keyword">interface</span> <span class="hljs-title class_">Point3</span>d <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Point</span> &#123;
+    <span class="hljs-attr">z</span>: <span class="hljs-built_in">number</span>;
 &#125;
 
-<span class="hljs-keyword">let</span> point3d: Point3d = &#123;x: <span class="hljs-number">1</span>, y: <span class="hljs-number">2</span>, z: <span class="hljs-number">3</span>&#125;;</code></pre></div>
+<span class="hljs-keyword">let</span> <span class="hljs-attr">point3d</span>: <span class="hljs-title class_">Point3</span>d = &#123;<span class="hljs-attr">x</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">y</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">z</span>: <span class="hljs-number">3</span>&#125;;</code></pre></div>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/typescript/">typescript</a>
-                  
-                  <a class="hover-with-bg" href="/categories/typescript/JavaScript/">JavaScript</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/typescript/">typescript</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2020/12/29/42.TypeScript%E7%B3%BB%E5%88%974/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">TypeScript 学习总结之 接口</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2020/12/27/40.TypeScript%E7%B3%BB%E5%88%972/">
-                    <span class="hidden-mobile">TypeScript学习总结之函数</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/typescript/">
+                              typescript
+                            </a>
+                            
+                            <a class="hover-with-bg" href="/categories/typescript/JavaScript/">
+                              JavaScript
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/typescript/">
+                                  typescript
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2020/12/29/42.TypeScript%E7%B3%BB%E5%88%974/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      TypeScript 学习总结之 接口
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2020/12/27/40.TypeScript%E7%B3%BB%E5%88%972/">
+                                    <span class="hidden-mobile">
+                                      TypeScript学习总结之函数
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -541,26 +557,26 @@ greeterMaker.standardGreeting = <span class="hljs-string">&quot;Hey there!&quot;
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

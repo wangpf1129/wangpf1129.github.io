@@ -203,18 +203,20 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">axios</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h1 id="axios-⭐"><a href="#axios-⭐" class="headerlink" title="axios ⭐"></a>axios ⭐</h1><blockquote>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                axios
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h1 id="axios-⭐"><a href="#axios-⭐" class="headerlink" title="axios ⭐"></a>axios ⭐</h1><blockquote>
 <p>axios: ajax i/o system.</p>
 </blockquote>
 <ul>
@@ -253,8 +255,8 @@
 <h2 id="全局配置"><a href="#全局配置" class="headerlink" title="全局配置"></a>全局配置</h2><blockquote>
 <p>在上面的示例中, 我们的BaseURL是固定的<br>事实上, 在开发中可能很多参数都是固定的.<br>这个时候我们可以进行一些抽取, 也可以利用axiox的全局配置</p>
 </blockquote>
-<div class="hljs"><pre><code class="hljs javascript">axios.defaults.baseURL = ‘<span class="hljs-number">123.207</span><span class="hljs-number">.32</span><span class="hljs-number">.32</span>:<span class="hljs-number">8000</span>’axios.defaults.headers.
-post[‘Content-Type’] = ‘application/x-www-form-urlencoded’;</code></pre></div>
+<div class="hljs"><pre><code class="hljs javascript">axios.<span class="hljs-property">defaults</span>.<span class="hljs-property">baseURL</span> = ‘<span class="hljs-number">123.207</span><span class="hljs-number">.32</span><span class="hljs-number">.32</span>:<span class="hljs-number">8000</span>’axios.<span class="hljs-property">defaults</span>.<span class="hljs-property">headers</span>.
+post[‘<span class="hljs-title class_">Content</span>-<span class="hljs-title class_">Type</span>’] = ‘application/x-www-form-urlencoded’;</code></pre></div>
 
 
 
@@ -277,15 +279,15 @@ post[‘Content-Type’] = ‘application/x-www-form-urlencoded’;</code></pre>
 <div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;axios&quot;</span>;
 
 
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">request</span>(<span class="hljs-params">config</span>) </span>&#123;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">request</span>(<span class="hljs-params">config</span>) &#123;
   <span class="hljs-comment">//  1.配置基本信息   </span>
-  <span class="hljs-keyword">const</span> instance = axios.create(&#123;
-    baseURL: <span class="hljs-string">&#x27;http://152.136.185.210:8000/api/z8&#x27;</span>,
-    timeout: <span class="hljs-number">5000</span>
+  <span class="hljs-keyword">const</span> instance = axios.<span class="hljs-title function_">create</span>(&#123;
+    <span class="hljs-attr">baseURL</span>: <span class="hljs-string">&#x27;http://152.136.185.210:8000/api/z8&#x27;</span>,
+    <span class="hljs-attr">timeout</span>: <span class="hljs-number">5000</span>
   &#125;)
   <span class="hljs-comment">//  本身返回的就一个 Promise   不需要再次封装一个 Promise来使用</span>
   <span class="hljs-comment">// 3.发送真正的网络请求  ( 方式一)</span>
-  <span class="hljs-keyword">return</span> instance(config)
+  <span class="hljs-keyword">return</span> <span class="hljs-title function_">instance</span>(config)
 &#125;
 
  
@@ -332,21 +334,21 @@ post[‘Content-Type’] = ‘application/x-www-form-urlencoded’;</code></pre>
 <div class="hljs"><pre><code class="hljs javascript"><span class="hljs-comment">//  在组件内 传入对象 进行网络请求</span>
 
 <span class="hljs-comment">// 方式一和方式三（promise） ，</span>
-request(&#123;
-    url:<span class="hljs-string">&#x27;/home/multidata&#x27;</span>
-&#125;).then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span>&#123;
-    <span class="hljs-built_in">console</span>.log(res)
-&#125;).catch(<span class="hljs-function"><span class="hljs-params">err</span>=&gt;</span>&#123;
-    <span class="hljs-built_in">console</span>.log(err)
+<span class="hljs-title function_">request</span>(&#123;
+    <span class="hljs-attr">url</span>:<span class="hljs-string">&#x27;/home/multidata&#x27;</span>
+&#125;).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span>&#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(res)
+&#125;).<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">err</span>=&gt;</span>&#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(err)
 &#125;)
 
 <span class="hljs-comment">// 方式二 （使用的回调函数）:</span>
-request(&#123;
-    url:<span class="hljs-string">&#x27;/home/multidata&#x27;</span>
+<span class="hljs-title function_">request</span>(&#123;
+    <span class="hljs-attr">url</span>:<span class="hljs-string">&#x27;/home/multidata&#x27;</span>
 &#125;,<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span>&#123;
-    <span class="hljs-built_in">console</span>.log(res) 
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(res) 
 &#125;,<span class="hljs-function"><span class="hljs-params">err</span>=&gt;</span>&#123;
-    <span class="hljs-built_in">console</span>.log(err) 
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(err) 
 &#125;)</code></pre></div>
 
 
@@ -359,96 +361,108 @@ request(&#123;
 <div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;axios&quot;</span>;
 
 
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">request</span>(<span class="hljs-params">config</span>) </span>&#123;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">request</span>(<span class="hljs-params">config</span>) &#123;
   <span class="hljs-comment">//  1.配置基本信息   （创建实例， 这样不是全局的）</span>
-  <span class="hljs-keyword">const</span> instance = axios.create(&#123;
-    baseURL: <span class="hljs-string">&#x27;http://152.136.185.210:8000/api/z8&#x27;</span>,
-    timeout: <span class="hljs-number">5000</span>
+  <span class="hljs-keyword">const</span> instance = axios.<span class="hljs-title function_">create</span>(&#123;
+    <span class="hljs-attr">baseURL</span>: <span class="hljs-string">&#x27;http://152.136.185.210:8000/api/z8&#x27;</span>,
+    <span class="hljs-attr">timeout</span>: <span class="hljs-number">5000</span>
   &#125;)
   <span class="hljs-comment">// 2.axios 拦截器</span>
   <span class="hljs-comment">// 2.1请求拦截的作用： </span>
-  instance.interceptors.request.use(<span class="hljs-function"><span class="hljs-params">config</span> =&gt;</span> &#123;
+  instance.<span class="hljs-property">interceptors</span>.<span class="hljs-property">request</span>.<span class="hljs-title function_">use</span>(<span class="hljs-function"><span class="hljs-params">config</span> =&gt;</span> &#123;
     <span class="hljs-comment">//  这里可以拦截一些：</span>
     <span class="hljs-comment">// 1. 比如config中的一些信息不符合服务器的要求  </span>
     <span class="hljs-comment">// 2. 比如每次发送网络请求时，都希望在页面中显示一个请求的图标</span>
     <span class="hljs-comment">// 3. 某些网络请求（比如登录需要的（token），必须携带一些特殊的信息）</span>
-    <span class="hljs-built_in">console</span>.log(config);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(config);
     <span class="hljs-comment">// 拦截后 要发出去  要不就收不到</span>
     <span class="hljs-keyword">return</span> config
   &#125;, <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> &#123;
-    <span class="hljs-built_in">console</span>.log(err);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(err);
   &#125;)
 
   <span class="hljs-comment">// 2.2 响应拦截 </span>
-  instance.interceptors.response.use(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;
+  instance.<span class="hljs-property">interceptors</span>.<span class="hljs-property">response</span>.<span class="hljs-title function_">use</span>(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;
       <span class="hljs-comment">// 响应的成功拦截中，主要是对数据进行过滤。</span>
-    <span class="hljs-keyword">return</span> res.data <span class="hljs-comment">// 真正有用的东西是 data中的数据</span>
+    <span class="hljs-keyword">return</span> res.<span class="hljs-property">data</span> <span class="hljs-comment">// 真正有用的东西是 data中的数据</span>
   &#125;, <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> &#123;
     <span class="hljs-comment">// 响应的失败拦截中，可以根据status判断报错的错误码，跳转到不同的错误提示页面。</span>
-    <span class="hljs-built_in">console</span>.log(err);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(err);
   &#125;)
 
   <span class="hljs-comment">//  本身返回的就一个 Promise   不需要再次封装一个 Promise来使用</span>
   <span class="hljs-comment">// 3.发送真正的网络请求</span>
-  <span class="hljs-keyword">return</span> instance(config)
+  <span class="hljs-keyword">return</span> <span class="hljs-title function_">instance</span>(config)
 &#125;</code></pre></div>
 
 
 
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/vue/">vue</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/vue/">vue</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2020/11/19/26-%E4%B8%AA%E4%BA%BA%E7%90%86%E8%A7%A3%E7%9A%84CSS%E6%96%87%E6%A1%A3%E6%B5%81/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">个人理解的CSS文档流</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2020/09/26/24-Vuex%E8%AF%A6%E8%A7%A3/">
-                    <span class="hidden-mobile">Vuex详解</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/vue/">
+                              vue
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/vue/">
+                                  vue
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2020/11/19/26-%E4%B8%AA%E4%BA%BA%E7%90%86%E8%A7%A3%E7%9A%84CSS%E6%96%87%E6%A1%A3%E6%B5%81/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      个人理解的CSS文档流
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2020/09/26/24-Vuex%E8%AF%A6%E8%A7%A3/">
+                                    <span class="hidden-mobile">
+                                      Vuex详解
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -475,26 +489,26 @@ request(&#123;
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

@@ -203,18 +203,20 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">从Vue3源码中分析key的作用</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <p>在文档中说到：</p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                从Vue3源码中分析key的作用
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <p>在文档中说到：</p>
 <ul>
 <li>key 的特殊 attribute 主要用在 Vue 的<code>虚拟 DOM 算法</code>，在新旧 nodes 对比时辨识 <code>VNodes</code>。</li>
 <li>如果不使用 key，Vue 会使用一种最大限度减少动态元素并且尽可能的尝试就地<code>修改/复用相同类型元素</code>的算法。</li>
@@ -229,15 +231,15 @@
 
 <p><strong>// vue 会把 模板中的内容 转换为 vNode（对象）</strong></p>
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> vNode = &#123;
-  type: <span class="hljs-string">&#x27;div&#x27;</span>,
-  props: &#123;
-    class: &#x27;text&#x27;,
-    style: &#123;
+  <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;div&#x27;</span>,
+  <span class="hljs-attr">props</span>: &#123;
+    <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;text&#x27;</span>,
+    <span class="hljs-attr">style</span>: &#123;
       <span class="hljs-string">&#x27;font-size&#x27;</span>: <span class="hljs-string">&#x27;26px&#x27;</span>,
-      color: <span class="hljs-string">&#x27;pink&#x27;</span>,
+      <span class="hljs-attr">color</span>: <span class="hljs-string">&#x27;pink&#x27;</span>,
     &#125;,
   &#125;,
-  children: <span class="hljs-string">&#x27;这是一段文本内容&#x27;</span>,
+  <span class="hljs-attr">children</span>: <span class="hljs-string">&#x27;这是一段文本内容&#x27;</span>,
 &#125;</code></pre></div>
 
 <h3 id="虚拟-DOM"><a href="#虚拟-DOM" class="headerlink" title="虚拟 DOM"></a>虚拟 DOM</h3><p>文档中说到：</p>
@@ -283,59 +285,71 @@
 <p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/faf29156e94843ee9ecd2bc39e5370e7~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="image.png"></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我们可以发现，Vue 在进行 diff 算法的时候，会尽量利用我们的 key 来进行优化操作，所有在没有 key 的情况下我们的效率是非常低的。 在进行插入或者重置排序的时候，保持相同的 key 可以让 diff 算法更加高效。</p>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/Vue-js/">Vue.js</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/Vue3/">Vue3</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2021/07/19/64-vue3%E5%BC%82%E6%AD%A5%E7%BB%84%E4%BB%B6/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">vue3中的异步组件到底是干啥的？</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2021/05/18/62-methods%E4%B8%ADthis%E6%8C%87%E5%90%91%E9%97%AE%E9%A2%98/">
-                    <span class="hidden-mobile">methods中this指向问题</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/Vue-js/">
+                              Vue.js
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/Vue3/">
+                                  Vue3
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2021/07/19/64-vue3%E5%BC%82%E6%AD%A5%E7%BB%84%E4%BB%B6/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      vue3中的异步组件到底是干啥的？
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2021/05/18/62-methods%E4%B8%ADthis%E6%8C%87%E5%90%91%E9%97%AE%E9%A2%98/">
+                                    <span class="hidden-mobile">
+                                      methods中this指向问题
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -362,26 +376,26 @@
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

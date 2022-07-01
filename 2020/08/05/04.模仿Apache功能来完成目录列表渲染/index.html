@@ -203,24 +203,26 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">使用Node来模仿Apache功能来完成目录列表渲染</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h1 id="模仿Apache功能来完成目录列表渲染"><a href="#模仿Apache功能来完成目录列表渲染" class="headerlink" title="模仿Apache功能来完成目录列表渲染"></a>模仿Apache功能来完成目录列表渲染</h1><hr>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                使用Node来模仿Apache功能来完成目录列表渲染
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h1 id="模仿Apache功能来完成目录列表渲染"><a href="#模仿Apache功能来完成目录列表渲染" class="headerlink" title="模仿Apache功能来完成目录列表渲染"></a>模仿Apache功能来完成目录列表渲染</h1><hr>
 <h4 id="fs-readdir-这个API用来读取文件目录"><a href="#fs-readdir-这个API用来读取文件目录" class="headerlink" title="fs.readdir   这个API用来读取文件目录"></a>fs.readdir   这个API用来读取文件目录</h4><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>);
-fs.readdir(<span class="hljs-string">&#x27;F:/nodejs/Node_test&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">err, files</span>) =&gt;</span> &#123;
+fs.<span class="hljs-title function_">readdir</span>(<span class="hljs-string">&#x27;F:/nodejs/Node_test&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">err, files</span>) =&gt;</span> &#123;
     <span class="hljs-keyword">if</span> (err) &#123;
-        <span class="hljs-keyword">return</span> res.end(<span class="hljs-string">&#x27;文件目录不存在.&#x27;</span>)
+        <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">end</span>(<span class="hljs-string">&#x27;文件目录不存在.&#x27;</span>)
     &#125;
-    <span class="hljs-built_in">console</span>.log(files);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(files);
 &#125;);</code></pre></div>
 
 <h4 id="返回的值是-一个数组"><a href="#返回的值是-一个数组" class="headerlink" title="返回的值是 一个数组"></a>返回的值是 一个数组</h4><ul>
@@ -228,15 +230,15 @@ fs.readdir(<span class="hljs-string">&#x27;F:/nodejs/Node_test&#x27;</span>, <sp
 </ul>
 <hr>
 <h2 id="简单的来实现了-目录列表"><a href="#简单的来实现了-目录列表" class="headerlink" title="简单的来实现了 目录列表"></a>简单的来实现了 目录列表</h2><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-keyword">const</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;http&#x27;</span>)
-<span class="hljs-keyword">const</span> server = http.createServer()
+<span class="hljs-keyword">const</span> server = http.<span class="hljs-title function_">createServer</span>()
 <span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>)
-server.on(<span class="hljs-string">&#x27;request&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
-    <span class="hljs-keyword">let</span> url = req.url
+server.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;request&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">let</span> url = req.<span class="hljs-property">url</span>
     <span class="hljs-keyword">let</span> wwwDir = <span class="hljs-string">&#x27;F:/nodejs/Node_test/resource&#x27;</span>
-    fs.readFile(<span class="hljs-string">&#x27;./resource/index.html&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">err, data</span>) =&gt;</span> &#123;
+    fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./resource/index.html&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">err, data</span>) =&gt;</span> &#123;
     <span class="hljs-comment">// data 是 index.html 的二进制数据</span>
         <span class="hljs-keyword">if</span> (err) &#123;
-            <span class="hljs-keyword">return</span> res.end(<span class="hljs-string">&#x27;404 Not Foun.&#x27;</span>)
+            <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">end</span>(<span class="hljs-string">&#x27;404 Not Foun.&#x27;</span>)
         &#125;
         <span class="hljs-comment">// 1. 如何得到 wwwDir 目录列表中的文件名和目录名</span>
         <span class="hljs-comment">//    fs.readdir  这个API可以读取目录列表中的文件名和目录名</span>
@@ -244,14 +246,14 @@ server.on(<span class="hljs-string">&#x27;request&#x27;</span>, <span class="hlj
         <span class="hljs-comment">//    2.1 在 template.html 中需要替换的位置预留一个特殊的标记（就像以前使用模板引擎的标记一样）</span>
         <span class="hljs-comment">//    2.2 根据 files 生成需要的 HTML 内容</span>
         <span class="hljs-comment">// 只要你做了这两件事儿，那这个问题就解决了</span>
-        fs.readdir(wwwDir, <span class="hljs-function">(<span class="hljs-params">err, files</span>) =&gt;</span> &#123;
+        fs.<span class="hljs-title function_">readdir</span>(wwwDir, <span class="hljs-function">(<span class="hljs-params">err, files</span>) =&gt;</span> &#123;
             <span class="hljs-keyword">if</span> (err) &#123;
-                <span class="hljs-keyword">return</span> res.end(<span class="hljs-string">&#x27;文件不存在.&#x27;</span>)
+                <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">end</span>(<span class="hljs-string">&#x27;文件不存在.&#x27;</span>)
             &#125;
 
             <span class="hljs-comment">// 2.1 生成需要替换的内容</span>
             <span class="hljs-keyword">let</span> content = <span class="hljs-string">&#x27;&#x27;</span>;
-            files.forEach(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> &#123;
+            files.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> &#123;
                 <span class="hljs-comment">// 在 EcmaScript 6 的 ` 字符串中，可以使用 $&#123;&#125; 来引用变量</span>
                 content += <span class="hljs-string">` &lt;tr&gt;</span>
 <span class="hljs-string">                &lt;td data-value=&quot;nodejs资料（7天）/&quot;&gt;&lt;a class=&quot;icon dir&quot;</span>
@@ -264,74 +266,86 @@ server.on(<span class="hljs-string">&#x27;request&#x27;</span>, <span class="hlj
 
             <span class="hljs-comment">// 2.3 替换</span>
             <span class="hljs-comment">// data 是 index.html 的二进制数据，要想渲染到页面先转换为字符串格式</span>
-            data = data.toString();
+            data = data.<span class="hljs-title function_">toString</span>();
             
             <span class="hljs-comment">// 将 index.html 中的内容的 *** 替换成 我们想要的目录列表内容</span>
-            data = data.replace(<span class="hljs-string">&#x27;***&#x27;</span>, content);
+            data = data.<span class="hljs-title function_">replace</span>(<span class="hljs-string">&#x27;***&#x27;</span>, content);
 
 
             <span class="hljs-comment">// 3. 发送解析替换过后的响应数据</span>
-            res.end(data);
+            res.<span class="hljs-title function_">end</span>(data);
         &#125;)
     &#125;)
 &#125;);
-server.listen(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> &#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;服务器启动成功，可以通过 http://127.0.0.1:3000/ 来访问&#x27;</span>);
+server.<span class="hljs-title function_">listen</span>(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;服务器启动成功，可以通过 http://127.0.0.1:3000/ 来访问&#x27;</span>);
 &#125;)</code></pre></div>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/Nodejs/">Nodejs</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/Node/">Node</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2020/08/06/03.%E7%AE%80%E5%8D%95%E7%BB%93%E5%90%88fs%E6%A8%A1%E5%9D%97%E6%9D%A5%E8%AE%BF%E9%97%AE%E4%B8%8D%E5%90%8C%E8%B5%84%E6%BA%90%E5%AE%9E%E4%BE%8B/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">使用Node来简单结合fs模块来访问不同资源实例</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2020/08/05/05.%E7%95%99%E8%A8%80%E6%9D%BF%E5%8A%9F%E8%83%BD%E7%9A%84%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
-                    <span class="hidden-mobile">使用Node来留言板功能的简单实现</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/Nodejs/">
+                              Nodejs
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/Node/">
+                                  Node
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2020/08/06/03.%E7%AE%80%E5%8D%95%E7%BB%93%E5%90%88fs%E6%A8%A1%E5%9D%97%E6%9D%A5%E8%AE%BF%E9%97%AE%E4%B8%8D%E5%90%8C%E8%B5%84%E6%BA%90%E5%AE%9E%E4%BE%8B/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      使用Node来简单结合fs模块来访问不同资源实例
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2020/08/05/05.%E7%95%99%E8%A8%80%E6%9D%BF%E5%8A%9F%E8%83%BD%E7%9A%84%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
+                                    <span class="hidden-mobile">
+                                      使用Node来留言板功能的简单实现
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -358,26 +372,26 @@ server.listen(<span class="hljs-number">3000</span>, <span class="hljs-function"
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

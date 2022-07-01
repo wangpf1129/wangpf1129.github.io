@@ -203,102 +203,116 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">call、apply、bind 的用法分别是什么？</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h2 id="它们最主要的作用是-改变this的指向"><a href="#它们最主要的作用是-改变this的指向" class="headerlink" title="它们最主要的作用是 改变this的指向"></a>它们最主要的作用是 改变this的指向</h2><h3 id="call"><a href="#call" class="headerlink" title="call()"></a>call()</h3><p>call() 写法 ： <code>function.call(thisArg, arg1, arg2, ...)</code></p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                call、apply、bind 的用法分别是什么？
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h2 id="它们最主要的作用是-改变this的指向"><a href="#它们最主要的作用是-改变this的指向" class="headerlink" title="它们最主要的作用是 改变this的指向"></a>它们最主要的作用是 改变this的指向</h2><h3 id="call"><a href="#call" class="headerlink" title="call()"></a>call()</h3><p>call() 写法 ： <code>function.call(thisArg, arg1, arg2, ...)</code></p>
 <p>call()调用一个函数，第一个参数是指定的this值，其他参数分别是提供的参数，用逗号隔开。</p>
 <p><strong>call()用法</strong></p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params">a,b,c</span>)</span>&#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">fn</span>(<span class="hljs-params">a,b,c</span>)&#123;
 
 &#125;
 <span class="hljs-comment">//  fn 的this指向的是obj， 参数是 1，2，3</span>
-fn.call(obj,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>)
+fn.<span class="hljs-title function_">call</span>(obj,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>)
 
 <span class="hljs-comment">// 这个fn 的this指向obj， 但它参数是 [1,2,3]  、 undefined 、 undefined</span>
-fn.call(obj,[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])</code></pre></div>
+fn.<span class="hljs-title function_">call</span>(obj,[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])</code></pre></div>
 
 <h2 id="apply"><a href="#apply" class="headerlink" title="apply()"></a>apply()</h2><p>apply()写法： <code>func.apply(thisArg, [argsArray])</code></p>
 <p>apply 只接收俩个参数， 第一个参数和call一样。 第二个参数，必须是数组或者类数组。</p>
 <p><strong>apply() 和call() 使用上是一致的，唯一区别在于 call() 方法接受若干个参数，而apply()方法接受一个包含多个参数的数组</strong></p>
 <h2 id="bind"><a href="#bind" class="headerlink" title="bind()"></a>bind()</h2><p>bind() 不同于 call() 和 apply() ， 它返回一个新的函数，该函数将this设置未我们赋给它的值。</p>
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// mdn demo</span>
-<span class="hljs-built_in">this</span>.x = <span class="hljs-number">9</span>; <span class="hljs-comment">// 在浏览器中this指向全局的 window 对象</span>
-<span class="hljs-keyword">var</span> <span class="hljs-built_in">module</span> = &#123;
-  x: <span class="hljs-number">81</span>,
-  getX: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123; <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.x; &#125;
+<span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span> = <span class="hljs-number">9</span>; <span class="hljs-comment">// 在浏览器中this指向全局的 window 对象</span>
+<span class="hljs-keyword">var</span> <span class="hljs-variable language_">module</span> = &#123;
+  <span class="hljs-attr">x</span>: <span class="hljs-number">81</span>,
+  <span class="hljs-attr">getX</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123; <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span>; &#125;
 &#125;;
 
-<span class="hljs-built_in">module</span>.getX(); <span class="hljs-comment">// 81</span>
+<span class="hljs-variable language_">module</span>.<span class="hljs-title function_">getX</span>(); <span class="hljs-comment">// 81</span>
 
-<span class="hljs-keyword">var</span> retrieveX = <span class="hljs-built_in">module</span>.getX;
-retrieveX();
+<span class="hljs-keyword">var</span> retrieveX = <span class="hljs-variable language_">module</span>.<span class="hljs-property">getX</span>;
+<span class="hljs-title function_">retrieveX</span>();
 <span class="hljs-comment">// 返回9 - 因为函数是在全局作用域中调用的</span>
 
 <span class="hljs-comment">// 创建一个新函数，把this绑定都module对象上</span>
-<span class="hljs-keyword">var</span> bondGetX = retrieveX.bind(<span class="hljs-built_in">module</span>);
-bondGetX(); <span class="hljs-comment">// 81</span></code></pre></div>
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/JavaScript/">JavaScript</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/JavaScript/">JavaScript</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2021/02/15/53-%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">数组去重</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2021/02/12/51-%E9%97%AD%E5%8C%85/">
-                    <span class="hidden-mobile">什么是闭包？闭包的用途是什么？闭包的缺点是什么？</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+<span class="hljs-keyword">var</span> bondGetX = retrieveX.<span class="hljs-title function_">bind</span>(<span class="hljs-variable language_">module</span>);
+<span class="hljs-title function_">bondGetX</span>(); <span class="hljs-comment">// 81</span></code></pre></div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/JavaScript/">
+                              JavaScript
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/JavaScript/">
+                                  JavaScript
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2021/02/15/53-%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      数组去重
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2021/02/12/51-%E9%97%AD%E5%8C%85/">
+                                    <span class="hidden-mobile">
+                                      什么是闭包？闭包的用途是什么？闭包的缺点是什么？
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -325,26 +339,26 @@ bondGetX(); <span class="hljs-comment">// 81</span></code></pre></div>
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

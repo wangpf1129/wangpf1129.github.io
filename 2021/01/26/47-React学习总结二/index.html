@@ -203,183 +203,185 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">React之生命周期</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h2 id="React-生命周期（旧）"><a href="#React-生命周期（旧）" class="headerlink" title="React 生命周期（旧）"></a>React 生命周期（旧）</h2><p>先来看图</p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                React之生命周期
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h2 id="React-生命周期（旧）"><a href="#React-生命周期（旧）" class="headerlink" title="React 生命周期（旧）"></a>React 生命周期（旧）</h2><p>先来看图</p>
 <p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/186a79477d02438d9bc5349b6a0ce7d1~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="生命周期（旧）"></p>
 <h3 id="React组件初始化阶段"><a href="#React组件初始化阶段" class="headerlink" title="React组件初始化阶段:"></a>React组件初始化阶段:</h3><p>初始化阶段：由ReactDOM.render()触发 — 初次渲染</p>
-<h4 id="第一步-constructor"><a href="#第一步-constructor" class="headerlink" title="第一步 constructor()"></a>第一步 constructor()</h4><p>用来初始化属性状态<br> <div class="hljs"><pre><code class="hljs jsx"> <span class="hljs-keyword">constructor</span>()&#123;
-<span class="hljs-built_in">super</span>()
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;constructor--count组件构造器&#x27;</span>);
-<span class="hljs-built_in">this</span>.state = &#123;
-  count: <span class="hljs-number">0</span>,
-  message: <span class="hljs-string">&#x27;我想要吃的&#x27;</span>
+<h4 id="第一步-constructor"><a href="#第一步-constructor" class="headerlink" title="第一步 constructor()"></a>第一步 constructor()</h4><p>用来初始化属性状态<br> <div class="hljs"><pre><code class="hljs jsx"> <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>)&#123;
+<span class="hljs-variable language_">super</span>()
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;constructor--count组件构造器&#x27;</span>);
+<span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span> = &#123;
+  <span class="hljs-attr">count</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;我想要吃的&#x27;</span>
 &#125;</code></pre></div></p>
 <h4 id="第二步-componentWillMount"><a href="#第二步-componentWillMount" class="headerlink" title="第二步 componentWillMount()"></a>第二步 componentWillMount()</h4><p>组件将要被挂载阶段 （在组件挂载之前触发）</p>
-<div class="hljs"><pre><code class="hljs jsx">  componentWillMount() &#123;
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;componentWillMount--count组件将要被挂载&#x27;</span>);
+<div class="hljs"><pre><code class="hljs jsx">  <span class="hljs-title function_">componentWillMount</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;componentWillMount--count组件将要被挂载&#x27;</span>);
 &#125;</code></pre></div>
 <h4 id="第三步-render"><a href="#第三步-render" class="headerlink" title="第三步 - render()"></a>第三步 - render()</h4><p>组件渲染在页面上</p>
 <div class="hljs"><pre><code class="hljs jsx">
-render() &#123;
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;render--count组件渲染&#x27;</span>);
-  <span class="hljs-keyword">const</span> &#123; count &#125; = <span class="hljs-built_in">this</span>.state
+<span class="hljs-title function_">render</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;render--count组件渲染&#x27;</span>);
+  <span class="hljs-keyword">const</span> &#123; count &#125; = <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>
   <span class="hljs-keyword">return</span> (
-    &lt;div className=<span class="hljs-string">&quot;count&quot;</span>&gt;
-      &lt;h2&gt;&#123;count&#125;&lt;/h2&gt;
-      &lt;button onClick=&#123;<span class="hljs-built_in">this</span>.add&#125;&gt;+<span class="hljs-number">1</span>&lt;/button&gt;
-      &lt;button onClick=&#123;<span class="hljs-built_in">this</span>.force&#125;&gt;强制更新，不改变任何数据状态&lt;/button&gt;
-      &lt;br /&gt;
-      &lt;div&gt;
-        &lt;h3&gt;我是Count组件&lt;/h3&gt;
-        &lt;button onClick=&#123;<span class="hljs-built_in">this</span>.changeMessage&#125;&gt;更换子组件信息&lt;/button&gt;
-        &lt;CountSon message=&#123;<span class="hljs-built_in">this</span>.state.message&#125; /&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;count&quot;</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>&#123;count&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;this.add&#125;</span>&gt;</span>+1<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;this.force&#125;</span>&gt;</span>强制更新，不改变任何数据状态<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>我是Count组件<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;this.changeMessage&#125;</span>&gt;</span>更换子组件信息<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">CountSon</span> <span class="hljs-attr">message</span>=<span class="hljs-string">&#123;this.state.message&#125;</span> /&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
   )
 &#125;</code></pre></div>
 <h4 id="第四步-componentDidMount"><a href="#第四步-componentDidMount" class="headerlink" title="第四步  componentDidMount()"></a>第四步  componentDidMount()</h4><p>组件挂载完毕后 （在组件挂载之后，只会执行一次）</p>
-<div class="hljs"><pre><code class="hljs jsx">  componentDidMount() &#123;
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;componentDidMount--count组件挂载完毕后&#x27;</span>);
+<div class="hljs"><pre><code class="hljs jsx">  <span class="hljs-title function_">componentDidMount</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;componentDidMount--count组件挂载完毕后&#x27;</span>);
 &#125;</code></pre></div>
 <p>这个钩子很常用，我们经常会在这个钩子中做一些初始化的操作，比如：开启定时器，发送网络请求，订阅消息等。</p>
 <h3 id="React组件更新阶段："><a href="#React组件更新阶段：" class="headerlink" title="React组件更新阶段："></a>React组件更新阶段：</h3><p><strong>由组件内部的this.setState()或者父组件的render触发</strong></p>
 <h4 id="第一步-componentWillReceiveProps"><a href="#第一步-componentWillReceiveProps" class="headerlink" title="第一步     componentWillReceiveProps()"></a>第一步     componentWillReceiveProps()</h4><p><strong>组件将要接收参数</strong></p>
 <p>组件收到新的属性对象时调用，首次渲染不会触发</p>
 <p>一般是父组件向子组件传props时，当子组件更新了props中的数据，就会触发（第一次传过去时，不会触发）</p>
-<div class="hljs"><pre><code class="hljs jsx">  componentWillReceiveProps(props) &#123;
+<div class="hljs"><pre><code class="hljs jsx">  <span class="hljs-title function_">componentWillReceiveProps</span>(<span class="hljs-params">props</span>) &#123;
   <span class="hljs-comment">// 注意， 第一渲染不算， 第二次才触发</span>
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;componentWillReceiveProps--Count的子组件&#x27;</span>, props);
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;componentWillReceiveProps--Count的子组件&#x27;</span>, props);
 &#125;</code></pre></div>
 
 <h4 id="第二步：-shouldComponentUpdate"><a href="#第二步：-shouldComponentUpdate" class="headerlink" title="第二步：  shouldComponentUpdate()"></a>第二步：  shouldComponentUpdate()</h4><p>组件是否应该被更新—-控制组件更新的“阀门”</p>
 <p>如果为true就会按照图中所示往下走，如果为false，则将“阀门”关闭，不能往下走了。</p>
-<div class="hljs"><pre><code class="hljs jsx">shouldComponentUpdate() &#123;
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;shouldComponentUpdate--count组件是否应该被更新&#x27;</span>);
+<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-title function_">shouldComponentUpdate</span>(<span class="hljs-params"></span>) &#123;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;shouldComponentUpdate--count组件是否应该被更新&#x27;</span>);
 <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
   **&#125;**</code></pre></div>
 
 <h4 id="第三步：-componentWillUpdate"><a href="#第三步：-componentWillUpdate" class="headerlink" title="第三步： componentWillUpdate()"></a>第三步： componentWillUpdate()</h4><p>组件将要更新</p>
-<div class="hljs"><pre><code class="hljs jsx">  componentWillUpdate() &#123;
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;componentWillUpdate--count组件将要更新&#x27;</span>);
+<div class="hljs"><pre><code class="hljs jsx">  <span class="hljs-title function_">componentWillUpdate</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;componentWillUpdate--count组件将要更新&#x27;</span>);
 &#125;</code></pre></div>
 
 <h4 id="第四步：render"><a href="#第四步：render" class="headerlink" title="第四步：render()"></a>第四步：render()</h4><p>会跟新新的属性对象重新渲染组件</p>
 <h4 id="第五步-componentDidUpdate"><a href="#第五步-componentDidUpdate" class="headerlink" title="第五步:    componentDidUpdate()"></a>第五步:    componentDidUpdate()</h4><p>组件更新完毕后触发</p>
 <p>它接收参数（1.props更新前的，2.state更新前的，3.快照值，（在新的生命周期中会提到））</p>
-<div class="hljs"><pre><code class="hljs jsx"> componentDidUpdate(preProps, preState, snapShotValue) &#123;
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;componentDidUpdate--count组件更新完毕后&#x27;</span>, preProps, preState, snapShotValue);
+<div class="hljs"><pre><code class="hljs jsx"> <span class="hljs-title function_">componentDidUpdate</span>(<span class="hljs-params">preProps, preState, snapShotValue</span>) &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;componentDidUpdate--count组件更新完毕后&#x27;</span>, preProps, preState, snapShotValue);
 &#125;</code></pre></div>
 
 
 <h3 id="卸载组件阶段"><a href="#卸载组件阶段" class="headerlink" title="卸载组件阶段"></a>卸载组件阶段</h3><p>由ReactDOM.unmountComponentAtNode()触发</p>
 <h4 id="componentWillUnmount"><a href="#componentWillUnmount" class="headerlink" title="componentWillUnmount()"></a>componentWillUnmount()</h4><p>组件将要被卸载时触发,</p>
 <p>一般经常在这个钩子中做一些收尾的操作：比如：关闭定时器，取消订阅消息等。</p>
-<h3 id="（旧）生命周期代码测试"><a href="#（旧）生命周期代码测试" class="headerlink" title="（旧）生命周期代码测试"></a>（旧）生命周期代码测试</h3><div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> React, &#123; Component &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
+<h3 id="（旧）生命周期代码测试"><a href="#（旧）生命周期代码测试" class="headerlink" title="（旧）生命周期代码测试"></a>（旧）生命周期代码测试</h3><div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span>, &#123; <span class="hljs-title class_">Component</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Count</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>&#123;
-  <span class="hljs-keyword">constructor</span>() &#123;
-    <span class="hljs-built_in">super</span>()
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;constructor--count组件构造器&#x27;</span>);
-    <span class="hljs-built_in">this</span>.state = &#123;
-      count: <span class="hljs-number">0</span>,
-      message: <span class="hljs-string">&#x27;我想要吃的&#x27;</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Count</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Component</span> &#123;
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-variable language_">super</span>()
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;constructor--count组件构造器&#x27;</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span> = &#123;
+      <span class="hljs-attr">count</span>: <span class="hljs-number">0</span>,
+      <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;我想要吃的&#x27;</span>
     &#125;
   &#125;
 
   <span class="hljs-comment">//组件将要被挂载</span>
-  componentWillMount() &#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;componentWillMount--count组件将要被挂载&#x27;</span>);
+  <span class="hljs-title function_">componentWillMount</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;componentWillMount--count组件将要被挂载&#x27;</span>);
   &#125;
 
   <span class="hljs-comment">//组件挂载完毕后</span>
-  componentDidMount() &#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;componentDidMount--count组件挂载完毕后&#x27;</span>);
+  <span class="hljs-title function_">componentDidMount</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;componentDidMount--count组件挂载完毕后&#x27;</span>);
   &#125;
 
   <span class="hljs-comment">// 控制组件更新的“阀门”</span>
-  shouldComponentUpdate() &#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;shouldComponentUpdate--count组件是否应该被更新&#x27;</span>);
+  <span class="hljs-title function_">shouldComponentUpdate</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;shouldComponentUpdate--count组件是否应该被更新&#x27;</span>);
     <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
   &#125;
 
   <span class="hljs-comment">// 组件将要更新</span>
-  componentWillUpdate() &#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;componentWillUpdate--count组件将要更新&#x27;</span>);
+  <span class="hljs-title function_">componentWillUpdate</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;componentWillUpdate--count组件将要更新&#x27;</span>);
   &#125;
 
   <span class="hljs-comment">//组件更新完毕后</span>
-  componentDidUpdate() &#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;componentDidUpdate--count组件更新完毕后&#x27;</span>);
+  <span class="hljs-title function_">componentDidUpdate</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;componentDidUpdate--count组件更新完毕后&#x27;</span>);
   &#125;
 
 
-  render() &#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;render--count组件渲染&#x27;</span>);
-    <span class="hljs-keyword">const</span> &#123; count &#125; = <span class="hljs-built_in">this</span>.state
+  <span class="hljs-title function_">render</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;render--count组件渲染&#x27;</span>);
+    <span class="hljs-keyword">const</span> &#123; count &#125; = <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>
     <span class="hljs-keyword">return</span> (
-      &lt;div className=<span class="hljs-string">&quot;count&quot;</span>&gt;
-        &lt;h2&gt;&#123;count&#125;&lt;/h2&gt;
-        &lt;button onClick=&#123;<span class="hljs-built_in">this</span>.add&#125;&gt;+<span class="hljs-number">1</span>&lt;/button&gt;
-        &lt;button onClick=&#123;<span class="hljs-built_in">this</span>.force&#125;&gt;强制更新，不改变任何数据状态&lt;/button&gt;
-        &lt;br /&gt;
-        &lt;div&gt;
-          &lt;h3&gt;我是Count组件&lt;/h3&gt;
-          &lt;button onClick=&#123;<span class="hljs-built_in">this</span>.changeMessage&#125;&gt;更换子组件信息&lt;/button&gt;
-          &lt;CountSon message=&#123;<span class="hljs-built_in">this</span>.state.message&#125; /&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
+      <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;count&quot;</span>&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>&#123;count&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;this.add&#125;</span>&gt;</span>+1<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;this.force&#125;</span>&gt;</span>强制更新，不改变任何数据状态<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>我是Count组件<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span></span>
+<span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;this.changeMessage&#125;</span>&gt;</span>更换子组件信息<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+<span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">CountSon</span> <span class="hljs-attr">message</span>=<span class="hljs-string">&#123;this.state.message&#125;</span> /&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
     )
   &#125;
 
   add = <span class="hljs-function">() =&gt;</span> &#123;
-    <span class="hljs-keyword">const</span> &#123; count &#125; = <span class="hljs-built_in">this</span>.state
-    <span class="hljs-built_in">this</span>.setState(&#123;
-      count: count + <span class="hljs-number">1</span>
+    <span class="hljs-keyword">const</span> &#123; count &#125; = <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>
+    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setState</span>(&#123;
+      <span class="hljs-attr">count</span>: count + <span class="hljs-number">1</span>
     &#125;)
   &#125;
 
   force = <span class="hljs-function">() =&gt;</span> &#123;
-    <span class="hljs-built_in">this</span>.forceUpdate()
+    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">forceUpdate</span>()
   &#125;
 
   changeMessage = <span class="hljs-function">() =&gt;</span> &#123;
     <span class="hljs-comment">// const &#123; message &#125; = this.state</span>
-    <span class="hljs-built_in">this</span>.setState(&#123;
-      message: <span class="hljs-string">&quot;我想要喝的&quot;</span>
+    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setState</span>(&#123;
+      <span class="hljs-attr">message</span>: <span class="hljs-string">&quot;我想要喝的&quot;</span>
     &#125;)
   &#125;
 
 &#125;
 
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CountSon</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>&#123;
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">CountSon</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Component</span> &#123;
 
   <span class="hljs-comment">// 组件将要接收参数 </span>
-  componentWillReceiveProps(props) &#123;
+  <span class="hljs-title function_">componentWillReceiveProps</span>(<span class="hljs-params">props</span>) &#123;
     <span class="hljs-comment">// 注意， 第一渲染不算， 第二次才触发</span>
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;componentWillReceiveProps--Count的子组件&#x27;</span>, props);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;componentWillReceiveProps--Count的子组件&#x27;</span>, props);
   &#125;
-  render() &#123;
+  <span class="hljs-title function_">render</span>(<span class="hljs-params"></span>) &#123;
     <span class="hljs-keyword">return</span> (
-      &lt;div&gt;
-        &lt;h3&gt;我是Count的子组件&lt;/h3&gt;
-        &lt;span&gt;我收到父组件的信息：&#123;<span class="hljs-built_in">this</span>.props.message&#125;&lt;/span&gt;
-      &lt;/div&gt;
+      <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>我是Count的子组件<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>我收到父组件的信息：&#123;this.props.message&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
     )
   &#125;
 &#125;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Count</code></pre></div>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">Count</span></code></pre></div>
 
 
 <h2 id="生命周期（新）"><a href="#生命周期（新）" class="headerlink" title="生命周期（新）"></a>生命周期（新）</h2><p>先看图</p>
@@ -414,14 +416,14 @@ render() &#123;
 <li>必须有返回值，返回值 可以是 值，也可以是<code>null</code></li>
 </ol>
 <div class="hljs"><pre><code class="hljs jsx">
-  getSnapshotBeforeUpdate()&#123;
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;getSnapshotBeforeUpdate--count&#x27;</span>)
+  <span class="hljs-title function_">getSnapshotBeforeUpdate</span>(<span class="hljs-params"></span>)&#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;getSnapshotBeforeUpdate--count&#x27;</span>)
   <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;Wangpf&#x27;</span>
   &#125;
 
 
-componentDidUpdate(preProps, preState, snapShotValue)&#123;
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;componentDidUpdate--count组件更新完毕后&#x27;</span>, preProps, preState, snapShotValue);
+<span class="hljs-title function_">componentDidUpdate</span>(<span class="hljs-params">preProps, preState, snapShotValue</span>)&#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;componentDidUpdate--count组件更新完毕后&#x27;</span>, preProps, preState, snapShotValue);
   <span class="hljs-comment">// preProps 外部数据更新前的值</span>
   <span class="hljs-comment">// preState 内部数据更新前的值</span>
   <span class="hljs-comment">// snapShotValue 是在getDerivedStateFromProps钩子函数中所返回的值</span>
@@ -430,50 +432,50 @@ componentDidUpdate(preProps, preState, snapShotValue)&#123;
 
 <h3 id="getSnapshotBeforeUpdate"><a href="#getSnapshotBeforeUpdate" class="headerlink" title="getSnapshotBeforeUpdate"></a>getSnapshotBeforeUpdate</h3><p>获取更新前的快照值，</p>
 <p>举个例子：</p>
-<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> React, &#123; Component &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
+<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span>, &#123; <span class="hljs-title class_">Component</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
 
 <span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;./News.css&#x27;</span>
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">News</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>&#123;
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">News</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Component</span> &#123;
 
   state = &#123;
-    newsArr: []
+    <span class="hljs-attr">newsArr</span>: []
   &#125;
 
-  componentDidMount() &#123;
+  <span class="hljs-title function_">componentDidMount</span>(<span class="hljs-params"></span>) &#123;
     <span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =&gt;</span> &#123;
-      <span class="hljs-keyword">const</span> &#123; newsArr &#125; = <span class="hljs-built_in">this</span>.state
+      <span class="hljs-keyword">const</span> &#123; newsArr &#125; = <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>
       <span class="hljs-keyword">const</span> news = <span class="hljs-string">`新闻<span class="hljs-subst">$&#123;newsArr.length + <span class="hljs-number">1</span>&#125;</span>`</span>
 
-      <span class="hljs-built_in">this</span>.setState(&#123;
-        newsArr: [news, ...newsArr]
+      <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setState</span>(&#123;
+        <span class="hljs-attr">newsArr</span>: [news, ...newsArr]
       &#125;)
     &#125;, <span class="hljs-number">1000</span>)
   &#125;
 
-  getSnapshotBeforeUpdate() &#123;
-    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.listHeight.scrollHeight
+  <span class="hljs-title function_">getSnapshotBeforeUpdate</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">listHeight</span>.<span class="hljs-property">scrollHeight</span>
   &#125;
 
-  componentDidUpdate(preProps, preState, height) &#123;
+  <span class="hljs-title function_">componentDidUpdate</span>(<span class="hljs-params">preProps, preState, height</span>) &#123;
     <span class="hljs-comment">// 用更新之后的高度 减去 更新之前的高度 再 += 给 更新之后的所在的值 </span>
     <span class="hljs-comment">// 这样旧能一直处于最底下了</span>
-    <span class="hljs-built_in">this</span>.listHeight.scrollTop += <span class="hljs-built_in">this</span>.listHeight.scrollHeight - height
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">listHeight</span>.<span class="hljs-property">scrollTop</span> += <span class="hljs-variable language_">this</span>.<span class="hljs-property">listHeight</span>.<span class="hljs-property">scrollHeight</span> - height
   &#125;
 
-  render() &#123;
-    <span class="hljs-keyword">const</span> &#123; newsArr &#125; = <span class="hljs-built_in">this</span>.state
+  <span class="hljs-title function_">render</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-keyword">const</span> &#123; newsArr &#125; = <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>
     <span class="hljs-keyword">return</span> (
-      &lt;div className=<span class="hljs-string">&quot;list&quot;</span> ref=&#123;<span class="hljs-function"><span class="hljs-params">c</span> =&gt;</span> <span class="hljs-built_in">this</span>.listHeight = c&#125;&gt;
-        &#123;newsArr.map(<span class="hljs-function">(<span class="hljs-params">item, index</span>) =&gt;</span> &#123;
-          <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;index&#125;</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&#x27;news&#x27;</span>&gt;</span>&#123;item&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
-        &#125;)&#125;
-      &lt;/div&gt;
+      <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;list&quot;</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&#123;c</span> =&gt;</span> this.listHeight = c&#125;&gt;</span>
+<span class="language-xml">        &#123;newsArr.map((item, index) =&gt; &#123;</span>
+<span class="language-xml">          return <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;index&#125;</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&#x27;news&#x27;</span>&gt;</span>&#123;item&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">        &#125;)&#125;</span>
+<span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
     )
   &#125;
 &#125;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> News</code></pre></div>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">News</span></code></pre></div>
 
 <p>上述例子描述的是 ， 可以使用 该钩子来获取更新之前的 scroll 高度， 然后到它一直在滚动时，我希望它一直显示某个位置，而不是随之滚动，一直显示顶部。<br><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e452b039392a4c89aa66c8d79c09cd82~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="getSnapshotBeforeUpdate"></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><strong>记住较为重要的几个钩子</strong></p>
@@ -490,59 +492,71 @@ componentDidUpdate(preProps, preState, snapShotValue)&#123;
 </ol>
 <p>目前版本17.0.1，目前使用的话，会出现警告，需要加上 前缀 UNSAFE_ 才行， 但官方说了在未来18版本之后很可能彻底废弃，因此不建议使用。</p>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/React/">React</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/React/">React</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2021/01/26/48-%E8%99%9A%E6%8B%9FDOM/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">虚拟DOM和diff算法以及关于key的问题（学习总结）</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2021/01/24/46-React%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%E4%B8%80/">
-                    <span class="hidden-mobile">React学习总结（一）：组件</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/React/">
+                              React
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/React/">
+                                  React
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2021/01/26/48-%E8%99%9A%E6%8B%9FDOM/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      虚拟DOM和diff算法以及关于key的问题（学习总结）
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2021/01/24/46-React%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%E4%B8%80/">
+                                    <span class="hidden-mobile">
+                                      React学习总结（一）：组件
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -569,26 +583,26 @@ componentDidUpdate(preProps, preState, snapShotValue)&#123;
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

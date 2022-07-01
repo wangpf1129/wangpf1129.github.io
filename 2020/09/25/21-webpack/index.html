@@ -203,18 +203,20 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">webpack</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h1 id="webpack⭐"><a href="#webpack⭐" class="headerlink" title="webpack⭐"></a>webpack⭐</h1><h2 id="1-什么是webpack？"><a href="#1-什么是webpack？" class="headerlink" title="1 什么是webpack？"></a>1 什么是webpack？</h2><ul>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                webpack
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h1 id="webpack⭐"><a href="#webpack⭐" class="headerlink" title="webpack⭐"></a>webpack⭐</h1><h2 id="1-什么是webpack？"><a href="#1-什么是webpack？" class="headerlink" title="1 什么是webpack？"></a>1 什么是webpack？</h2><ul>
 <li>官方解释： At its core, webpack is a static module bundler for modern JavaScript applications.</li>
 <li>翻译： 从本质上来讲，webpack 是一个现代的JavaScript应用的静态<strong>模块打包</strong>工具</li>
 </ul>
@@ -261,19 +263,16 @@
 <div class="hljs"><pre><code class="hljs shell">node -v</code></pre></div>
 
 
-
 </li>
-</ul>
-<ul>
 <li><p>全局安装webpack(这里我先指定版本号3.6.0，因为vue cli2依赖该版本)</p>
 <div class="hljs"><pre><code class="hljs shell">npm install webpack@3.6.0 -g</code></pre></div>
 </li>
 <li><p>局部安装 webpack</p>
 </li>
 </ul>
-<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"><span class="hljs-comment"># 在对应目录下执行该命令</span></span>
+<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash"><span class="hljs-comment"># 在对应目录下执行该命令</span></span>
 npm install webpack@3.6.0  --save-dev
-<span class="hljs-meta">#</span><span class="bash"><span class="hljs-comment">#  因为webpack我们项目打包后不需要使用 ， 所以它只是我们开发时的一个工具  --save-dev  是开发时依赖</span></span></code></pre></div>
+<span class="hljs-meta prompt_">#</span><span class="language-bash"><span class="hljs-comment">#  因为webpack我们项目打包后不需要使用 ， 所以它只是我们开发时的一个工具  --save-dev  是开发时依赖</span></span></code></pre></div>
 
 <ul>
 <li><p>全局安装和局部安装的区别</p>
@@ -281,10 +280,10 @@ npm install webpack@3.6.0  --save-dev
 <li>在终端直接执行的webpack命令，使用的是全局安装的webpack</li>
 <li>当在packag.json中定义了scripts时，其中包含了webpack命令，那么使用的是局部webpack</li>
 </ul>
-<div class="hljs"><pre><code class="hljs json">&quot;scripts&quot;: &#123;
-   &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;,
-   &quot;bulid&quot;: &quot;webpack&quot;
- &#125;,</code></pre></div>
+<div class="hljs"><pre><code class="hljs json"><span class="hljs-attr">&quot;scripts&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>
+   <span class="hljs-attr">&quot;test&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span><span class="hljs-punctuation">,</span>
+   <span class="hljs-attr">&quot;bulid&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;webpack&quot;</span>
+ <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span></code></pre></div>
 
 
 
@@ -297,7 +296,7 @@ npm install webpack@3.6.0  --save-dev
 <p><img src="https://i.loli.net/2020/09/25/Pk7tDBJoyAeibQr.png" srcset="/img/loading.gif" alt="image-20200922173645764"></p>
 <h3 id="3-2-如何使用局部安装的webpack"><a href="#3-2-如何使用局部安装的webpack" class="headerlink" title="3.2 如何使用局部安装的webpack"></a>3.2 如何使用局部安装的webpack</h3><h5 id="方法一："><a href="#方法一：" class="headerlink" title="方法一："></a>方法一：</h5><ul>
 <li>第一步：项目中需要安装自己局部的webpack<ul>
-<li>这里我们让局部安装   <a href="mailto:&#119;&#x65;&#98;&#112;&#x61;&#99;&#x6b;&#64;&#51;&#x2e;&#54;&#46;&#x30;">&#119;&#x65;&#98;&#112;&#x61;&#99;&#x6b;&#64;&#51;&#x2e;&#54;&#46;&#x30;</a> （因为我们要使用 脚手架2版本来学习）</li>
+<li>这里我们让局部安装   <a href="mailto:&#119;&#101;&#x62;&#112;&#97;&#x63;&#x6b;&#64;&#x33;&#x2e;&#x36;&#x2e;&#48;">&#119;&#101;&#x62;&#112;&#97;&#x63;&#x6b;&#64;&#x33;&#x2e;&#x36;&#x2e;&#48;</a> （因为我们要使用 脚手架2版本来学习）</li>
 <li>Vue CLI3中已经升级到webpack4，但是它将配置文件隐藏了起来，所以查看起来不是很方便。</li>
 </ul>
 </li>
@@ -345,43 +344,43 @@ npm install webpack@3.6.0  --save-dev
 <p>webpack.config.js 文件如下：  <strong>如何配置 响应的 loader 在module内</strong></p>
 <div class="hljs"><pre><code class="hljs JSON">const path = require(&#x27;path&#x27;)
 
-module.exports = &#123;
-  entry: &#x27;./src/main.js&#x27;,
-  output: &#123;
-    path: path.resolve(__dirname, &#x27;dist&#x27;),
-    filename: &#x27;bundle.js&#x27;,
-    publicPath: &#x27;dist/&#x27;
-  &#125;,
-  module: &#123;
-    rules: [&#123;
-        test: /\.css$/,
+module.exports = <span class="hljs-punctuation">&#123;</span>
+  entry<span class="hljs-punctuation">:</span> &#x27;./src/main.js&#x27;<span class="hljs-punctuation">,</span>
+  output<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>
+    path<span class="hljs-punctuation">:</span> path.resolve(__dirname<span class="hljs-punctuation">,</span> &#x27;dist&#x27;)<span class="hljs-punctuation">,</span>
+    filename<span class="hljs-punctuation">:</span> &#x27;bundle.js&#x27;<span class="hljs-punctuation">,</span>
+    publicPath<span class="hljs-punctuation">:</span> &#x27;dist/&#x27;
+  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span>
+  module<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>
+    rules<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">&#123;</span>
+        test<span class="hljs-punctuation">:</span> /\.css$/<span class="hljs-punctuation">,</span>
         <span class="hljs-comment">// style-loader 负责将样式添加到DOM中</span>
         <span class="hljs-comment">// css-loader 负责将css文件进行加载</span>
         <span class="hljs-comment">// 注意：  使用多个 loader时， webpack是从右向左解析的</span>
-        use: [&#x27;style-loader&#x27;, &#x27;css-loader&#x27;]
-      &#125;,
-      &#123;
-        test: /\.(png|jpg|gif)$/,
-        use: [&#123;
-          loader: &#x27;file-loader&#x27;,
-          options: &#123;
-            name: &#x27;img/[name].[hash:8].[ext]&#x27;
-          &#125;
-        &#125;]
-      &#125;,
-      &#123;
-        test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
-        use: &#123;
-          loader: &#x27;babel-loader&#x27;,
-          options: &#123;
-            presets: [&#x27;es2015&#x27;]
-          &#125;
-        &#125;
-      &#125;
-    ]
-  &#125;
-&#125;</code></pre></div>
+        use<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>&#x27;style-loader&#x27;<span class="hljs-punctuation">,</span> &#x27;css-loader&#x27;<span class="hljs-punctuation">]</span>
+      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-punctuation">&#123;</span>
+        test<span class="hljs-punctuation">:</span> /\.(png|jpg|gif)$/<span class="hljs-punctuation">,</span>
+        use<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">&#123;</span>
+          loader<span class="hljs-punctuation">:</span> &#x27;file-loader&#x27;<span class="hljs-punctuation">,</span>
+          options<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>
+            name<span class="hljs-punctuation">:</span> &#x27;img/<span class="hljs-punctuation">[</span>name<span class="hljs-punctuation">]</span>.<span class="hljs-punctuation">[</span>hash<span class="hljs-punctuation">:</span><span class="hljs-number">8</span><span class="hljs-punctuation">]</span>.<span class="hljs-punctuation">[</span>ext<span class="hljs-punctuation">]</span>&#x27;
+          <span class="hljs-punctuation">&#125;</span>
+        <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span>
+      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-punctuation">&#123;</span>
+        test<span class="hljs-punctuation">:</span> /\.js$/<span class="hljs-punctuation">,</span>
+        exclude<span class="hljs-punctuation">:</span> /(node_modules|bower_components)/<span class="hljs-punctuation">,</span>
+        use<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>
+          loader<span class="hljs-punctuation">:</span> &#x27;babel-loader&#x27;<span class="hljs-punctuation">,</span>
+          options<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>
+            presets<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>&#x27;es2015&#x27;<span class="hljs-punctuation">]</span>
+          <span class="hljs-punctuation">&#125;</span>
+        <span class="hljs-punctuation">&#125;</span>
+      <span class="hljs-punctuation">&#125;</span>
+    <span class="hljs-punctuation">]</span>
+  <span class="hljs-punctuation">&#125;</span>
+<span class="hljs-punctuation">&#125;</span></code></pre></div>
 
 
 
@@ -405,59 +404,71 @@ module.exports = &#123;
 </li>
 </ul>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/vue/">vue</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/vue/">vue</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2020/09/26/22-Vue-Cli%E8%84%9A%E6%89%8B%E6%9E%B6/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">Vue-Cli脚手架</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2020/09/25/20-vue%E6%8F%92%E6%A7%BD/">
-                    <span class="hidden-mobile">vue插槽</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/vue/">
+                              vue
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/vue/">
+                                  vue
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2020/09/26/22-Vue-Cli%E8%84%9A%E6%89%8B%E6%9E%B6/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      Vue-Cli脚手架
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2020/09/25/20-vue%E6%8F%92%E6%A7%BD/">
+                                    <span class="hidden-mobile">
+                                      vue插槽
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -484,26 +495,26 @@ module.exports = &#123;
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

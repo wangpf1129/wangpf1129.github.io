@@ -203,18 +203,20 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">一次弄懂HTTP缓存</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h2 id="情况一-Cache-Control-max-age-60-时"><a href="#情况一-Cache-Control-max-age-60-时" class="headerlink" title="情况一:  Cache-Control:max-age = 60 时"></a>情况一:  <strong>Cache-Control:max-age = 60 时</strong></h2><p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0dbc063671b041349511e3beac85d0fe~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="情况一.png"></p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                一次弄懂HTTP缓存
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h2 id="情况一-Cache-Control-max-age-60-时"><a href="#情况一-Cache-Control-max-age-60-时" class="headerlink" title="情况一:  Cache-Control:max-age = 60 时"></a>情况一:  <strong>Cache-Control:max-age = 60 时</strong></h2><p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0dbc063671b041349511e3beac85d0fe~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="情况一.png"></p>
 <h2 id="情况二-Cache-Control-max-age-0-or-no-cache-时"><a href="#情况二-Cache-Control-max-age-0-or-no-cache-时" class="headerlink" title="情况二: Cache-Control:max-age = 0 or no-cache 时"></a>情况二: <strong>Cache-Control:max-age = 0 or no-cache 时</strong></h2><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1a9114f6864f4e73b3e2b5e1c6f47405~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="情况二.png"></p>
 <h2 id="HTTP缓存流程图"><a href="#HTTP缓存流程图" class="headerlink" title="HTTP缓存流程图"></a>HTTP缓存流程图</h2><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/694ffc8bfd0743a98980b18510c57521~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="HTTP缓存流程图.png"></p>
 <h2 id="HTTP缓存相关面试题"><a href="#HTTP缓存相关面试题" class="headerlink" title="HTTP缓存相关面试题"></a>HTTP缓存相关面试题</h2><h3 id="1-说一下浏览器的缓存机制（HTTP如何控制缓存的）"><a href="#1-说一下浏览器的缓存机制（HTTP如何控制缓存的）" class="headerlink" title="1.说一下浏览器的缓存机制（HTTP如何控制缓存的）"></a>1.说一下浏览器的缓存机制（HTTP如何控制缓存的）</h3><ul>
@@ -250,59 +252,71 @@
 <p>public表示任何情况下都能缓存。</p>
 <h3 id="11-Cache-Control-no-cache-和-Cache-Control-no-store-有什么区别？"><a href="#11-Cache-Control-no-cache-和-Cache-Control-no-store-有什么区别？" class="headerlink" title="11.Cache-Control: no-cache 和 Cache-Control: no-store 有什么区别？"></a>11.Cache-Control: no-cache 和 Cache-Control: no-store 有什么区别？</h3><p>一个是先缓存下来但不直接使用， 另一个是完全不缓存。</p>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/HTTP/">HTTP</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/HTTP/">HTTP</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2021/03/28/60-keep-alive%E5%92%8C%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">keep-alive与多路复用</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2021/03/20/58-%E9%87%8D%E5%86%99JS%E6%96%B9%E6%B3%95%E4%BA%8C/">
-                    <span class="hidden-mobile">重写数组遍历方法（forEach,filter,map,reduce）</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/HTTP/">
+                              HTTP
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/HTTP/">
+                                  HTTP
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2021/03/28/60-keep-alive%E5%92%8C%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      keep-alive与多路复用
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2021/03/20/58-%E9%87%8D%E5%86%99JS%E6%96%B9%E6%B3%95%E4%BA%8C/">
+                                    <span class="hidden-mobile">
+                                      重写数组遍历方法（forEach,filter,map,reduce）
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -329,26 +343,26 @@
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

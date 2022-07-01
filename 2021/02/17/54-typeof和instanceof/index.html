@@ -203,31 +203,33 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">运算符 typeof 与 instanceof 区别</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h3 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h3><p>type 中文翻译：“类型”</p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                运算符 typeof 与 instanceof 区别
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h3 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h3><p>type 中文翻译：“类型”</p>
 <p>用于判断数据类型，返回值是6个不同的字符串：分别是：<strong>string</strong>  <strong>number</strong>   <strong>boolean</strong>  <strong>undefined</strong>  <strong>function</strong>  <strong>object</strong></p>
 <div class="hljs"><pre><code class="hljs js">
-<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> <span class="hljs-string">&quot;1&quot;</span>);   <span class="hljs-comment">// string</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-string">&quot;1&quot;</span>);   <span class="hljs-comment">// string</span>
 
-<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> <span class="hljs-number">1</span>);  <span class="hljs-comment">// number</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-number">1</span>);  <span class="hljs-comment">// number</span>
 
-<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> <span class="hljs-literal">false</span>);  <span class="hljs-comment">// boolean</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-literal">false</span>);  <span class="hljs-comment">// boolean</span>
 
-<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> <span class="hljs-literal">undefined</span>);  <span class="hljs-comment">// undefined</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-literal">undefined</span>);  <span class="hljs-comment">// undefined</span>
 
-<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>) </span>&#123;&#125;);   <span class="hljs-comment">// function</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">fn</span>(<span class="hljs-params"></span>) &#123;&#125;);   <span class="hljs-comment">// function</span>
 
-<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> &#123;&#125;);   <span class="hljs-comment">// object</span></code></pre></div>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> &#123;&#125;);   <span class="hljs-comment">// object</span></code></pre></div>
 
 
 
@@ -235,14 +237,14 @@
 <p>因此可知道 typeof 运算符  适用于检测除null的基础数据类型和函数类型</p>
 <h3 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h3><p>instance 中文翻译：“实例”  因此可以通过他的翻译知道这个含义了，就是 判断该对象是属于谁的实例。由于是实例，所以不得不牵扯到了对象的继承，即原型的知识了。而 <strong>instanceof</strong>  就是根据原型链进行搜寻的。</p>
 <p>所以 instanceof 是检测对象之间的关联性</p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>() <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Number</span>);  <span class="hljs-comment">// true</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">new</span> <span class="hljs-built_in">String</span>() <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">String</span>);  <span class="hljs-comment">// true</span>
-<span class="hljs-built_in">console</span>.log([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>] <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Array</span>);  <span class="hljs-comment">// true</span>
-<span class="hljs-built_in">console</span>.log(&#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;foo&quot;</span> &#125; <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span>);  <span class="hljs-comment">// true</span>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Number</span>() <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Number</span>);  <span class="hljs-comment">// true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>() <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">String</span>);  <span class="hljs-comment">// true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>] <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Array</span>);  <span class="hljs-comment">// true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(&#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;foo&quot;</span> &#125; <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Object</span>);  <span class="hljs-comment">// true</span>
 
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;1&quot;</span> <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">String</span>);  <span class="hljs-comment">// false</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-number">1</span> <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Number</span>); <span class="hljs-comment">// false</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-literal">false</span> <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Boolean</span>);   <span class="hljs-comment">// false</span></code></pre></div>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;1&quot;</span> <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">String</span>);  <span class="hljs-comment">// false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">1</span> <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Number</span>); <span class="hljs-comment">// false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">false</span> <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Boolean</span>);   <span class="hljs-comment">// false</span></code></pre></div>
 
 
 
@@ -278,59 +280,71 @@
 <p><strong>typeof</strong>   中的 type 是类型的意思，所以他是用来检测数据类型的， 可以检测除了null以外的数据类型加上function，返回字符串</p>
 <p><strong>instanceof</strong> 中的 instance是实例的意思， 所以他是用来检测这个实例是谁 <strong>new</strong> 出来的。返回布尔值</p>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/JavaScript/">JavaScript</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/JavaScript/">JavaScript</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2021/02/20/55-TCP%E8%BF%9E%E6%8E%A5%E5%92%8C%E6%96%AD%E5%BC%80/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">三次握手和四次挥手</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2021/02/15/53-%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/">
-                    <span class="hidden-mobile">数组去重</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/JavaScript/">
+                              JavaScript
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/JavaScript/">
+                                  JavaScript
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2021/02/20/55-TCP%E8%BF%9E%E6%8E%A5%E5%92%8C%E6%96%AD%E5%BC%80/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      三次握手和四次挥手
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2021/02/15/53-%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/">
+                                    <span class="hidden-mobile">
+                                      数组去重
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -357,26 +371,26 @@
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

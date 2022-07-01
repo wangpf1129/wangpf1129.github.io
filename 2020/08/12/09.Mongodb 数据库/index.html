@@ -203,18 +203,20 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">Mongodb数据库的基本使用</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h2 id="Mongodb数据库的基本概念"><a href="#Mongodb数据库的基本概念" class="headerlink" title="Mongodb数据库的基本概念"></a>Mongodb数据库的基本概念</h2><ul>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                Mongodb数据库的基本使用
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h2 id="Mongodb数据库的基本概念"><a href="#Mongodb数据库的基本概念" class="headerlink" title="Mongodb数据库的基本概念"></a>Mongodb数据库的基本概念</h2><ul>
 <li>可以有多个数据库</li>
 <li>一个数据库中可以有多个集合（表）</li>
 <li>一个集合中可以有多个文档（表记录）</li>
@@ -222,26 +224,26 @@
 <li>Mongodb非常灵活，不需要像  MySQL 一样先创建数据库、表、设计表结构<ul>
 <li>这里只需要：当你需要插入数据的时候，只需要指定往哪个数据库的哪个集合操作就可以了</li>
 <li>一切都有Mongodb 来帮你自动完成建库建表这些事儿<div class="hljs"><pre><code class="hljs JavaScript">&#123;
-    qq:&#123;  <span class="hljs-comment">// 集合  </span>
-        user:[ 
+    <span class="hljs-attr">qq</span>:&#123;  <span class="hljs-comment">// 集合  </span>
+        <span class="hljs-attr">user</span>:[ 
         &#123;<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;张三&#x27;</span>&#125;,  <span class="hljs-comment">// 文档</span>
         &#123;&#125;,
         &#123;&#125;,
         &#123;&#125;,
         &#123;&#125;
         ]  
-        products:[
+        <span class="hljs-attr">products</span>:[
         &#123;&#125;,
         &#123;&#125;
         ]
     &#125;,
-    taobao:&#123;
+    <span class="hljs-attr">taobao</span>:&#123;
         
     &#125;,
     ....
 &#125;</code></pre></div>
-<h2 id="1-启动和关闭数据库"><a href="#1-启动和关闭数据库" class="headerlink" title="1.启动和关闭数据库"></a>1.启动和关闭数据库</h2><h3 id="1-1启动"><a href="#1-1启动" class="headerlink" title="1.1启动"></a>1.1启动</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">  mongodb 默认使用执行 mongod 命令 所处盘符根目录下的 /data/db 作为自己的数据存储目录</span>
-<span class="hljs-meta">#</span><span class="bash"> 所以在第一次执行该命令之前先自己手动创建一个 /data/db</span>
+<h2 id="1-启动和关闭数据库"><a href="#1-启动和关闭数据库" class="headerlink" title="1.启动和关闭数据库"></a>1.启动和关闭数据库</h2><h3 id="1-1启动"><a href="#1-1启动" class="headerlink" title="1.1启动"></a>1.1启动</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash"> mongodb 默认使用执行 mongod 命令 所处盘符根目录下的 /data/db 作为自己的数据存储目录</span>
+<span class="hljs-meta prompt_"># </span><span class="language-bash">所以在第一次执行该命令之前先自己手动创建一个 /data/db</span>
 mongod</code></pre></div>
 
 </li>
@@ -249,13 +251,13 @@ mongod</code></pre></div>
 </li>
 </ul>
 <h3 id="如果想要修改默认的数据存储目录，可以："><a href="#如果想要修改默认的数据存储目录，可以：" class="headerlink" title="如果想要修改默认的数据存储目录，可以："></a>如果想要修改默认的数据存储目录，可以：</h3><div class="hljs"><pre><code class="hljs shell">mongod --dbpath = 数据存储目录路径</code></pre></div>
-<h3 id="1-2-关闭"><a href="#1-2-关闭" class="headerlink" title="1.2 关闭"></a>1.2 关闭</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 在开始服务的控制台（cmd） 直接 Ctrl+c 即可停止退出，</span>
-<span class="hljs-meta">#</span><span class="bash"> 或者直接关闭 开启服务的控制台</span>
+<h3 id="1-2-关闭"><a href="#1-2-关闭" class="headerlink" title="1.2 关闭"></a>1.2 关闭</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">在开始服务的控制台（cmd） 直接 Ctrl+c 即可停止退出，</span>
+<span class="hljs-meta prompt_"># </span><span class="language-bash">或者直接关闭 开启服务的控制台</span>
 </code></pre></div>
-<h2 id="2-连接和退出数据库"><a href="#2-连接和退出数据库" class="headerlink" title="2.连接和退出数据库"></a>2.连接和退出数据库</h2><h3 id="2-1-连接"><a href="#2-1-连接" class="headerlink" title="2.1 连接"></a>2.1 连接</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 在 数据库 bin 的目录下 开启cmd</span>
-<span class="hljs-meta">#</span><span class="bash"> 该命令默认连接本机的 mongodb 服务</span>
+<h2 id="2-连接和退出数据库"><a href="#2-连接和退出数据库" class="headerlink" title="2.连接和退出数据库"></a>2.连接和退出数据库</h2><h3 id="2-1-连接"><a href="#2-1-连接" class="headerlink" title="2.1 连接"></a>2.1 连接</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">在 数据库 bin 的目录下 开启cmd</span>
+<span class="hljs-meta prompt_"># </span><span class="language-bash">该命令默认连接本机的 mongodb 服务</span>
 mongo</code></pre></div>
-<h3 id="2-2-退出"><a href="#2-2-退出" class="headerlink" title="2.2 退出"></a>2.2 退出</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 在连接状态输入 <span class="hljs-built_in">exit</span> 退出连接</span>
+<h3 id="2-2-退出"><a href="#2-2-退出" class="headerlink" title="2.2 退出"></a>2.2 退出</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">在连接状态输入 <span class="hljs-built_in">exit</span> 退出连接</span>
 exit</code></pre></div>
 <h3 id="2-3基本命令"><a href="#2-3基本命令" class="headerlink" title="2.3基本命令"></a>2.3基本命令</h3><ul>
 <li><code>show dbs</code><ul>
@@ -277,55 +279,59 @@ exit</code></pre></div>
 <li>插入数据</li>
 </ul>
 <h2 id="3-在Nodejs中如何操作使用Mongodb数据"><a href="#3-在Nodejs中如何操作使用Mongodb数据" class="headerlink" title="3.在Nodejs中如何操作使用Mongodb数据"></a>3.在Nodejs中如何操作使用Mongodb数据</h2><h3 id="3-1-使用官方的-mongodb-包来操作"><a href="#3-1-使用官方的-mongodb-包来操作" class="headerlink" title="3.1 使用官方的 mongodb 包来操作"></a>3.1 使用官方的 <code>mongodb</code> 包来操作</h3><ul>
-<li>不推荐使用， 太原生了</li>
-<li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/mongodb">npm mongodb包 下载及指导地址</a><h3 id="3-2-使用第三方包-mongoose-来操作-Mongodb-数据库"><a href="#3-2-使用第三方包-mongoose-来操作-Mongodb-数据库" class="headerlink" title="3.2 使用第三方包 mongoose 来操作  Mongodb 数据库"></a>3.2 使用第三方包 <code>mongoose</code> 来操作  Mongodb 数据库</h3><div class="hljs"><pre><code class="hljs sell">npm i mongoose</code></pre></div></li>
-<li>第三方包 : <code>mongoose</code> 基于 MongoDB 官方的 <code>mongodb</code> 包再一次做了封装</li>
-<li><a target="_blank" rel="noopener" href="https://mongoosejs.com/"><code>mongoose 网址</code></a><h3 id="3-3-简单体验-hello-world"><a href="#3-3-简单体验-hello-world" class="headerlink" title="3.3 简单体验  hello world"></a>3.3 简单体验  hello world</h3><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-keyword">const</span> mongoose = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;mongoose&#x27;</span>);
+<li><p>不推荐使用， 太原生了</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/mongodb">npm mongodb包 下载及指导地址</a></p>
+<h3 id="3-2-使用第三方包-mongoose-来操作-Mongodb-数据库"><a href="#3-2-使用第三方包-mongoose-来操作-Mongodb-数据库" class="headerlink" title="3.2 使用第三方包 mongoose 来操作  Mongodb 数据库"></a>3.2 使用第三方包 <code>mongoose</code> 来操作  Mongodb 数据库</h3><div class="hljs"><pre><code class="hljs sell">npm i mongoose</code></pre></div></li>
+<li><p>第三方包 : <code>mongoose</code> 基于 MongoDB 官方的 <code>mongodb</code> 包再一次做了封装</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://mongoosejs.com/"><code>mongoose 网址</code></a></p>
+<h3 id="3-3-简单体验-hello-world"><a href="#3-3-简单体验-hello-world" class="headerlink" title="3.3 简单体验  hello world"></a>3.3 简单体验  hello world</h3><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-keyword">const</span> mongoose = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;mongoose&#x27;</span>);
 <span class="hljs-comment">// 连接 MongoDB数据库     </span>
 <span class="hljs-comment">//  mongodb://localhost:27017/test  以下创建的数据库数据都在 这个 test里</span>
-mongoose.connect(<span class="hljs-string">&#x27;mongodb://localhost:27017/test&#x27;</span>, &#123;
-    useNewUrlParser: <span class="hljs-literal">true</span>,
-    useUnifiedTopology: <span class="hljs-literal">true</span>
+mongoose.<span class="hljs-title function_">connect</span>(<span class="hljs-string">&#x27;mongodb://localhost:27017/test&#x27;</span>, &#123;
+    <span class="hljs-attr">useNewUrlParser</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">useUnifiedTopology</span>: <span class="hljs-literal">true</span>
 &#125;);
 
 <span class="hljs-comment">// 创建了一个模型  就是在设计数据库</span>
 <span class="hljs-comment">// MongoDB 是动态的，非常灵活。只需要在代码中设计你的数据库就可以了</span>
 <span class="hljs-comment">// mongoose 这个包就可以让你的设计编写过程变得非常简单</span>
-<span class="hljs-keyword">const</span> Cat = mongoose.model(<span class="hljs-string">&#x27;Cat&#x27;</span>, &#123;
-    name: <span class="hljs-built_in">String</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">Cat</span> = mongoose.<span class="hljs-title function_">model</span>(<span class="hljs-string">&#x27;Cat&#x27;</span>, &#123;
+    <span class="hljs-attr">name</span>: <span class="hljs-title class_">String</span>
 &#125;);
 
 <span class="hljs-comment">// 实例化了一个 Cat</span>
-<span class="hljs-keyword">const</span> kitty = <span class="hljs-keyword">new</span> Cat(&#123;
-    name: <span class="hljs-string">&#x27;Zildjian&#x27;</span>
+<span class="hljs-keyword">const</span> kitty = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Cat</span>(&#123;
+    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Zildjian&#x27;</span>
 &#125;);
 
 <span class="hljs-comment">// 持久化保存了  kitty 实例</span>
-kitty.save().then(<span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;meow&#x27;</span>));</code></pre></div>
+kitty.<span class="hljs-title function_">save</span>().<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;meow&#x27;</span>));</code></pre></div>
 <h3 id="3-4-创建数据库-并创建架构"><a href="#3-4-创建数据库-并创建架构" class="headerlink" title="3.4 创建数据库 并创建架构"></a>3.4 创建数据库 并创建架构</h3><div class="hljs"><pre><code class="hljs JavaScript"> <span class="hljs-keyword">var</span> mongoose = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;mongoose&#x27;</span>);
 
 <span class="hljs-comment">// 1.连接数据库</span>
-mongoose.connect(<span class="hljs-string">&#x27;mongodb://localhost:27017/test&#x27;</span>, &#123;
-    useNewUrlParser: <span class="hljs-literal">true</span>,
-    useUnifiedTopology: <span class="hljs-literal">true</span>
+mongoose.<span class="hljs-title function_">connect</span>(<span class="hljs-string">&#x27;mongodb://localhost:27017/test&#x27;</span>, &#123;
+    <span class="hljs-attr">useNewUrlParser</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">useUnifiedTopology</span>: <span class="hljs-literal">true</span>
 &#125;);
 <span class="hljs-comment">//  架构</span>
-<span class="hljs-keyword">var</span> Schema = mongoose.Schema;
+<span class="hljs-keyword">var</span> <span class="hljs-title class_">Schema</span> = mongoose.<span class="hljs-property">Schema</span>;
 
 <span class="hljs-comment">//  2.设计文档结构/架构（表结构）</span>
 <span class="hljs-comment">// 字段名称就是表结构中的属性名称</span>
 <span class="hljs-comment">// 约束的目的是为了保证数据的完整性， 不要有脏数据</span>
-<span class="hljs-keyword">var</span> userSchema = <span class="hljs-keyword">new</span> Schema(&#123;
-    userName: &#123;
-        type: <span class="hljs-built_in">String</span>,
-        required: <span class="hljs-literal">true</span> <span class="hljs-comment">// 这个意思是  该属性不能为空 必须有</span>
+<span class="hljs-keyword">var</span> userSchema = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Schema</span>(&#123;
+    <span class="hljs-attr">userName</span>: &#123;
+        <span class="hljs-attr">type</span>: <span class="hljs-title class_">String</span>,
+        <span class="hljs-attr">required</span>: <span class="hljs-literal">true</span> <span class="hljs-comment">// 这个意思是  该属性不能为空 必须有</span>
     &#125;,
-    password: &#123;
-        type: <span class="hljs-built_in">String</span>,
-        required: <span class="hljs-literal">true</span>
+    <span class="hljs-attr">password</span>: &#123;
+        <span class="hljs-attr">type</span>: <span class="hljs-title class_">String</span>,
+        <span class="hljs-attr">required</span>: <span class="hljs-literal">true</span>
     &#125;,
-    email: &#123;
-        type: <span class="hljs-built_in">String</span>
+    <span class="hljs-attr">email</span>: &#123;
+        <span class="hljs-attr">type</span>: <span class="hljs-title class_">String</span>
     &#125;
 &#125;);
 
@@ -335,21 +341,21 @@ mongoose.connect(<span class="hljs-string">&#x27;mongodb://localhost:27017/test&
 <span class="hljs-comment">//              mongoose 会自动将大写名字的字符串生成 小写复数 的集合名称</span>
 <span class="hljs-comment">//             例如 这里的 User  会生成一个 users 集合名称</span>
 <span class="hljs-comment">// 返回值: 模型架构函数</span>
-<span class="hljs-keyword">const</span> User = mongoose.model(<span class="hljs-string">&#x27;User&#x27;</span>, userSchema)
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">User</span> = mongoose.<span class="hljs-title function_">model</span>(<span class="hljs-string">&#x27;User&#x27;</span>, userSchema)
 
 <span class="hljs-comment">// 4. 当我们有了模型构造函数之后 ， 就可以用这个构造函数 对 users 集合中的数据进行 增删改查（CURD）</span></code></pre></div>
 <h4 id="新增数据"><a href="#新增数据" class="headerlink" title="新增数据"></a>新增数据</h4><div class="hljs"><pre><code class="hljs JavaScript"> <span class="hljs-comment">//  新增数据</span>
-<span class="hljs-keyword">let</span> admin = <span class="hljs-keyword">new</span> User(&#123;
-    userName: <span class="hljs-string">&#x27;admin&#x27;</span>,
-    password: <span class="hljs-string">&#x27;123456&#x27;</span>,
-    email: <span class="hljs-string">&#x27;admin@qq.com&#x27;</span>
+<span class="hljs-keyword">let</span> admin = <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(&#123;
+    <span class="hljs-attr">userName</span>: <span class="hljs-string">&#x27;admin&#x27;</span>,
+    <span class="hljs-attr">password</span>: <span class="hljs-string">&#x27;123456&#x27;</span>,
+    <span class="hljs-attr">email</span>: <span class="hljs-string">&#x27;admin@qq.com&#x27;</span>
 &#125;)
-admin.save(<span class="hljs-function">(<span class="hljs-params">err, ret</span>) =&gt;</span> &#123;
+admin.<span class="hljs-title function_">save</span>(<span class="hljs-function">(<span class="hljs-params">err, ret</span>) =&gt;</span> &#123;
     <span class="hljs-keyword">if</span> (err) &#123;
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;存储失败&#x27;</span>);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;存储失败&#x27;</span>);
     &#125; <span class="hljs-keyword">else</span> &#123;
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;存储成功&#x27;</span>);
-        <span class="hljs-built_in">console</span>.log(ret);   <span class="hljs-comment">// ret 就是 存储的数据</span>
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;存储成功&#x27;</span>);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(ret);   <span class="hljs-comment">// ret 就是 存储的数据</span>
     &#125;
 &#125;)
 <span class="hljs-comment">// 下面的就是 ret</span>
@@ -360,116 +366,132 @@ admin.save(<span class="hljs-function">(<span class="hljs-params">err, ret</span
 <span class="hljs-comment">//     email: &#x27;admin@qq.com&#x27;,</span>
 <span class="hljs-comment">//     __v: 0</span>
 <span class="hljs-comment">//   &#125;</span></code></pre></div>
-<h4 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h4><h5 id="查询所有数据-find"><a href="#查询所有数据-find" class="headerlink" title="查询所有数据  find"></a>查询所有数据  find</h5><div class="hljs"><pre><code class="hljs JavaScript"> User.find(<span class="hljs-function">(<span class="hljs-params">err, ret</span>) =&gt;</span> &#123;
+<h4 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h4><h5 id="查询所有数据-find"><a href="#查询所有数据-find" class="headerlink" title="查询所有数据  find"></a>查询所有数据  find</h5><div class="hljs"><pre><code class="hljs JavaScript"> <span class="hljs-title class_">User</span>.<span class="hljs-title function_">find</span>(<span class="hljs-function">(<span class="hljs-params">err, ret</span>) =&gt;</span> &#123;
     <span class="hljs-keyword">if</span> (err) &#123;
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;查询失败&#x27;</span>);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;查询失败&#x27;</span>);
     &#125; <span class="hljs-keyword">else</span> &#123;
-        <span class="hljs-built_in">console</span>.log(ret);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(ret);
     &#125;
 &#125;)</code></pre></div>
-<h5 id="按条件查询所有符合的数据-find"><a href="#按条件查询所有符合的数据-find" class="headerlink" title="按条件查询所有符合的数据  find"></a>按条件查询所有符合的数据  find</h5><div class="hljs"><pre><code class="hljs JavaScript">User.find(&#123;
-    userName: <span class="hljs-string">&#x27;朱元璋&#x27;</span>
+<h5 id="按条件查询所有符合的数据-find"><a href="#按条件查询所有符合的数据-find" class="headerlink" title="按条件查询所有符合的数据  find"></a>按条件查询所有符合的数据  find</h5><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-title class_">User</span>.<span class="hljs-title function_">find</span>(&#123;
+    <span class="hljs-attr">userName</span>: <span class="hljs-string">&#x27;朱元璋&#x27;</span>
 &#125;, <span class="hljs-function">(<span class="hljs-params">err, ret</span>) =&gt;</span> &#123;
     <span class="hljs-keyword">if</span> (err) &#123;
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;查询失败&#x27;</span>);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;查询失败&#x27;</span>);
     &#125; <span class="hljs-keyword">else</span> &#123;
-        <span class="hljs-built_in">console</span>.log(ret);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(ret);
     &#125;
 &#125;)</code></pre></div>
-<h5 id="按条件查询单个的数据-（如果有相同的返回第一个）-findOne"><a href="#按条件查询单个的数据-（如果有相同的返回第一个）-findOne" class="headerlink" title="按条件查询单个的数据 （如果有相同的返回第一个） findOne"></a>按条件查询单个的数据 （如果有相同的返回第一个） findOne</h5><div class="hljs"><pre><code class="hljs JavaScript"> User.findOne(&#123;
-    userName: <span class="hljs-string">&#x27;朱元璋&#x27;</span>
+<h5 id="按条件查询单个的数据-（如果有相同的返回第一个）-findOne"><a href="#按条件查询单个的数据-（如果有相同的返回第一个）-findOne" class="headerlink" title="按条件查询单个的数据 （如果有相同的返回第一个） findOne"></a>按条件查询单个的数据 （如果有相同的返回第一个） findOne</h5><div class="hljs"><pre><code class="hljs JavaScript"> <span class="hljs-title class_">User</span>.<span class="hljs-title function_">findOne</span>(&#123;
+    <span class="hljs-attr">userName</span>: <span class="hljs-string">&#x27;朱元璋&#x27;</span>
 &#125;, <span class="hljs-function">(<span class="hljs-params">err, ret</span>) =&gt;</span> &#123;
     <span class="hljs-keyword">if</span> (err) &#123;
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;查询失败&#x27;</span>);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;查询失败&#x27;</span>);
     &#125; <span class="hljs-keyword">else</span> &#123;
-        <span class="hljs-built_in">console</span>.log(ret);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(ret);
     &#125;
 &#125;)</code></pre></div>
 <h4 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h4><div class="hljs"><pre><code class="hljs JavaScript"> <span class="hljs-comment">// 3.删除数据</span>
-User.remove(&#123;
-    userName: <span class="hljs-string">&#x27;朱元璋&#x27;</span>
+<span class="hljs-title class_">User</span>.<span class="hljs-title function_">remove</span>(&#123;
+    <span class="hljs-attr">userName</span>: <span class="hljs-string">&#x27;朱元璋&#x27;</span>
 &#125;, <span class="hljs-function">(<span class="hljs-params">err, ret</span>) =&gt;</span> &#123;
     <span class="hljs-keyword">if</span> (err) &#123;
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;删除失败&#x27;</span>);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;删除失败&#x27;</span>);
     &#125; <span class="hljs-keyword">else</span> &#123;
-        <span class="hljs-built_in">console</span>.log(ret);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(ret);
     &#125;
 
 &#125;)</code></pre></div>
 
-</li>
-</ul>
 <h4 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h4><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 4.更新数据</span>
 <span class="hljs-comment">// 第一个参数  需要更新的  第二个参数 更新什么</span>
-User.update(&#123;
-    userName: <span class="hljs-string">&#x27;朱元璋&#x27;</span>
+<span class="hljs-title class_">User</span>.<span class="hljs-title function_">update</span>(&#123;
+    <span class="hljs-attr">userName</span>: <span class="hljs-string">&#x27;朱元璋&#x27;</span>
 &#125;, &#123;
-    password: <span class="hljs-string">&#x27;123456&#x27;</span>
+    <span class="hljs-attr">password</span>: <span class="hljs-string">&#x27;123456&#x27;</span>
 &#125;, <span class="hljs-function">(<span class="hljs-params">err, ret</span>) =&gt;</span> &#123;
     <span class="hljs-keyword">if</span> (err) &#123;
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;更新失败&#x27;</span>);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;更新失败&#x27;</span>);
     &#125; <span class="hljs-keyword">else</span> &#123;
-        <span class="hljs-built_in">console</span>.log(ret);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(ret);
     &#125;
 &#125;)</code></pre></div>
+</li>
+</ul>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/Mongodb/">Mongodb</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/Node/">Node</a>
-                  
-                  <a class="hover-with-bg" href="/tags/Mongodb/">Mongodb</a>
-                  
-                  <a class="hover-with-bg" href="/tags/mongoose/">mongoose</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2020/08/12/10.promise/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">回调地狱（callback hell） 和 promise</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2020/08/08/07.Express%E7%9A%84%E4%BD%BF%E7%94%A8/">
-                    <span class="hidden-mobile">Express的使用⭐⭐⭐</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/Mongodb/">
+                              Mongodb
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/Node/">
+                                  Node
+                                </a>
+                                
+                                <a class="hover-with-bg" href="/tags/Mongodb/">
+                                  Mongodb
+                                </a>
+                                
+                                <a class="hover-with-bg" href="/tags/mongoose/">
+                                  mongoose
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2020/08/12/10.promise/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      回调地狱（callback hell） 和 promise
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2020/08/08/07.Express%E7%9A%84%E4%BD%BF%E7%94%A8/">
+                                    <span class="hidden-mobile">
+                                      Express的使用⭐⭐⭐
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -496,26 +518,26 @@ User.update(&#123;
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

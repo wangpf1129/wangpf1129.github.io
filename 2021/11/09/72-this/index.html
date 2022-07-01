@@ -203,18 +203,20 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">捉摸不清的“this”</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h2 id="“独特”的-this"><a href="#“独特”的-this" class="headerlink" title="“独特”的 this"></a>“独特”的 this</h2><h3 id="为什么需要-this？"><a href="#为什么需要-this？" class="headerlink" title="为什么需要 this？"></a>为什么需要 this？</h3><p>在常见的编程语言中，几乎都有 this 这个关键字（Objective-C 中使用的是 self），但是 JavaScript 中的 this 和常见的面向对象语 言中的 this 不太一样</p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                捉摸不清的“this”
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h2 id="“独特”的-this"><a href="#“独特”的-this" class="headerlink" title="“独特”的 this"></a>“独特”的 this</h2><h3 id="为什么需要-this？"><a href="#为什么需要-this？" class="headerlink" title="为什么需要 this？"></a>为什么需要 this？</h3><p>在常见的编程语言中，几乎都有 this 这个关键字（Objective-C 中使用的是 self），但是 JavaScript 中的 this 和常见的面向对象语 言中的 this 不太一样</p>
 <ul>
 <li>常见面向对象的编程语言中，比如 Java、C++、Swift、Dart 等等一系列语言中，this 通常只会出现在类的方法中</li>
 <li>也就是你需要有一个类，类中的方法（特别是实例方法）中，this 代表的是当前调用对象</li>
@@ -224,20 +226,20 @@
 <p>我们都知道，如果在浏览器环境下，this 在全局指向的是 window 如果在 node 环境下，this 在全局指向的是 { } （空对象）</p>
 </blockquote>
 <p>定义一个函数，我采用三种不同的方式在浏览器上对它调用，它将会产生了三种不同的结果：</p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>)
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>)
 &#125;
 
-foo() <span class="hljs-comment">// 指向 window</span>
+<span class="hljs-title function_">foo</span>() <span class="hljs-comment">// 指向 window</span>
 
 <span class="hljs-keyword">var</span> obj = &#123;
-  name: <span class="hljs-string">&#x27;wpf&#x27;</span>,
-  foo: foo,
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;wpf&#x27;</span>,
+  <span class="hljs-attr">foo</span>: foo,
 &#125;
 
-obj.foo() <span class="hljs-comment">// 指向 obj</span>
+obj.<span class="hljs-title function_">foo</span>() <span class="hljs-comment">// 指向 obj</span>
 
-foo.apply(<span class="hljs-string">&#x27;abc&#x27;</span>) <span class="hljs-comment">// 指向 &#x27;abc&#x27;</span></code></pre></div>
+foo.<span class="hljs-title function_">apply</span>(<span class="hljs-string">&#x27;abc&#x27;</span>) <span class="hljs-comment">// 指向 &#x27;abc&#x27;</span></code></pre></div>
 
 <p>结果如图：</p>
 <p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0b6f736fe10f4b2db1440388057491b2~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="this.png"></p>
@@ -246,19 +248,19 @@ foo.apply(<span class="hljs-string">&#x27;abc&#x27;</span>) <span class="hljs-co
 <p>第三个是 用 apply 将 this 指向了 ‘abc’， 这个就很明确了， 是显式绑定 ，明显 this 指向的就是 ‘abc’</p>
 <p>根据上述分析，由此可以得出结论：</p>
 <ol>
-<li>this 的指向，跟函数所处的位置是没有关系的</li>
-<li>跟函数的调用方式有关系</li>
+<li> this 的指向，跟函数所处的位置是没有关系的</li>
+<li> 跟函数的调用方式有关系</li>
 </ol>
 <p><strong>即： 当为隐式绑定时，谁调用了 foo 这个函数，那么 this 就指向谁。（排除箭头函数）</strong></p>
 <p>又比如这个较为刁钻的题：</p>
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">var</span> obj = &#123;
-  name: <span class="hljs-string">&#x27;wpf&#x27;</span>,
-  foo: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>)
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;wpf&#x27;</span>,
+  <span class="hljs-attr">foo</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>)
   &#125;,
 &#125;
-<span class="hljs-keyword">var</span> bar = obj.foo
-bar()</code></pre></div>
+<span class="hljs-keyword">var</span> bar = obj.<span class="hljs-property">foo</span>
+<span class="hljs-title function_">bar</span>()</code></pre></div>
 
 <p>请问 bar 调用后， this 指向哪里呢？</p>
 <p><strong>首先要记住 谁调用了该函数，那么该函数内的 this 就指向谁（排除箭头函数）</strong></p>
@@ -267,47 +269,47 @@ bar()</code></pre></div>
 <p>独立的函数调用我们可以理解成函数没有被绑定到某个对象上进行调用</p>
 <p>我们通过几个案例来看一下，常见的默认绑定</p>
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// 案例一</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>)
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>)
 &#125;
 
-foo()</code></pre></div>
+<span class="hljs-title function_">foo</span>()</code></pre></div>
 
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// 案例二</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>)
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>)
 &#125;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bar</span>(<span class="hljs-params"></span>) </span>&#123;
-  foo()
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">bar</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-title function_">foo</span>()
 &#125;
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">baz</span>(<span class="hljs-params"></span>) </span>&#123;
-  bar()
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">baz</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-title function_">bar</span>()
 &#125;
 
-baz()</code></pre></div>
+<span class="hljs-title function_">baz</span>()</code></pre></div>
 
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// 案例三</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params">Fn</span>) </span>&#123;
-  Fn()
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params">Fn</span>) &#123;
+  <span class="hljs-title class_">Fn</span>()
 &#125;
 
 <span class="hljs-keyword">var</span> obj = &#123;
-  name: <span class="hljs-string">&#x27;tao&#x27;</span>,
-  bar: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>)
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;tao&#x27;</span>,
+  <span class="hljs-attr">bar</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>)
   &#125;,
 &#125;
-foo(obj.bar)</code></pre></div>
+<span class="hljs-title function_">foo</span>(obj.<span class="hljs-property">bar</span>)</code></pre></div>
 
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// 案例四</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>)
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>)
   &#125;
 &#125;
-<span class="hljs-keyword">var</span> fn = foo()
-fn()</code></pre></div>
+<span class="hljs-keyword">var</span> fn = <span class="hljs-title function_">foo</span>()
+<span class="hljs-title function_">fn</span>()</code></pre></div>
 
 <p>这上面所有的案例 this 的打印结果都是 window，</p>
 <p>也可根据 函数的调用方式来判断， 由于都是定义在全局的方法，即 window.xxx() ， 所以可以理解为 window 调用的，即 this 都指向了 window</p>
@@ -316,82 +318,82 @@ fn()</code></pre></div>
 <p>obj 对象会被 js 引擎绑定到 fn 函数中的 this 里面</p>
 <p>我们通过几个案例来看一下，常见的隐式绑定</p>
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// 案例一</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>)
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>)
 &#125;
 
 <span class="hljs-keyword">var</span> obj = &#123;
-  name: <span class="hljs-string">&#x27;tao&#x27;</span>,
-  foo: foo,
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;tao&#x27;</span>,
+  <span class="hljs-attr">foo</span>: foo,
 &#125;
 
-obj.foo() <span class="hljs-comment">// obj</span></code></pre></div>
+obj.<span class="hljs-title function_">foo</span>() <span class="hljs-comment">// obj</span></code></pre></div>
 
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// 案例二</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>)
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>)
 &#125;
 
 <span class="hljs-keyword">var</span> bar = &#123;
-  name: <span class="hljs-string">&#x27;bar&#x27;</span>,
-  foo: foo,
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;bar&#x27;</span>,
+  <span class="hljs-attr">foo</span>: foo,
 &#125;
 
-<span class="hljs-keyword">var</span> bar = bar.foo
-bar() <span class="hljs-comment">// window</span></code></pre></div>
+<span class="hljs-keyword">var</span> bar = bar.<span class="hljs-property">foo</span>
+<span class="hljs-title function_">bar</span>() <span class="hljs-comment">// window</span></code></pre></div>
 
 <p>案例一： 因为是 obj 调用的 ，所以 this 指向 obj</p>
 <p>案例二：因为 bar 是定义在全局的， 所以 bar() 相当于 window.bar() ，所以 this 指向 window</p>
 <h4 id="显式绑定"><a href="#显式绑定" class="headerlink" title="显式绑定"></a>显式绑定</h4><p>显式绑定其实就是用到了 JavaScript 函数原型链上的 call 、 apply 、 bind 方法</p>
 <p>这三个方法的具体用法就不细说了，可以去看 mdn</p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params">num1, num2</span>) </span>&#123;
-  <span class="hljs-built_in">console</span>.log(num1 + num2, <span class="hljs-built_in">this</span>)
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params">num1, num2</span>) &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(num1 + num2, <span class="hljs-variable language_">this</span>)
 &#125;
 
-foo.apply(<span class="hljs-string">&#x27;aaa&#x27;</span>) <span class="hljs-comment">// 指向 &#x27;aaa&#x27;</span>
-foo.call(<span class="hljs-string">&#x27;aaa&#x27;</span>) <span class="hljs-comment">// 指向 &#x27;aaa&#x27;</span>
-<span class="hljs-keyword">var</span> fn = foo.bind(<span class="hljs-string">&#x27;aaa&#x27;</span>)
-fn() <span class="hljs-comment">// 指向 &#x27;aaa&#x27;</span></code></pre></div>
+foo.<span class="hljs-title function_">apply</span>(<span class="hljs-string">&#x27;aaa&#x27;</span>) <span class="hljs-comment">// 指向 &#x27;aaa&#x27;</span>
+foo.<span class="hljs-title function_">call</span>(<span class="hljs-string">&#x27;aaa&#x27;</span>) <span class="hljs-comment">// 指向 &#x27;aaa&#x27;</span>
+<span class="hljs-keyword">var</span> fn = foo.<span class="hljs-title function_">bind</span>(<span class="hljs-string">&#x27;aaa&#x27;</span>)
+<span class="hljs-title function_">fn</span>() <span class="hljs-comment">// 指向 &#x27;aaa&#x27;</span></code></pre></div>
 
 <h3 id="规则优先级"><a href="#规则优先级" class="headerlink" title="规则优先级"></a>规则优先级</h3><p>学习了以上四条规则，接下来开发中我们只需要去查找函数的调用应用了哪条规则即可，但是如果一个函数调用位置应用了多条规则，优先级谁更高呢？</p>
 <p>默认规则的优先级最低（毫无疑问，默认规则的优先级是最低的，因为存在其他规则时，就会通过其他规则的方式来绑定 this）</p>
 <p><strong>显式绑定优先级高于隐式绑定</strong></p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>)
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>)
 &#125;
 
 <span class="hljs-keyword">var</span> obj = &#123;
-  name: <span class="hljs-string">&#x27;wpf&#x27;</span>,
-  foo: foo.bind(<span class="hljs-string">&#x27;aaa&#x27;</span>),
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;wpf&#x27;</span>,
+  <span class="hljs-attr">foo</span>: foo.<span class="hljs-title function_">bind</span>(<span class="hljs-string">&#x27;aaa&#x27;</span>),
 &#125;
 
-obj.foo() <span class="hljs-comment">// 指向 &quot;aaa&quot;</span></code></pre></div>
+obj.<span class="hljs-title function_">foo</span>() <span class="hljs-comment">// 指向 &quot;aaa&quot;</span></code></pre></div>
 
 <p><strong>new 绑定优先级高于隐式绑定</strong></p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>)
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>)
 &#125;
 
 <span class="hljs-keyword">var</span> obj = &#123;
-  name: <span class="hljs-string">&#x27;wpf&#x27;</span>,
-  foo: foo,
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;wpf&#x27;</span>,
+  <span class="hljs-attr">foo</span>: foo,
 &#125;
 
-<span class="hljs-keyword">var</span> o = <span class="hljs-keyword">new</span> obj.foo() <span class="hljs-comment">//  指向 foo</span></code></pre></div>
+<span class="hljs-keyword">var</span> o = <span class="hljs-keyword">new</span> obj.<span class="hljs-title function_">foo</span>() <span class="hljs-comment">//  指向 foo</span></code></pre></div>
 
 <p><strong>new 绑定优先级高于 bind</strong></p>
 <ul>
 <li>new 绑定和 call、apply 是不允许同时使用的，所以不存在谁的优先级更高</li>
 <li>new 绑定可以和 bind 一起使用，new 绑定优先级更高</li>
 </ul>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>)
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>)
 &#125;
 
-<span class="hljs-keyword">var</span> bar = foo.bind(<span class="hljs-string">&#x27;aaa&#x27;</span>)
-<span class="hljs-keyword">var</span> baz = <span class="hljs-keyword">new</span> bar()
+<span class="hljs-keyword">var</span> bar = foo.<span class="hljs-title function_">bind</span>(<span class="hljs-string">&#x27;aaa&#x27;</span>)
+<span class="hljs-keyword">var</span> baz = <span class="hljs-keyword">new</span> <span class="hljs-title function_">bar</span>()
 
-baz() <span class="hljs-comment">// 指向 foo</span></code></pre></div>
+<span class="hljs-title function_">baz</span>() <span class="hljs-comment">// 指向 foo</span></code></pre></div>
 
 <p><strong>总结</strong></p>
 <p>new 绑定 &gt; 显式绑定(bind/call/apply) &gt; 隐式绑定 &gt; 默认绑定</p>
@@ -400,206 +402,218 @@ baz() <span class="hljs-comment">// 指向 foo</span></code></pre></div>
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// 案例一</span>
 <span class="hljs-keyword">var</span> name = <span class="hljs-string">&#x27;window&#x27;</span>
 <span class="hljs-keyword">var</span> person = &#123;
-  name: <span class="hljs-string">&#x27;person&#x27;</span>,
-  sayName: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name)
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;person&#x27;</span>,
+  <span class="hljs-attr">sayName</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span>)
   &#125;,
 &#125;
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sayName</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-keyword">var</span> sss = person.sayName
-  sss()
-  person.sayName()
-  person.sayName()
-  ;(b = person.sayName)()
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">sayName</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-keyword">var</span> sss = person.<span class="hljs-property">sayName</span>
+  <span class="hljs-title function_">sss</span>()
+  person.<span class="hljs-title function_">sayName</span>()
+  person.<span class="hljs-title function_">sayName</span>()
+  ;(b = person.<span class="hljs-property">sayName</span>)()
 &#125;
-sayName()</code></pre></div>
+<span class="hljs-title function_">sayName</span>()</code></pre></div>
 
 <p><strong>A1:</strong></p>
 <p>window 、 person 、 persopn 、 window</p>
 <p><strong>Q2:</strong></p>
 <div class="hljs"><pre><code class="hljs JS"><span class="hljs-keyword">var</span> name = <span class="hljs-string">&#x27;window&#x27;</span>
 <span class="hljs-keyword">var</span> person1 = &#123;
-  name: <span class="hljs-string">&#x27;person1&#x27;</span>,
-  foo1: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name)
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;person1&#x27;</span>,
+  <span class="hljs-attr">foo1</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span>)
   &#125;,
-  foo2: <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name),
-  foo3: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name)
+  <span class="hljs-attr">foo2</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span>),
+  <span class="hljs-attr">foo3</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span>)
     &#125;
   &#125;,
-  foo4: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-attr">foo4</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
     <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> &#123;
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name)
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span>)
     &#125;
   &#125;
 &#125;
 
 <span class="hljs-keyword">var</span> person2 = &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;person2&#x27;</span> &#125;
 
-person1.foo1();
-person1.foo1.call(person2);
+person1.<span class="hljs-title function_">foo1</span>();
+person1.<span class="hljs-property">foo1</span>.<span class="hljs-title function_">call</span>(person2);
 
-person1.foo2();
-person1.foo2.call(person2);
+person1.<span class="hljs-title function_">foo2</span>();
+person1.<span class="hljs-property">foo2</span>.<span class="hljs-title function_">call</span>(person2);
 
-person1.foo3()();
-person1.foo3.call(person2)();
-person1.foo3().call(person2);
+person1.<span class="hljs-title function_">foo3</span>()();
+person1.<span class="hljs-property">foo3</span>.<span class="hljs-title function_">call</span>(person2)();
+person1.<span class="hljs-title function_">foo3</span>().<span class="hljs-title function_">call</span>(person2);
 
-person1.foo4()();
-person1.foo4.call(person2)();
-person1.foo4().call(person2);</code></pre></div>
+person1.<span class="hljs-title function_">foo4</span>()();
+person1.<span class="hljs-property">foo4</span>.<span class="hljs-title function_">call</span>(person2)();
+person1.<span class="hljs-title function_">foo4</span>().<span class="hljs-title function_">call</span>(person2);</code></pre></div>
 
 <p><strong>A2:</strong></p>
-<div class="hljs"><pre><code class="hljs js">person1.foo1() <span class="hljs-comment">// person1  隐式绑定</span>
-person1.foo1.call(person2) <span class="hljs-comment">//  person2 显式绑定</span>
+<div class="hljs"><pre><code class="hljs js">person1.<span class="hljs-title function_">foo1</span>() <span class="hljs-comment">// person1  隐式绑定</span>
+person1.<span class="hljs-property">foo1</span>.<span class="hljs-title function_">call</span>(person2) <span class="hljs-comment">//  person2 显式绑定</span>
 
-person1.foo2() <span class="hljs-comment">//  window  foo2 是个箭头函数,this指向上层作用域即全局</span>
-person1.foo2.call(person2) <span class="hljs-comment">// window   箭头函数不适用于显式绑定</span>
+person1.<span class="hljs-title function_">foo2</span>() <span class="hljs-comment">//  window  foo2 是个箭头函数,this指向上层作用域即全局</span>
+person1.<span class="hljs-property">foo2</span>.<span class="hljs-title function_">call</span>(person2) <span class="hljs-comment">// window   箭头函数不适用于显式绑定</span>
 
-person1.foo3()() <span class="hljs-comment">// window   调用位置在全局作用域下，</span>
-person1.foo3.call(person2)() <span class="hljs-comment">// window  返回的函数依然是在全局下调用的</span>
-person1.foo3().call(person2) <span class="hljs-comment">//  person2   显式绑定</span>
+person1.<span class="hljs-title function_">foo3</span>()() <span class="hljs-comment">// window   调用位置在全局作用域下，</span>
+person1.<span class="hljs-property">foo3</span>.<span class="hljs-title function_">call</span>(person2)() <span class="hljs-comment">// window  返回的函数依然是在全局下调用的</span>
+person1.<span class="hljs-title function_">foo3</span>().<span class="hljs-title function_">call</span>(person2) <span class="hljs-comment">//  person2   显式绑定</span>
 
-person1.foo4()() <span class="hljs-comment">//person1  箭头函数， this指向上层作用域即 person1对象</span>
-person1.foo4.call(person2)() <span class="hljs-comment">// person2 显式绑定后，返回的箭头函数指向上层作用域即 person2对象</span>
-person1.foo4().call(person2) <span class="hljs-comment">// person1  箭头函数只看上层作用域即 person1对象</span></code></pre></div>
+person1.<span class="hljs-title function_">foo4</span>()() <span class="hljs-comment">//person1  箭头函数， this指向上层作用域即 person1对象</span>
+person1.<span class="hljs-property">foo4</span>.<span class="hljs-title function_">call</span>(person2)() <span class="hljs-comment">// person2 显式绑定后，返回的箭头函数指向上层作用域即 person2对象</span>
+person1.<span class="hljs-title function_">foo4</span>().<span class="hljs-title function_">call</span>(person2) <span class="hljs-comment">// person1  箭头函数只看上层作用域即 person1对象</span></code></pre></div>
 
 <p><strong>Q3:</strong></p>
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">var</span> name = <span class="hljs-string">&#x27;window&#x27;</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Person</span>(<span class="hljs-params">name</span>) </span>&#123;
-  <span class="hljs-built_in">this</span>.name = name
-  ;(<span class="hljs-built_in">this</span>.foo1 = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name)
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">Person</span>(<span class="hljs-params">name</span>) &#123;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = name
+  ;(<span class="hljs-variable language_">this</span>.<span class="hljs-property">foo1</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span>)
   &#125;),
-    (<span class="hljs-built_in">this</span>.foo2 = <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name)),
-    (<span class="hljs-built_in">this</span>.foo3 = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-      <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name)
+    (<span class="hljs-variable language_">this</span>.<span class="hljs-property">foo2</span> = <span class="hljs-function">() =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span>)),
+    (<span class="hljs-variable language_">this</span>.<span class="hljs-property">foo3</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span>)
       &#125;
     &#125;),
-    (<span class="hljs-built_in">this</span>.foo4 = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+    (<span class="hljs-variable language_">this</span>.<span class="hljs-property">foo4</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
       <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> &#123;
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name)
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span>)
       &#125;
     &#125;)
 &#125;
-<span class="hljs-keyword">var</span> person1 = <span class="hljs-keyword">new</span> Person(<span class="hljs-string">&#x27;person1&#x27;</span>)
-<span class="hljs-keyword">var</span> person2 = <span class="hljs-keyword">new</span> Person(<span class="hljs-string">&#x27;person2&#x27;</span>)
+<span class="hljs-keyword">var</span> person1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">&#x27;person1&#x27;</span>)
+<span class="hljs-keyword">var</span> person2 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">&#x27;person2&#x27;</span>)
 
-person1.foo1()
-person1.foo1.call(person2)
+person1.<span class="hljs-title function_">foo1</span>()
+person1.<span class="hljs-property">foo1</span>.<span class="hljs-title function_">call</span>(person2)
 
-person1.foo2()
-person1.foo2.call(person2)
+person1.<span class="hljs-title function_">foo2</span>()
+person1.<span class="hljs-property">foo2</span>.<span class="hljs-title function_">call</span>(person2)
 
-person1.foo3()()
-person1.foo3.call(person2)()
-person1.foo3().call(person2)
+person1.<span class="hljs-title function_">foo3</span>()()
+person1.<span class="hljs-property">foo3</span>.<span class="hljs-title function_">call</span>(person2)()
+person1.<span class="hljs-title function_">foo3</span>().<span class="hljs-title function_">call</span>(person2)
 
-person1.foo4()()
-person1.foo4.call(person2)()
-person1.foo4().call(person2)</code></pre></div>
+person1.<span class="hljs-title function_">foo4</span>()()
+person1.<span class="hljs-property">foo4</span>.<span class="hljs-title function_">call</span>(person2)()
+person1.<span class="hljs-title function_">foo4</span>().<span class="hljs-title function_">call</span>(person2)</code></pre></div>
 
 <p><strong>A2:</strong></p>
-<div class="hljs"><pre><code class="hljs JS">person1.foo1() <span class="hljs-comment">// peron1  隐式绑定</span>
-person1.foo1.call(person2) <span class="hljs-comment">// person2  显式绑定</span>
+<div class="hljs"><pre><code class="hljs JS">person1.<span class="hljs-title function_">foo1</span>() <span class="hljs-comment">// peron1  隐式绑定</span>
+person1.<span class="hljs-property">foo1</span>.<span class="hljs-title function_">call</span>(person2) <span class="hljs-comment">// person2  显式绑定</span>
 
-person1.foo2() <span class="hljs-comment">// person1  箭头函数找上一层</span>
-person1.foo2.call(person2) <span class="hljs-comment">// person1 箭头函数找上一层</span>
+person1.<span class="hljs-title function_">foo2</span>() <span class="hljs-comment">// person1  箭头函数找上一层</span>
+person1.<span class="hljs-property">foo2</span>.<span class="hljs-title function_">call</span>(person2) <span class="hljs-comment">// person1 箭头函数找上一层</span>
 
-person1.foo3()() <span class="hljs-comment">// window 调用位置是全局直接调用</span>
-person1.foo3.call(person2)() <span class="hljs-comment">// window  调用位置是全局直接调用</span>
-person1.foo3().call(person2) <span class="hljs-comment">// person2   显式绑定</span>
+person1.<span class="hljs-title function_">foo3</span>()() <span class="hljs-comment">// window 调用位置是全局直接调用</span>
+person1.<span class="hljs-property">foo3</span>.<span class="hljs-title function_">call</span>(person2)() <span class="hljs-comment">// window  调用位置是全局直接调用</span>
+person1.<span class="hljs-title function_">foo3</span>().<span class="hljs-title function_">call</span>(person2) <span class="hljs-comment">// person2   显式绑定</span>
 
-person1.foo4()() <span class="hljs-comment">// person1 箭头函数找上一层</span>
-person1.foo4.call(person2)() <span class="hljs-comment">// person2  调用时，找到了上层绑定的person2</span>
-person1.foo4().call(person2) <span class="hljs-comment">// person1 箭头函数找上一层</span></code></pre></div>
+person1.<span class="hljs-title function_">foo4</span>()() <span class="hljs-comment">// person1 箭头函数找上一层</span>
+person1.<span class="hljs-property">foo4</span>.<span class="hljs-title function_">call</span>(person2)() <span class="hljs-comment">// person2  调用时，找到了上层绑定的person2</span>
+person1.<span class="hljs-title function_">foo4</span>().<span class="hljs-title function_">call</span>(person2) <span class="hljs-comment">// person1 箭头函数找上一层</span></code></pre></div>
 
 <p><strong>Q3:</strong></p>
 <div class="hljs"><pre><code class="hljs JS"><span class="hljs-keyword">var</span> name = <span class="hljs-string">&#x27;window&#x27;</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Person</span>(<span class="hljs-params">name</span>) </span>&#123;
-  <span class="hljs-built_in">this</span>.name = name
-  <span class="hljs-built_in">this</span>.obj = &#123;
-    name: <span class="hljs-string">&#x27;obj&#x27;</span>,
-    foo1: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-      <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name)
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">Person</span>(<span class="hljs-params">name</span>) &#123;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = name
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">obj</span> = &#123;
+    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;obj&#x27;</span>,
+    <span class="hljs-attr">foo1</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span>)
       &#125;
     &#125;,
-    foo2: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-attr">foo2</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
       <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> &#123;
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name)
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span>)
       &#125;
     &#125;,
   &#125;
 &#125;
-<span class="hljs-keyword">var</span> person1 = <span class="hljs-keyword">new</span> Person(<span class="hljs-string">&#x27;person1&#x27;</span>)
-<span class="hljs-keyword">var</span> person2 = <span class="hljs-keyword">new</span> Person(<span class="hljs-string">&#x27;person2&#x27;</span>)
+<span class="hljs-keyword">var</span> person1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">&#x27;person1&#x27;</span>)
+<span class="hljs-keyword">var</span> person2 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">&#x27;person2&#x27;</span>)
 
-person1.obj.foo1()() <span class="hljs-comment">//  window</span>
-person1.obj.foo1.call(person2)() <span class="hljs-comment">// window</span>
-person1.obj.foo1().call(person2) <span class="hljs-comment">// person2</span>
+person1.<span class="hljs-property">obj</span>.<span class="hljs-title function_">foo1</span>()() <span class="hljs-comment">//  window</span>
+person1.<span class="hljs-property">obj</span>.<span class="hljs-property">foo1</span>.<span class="hljs-title function_">call</span>(person2)() <span class="hljs-comment">// window</span>
+person1.<span class="hljs-property">obj</span>.<span class="hljs-title function_">foo1</span>().<span class="hljs-title function_">call</span>(person2) <span class="hljs-comment">// person2</span>
 
-person1.obj.foo2()() <span class="hljs-comment">// obj</span>
-person1.obj.foo2.call(person2)() <span class="hljs-comment">// person2</span>
-person1.obj.foo2().call(person2) <span class="hljs-comment">// obj</span></code></pre></div>
+person1.<span class="hljs-property">obj</span>.<span class="hljs-title function_">foo2</span>()() <span class="hljs-comment">// obj</span>
+person1.<span class="hljs-property">obj</span>.<span class="hljs-property">foo2</span>.<span class="hljs-title function_">call</span>(person2)() <span class="hljs-comment">// person2</span>
+person1.<span class="hljs-property">obj</span>.<span class="hljs-title function_">foo2</span>().<span class="hljs-title function_">call</span>(person2) <span class="hljs-comment">// obj</span></code></pre></div>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/JavaScript%E9%AB%98%E7%BA%A7/">JavaScript高级</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/JavaScript%E9%AB%98%E7%BA%A7/">JavaScript高级</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2022/07/01/73-docker/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">给自己写的docker文档</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2021/11/05/71-%E9%97%AD%E5%8C%85/">
-                    <span class="hidden-mobile">让人疑惑的闭包</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/JavaScript%E9%AB%98%E7%BA%A7/">
+                              JavaScript高级
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/JavaScript%E9%AB%98%E7%BA%A7/">
+                                  JavaScript高级
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2022/07/01/73-docker/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      给自己写的docker文档
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2021/11/05/71-%E9%97%AD%E5%8C%85/">
+                                    <span class="hidden-mobile">
+                                      让人疑惑的闭包
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -626,26 +640,26 @@ person1.obj.foo2().call(person2) <span class="hljs-comment">// obj</span></code>
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

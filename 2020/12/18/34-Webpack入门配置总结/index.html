@@ -203,141 +203,113 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">Webpack入门配置总结</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p> 我的配置版本号如下:</p>
- <div class="hljs"><pre><code class="hljs json">&quot;devDependencies&quot;: &#123;
-   &quot;css-loader&quot;: &quot;^3.2.0&quot;,
-   &quot;dart-sass&quot;: &quot;^1.23.7&quot;,
-   &quot;file-loader&quot;: &quot;^5.0.2&quot;,
-   &quot;html-webpack-plugin&quot;: &quot;^3.2.0&quot;,
-   &quot;less&quot;: &quot;^3.10.3&quot;,
-   &quot;less-loader&quot;: &quot;^5.0.0&quot;,
-   &quot;mini-css-extract-plugin&quot;: &quot;^0.8.0&quot;,
-   &quot;sass-loader&quot;: &quot;^8.0.0&quot;,
-   &quot;style-loader&quot;: &quot;^1.0.1&quot;,
-   &quot;webpack&quot;: &quot;^4.41.2&quot;,
-   &quot;webpack-cli&quot;: &quot;^3.3.10&quot;,
-   &quot;webpack-dev-server&quot;: &quot;^3.9.0&quot;
- &#125;,</code></pre></div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                Webpack入门配置总结
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p> 我的配置版本号如下:</p>
+ <div class="hljs"><pre><code class="hljs json"><span class="hljs-attr">&quot;devDependencies&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>
+   <span class="hljs-attr">&quot;css-loader&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^3.2.0&quot;</span><span class="hljs-punctuation">,</span>
+   <span class="hljs-attr">&quot;dart-sass&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^1.23.7&quot;</span><span class="hljs-punctuation">,</span>
+   <span class="hljs-attr">&quot;file-loader&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^5.0.2&quot;</span><span class="hljs-punctuation">,</span>
+   <span class="hljs-attr">&quot;html-webpack-plugin&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^3.2.0&quot;</span><span class="hljs-punctuation">,</span>
+   <span class="hljs-attr">&quot;less&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^3.10.3&quot;</span><span class="hljs-punctuation">,</span>
+   <span class="hljs-attr">&quot;less-loader&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^5.0.0&quot;</span><span class="hljs-punctuation">,</span>
+   <span class="hljs-attr">&quot;mini-css-extract-plugin&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^0.8.0&quot;</span><span class="hljs-punctuation">,</span>
+   <span class="hljs-attr">&quot;sass-loader&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^8.0.0&quot;</span><span class="hljs-punctuation">,</span>
+   <span class="hljs-attr">&quot;style-loader&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^1.0.1&quot;</span><span class="hljs-punctuation">,</span>
+   <span class="hljs-attr">&quot;webpack&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^4.41.2&quot;</span><span class="hljs-punctuation">,</span>
+   <span class="hljs-attr">&quot;webpack-cli&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^3.3.10&quot;</span><span class="hljs-punctuation">,</span>
+   <span class="hljs-attr">&quot;webpack-dev-server&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^3.9.0&quot;</span>
+ <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span></code></pre></div>
 
 <blockquote>
 <p> 参考文档：webpack官方文档 , 在配置每一部分时候我会把链接发在里面</p>
 </blockquote>
-<h2 id="package-json中配置build"><a href="#package-json中配置build" class="headerlink" title="package.json中配置build"></a>package.json中配置build</h2> <div class="hljs"><pre><code class="hljs json">&quot;scripts&quot;: &#123;
-  &quot;build&quot;: &quot;rm -rf dist &amp;&amp; webpack&quot;
-&#125;,</code></pre></div>
-
-
-
-<h2 id="初始化-webpack-config-js"><a href="#初始化-webpack-config-js" class="headerlink" title="初始化 webpack.config.js"></a>初始化 webpack.config.js</h2><h3 id="模式的区别："><a href="#模式的区别：" class="headerlink" title="模式的区别："></a>模式的区别：</h3> <div class="hljs"><pre><code class="hljs js"><span class="hljs-built_in">module</span>.exports = &#123;
-  mode: <span class="hljs-string">&#x27;development&#x27;</span>  <span class="hljs-comment">// 开发者模式  注意去观察 dist/main.js  会发现有许多注释并没有被压缩</span>
+<h2 id="package-json中配置build"><a href="#package-json中配置build" class="headerlink" title="package.json中配置build"></a>package.json中配置build</h2> <div class="hljs"><pre><code class="hljs json"><span class="hljs-attr">&quot;scripts&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>
+  <span class="hljs-attr">&quot;build&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;rm -rf dist &amp;&amp; webpack&quot;</span>
+<span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span></code></pre></div>
+<h2 id="初始化-webpack-config-js"><a href="#初始化-webpack-config-js" class="headerlink" title="初始化 webpack.config.js"></a>初始化 webpack.config.js</h2><h3 id="模式的区别："><a href="#模式的区别：" class="headerlink" title="模式的区别："></a>模式的区别：</h3> <div class="hljs"><pre><code class="hljs js"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;
+  <span class="hljs-attr">mode</span>: <span class="hljs-string">&#x27;development&#x27;</span>  <span class="hljs-comment">// 开发者模式  注意去观察 dist/main.js  会发现有许多注释并没有被压缩</span>
 &#125;;</code></pre></div>
-
- <div class="hljs"><pre><code class="hljs js"><span class="hljs-built_in">module</span>.exports = &#123;
-  mode: <span class="hljs-string">&#x27;production&#x27;</span>  <span class="hljs-comment">// 生产模式  去观察 dist/main.js  代码都被压缩了，</span>
+ <div class="hljs"><pre><code class="hljs js"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;
+  <span class="hljs-attr">mode</span>: <span class="hljs-string">&#x27;production&#x27;</span>  <span class="hljs-comment">// 生产模式  去观察 dist/main.js  代码都被压缩了，</span>
 &#125;;</code></pre></div>
-
-
-
 <h3 id="入口文件和出口文件配置："><a href="#入口文件和出口文件配置：" class="headerlink" title="入口文件和出口文件配置："></a>入口文件和出口文件配置：</h3> <div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">var</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>);
 
-<span class="hljs-built_in">module</span>.exports = &#123;
-  mode: <span class="hljs-string">&#x27;development&#x27;</span>,   <span class="hljs-comment">// 开发者模式</span>
-  entry: <span class="hljs-string">&#x27;./src/index.js&#x27;</span>,  <span class="hljs-comment">// 打包的入口文件</span>
-  output: &#123;
-    path: path.resolve(__dirname, <span class="hljs-string">&#x27;dist&#x27;</span>),  <span class="hljs-comment">// 可用不用写，默认是dist文件</span>
-       filename: <span class="hljs-string">&#x27;index.[contenthash].js&#x27;</span>  <span class="hljs-comment">// 打包出口文件名， 以 index.20位随机数/字母.js以文件名</span>
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;
+  <span class="hljs-attr">mode</span>: <span class="hljs-string">&#x27;development&#x27;</span>,   <span class="hljs-comment">// 开发者模式</span>
+  <span class="hljs-attr">entry</span>: <span class="hljs-string">&#x27;./src/index.js&#x27;</span>,  <span class="hljs-comment">// 打包的入口文件</span>
+  <span class="hljs-attr">output</span>: &#123;
+    <span class="hljs-attr">path</span>: path.<span class="hljs-title function_">resolve</span>(__dirname, <span class="hljs-string">&#x27;dist&#x27;</span>),  <span class="hljs-comment">// 可用不用写，默认是dist文件</span>
+       <span class="hljs-attr">filename</span>: <span class="hljs-string">&#x27;index.[contenthash].js&#x27;</span>  <span class="hljs-comment">// 打包出口文件名， 以 index.20位随机数/字母.js以文件名</span>
 
   &#125;
 &#125;;</code></pre></div>
-
-
-
-
-
 <h2 id="webpack插件自动生成HTML："><a href="#webpack插件自动生成HTML：" class="headerlink" title="webpack插件自动生成HTML："></a>webpack插件自动生成HTML：</h2><blockquote>
 <p> webpack文档链接 ：<a target="_blank" rel="noopener" href="https://webpack.js.org/plugins/html-webpack-plugin/">https://webpack.js.org/plugins/html-webpack-plugin/</a>   和 <a target="_blank" rel="noopener" href="https://github.com/jantimon/html-webpack-plugin#options">https://github.com/jantimon/html-webpack-plugin#options</a></p>
 </blockquote>
 <p>  这样就会在 dist文件中生成一个 index.html</p>
  <div class="hljs"><pre><code class="hljs bash">npm install --save-dev html-webpack-plugin</code></pre></div>
+ <div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">var</span> <span class="hljs-title class_">HtmlWebpackPlugin</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;html-webpack-plugin&#x27;</span>);
 
- <div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">var</span> HtmlWebpackPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;html-webpack-plugin&#x27;</span>);
-
-<span class="hljs-built_in">module</span>.exports = &#123;
-  plugins: [<span class="hljs-keyword">new</span> HtmlWebpackPlugin()]  
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;
+  <span class="hljs-attr">plugins</span>: [<span class="hljs-keyword">new</span> <span class="hljs-title class_">HtmlWebpackPlugin</span>()]  
 &#125;;</code></pre></div>
-
-
-
 <p> 配置内容：</p>
- <div class="hljs"><pre><code class="hljs js">plugins: [<span class="hljs-keyword">new</span> HtmlWebpackPlugin(&#123; 
+ <div class="hljs"><pre><code class="hljs js"><span class="hljs-attr">plugins</span>: [<span class="hljs-keyword">new</span> <span class="hljs-title class_">HtmlWebpackPlugin</span>(&#123; 
    <span class="hljs-comment">// 可以不写filename这个属性，也默认生成index.html</span>
    <span class="hljs-comment">// 在这里配置title 要在template中的html文件内的title标签配置 &lt;%= htmlWebpackPlugin.options.title %&gt;</span>
-   title: <span class="hljs-string">&#x27;Wang-pf&#x27;</span>,
-   template: <span class="hljs-string">&#x27;src/assets/index.html&#x27;</span> <span class="hljs-comment">// 生成模板是哪个</span>
+   <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;Wang-pf&#x27;</span>,
+   <span class="hljs-attr">template</span>: <span class="hljs-string">&#x27;src/assets/index.html&#x27;</span> <span class="hljs-comment">// 生成模板是哪个</span>
  &#125;)]</code></pre></div>
-
-
-
-
-
 <h2 id="webpack引入CSS："><a href="#webpack引入CSS：" class="headerlink" title="webpack引入CSS："></a>webpack引入CSS：</h2><h3 id="方法一：-用JS来生成style"><a href="#方法一：-用JS来生成style" class="headerlink" title="方法一： 用JS来生成style"></a>方法一： 用JS来生成style</h3><blockquote>
 <p>webpack文档链接: <a target="_blank" rel="noopener" href="https://webpack.docschina.org/loaders/css-loader/#getting-started">https://webpack.docschina.org/loaders/css-loader/#getting-started</a></p>
 </blockquote>
 <p> 先安装依赖插件， 必须要安装style-loader 。</p>
  <div class="hljs"><pre><code class="hljs bash">npm install --save-dev  style-loader css-loader</code></pre></div>
-
-
-
 <p> <strong>原理是 webpack默认要把 以.css结尾的放到style标签中。</strong></p>
- <div class="hljs"><pre><code class="hljs js"><span class="hljs-built_in">module</span>: &#123;
-   rules: [&#123;
-     test: <span class="hljs-regexp">/\.css$/i</span>, <span class="hljs-comment">// 以 .css 结尾的</span>
-     use: [<span class="hljs-string">&quot;style-loader&quot;</span>, <span class="hljs-string">&quot;css-loader&quot;</span>], <span class="hljs-comment">// 依赖插件</span>
+ <div class="hljs"><pre><code class="hljs js"><span class="hljs-attr">module</span>: &#123;
+   <span class="hljs-attr">rules</span>: [&#123;
+     <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.css$/i</span>, <span class="hljs-comment">// 以 .css 结尾的</span>
+     <span class="hljs-attr">use</span>: [<span class="hljs-string">&quot;style-loader&quot;</span>, <span class="hljs-string">&quot;css-loader&quot;</span>], <span class="hljs-comment">// 依赖插件</span>
    
   &#125;, ],
  &#125;</code></pre></div>
-
-
-
 <h3 id="方法二：-把CSS抽成文件"><a href="#方法二：-把CSS抽成文件" class="headerlink" title="方法二： 把CSS抽成文件"></a>方法二： 把CSS抽成文件</h3><p> 先安装依赖，</p>
  <div class="hljs"><pre><code class="hljs bash">npm install --save-dev mini-css-extract-plugin</code></pre></div>
-
-
-
 <p> 配置</p>
- <div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> MiniCssExtractPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;mini-css-extract-plugin&#x27;</span>);
+ <div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> <span class="hljs-title class_">MiniCssExtractPlugin</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;mini-css-extract-plugin&#x27;</span>);
 
-<span class="hljs-built_in">module</span>.exports = &#123;
-  plugins: [
-     <span class="hljs-keyword">new</span> MiniCssExtractPlugin(&#123;
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;
+  <span class="hljs-attr">plugins</span>: [
+     <span class="hljs-keyword">new</span> <span class="hljs-title class_">MiniCssExtractPlugin</span>(&#123;
       <span class="hljs-comment">// 类似于 webpackOptions.output 中的选项</span>
       <span class="hljs-comment">// 所有选项都是可选的</span>
-      filename: <span class="hljs-string">&#x27;[name].[contenthash].css&#x27;</span>,
-      chunkFilename: <span class="hljs-string">&#x27;[id].[contenthash].css&#x27;</span>,
-      ignoreOrder: <span class="hljs-literal">false</span>, <span class="hljs-comment">// 忽略有关顺序冲突的警告</span>
+      <span class="hljs-attr">filename</span>: <span class="hljs-string">&#x27;[name].[contenthash].css&#x27;</span>,
+      <span class="hljs-attr">chunkFilename</span>: <span class="hljs-string">&#x27;[id].[contenthash].css&#x27;</span>,
+      <span class="hljs-attr">ignoreOrder</span>: <span class="hljs-literal">false</span>, <span class="hljs-comment">// 忽略有关顺序冲突的警告</span>
     &#125;),
   ],
-  <span class="hljs-built_in">module</span>: &#123;
-    rules: [
+  <span class="hljs-attr">module</span>: &#123;
+    <span class="hljs-attr">rules</span>: [
       &#123;
-        test: <span class="hljs-regexp">/\.css$/</span>,
-       use: [&#123;
-          loader: MiniCssExtractPlugin.loader,
-          options: &#123;
+        <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.css$/</span>,
+       <span class="hljs-attr">use</span>: [&#123;
+          <span class="hljs-attr">loader</span>: <span class="hljs-title class_">MiniCssExtractPlugin</span>.<span class="hljs-property">loader</span>,
+          <span class="hljs-attr">options</span>: &#123;
             <span class="hljs-comment">// 你可以在这里指定特定的 publicPath</span>
             <span class="hljs-comment">// 默认情况下使用 webpackOptions.output 中的 publicPath</span>
-            publicPath: <span class="hljs-string">&#x27;../&#x27;</span>,
+            <span class="hljs-attr">publicPath</span>: <span class="hljs-string">&#x27;../&#x27;</span>,
           &#125;,
         &#125;,
         <span class="hljs-string">&#x27;css-loader&#x27;</span>,
@@ -347,13 +319,6 @@
   &#125;,
 &#125;;
 </code></pre></div>
-
-
-
-
-
-
-
 <h2 id="webpack-dev-server-的使用"><a href="#webpack-dev-server-的使用" class="headerlink" title="webpack dev-server 的使用"></a>webpack dev-server 的使用</h2><blockquote>
 <p>webpack dev-server文档链接：<a target="_blank" rel="noopener" href="https://www.webpackjs.com/guides/development/">https://www.webpackjs.com/guides/development/</a>    </p>
 </blockquote>
@@ -362,21 +327,19 @@
 <div class="hljs"><pre><code class="hljs bash">npm install --save-dev webpack-dev-server</code></pre></div>
 </li>
 <li><p>webpack.config.js 配置</p>
-<div class="hljs"><pre><code class="hljs js">devServer: &#123;
-	contentBase: <span class="hljs-string">&#x27;./dist&#x27;</span>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-attr">devServer</span>: &#123;
+	<span class="hljs-attr">contentBase</span>: <span class="hljs-string">&#x27;./dist&#x27;</span>
 &#125;,</code></pre></div></li>
 <li><p>在package.json 配置以下 start</p>
 <div class="hljs"><pre><code class="hljs bash"><span class="hljs-string">&quot;start&quot;</span>: <span class="hljs-string">&quot;webpack-dev-server --open&quot;</span>,</code></pre></div>
 
 
 
-</li>
-</ol>
-<p> 在 npm start 的时候发现 报错， 报错原因是：<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/59611597/error-cannot-find-module-webpack-cli-bin-config-yargs">Error: Cannot find module ‘webpack-cli/bin/config-yargs’</a></p>
-<p> 解决方法是：把版本号改一下  如下：</p>
- <div class="hljs"><pre><code class="hljs json">&quot;webpack&quot;: &quot;^4.41.2&quot;,
-&quot;webpack-cli&quot;: &quot;^3.3.10&quot;,
-&quot;webpack-dev-server&quot;: &quot;^3.9.0&quot;</code></pre></div>
+<p>在 npm start 的时候发现 报错， 报错原因是：<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/59611597/error-cannot-find-module-webpack-cli-bin-config-yargs">Error: Cannot find module ‘webpack-cli/bin/config-yargs’</a></p>
+<p>解决方法是：把版本号改一下  如下：</p>
+<div class="hljs"><pre><code class="hljs json"><span class="hljs-attr">&quot;webpack&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^4.41.2&quot;</span><span class="hljs-punctuation">,</span>
+<span class="hljs-attr">&quot;webpack-cli&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^3.3.10&quot;</span><span class="hljs-punctuation">,</span>
+<span class="hljs-attr">&quot;webpack-dev-server&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^3.9.0&quot;</span></code></pre></div>
 
 
 
@@ -386,38 +349,40 @@
 <p>我们已经知道模式有 开发者模式(development) 和 生产模式(production)  ,那么我们应该在不同模式中选用不同的插件来使用。</p>
 <p>比如： 在生产模式production中，引入CSS方法使用style， 因为这样不同生成一个CSS文件，使得效率变高。如果是开发者模式 ，那么我们就需要把CSS抽成文件。</p>
 </blockquote>
-<p> 创建一个webpack配置文件：webpack.config.prod.js  用在生产模式时使用。</p>
-<p> 创建一个webpack配置文件： webpack.config.base.js  用于开发和生产模式的共同属性</p>
-<p> 并在package.json文件中重新配置build。</p>
- <div class="hljs"><pre><code class="hljs json">&quot;build&quot;: &quot;rm -rf dist &amp;&amp; webpack --config webpack.config.prod.js&quot;</code></pre></div>
+<p>创建一个webpack配置文件：webpack.config.prod.js  用在生产模式时使用。</p>
+<p>创建一个webpack配置文件： webpack.config.base.js  用于开发和生产模式的共同属性</p>
+<p>并在package.json文件中重新配置build。</p>
+<div class="hljs"><pre><code class="hljs json"><span class="hljs-attr">&quot;build&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;rm -rf dist &amp;&amp; webpack --config webpack.config.prod.js&quot;</span></code></pre></div>
 
 
 
 
 
-<h2 id="webpack-loader-和-webpack-plugin-的区别"><a href="#webpack-loader-和-webpack-plugin-的区别" class="headerlink" title="webpack loader   和 webpack  plugin 的区别"></a>webpack loader   和 webpack  plugin 的区别</h2><ul>
-<li>loader （加载器） ： 用于加载某些文件，比如加载JS文件，可以把JS转换为低版本支持的js, 又比如CSS,使用相应的loder加载，可以把CSS放到页面上style标签中或者其他处理。也可以用来加载图片，可以对图片进行优化。</li>
-<li>plugin （插件）： 扩展webpack功能的，比如使用 HtmlWebpackPlugin 插件用来生成html文件， 使用 miniCssExtractPlugin 插件用来生成CSS文件等。</li>
-</ul>
+<h2 id="webpack-loader-和-webpack-plugin-的区别"><a href="#webpack-loader-和-webpack-plugin-的区别" class="headerlink" title="webpack loader   和 webpack  plugin 的区别"></a>webpack loader   和 webpack  plugin 的区别</h2></li>
+</ol>
+<ul>
+<li><p>loader （加载器） ： 用于加载某些文件，比如加载JS文件，可以把JS转换为低版本支持的js, 又比如CSS,使用相应的loder加载，可以把CSS放到页面上style标签中或者其他处理。也可以用来加载图片，可以对图片进行优化。</p>
+</li>
+<li><p>plugin （插件）： 扩展webpack功能的，比如使用 HtmlWebpackPlugin 插件用来生成html文件， 使用 miniCssExtractPlugin 插件用来生成CSS文件等。</p>
 <h2 id="引入-sass"><a href="#引入-sass" class="headerlink" title="引入 sass"></a>引入 sass</h2><blockquote>
 <p>参考链接：<a target="_blank" rel="noopener" href="https://webpack.docschina.org/loaders/sass-loader/">https://webpack.docschina.org/loaders/sass-loader/</a></p>
 </blockquote>
-<p>  这里使用 datr-sass  不使用node-sass（已过时）</p>
- <div class="hljs"><pre><code class="hljs bash">npm install sass-loader dart-sass --save-dev</code></pre></div>
+<p>这里使用 datr-sass  不使用node-sass（已过时）</p>
+<div class="hljs"><pre><code class="hljs bash">npm install sass-loader dart-sass --save-dev</code></pre></div>
 
 
 
-<p> webpakc.config配置：</p>
- <div class="hljs"><pre><code class="hljs js">rules: [&#123;
-     test: <span class="hljs-regexp">/\.scss$/i</span>,
-     use: [
+<p>webpakc.config配置：</p>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-attr">rules</span>: [&#123;
+     <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.scss$/i</span>,
+     <span class="hljs-attr">use</span>: [
        <span class="hljs-string">&quot;style-loader&quot;</span>,
        <span class="hljs-string">&quot;css-loader&quot;</span>,
        &#123;
-         loader: <span class="hljs-string">&quot;sass-loader&quot;</span>,
-         options: &#123;
+         <span class="hljs-attr">loader</span>: <span class="hljs-string">&quot;sass-loader&quot;</span>,
+         <span class="hljs-attr">options</span>: &#123;
            <span class="hljs-comment">// `dart-sass` 是首选</span>
-           implementation: <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;dart-sass&quot;</span>),
+           <span class="hljs-attr">implementation</span>: <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;dart-sass&quot;</span>),
          &#125;,
        &#125;,
      ],
@@ -425,43 +390,43 @@
 
 
 
-<p> 把css文件改为scss文件即可使用。</p>
+<p>把css文件改为scss文件即可使用。</p>
 <h2 id="引入less"><a href="#引入less" class="headerlink" title="引入less"></a>引入less</h2><blockquote>
 <p>文档链接：<a target="_blank" rel="noopener" href="https://webpack.js.org/loaders/less-loader/">https://webpack.js.org/loaders/less-loader/</a></p>
 </blockquote>
-<p> 安装loader</p>
- <div class="hljs"><pre><code class="hljs bash">npm install less less-loader --save-dev</code></pre></div>
+<p>安装loader</p>
+<div class="hljs"><pre><code class="hljs bash">npm install less less-loader --save-dev</code></pre></div>
 
 
 
- <div class="hljs"><pre><code class="hljs js">&#123;
-    test: <span class="hljs-regexp">/\.less$/</span>,
-    loader: [<span class="hljs-string">&quot;style-loader&quot;</span>,<span class="hljs-string">&quot;css-loader&quot;</span>,<span class="hljs-string">&quot;less-loader&quot;</span>], <span class="hljs-comment">// compiles Less to CSS</span>
+<div class="hljs"><pre><code class="hljs js">&#123;
+    <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.less$/</span>,
+    <span class="hljs-attr">loader</span>: [<span class="hljs-string">&quot;style-loader&quot;</span>,<span class="hljs-string">&quot;css-loader&quot;</span>,<span class="hljs-string">&quot;less-loader&quot;</span>], <span class="hljs-comment">// compiles Less to CSS</span>
   &#125;,</code></pre></div>
 
 
 
-<p> stylus  和 引入less 方法一致，不再写了。</p>
+<p>stylus  和 引入less 方法一致，不再写了。</p>
 <h2 id="使用-file-loader-引入图片"><a href="#使用-file-loader-引入图片" class="headerlink" title="使用 file-loader 引入图片"></a>使用 file-loader 引入图片</h2><blockquote>
 <p>参考文档: <a target="_blank" rel="noopener" href="https://webpack.js.org/loaders/file-loader/">https://webpack.js.org/loaders/file-loader/</a></p>
 </blockquote>
-<p> 安装</p>
- <div class="hljs"><pre><code class="hljs bash">npm install file-loader --save-dev</code></pre></div>
+<p>安装</p>
+<div class="hljs"><pre><code class="hljs bash">npm install file-loader --save-dev</code></pre></div>
 
-<p> 我的版本号：</p>
- <div class="hljs"><pre><code class="hljs json">&quot;file-loader&quot;: &quot;^5.0.2&quot;,</code></pre></div>
+<p>我的版本号：</p>
+<div class="hljs"><pre><code class="hljs json"><span class="hljs-attr">&quot;file-loader&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^5.0.2&quot;</span><span class="hljs-punctuation">,</span></code></pre></div>
 
 
 
-<p> webpack.config配置：</p>
- <div class="hljs"><pre><code class="hljs js"><span class="hljs-built_in">module</span>.exports = &#123;
-  <span class="hljs-built_in">module</span>: &#123;
-    rules: [
+<p>webpack.config配置：</p>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;
+  <span class="hljs-attr">module</span>: &#123;
+    <span class="hljs-attr">rules</span>: [
       &#123;
-        test: <span class="hljs-regexp">/\.(png|jpe?g|gif)$/i</span>,
-        use: [
+        <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.(png|jpe?g|gif)$/i</span>,
+        <span class="hljs-attr">use</span>: [
           &#123;
-            loader: <span class="hljs-string">&#x27;file-loader&#x27;</span>,
+            <span class="hljs-attr">loader</span>: <span class="hljs-string">&#x27;file-loader&#x27;</span>,
           &#125;,
         ],
       &#125;,
@@ -471,89 +436,103 @@
 
 
 
-<p> 然后在html页面中引入就可以了。</p>
-<h2 id="webpack-impor-懒加载"><a href="#webpack-impor-懒加载" class="headerlink" title="webpack impor()  懒加载"></a>webpack impor()  懒加载</h2><p> 不多说看代码</p>
-<p> inedx.js</p>
- <div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// index.js</span>
-<span class="hljs-keyword">const</span> btn = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;button&#x27;</span>)
-btn.innerText = <span class="hljs-string">&#x27;懒加载&#x27;</span>
-btn.onclick = <span class="hljs-function">()=&gt;</span>&#123;
- <span class="hljs-keyword">const</span> promise = <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;./lazy.js&#x27;</span>)
-  promise.then(<span class="hljs-function">(<span class="hljs-params"><span class="hljs-built_in">module</span></span>)=&gt;</span>&#123;
-    <span class="hljs-keyword">const</span> fn = <span class="hljs-built_in">module</span>.default
-    fn()
+<p>然后在html页面中引入就可以了。</p>
+<h2 id="webpack-impor-懒加载"><a href="#webpack-impor-懒加载" class="headerlink" title="webpack impor()  懒加载"></a>webpack impor()  懒加载</h2><p>不多说看代码</p>
+<p>inedx.js</p>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// index.js</span>
+<span class="hljs-keyword">const</span> btn = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;button&#x27;</span>)
+btn.<span class="hljs-property">innerText</span> = <span class="hljs-string">&#x27;懒加载&#x27;</span>
+btn.<span class="hljs-property">onclick</span> = <span class="hljs-function">()=&gt;</span>&#123;
+ <span class="hljs-keyword">const</span> promise = <span class="hljs-title function_">import</span>(<span class="hljs-string">&#x27;./lazy.js&#x27;</span>)
+  promise.<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params"><span class="hljs-variable language_">module</span></span>)=&gt;</span>&#123;
+    <span class="hljs-keyword">const</span> fn = <span class="hljs-variable language_">module</span>.<span class="hljs-property">default</span>
+    <span class="hljs-title function_">fn</span>()
   &#125;,<span class="hljs-function">()=&gt;</span>&#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;懒加载模块加载失败&#x27;</span>)
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;懒加载模块加载失败&#x27;</span>)
   &#125;)
 &#125;
 
-div.appendChild(btn)</code></pre></div>
+div.<span class="hljs-title function_">appendChild</span>(btn)</code></pre></div>
 
 
 
-<p> lazy.js</p>
- <div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">export</span>  <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lazy</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;我是懒加载陌客&#x27;</span>)
+<p>lazy.js</p>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">export</span>  <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">lazy</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;我是懒加载陌客&#x27;</span>)
 &#125;</code></pre></div>
 
 
 
-<p> 上面就是如何使用 import() 来实现懒加载</p>
-<p> 用 import()  去加载文件 ，然后得到一个 promise  ， 在成功之后 使用 module.default() 调用 lazy.js 文件</p>
+<p>上面就是如何使用 import() 来实现懒加载</p>
+<p>用 import()  去加载文件 ，然后得到一个 promise  ， 在成功之后 使用 module.default() 调用 lazy.js 文件</p>
+</li>
+</ul>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/webpack/">webpack</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/webpack/">webpack</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2020/12/20/35-Vue%E4%BF%A9%E4%B8%AA%E7%89%88%E6%9C%AC/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">vue俩个版本：runtime-compiler和 runtime-only 的区别</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2020/12/17/33-MVC/">
-                    <span class="hidden-mobile">JavaScript中的MVC</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/webpack/">
+                              webpack
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/webpack/">
+                                  webpack
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2020/12/20/35-Vue%E4%BF%A9%E4%B8%AA%E7%89%88%E6%9C%AC/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      vue俩个版本：runtime-compiler和 runtime-only 的区别
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2020/12/17/33-MVC/">
+                                    <span class="hidden-mobile">
+                                      JavaScript中的MVC
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -580,26 +559,26 @@ div.appendChild(btn)</code></pre></div>
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

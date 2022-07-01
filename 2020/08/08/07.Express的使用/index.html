@@ -203,66 +203,68 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">Express的使用⭐⭐⭐</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h1 id="07-Express-的使用"><a href="#07-Express-的使用" class="headerlink" title="07.Express 的使用"></a>07.Express 的使用</h1><h2 id="1-安装express"><a href="#1-安装express" class="headerlink" title="1.安装express"></a>1.安装express</h2><div class="hljs"><pre><code class="hljs shell">npm install express --save</code></pre></div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                Express的使用⭐⭐⭐
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h1 id="07-Express-的使用"><a href="#07-Express-的使用" class="headerlink" title="07.Express 的使用"></a>07.Express 的使用</h1><h2 id="1-安装express"><a href="#1-安装express" class="headerlink" title="1.安装express"></a>1.安装express</h2><div class="hljs"><pre><code class="hljs shell">npm install express --save</code></pre></div>
 <h2 id="2-简单使用express"><a href="#2-简单使用express" class="headerlink" title="2.简单使用express"></a>2.简单使用express</h2><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-comment">//0.安装</span>
 
 <span class="hljs-comment">//1. 引入包</span>
 <span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>);
 
 <span class="hljs-comment">// 2. 创建服务器应用程序  也就是原来的 http.createServer</span>
-<span class="hljs-keyword">const</span> app = express();
+<span class="hljs-keyword">const</span> app = <span class="hljs-title function_">express</span>();
 
 <span class="hljs-comment">// 以get的请求方式来 请求 /   </span>
-app.get(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
-    res.send(<span class="hljs-string">&#x27;hello express!!!&#x27;</span>);
+app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+    res.<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;hello express!!!&#x27;</span>);
 &#125;)
 
 <span class="hljs-comment">// 相当于 之前的 server.linten</span>
-app.listen(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Example app listening on port 3000!`</span>))</code></pre></div>
-<h2 id="3-基本路由"><a href="#3-基本路由" class="headerlink" title="3.基本路由"></a>3.基本路由</h2><h3 id="get"><a href="#get" class="headerlink" title="get:"></a>get:</h3><div class="hljs"><pre><code class="hljs JavaScript">app.get(<span class="hljs-string">&#x27;/&#x27;</span>,<span class="hljs-function">(<span class="hljs-params">req,res</span>)=&gt;</span>&#123;
-    res.send(<span class="hljs-string">&#x27;Hello World!&#x27;</span>)
+app.<span class="hljs-title function_">listen</span>(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Example app listening on port 3000!`</span>))</code></pre></div>
+<h2 id="3-基本路由"><a href="#3-基本路由" class="headerlink" title="3.基本路由"></a>3.基本路由</h2><h3 id="get"><a href="#get" class="headerlink" title="get:"></a>get:</h3><div class="hljs"><pre><code class="hljs JavaScript">app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/&#x27;</span>,<span class="hljs-function">(<span class="hljs-params">req,res</span>)=&gt;</span>&#123;
+    res.<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;Hello World!&#x27;</span>)
 &#125;)</code></pre></div>
-<h3 id="post"><a href="#post" class="headerlink" title="post:"></a>post:</h3><div class="hljs"><pre><code class="hljs JavaScript">app.post(<span class="hljs-string">&#x27;/&#x27;</span>,<span class="hljs-function">(<span class="hljs-params">req,res</span>)=&gt;</span>&#123;
-    res.send(<span class="hljs-string">&#x27;Hello World!&#x27;</span>)
+<h3 id="post"><a href="#post" class="headerlink" title="post:"></a>post:</h3><div class="hljs"><pre><code class="hljs JavaScript">app.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x27;/&#x27;</span>,<span class="hljs-function">(<span class="hljs-params">req,res</span>)=&gt;</span>&#123;
+    res.<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;Hello World!&#x27;</span>)
 &#125;)</code></pre></div>
 <h2 id="4-获取静态资源"><a href="#4-获取静态资源" class="headerlink" title="4.获取静态资源"></a>4.获取静态资源</h2><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-comment">//  直接可以获取 /public 中的资源</span>
-app.use(express.static(<span class="hljs-string">&#x27;public&#x27;</span>))
+app.<span class="hljs-title function_">use</span>(express.<span class="hljs-title function_">static</span>(<span class="hljs-string">&#x27;public&#x27;</span>))
 <span class="hljs-comment">//  直接可以获取 /files 中的资源</span>
-app.use(express.static(<span class="hljs-string">&#x27;files&#x27;</span>))
+app.<span class="hljs-title function_">use</span>(express.<span class="hljs-title function_">static</span>(<span class="hljs-string">&#x27;files&#x27;</span>))
 
 <span class="hljs-comment">//  需要通过 /public/xxx 来获取 public 文件中的资源 推荐使用这种</span>
-app.use(<span class="hljs-string">&#x27;/public&#x27;</span>,express.static(<span class="hljs-string">&#x27;public&#x27;</span>))
+app.<span class="hljs-title function_">use</span>(<span class="hljs-string">&#x27;/public&#x27;</span>,express.<span class="hljs-title function_">static</span>(<span class="hljs-string">&#x27;public&#x27;</span>))
 
 <span class="hljs-comment">//  需要通过 /static/xxx 来获取 public 文件中的资源 </span>
-app.use(<span class="hljs-string">&#x27;/static&#x27;</span>,express.static(<span class="hljs-string">&#x27;public&#x27;</span>))</code></pre></div>
+app.<span class="hljs-title function_">use</span>(<span class="hljs-string">&#x27;/static&#x27;</span>,express.<span class="hljs-title function_">static</span>(<span class="hljs-string">&#x27;public&#x27;</span>))</code></pre></div>
 <h2 id="5-在Express-中配置-art-template-模板引擎"><a href="#5-在Express-中配置-art-template-模板引擎" class="headerlink" title="5.在Express 中配置 art-template 模板引擎"></a>5.在Express 中配置 <code>art-template</code> 模板引擎</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://github.com/aui/art-template">art-template Github仓库</a></li>
 <li><a target="_blank" rel="noopener" href="https://aui.github.io/art-template/">art-template 官网文档</a></li>
 <li>安装：<div class="hljs"><pre><code class="hljs shell">npm install --save art-template
 npm install --save express-art-template</code></pre></div></li>
-<li>配置：<div class="hljs"><pre><code class="hljs JavaScript">app.engine(<span class="hljs-string">&#x27;art&#x27;</span>,<span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express-art-template&#x27;</span>))
+<li>配置：<div class="hljs"><pre><code class="hljs JavaScript">app.<span class="hljs-title function_">engine</span>(<span class="hljs-string">&#x27;art&#x27;</span>,<span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express-art-template&#x27;</span>))
 
 <span class="hljs-comment">// 这里的html 要和 views 的文件 匹配</span>
-app.engine(<span class="hljs-string">&#x27;html&#x27;</span>,<span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express-art-template&#x27;</span>))</code></pre></div></li>
-<li>使用：<div class="hljs"><pre><code class="hljs JavaScript">app.get(<span class="hljs-string">&#x27;/&#x27;</span>,<span class="hljs-function">(<span class="hljs-params">req,res</span>)=&gt;</span>&#123;
+app.<span class="hljs-title function_">engine</span>(<span class="hljs-string">&#x27;html&#x27;</span>,<span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express-art-template&#x27;</span>))</code></pre></div></li>
+<li>使用：<div class="hljs"><pre><code class="hljs JavaScript">app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/&#x27;</span>,<span class="hljs-function">(<span class="hljs-params">req,res</span>)=&gt;</span>&#123;
 <span class="hljs-comment">// express 默认会去项目views 目录中 查找 idenx.html</span>
-    res.render(<span class="hljs-string">&#x27;index.html&#x27;</span>,&#123;
-        title: <span class="hljs-string">&#x27;heelo world&#x27;</span>
+    res.<span class="hljs-title function_">render</span>(<span class="hljs-string">&#x27;index.html&#x27;</span>,&#123;
+        <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;heelo world&#x27;</span>
     &#125;)
 &#125;)</code></pre></div></li>
 <li>如果希望修改默认的 views 视图渲染存储目录， 可以：<div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 注意  第一个参数 views 不能写错</span>
-app.set(<span class="hljs-string">&#x27;views&#x27;</span>,目录路径)</code></pre></div>
+app.<span class="hljs-title function_">set</span>(<span class="hljs-string">&#x27;views&#x27;</span>,目录路径)</code></pre></div>
 
 </li>
 </ul>
@@ -273,20 +275,20 @@ app.set(<span class="hljs-string">&#x27;views&#x27;</span>,目录路径)</code><
 <p>配置：</p>
 <div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 该插件会为 req 请求对象添加一个成员：req.session 默认是一个对象</span>
 <span class="hljs-comment">// 这是最简单的配置方式， 暂且不用关心里面的参数含义</span>
-app.use(session(&#123;
+app.<span class="hljs-title function_">use</span>(<span class="hljs-title function_">session</span>(&#123;
     <span class="hljs-comment">// 配置加密字符串， 它会在原有的加密基础之上 和 这个字符串&#x27;node&#x27; 拼起来加密</span>
     <span class="hljs-comment">// 目的是为了增加安全性， 防止客户端恶意伪造</span>
-    secret: <span class="hljs-string">&#x27;node&#x27;</span>,
-    resave: <span class="hljs-literal">false</span>,
-    saveUninitialized: <span class="hljs-literal">true</span> <span class="hljs-comment">// 默认为true  意思是无论你是否使用了 Session， 都默认的直接给你分配一把钥匙</span>
+    <span class="hljs-attr">secret</span>: <span class="hljs-string">&#x27;node&#x27;</span>,
+    <span class="hljs-attr">resave</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">saveUninitialized</span>: <span class="hljs-literal">true</span> <span class="hljs-comment">// 默认为true  意思是无论你是否使用了 Session， 都默认的直接给你分配一把钥匙</span>
 &#125;))</code></pre></div>
 
 <p>使用：</p>
 <div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 添加 Session 数据： </span>
-req.session.foo = <span class="hljs-string">&#x27;bar&#x27;</span>
+req.<span class="hljs-property">session</span>.<span class="hljs-property">foo</span> = <span class="hljs-string">&#x27;bar&#x27;</span>
 
 <span class="hljs-comment">//  访问 Session 数据： </span>
-req.session.foo</code></pre></div>
+req.<span class="hljs-property">session</span>.<span class="hljs-property">foo</span></code></pre></div>
 <h5 id="提示：默认的-Session-数据是内存存储的，服务器一旦重启就会丢失，真正的生产环境会把Session进行持久化存储。"><a href="#提示：默认的-Session-数据是内存存储的，服务器一旦重启就会丢失，真正的生产环境会把Session进行持久化存储。" class="headerlink" title="提示：默认的 Session 数据是内存存储的，服务器一旦重启就会丢失，真正的生产环境会把Session进行持久化存储。"></a>提示：默认的 Session 数据是内存存储的，服务器一旦重启就会丢失，真正的生产环境会把Session进行持久化存储。</h5><h2 id="7-在Express-中获取表单GET请求参数"><a href="#7-在Express-中获取表单GET请求参数" class="headerlink" title="7.在Express 中获取表单GET请求参数"></a>7.在Express 中获取表单GET请求参数</h2><p>Express 内置了一个 API ， 可以直接通过 <code>req.query</code>来获取</p>
 <h2 id="8-在Express-中获取表单-POST-请求体数据"><a href="#8-在Express-中获取表单-POST-请求体数据" class="headerlink" title="8.在Express 中获取表单 POST 请求体数据"></a>8.在Express 中获取表单 POST 请求体数据</h2><p>在Express 中没有内置获取表单 POST 请求体的 API， 所以我们要使用一个第三方包 ： <code>bdoy-parser</code></p>
 <ul>
@@ -295,20 +297,20 @@ req.session.foo</code></pre></div>
 
 <span class="hljs-comment">// 0.引包</span>
 <span class="hljs-keyword">var</span> bodyParser = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;body-parser&#x27;</span>)
-<span class="hljs-keyword">var</span> app = express()
+<span class="hljs-keyword">var</span> app = <span class="hljs-title function_">express</span>()
 
 <span class="hljs-comment">// 配置 body-parser</span>
 <span class="hljs-comment">// 只要加入下面俩行代码，则在req 请求对象上会多出来一个属性: body</span>
 <span class="hljs-comment">// 也就是说你就可以直接通过 req.body 来获取表单 POST 请求体数据了</span>
 <span class="hljs-comment">// create application/json parser</span>
-app.use(bodyParser.json())
+app.<span class="hljs-title function_">use</span>(bodyParser.<span class="hljs-title function_">json</span>())
 <span class="hljs-comment">// create application/x-www-form-urlencoded parser</span>
-app.use(bodyParser.urlencoded(&#123; <span class="hljs-attr">extended</span>: <span class="hljs-literal">false</span> &#125;))</code></pre></div></li>
-<li>使用：<div class="hljs"><pre><code class="hljs JavaScript">app.use(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req,res</span>)</span>&#123;
-    res.setHeader(<span class="hljs-string">&#x27;Content-Type&#x27;</span>,<span class="hljs-string">&#x27;text/plain&#x27;</span>)
-    res.write(<span class="hljs-string">&#x27;you posted: \n&#x27;</span>)
+app.<span class="hljs-title function_">use</span>(bodyParser.<span class="hljs-title function_">urlencoded</span>(&#123; <span class="hljs-attr">extended</span>: <span class="hljs-literal">false</span> &#125;))</code></pre></div></li>
+<li>使用：<div class="hljs"><pre><code class="hljs JavaScript">app.<span class="hljs-title function_">use</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">req,res</span>)&#123;
+    res.<span class="hljs-title function_">setHeader</span>(<span class="hljs-string">&#x27;Content-Type&#x27;</span>,<span class="hljs-string">&#x27;text/plain&#x27;</span>)
+    res.<span class="hljs-title function_">write</span>(<span class="hljs-string">&#x27;you posted: \n&#x27;</span>)
     <span class="hljs-comment">// 可以通过 req.body 来获取表单 post 请求体数据</span>
-    res.end(<span class="hljs-built_in">JSON</span>.stringify(req.body,<span class="hljs-literal">null</span>,<span class="hljs-number">2</span>))
+    res.<span class="hljs-title function_">end</span>(<span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(req.<span class="hljs-property">body</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">2</span>))
 &#125;)
 </code></pre></div>
 <h2 id="9-Express-中间件"><a href="#9-Express-中间件" class="headerlink" title="9.Express 中间件"></a>9.Express 中间件</h2><blockquote>
@@ -319,58 +321,58 @@ app.use(bodyParser.urlencoded(&#123; <span class="hljs-attr">extended</span>: <s
 <p><img src="https://image.baidu.com/search/detail?ct=503316480&z=0&ipn=d&word=%E8%87%AA%E6%9D%A5%E6%B0%B4%E5%8E%82&step_word=&hs=0&pn=17&spn=0&di=3960&pi=0&rn=1&tn=baiduimagedetail&is=0,0&istype=0&ie=utf-8&oe=utf-8&in=&cl=2&lm=-1&st=undefined&cs=3663111018,2872047785&os=2674119153,3091905494&simid=4252039746,522837713&adpicid=0&lpn=0&ln=1748&fr=&fmq=1597577857986_R&fm=&ic=undefined&s=undefined&hd=undefined&latest=undefined&copyright=undefined&se=&sme=&tab=0&width=undefined&height=undefined&face=undefined&ist=&jit=&cg=&bdtype=0&oriquery=&objurl=http://thumb.1010pic.com/pic3/quiz/images/201504/222/673f4ce9.png&fromurl=ippr_z2C$qAzdH3FAzdH3Fooo_z&e3B8a8a3tw3tw5_z&e3Bv54AzdH3FvzixAzdH3Ffitpt_t1_1d1mc1lwl00majd0kujdjvducl1u1vmm&gsm=13&rpstart=0&rpnum=0&islist=&querylist=&force=undefined" srcset="/img/loading.gif" alt="中间件 类似于自来水厂的流程"></p>
 <p>中间件的本质就是一个请求处理方法，我们把用户从请求到响应的整个过程分发到多个中间件中去处理，这样做的目的是提高代码的灵活性，动态可扩展的</p>
 <h3 id="9-1-应用程序级别的中间件"><a href="#9-1-应用程序级别的中间件" class="headerlink" title="9.1 应用程序级别的中间件"></a>9.1 应用程序级别的中间件</h3><p>万能匹配（不关心任何请求路径和请求方法）</p>
-<div class="hljs"><pre><code class="hljs JavaScript">app.use(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req,res,next</span>)</span>&#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Time&#x27;</span>,<span class="hljs-built_in">Date</span>.now())
-    next()
+<div class="hljs"><pre><code class="hljs JavaScript">app.<span class="hljs-title function_">use</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">req,res,next</span>)&#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Time&#x27;</span>,<span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>())
+    <span class="hljs-title function_">next</span>()
 &#125;)</code></pre></div>
 <p>以 ‘/xxx/‘ 开头的 条件的 才能匹配</p>
-<div class="hljs"><pre><code class="hljs JavaScript">app.use(<span class="hljs-string">&#x27;/xxx/&#x27;</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req,res,next</span>)</span>&#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Time&#x27;</span>,<span class="hljs-built_in">Date</span>.now())
-    next()
+<div class="hljs"><pre><code class="hljs JavaScript">app.<span class="hljs-title function_">use</span>(<span class="hljs-string">&#x27;/xxx/&#x27;</span>,<span class="hljs-keyword">function</span>(<span class="hljs-params">req,res,next</span>)&#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Time&#x27;</span>,<span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>())
+    <span class="hljs-title function_">next</span>()
 &#125;)</code></pre></div>
 <h3 id="9-2-路由级别的中间件"><a href="#9-2-路由级别的中间件" class="headerlink" title="9.2 路由级别的中间件"></a>9.2 路由级别的中间件</h3><p>get：</p>
 <div class="hljs"><pre><code class="hljs JavaScript">
-app.get(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) </span>&#123;
-    res.send(<span class="hljs-string">&#x27; Got a POST request&#x27;</span>)
+app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) &#123;
+    res.<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27; Got a POST request&#x27;</span>)
 &#125;)</code></pre></div>
 <p>post:</p>
-<div class="hljs"><pre><code class="hljs JavaScript">app.post(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) </span>&#123;
-    res.send(<span class="hljs-string">&#x27;Hello world&#x27;</span>)
+<div class="hljs"><pre><code class="hljs JavaScript">app.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) &#123;
+    res.<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;Hello world&#x27;</span>)
 &#125;)</code></pre></div>
 
 <p>put :</p>
-<div class="hljs"><pre><code class="hljs JavaScript">app.put(<span class="hljs-string">&#x27;/user&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) </span>&#123;
-    res.send(<span class="hljs-string">&#x27; Got a PUT request at /user&#x27;</span>)
+<div class="hljs"><pre><code class="hljs JavaScript">app.<span class="hljs-title function_">put</span>(<span class="hljs-string">&#x27;/user&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) &#123;
+    res.<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27; Got a PUT request at /user&#x27;</span>)
 &#125;)</code></pre></div>
 
 <p>delete :</p>
-<div class="hljs"><pre><code class="hljs JavaScript">app.delete(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) </span>&#123;
-    res.send(<span class="hljs-string">&#x27; Got a DELETE request at /user&#x27;</span>)
+<div class="hljs"><pre><code class="hljs JavaScript">app.<span class="hljs-title function_">delete</span>(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) &#123;
+    res.<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27; Got a DELETE request at /user&#x27;</span>)
  &#125;)</code></pre></div>
-<h3 id="9-3错误处理中间件"><a href="#9-3错误处理中间件" class="headerlink" title="9.3错误处理中间件"></a>9.3错误处理中间件</h3><div class="hljs"><pre><code class="hljs JavaScript">app.use(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err,req,res,next</span>)</span>&#123;
-    <span class="hljs-built_in">console</span>.error(err,stack);
-    res.status(<span class="hljs-number">500</span>).send(<span class="hljs-string">&#x27;Something broke&#x27;</span>);
+<h3 id="9-3错误处理中间件"><a href="#9-3错误处理中间件" class="headerlink" title="9.3错误处理中间件"></a>9.3错误处理中间件</h3><div class="hljs"><pre><code class="hljs JavaScript">app.<span class="hljs-title function_">use</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">err,req,res,next</span>)&#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(err,stack);
+    res.<span class="hljs-title function_">status</span>(<span class="hljs-number">500</span>).<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;Something broke&#x27;</span>);
 &#125;);</code></pre></div>
 <p>配置使用404中间件：</p>
-<div class="hljs"><pre><code class="hljs JavaScript">app.use(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req,res</span>)</span>&#123;
-    res.render(<span class="hljs-string">&#x27;404.html&#x27;</span>);
+<div class="hljs"><pre><code class="hljs JavaScript">app.<span class="hljs-title function_">use</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">req,res</span>)&#123;
+    res.<span class="hljs-title function_">render</span>(<span class="hljs-string">&#x27;404.html&#x27;</span>);
 &#125;);</code></pre></div>
 <p>配置全局错误处理中间件:</p>
-<div class="hljs"><pre><code class="hljs JavaScript">app.get(<span class="hljs-string">&#x27;/a&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res, next</span>) </span>&#123;
-	fs.readFile(<span class="hljs-string">&#x27;.a/bc&#x27;</span>, funtion() &#123;
+<div class="hljs"><pre><code class="hljs JavaScript">app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/a&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">req, res, next</span>) &#123;
+	fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;.a/bc&#x27;</span>, <span class="hljs-title function_">funtion</span>(<span class="hljs-params"></span>) &#123;
 		<span class="hljs-keyword">if</span> (err) &#123;
         	<span class="hljs-comment">// 当调用next()传参后，则直接进入到全局错误处理中间件方法中</span>
         	<span class="hljs-comment">// 当发生全局错误的时候，我们可以调用next传递错误对象</span>
         	<span class="hljs-comment">// 然后被全局错误处理中间件匹配到并进行处理</span>
-			next(err);
+			<span class="hljs-title function_">next</span>(err);
 		&#125;
 	&#125;)
 &#125;);
 <span class="hljs-comment">//全局错误处理中间件</span>
-app.use(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err,req,res,next</span>)</span>&#123;
-    res.status(<span class="hljs-number">500</span>).json(&#123;
-        err_code:<span class="hljs-number">500</span>,
-        message:err.message
+app.<span class="hljs-title function_">use</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">err,req,res,next</span>)&#123;
+    res.<span class="hljs-title function_">status</span>(<span class="hljs-number">500</span>).<span class="hljs-title function_">json</span>(&#123;
+        <span class="hljs-attr">err_code</span>:<span class="hljs-number">500</span>,
+        <span class="hljs-attr">message</span>:err.<span class="hljs-property">message</span>
     &#125;);
 &#125;);</code></pre></div>
 <h3 id="9-4-内置中间件"><a href="#9-4-内置中间件" class="headerlink" title="9.4 内置中间件"></a>9.4 内置中间件</h3><ul>
@@ -390,65 +392,83 @@ app.use(<span class="hljs-function"><span class="hljs-keyword">function</span>(<
 <li>session</li>
 </ul>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/Nodejs/">Nodejs</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/Node/">Node</a>
-                  
-                  <a class="hover-with-bg" href="/tags/Express/">Express</a>
-                  
-                  <a class="hover-with-bg" href="/tags/art-template/">art-template</a>
-                  
-                  <a class="hover-with-bg" href="/tags/express-session/">express-session</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2020/08/12/09.Mongodb%20%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">Mongodb数据库的基本使用</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2020/08/08/06.%E6%A8%A1%E5%9D%97%E7%B3%BB%E7%BB%9F/">
-                    <span class="hidden-mobile">Node的模板系统</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/Nodejs/">
+                              Nodejs
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/Node/">
+                                  Node
+                                </a>
+                                
+                                <a class="hover-with-bg" href="/tags/Express/">
+                                  Express
+                                </a>
+                                
+                                <a class="hover-with-bg" href="/tags/art-template/">
+                                  art-template
+                                </a>
+                                
+                                <a class="hover-with-bg" href="/tags/express-session/">
+                                  express-session
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2020/08/12/09.Mongodb%20%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      Mongodb数据库的基本使用
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2020/08/08/06.%E6%A8%A1%E5%9D%97%E7%B3%BB%E7%BB%9F/">
+                                    <span class="hidden-mobile">
+                                      Node的模板系统
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -475,26 +495,26 @@ app.use(<span class="hljs-function"><span class="hljs-keyword">function</span>(<
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

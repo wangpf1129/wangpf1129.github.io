@@ -203,18 +203,20 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">Vue-Cli脚手架</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h1 id="Vue-CLI-脚手架⭐"><a href="#Vue-CLI-脚手架⭐" class="headerlink" title="Vue-CLI  脚手架⭐"></a>Vue-CLI  脚手架⭐</h1><blockquote>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                Vue-Cli脚手架
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h1 id="Vue-CLI-脚手架⭐"><a href="#Vue-CLI-脚手架⭐" class="headerlink" title="Vue-CLI  脚手架⭐"></a>Vue-CLI  脚手架⭐</h1><blockquote>
 <p><a target="_blank" rel="noopener" href="https://cli.vuejs.org/zh/">Vue CLI</a> 是 Vue 的脚手架工具，它可以帮助我们快速生成 Vue 基础项目代码，提供开箱即用的功能特性。</p>
 </blockquote>
 <ul>
@@ -228,73 +230,74 @@
 <li><p>安装Vue脚手架</p>
 <ul>
 <li><div class="hljs"><pre><code class="shell">npm install -g @vue/cli@版本号
-<pre><code class="hljs">
-    
+<pre><code class="hljs markdown">
+<span class="hljs-code">    </span>
+<span class="hljs-code"></span>
+<span class="hljs-bullet">-</span> Vue CLI2初始化项目
 
-- Vue CLI2初始化项目
-
-  - ```shell
-    vue init webpack my-project</code></pre></div></code></pre>
+<span class="hljs-bullet">  -</span> <span class="hljs-code">```shell</span>
+<span class="hljs-code">    vue init webpack my-project</span></code></pre></div>
+</code></pre>
 </li>
 </ul>
 </li>
 <li><p>Vue CLI3初始化项目</p>
 <ul>
 <li><div class="hljs"><pre><code class="shell">vue create my-project
-<pre><code class="hljs">
+<pre><code class="hljs awk">
 
 
-## 2 Vue-CLI2 详解
+<span class="hljs-comment">## 2 Vue-CLI2 详解</span>
 
-### 2.1 步骤详解
-
-
-
-![image-20200923112538728](https://i.loli.net/2020/09/25/gXfdbyo7erTmz19.png)
+<span class="hljs-comment">### 2.1 步骤详解</span>
 
 
 
-
-
-### 2.2 目录详解
-
-
-
-![image-20200923112626821](https://i.loli.net/2020/09/25/9eP2bklLcqVTywp.png)
+![image-<span class="hljs-number">20200923112538728</span>](https:<span class="hljs-regexp">//i</span>.loli.net<span class="hljs-regexp">/2020/</span><span class="hljs-number">09</span><span class="hljs-regexp">/25/g</span>Xfdbyo7erTmz19.png)
 
 
 
 
 
-## 3 Runtime-Compiler和Runtime-only的区别 ⭐
+<span class="hljs-comment">### 2.2 目录详解</span>
 
 
 
-- **1、Runtime-Compiler和Runtime-only的main.js文件的区别：**
+![image-<span class="hljs-number">20200923112626821</span>](https:<span class="hljs-regexp">//i</span>.loli.net<span class="hljs-regexp">/2020/</span><span class="hljs-number">09</span><span class="hljs-regexp">/25/</span><span class="hljs-number">9</span>eP2bklLcqVTywp.png)
+
+
+
+
+
+<span class="hljs-comment">## 3 Runtime-Compiler和Runtime-only的区别 ⭐</span>
+
+
+
+- **<span class="hljs-number">1</span>、Runtime-Compiler和Runtime-only的main.js文件的区别：**
 
 ```javascript
-//（1） Runtime-Compiler
+<span class="hljs-regexp">//</span>（<span class="hljs-number">1</span>） Runtime-Compiler
 new Vue(&#123;
-  el: &#x27;#app&#x27;,
+  el: <span class="hljs-string">&#x27;#app&#x27;</span>,
   router,
   components: &#123; App &#125;,
-  template: &#x27;&lt;App/&gt;&#x27;
+  template: <span class="hljs-string">&#x27;&lt;App/&gt;&#x27;</span>
 &#125;)
  
-// （2）Runtime-only
+<span class="hljs-regexp">//</span> （<span class="hljs-number">2</span>）Runtime-only
 new Vue(&#123;
-  el: &#x27;#app&#x27;,
+  el: <span class="hljs-string">&#x27;#app&#x27;</span>,
   router,
   render: h =&gt; h(App)
 &#125;)
  
-// Runtime-Complier 解析过程：
+<span class="hljs-regexp">//</span> Runtime-Complier 解析过程：
 第一步：将template模板转换成抽象语法树（ast）;
 第二步：通过render函数将抽象语法树转换成虚拟DOM（vdom）;
 第三步：将虚拟DOM转换成真正的DOM；
 template =&gt; 抽象语法树(ast) =&gt; render() =&gt; 虚拟DOM(vdom) =&gt; 页面
  
-// Runtime-only 解析过程：
+<span class="hljs-regexp">//</span> Runtime-only 解析过程：
 第一步：vue-template-compiler插件直接将组件转换成 render函数；
 第二步：将render函数返回的虚拟DOM转换成页面；
 render() =&gt; 虚拟DOM(vdom) =&gt; 页面；</code></pre></div>
@@ -308,17 +311,17 @@ render() =&gt; 虚拟DOM(vdom) =&gt; 页面；</code></pre></div>
 <ul>
 <li><strong>2.render()函数</strong></li>
 </ul>
-<div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> render = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-keyword">var</span> _vm = <span class="hljs-built_in">this</span>
-  <span class="hljs-keyword">var</span> _h = _vm.$createElement
-  <span class="hljs-keyword">var</span> _c = _vm._self._c || _h
-  <span class="hljs-keyword">return</span> _c(
+<div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> render = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-keyword">var</span> _vm = <span class="hljs-variable language_">this</span>
+  <span class="hljs-keyword">var</span> _h = _vm.<span class="hljs-property">$createElement</span>
+  <span class="hljs-keyword">var</span> _c = _vm.<span class="hljs-property">_self</span>.<span class="hljs-property">_c</span> || _h
+  <span class="hljs-keyword">return</span> <span class="hljs-title function_">_c</span>(
     <span class="hljs-string">&quot;div&quot;</span>,
     &#123; <span class="hljs-attr">attrs</span>: &#123; <span class="hljs-attr">id</span>: <span class="hljs-string">&quot;app&quot;</span> &#125; &#125;,
     [
-      _c(<span class="hljs-string">&quot;img&quot;</span>, &#123; <span class="hljs-attr">attrs</span>: &#123; <span class="hljs-attr">src</span>: <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;./assets/logo.png&quot;</span>) &#125; &#125;),
-      _vm._v(<span class="hljs-string">&quot; &quot;</span>),
-      _c(<span class="hljs-string">&quot;router-view&quot;</span>)
+      <span class="hljs-title function_">_c</span>(<span class="hljs-string">&quot;img&quot;</span>, &#123; <span class="hljs-attr">attrs</span>: &#123; <span class="hljs-attr">src</span>: <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;./assets/logo.png&quot;</span>) &#125; &#125;),
+      _vm.<span class="hljs-title function_">_v</span>(<span class="hljs-string">&quot; &quot;</span>),
+      <span class="hljs-title function_">_c</span>(<span class="hljs-string">&quot;router-view&quot;</span>)
     ],
     <span class="hljs-number">1</span>
   )
@@ -351,59 +354,71 @@ render() =&gt; 虚拟DOM(vdom) =&gt; 页面；</code></pre></div>
 <h3 id="4-1-安装步骤详解"><a href="#4-1-安装步骤详解" class="headerlink" title="4.1  安装步骤详解"></a>4.1  安装步骤详解</h3><p><img src="https://i.loli.net/2020/09/25/sXYTBZDdym5GiF4.png" srcset="/img/loading.gif" alt="image-20200923113522511"></p>
 <h3 id="4-2-目录结构详解"><a href="#4-2-目录结构详解" class="headerlink" title="4.2 目录结构详解"></a>4.2 目录结构详解</h3><p><img src="https://i.loli.net/2020/09/25/F6ybPXaMpt8vSIh.png" srcset="/img/loading.gif" alt="image-20200923113601396"></p>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/vue/">vue</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/vue/">vue</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2020/09/26/23-VueRouter/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">VueRouter--前端路由</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2020/09/25/21-webpack/">
-                    <span class="hidden-mobile">webpack</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/vue/">
+                              vue
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/vue/">
+                                  vue
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2020/09/26/23-VueRouter/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      VueRouter--前端路由
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2020/09/25/21-webpack/">
+                                    <span class="hidden-mobile">
+                                      webpack
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -430,26 +445,26 @@ render() =&gt; 虚拟DOM(vdom) =&gt; 页面；</code></pre></div>
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

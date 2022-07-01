@@ -203,50 +203,52 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">重写数组遍历方法（forEach,filter,map,reduce）</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h2 id="直接上代码了"><a href="#直接上代码了" class="headerlink" title="直接上代码了"></a>直接上代码了</h2><div class="hljs"><pre><code class="hljs js">
-<span class="hljs-built_in">Array</span>.prototype.myForEach = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">callback</span>) </span>&#123;
-    <span class="hljs-keyword">let</span> arg2 = <span class="hljs-built_in">arguments</span>[<span class="hljs-number">1</span>] || <span class="hljs-built_in">window</span>;
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">this</span>.length; i++) &#123;
-      callback.apply(arg2, [<span class="hljs-built_in">this</span>[i], i, <span class="hljs-built_in">this</span>]);
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                重写数组遍历方法（forEach,filter,map,reduce）
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h2 id="直接上代码了"><a href="#直接上代码了" class="headerlink" title="直接上代码了"></a>直接上代码了</h2><div class="hljs"><pre><code class="hljs js">
+<span class="hljs-title class_">Array</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">myForEach</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">callback</span>) &#123;
+    <span class="hljs-keyword">let</span> arg2 = <span class="hljs-variable language_">arguments</span>[<span class="hljs-number">1</span>] || <span class="hljs-variable language_">window</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">length</span>; i++) &#123;
+      callback.<span class="hljs-title function_">apply</span>(arg2, [<span class="hljs-variable language_">this</span>[i], i, <span class="hljs-variable language_">this</span>]);
     &#125;
   &#125;;
 
-  <span class="hljs-built_in">Array</span>.prototype.myMap = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">callback</span>) </span>&#123;
-    <span class="hljs-keyword">let</span> arg2 = <span class="hljs-built_in">arguments</span>[<span class="hljs-number">1</span>] || <span class="hljs-built_in">window</span>;
+  <span class="hljs-title class_">Array</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">myMap</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">callback</span>) &#123;
+    <span class="hljs-keyword">let</span> arg2 = <span class="hljs-variable language_">arguments</span>[<span class="hljs-number">1</span>] || <span class="hljs-variable language_">window</span>;
     <span class="hljs-keyword">let</span> newArr = [];
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">this</span>.length; i++) &#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">length</span>; i++) &#123;
       <span class="hljs-comment">// 这里需要对对象进行深拷贝，这里就省略了</span>
-      newArr.push(callback.apply(arg2, [<span class="hljs-built_in">this</span>[i], i, <span class="hljs-built_in">this</span>]));
+      newArr.<span class="hljs-title function_">push</span>(callback.<span class="hljs-title function_">apply</span>(arg2, [<span class="hljs-variable language_">this</span>[i], i, <span class="hljs-variable language_">this</span>]));
     &#125;
     <span class="hljs-keyword">return</span> newArr;
   &#125;;
 
-  <span class="hljs-built_in">Array</span>.prototype.myFilter = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">callback</span>) </span>&#123;
-    <span class="hljs-keyword">let</span> arg2 = <span class="hljs-built_in">arguments</span>[<span class="hljs-number">1</span>] || <span class="hljs-built_in">window</span>;
+  <span class="hljs-title class_">Array</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">myFilter</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">callback</span>) &#123;
+    <span class="hljs-keyword">let</span> arg2 = <span class="hljs-variable language_">arguments</span>[<span class="hljs-number">1</span>] || <span class="hljs-variable language_">window</span>;
     <span class="hljs-keyword">let</span> newArr = [];
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">this</span>.length; i++) &#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">length</span>; i++) &#123;
        <span class="hljs-comment">// 这里需要对对象进行深拷贝，这里就省略了</span>
-      callback.apply(arg2, [<span class="hljs-built_in">this</span>[i], i, <span class="hljs-built_in">this</span>]) ? newArr.push(<span class="hljs-built_in">this</span>[i]) : newArr;
+      callback.<span class="hljs-title function_">apply</span>(arg2, [<span class="hljs-variable language_">this</span>[i], i, <span class="hljs-variable language_">this</span>]) ? newArr.<span class="hljs-title function_">push</span>(<span class="hljs-variable language_">this</span>[i]) : newArr;
     &#125;
     <span class="hljs-keyword">return</span> newArr;
   &#125;;
 
-  <span class="hljs-built_in">Array</span>.prototype.myEvery = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">callback</span>) </span>&#123;
-    <span class="hljs-keyword">let</span> arg2 = <span class="hljs-built_in">arguments</span>[<span class="hljs-number">1</span>] || <span class="hljs-built_in">window</span>;
+  <span class="hljs-title class_">Array</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">myEvery</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">callback</span>) &#123;
+    <span class="hljs-keyword">let</span> arg2 = <span class="hljs-variable language_">arguments</span>[<span class="hljs-number">1</span>] || <span class="hljs-variable language_">window</span>;
     <span class="hljs-keyword">let</span> gate = <span class="hljs-literal">true</span>;
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">this</span>.length; i++) &#123;
-      <span class="hljs-keyword">if</span> (!callback.apply(arg2, [<span class="hljs-built_in">this</span>[i], i, <span class="hljs-built_in">this</span>])) &#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">length</span>; i++) &#123;
+      <span class="hljs-keyword">if</span> (!callback.<span class="hljs-title function_">apply</span>(arg2, [<span class="hljs-variable language_">this</span>[i], i, <span class="hljs-variable language_">this</span>])) &#123;
         gate = <span class="hljs-literal">false</span>;
         <span class="hljs-keyword">break</span>;
       &#125;
@@ -254,11 +256,11 @@
     <span class="hljs-keyword">return</span> gate;
   &#125;;
 
-  <span class="hljs-built_in">Array</span>.prototype.mySome = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">callback</span>) </span>&#123;
-    <span class="hljs-keyword">let</span> arg2 = <span class="hljs-built_in">arguments</span>[<span class="hljs-number">1</span>] || <span class="hljs-built_in">window</span>;
+  <span class="hljs-title class_">Array</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">mySome</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">callback</span>) &#123;
+    <span class="hljs-keyword">let</span> arg2 = <span class="hljs-variable language_">arguments</span>[<span class="hljs-number">1</span>] || <span class="hljs-variable language_">window</span>;
     <span class="hljs-keyword">let</span> gate = <span class="hljs-literal">false</span>;
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">this</span>.length; i++) &#123;
-      <span class="hljs-keyword">if</span> (callback.apply(arg2, [<span class="hljs-built_in">this</span>[i], i, <span class="hljs-built_in">this</span>])) &#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">length</span>; i++) &#123;
+      <span class="hljs-keyword">if</span> (callback.<span class="hljs-title function_">apply</span>(arg2, [<span class="hljs-variable language_">this</span>[i], i, <span class="hljs-variable language_">this</span>])) &#123;
         gate = <span class="hljs-literal">true</span>;
         <span class="hljs-keyword">break</span>;
       &#125;
@@ -266,74 +268,86 @@
     <span class="hljs-keyword">return</span> gate;
   &#125;;
 
-  <span class="hljs-built_in">Array</span>.prototype.myReduce = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">callback, initialValue</span>) </span>&#123;
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">this</span>.length; i++) &#123;
+  <span class="hljs-title class_">Array</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">myReduce</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">callback, initialValue</span>) &#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">length</span>; i++) &#123;
         <span class="hljs-comment">// 这里需要对对象进行深拷贝，这里就省略了</span>
-      initialValue = callback(initialValue, <span class="hljs-built_in">this</span>[i], i, <span class="hljs-built_in">this</span>);
+      initialValue = <span class="hljs-title function_">callback</span>(initialValue, <span class="hljs-variable language_">this</span>[i], i, <span class="hljs-variable language_">this</span>);
     &#125;
     <span class="hljs-keyword">return</span> initialValue;
   &#125;;
 
-  <span class="hljs-built_in">Array</span>.prototype.myReduceRight = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">callback, initialValue</span>) </span>&#123;
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-built_in">this</span>.length - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) &#123;
+  <span class="hljs-title class_">Array</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">myReduceRight</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">callback, initialValue</span>) &#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-variable language_">this</span>.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) &#123;
         <span class="hljs-comment">// 这里需要对对象进行深拷贝，这里就省略了</span>
-      initialValue = callback(initialValue, <span class="hljs-built_in">this</span>[i], i, <span class="hljs-built_in">this</span>);
+      initialValue = <span class="hljs-title function_">callback</span>(initialValue, <span class="hljs-variable language_">this</span>[i], i, <span class="hljs-variable language_">this</span>);
     &#125;
     <span class="hljs-keyword">return</span> initialValue;
   &#125;;</code></pre></div>
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/JavaScript/">JavaScript</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/JavaScript/">JavaScript</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2021/03/27/59-HTTP%E7%BC%93%E5%AD%98/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">一次弄懂HTTP缓存</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2021/03/17/57-%E9%87%8D%E5%86%99JS%E6%96%B9%E6%B3%95/">
-                    <span class="hidden-mobile">重写bind,call,apply方法</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/JavaScript/">
+                              JavaScript
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/JavaScript/">
+                                  JavaScript
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2021/03/27/59-HTTP%E7%BC%93%E5%AD%98/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      一次弄懂HTTP缓存
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2021/03/17/57-%E9%87%8D%E5%86%99JS%E6%96%B9%E6%B3%95/">
+                                    <span class="hidden-mobile">
+                                      重写bind,call,apply方法
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -360,26 +374,26 @@
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

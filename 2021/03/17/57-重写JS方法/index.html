@@ -203,41 +203,43 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">重写bind,call,apply方法</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>不能使用ES6的语法糖来实现，比如（解构赋值，symbol）</strong></p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                重写bind,call,apply方法
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>不能使用ES6的语法糖来实现，比如（解构赋值，symbol）</strong></p>
 <h2 id="call方法"><a href="#call方法" class="headerlink" title="call方法"></a>call方法</h2><p>想要对call 的重写，前提是需要知道 call 的几个特点：(<strong>假设有一个 函数 test</strong>)</p>
 <ol>
 <li>test 调用 call() ,那么就会执行 text。</li>
 <li>test 中的this 指向 call 的第一个参数。</li>
 <li>call 的第二个参数开始，都在test函数的参数列表中</li>
 </ol>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>,<span class="hljs-built_in">arguments</span>);
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">test</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>,<span class="hljs-variable language_">arguments</span>);
 &#125;
 
-test.call(&#123;<span class="hljs-attr">a</span>:<span class="hljs-number">1</span>,<span class="hljs-attr">b</span>:<span class="hljs-number">2</span>&#125;,<span class="hljs-string">&#x27;张三&#x27;</span>,<span class="hljs-string">&#x27;李四&#x27;</span>)</code></pre></div>
+test.<span class="hljs-title function_">call</span>(&#123;<span class="hljs-attr">a</span>:<span class="hljs-number">1</span>,<span class="hljs-attr">b</span>:<span class="hljs-number">2</span>&#125;,<span class="hljs-string">&#x27;张三&#x27;</span>,<span class="hljs-string">&#x27;李四&#x27;</span>)</code></pre></div>
 
 <p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/788aeb81c07d445dade1b137033e51e5~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="call.png"></p>
 <h3 id="重写call"><a href="#重写call" class="headerlink" title="重写call"></a>重写call</h3><p>在重写call前，我需要知道一个知识：</p>
 <p><strong>谁调用这个函数，这个函数内的this就指向谁</strong></p>
 <p>上述的 test 函数，默认是window调用它的，所以 test函数的this就指向 window</p>
-<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><div class="hljs"><pre><code class="hljs js"><span class="hljs-built_in">Function</span>.prototype.myCall = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">context</span>) </span>&#123;
-  context = context ? <span class="hljs-built_in">Object</span>(context) : <span class="hljs-built_in">window</span>; <span class="hljs-comment">// 简化了， 这里就直接把数据类型都转换为Object了</span>
-  <span class="hljs-keyword">let</span> uniqueKey = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime().toString(); <span class="hljs-comment">// 创建一个唯一值，避免方法名冲突</span>
-  context[uniqueKey] = <span class="hljs-built_in">this</span>;
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><div class="hljs"><pre><code class="hljs js"><span class="hljs-title class_">Function</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">myCall</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">context</span>) &#123;
+  context = context ? <span class="hljs-title class_">Object</span>(context) : <span class="hljs-variable language_">window</span>; <span class="hljs-comment">// 简化了， 这里就直接把数据类型都转换为Object了</span>
+  <span class="hljs-keyword">let</span> uniqueKey = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>().<span class="hljs-title function_">getTime</span>().<span class="hljs-title function_">toString</span>(); <span class="hljs-comment">// 创建一个唯一值，避免方法名冲突</span>
+  context[uniqueKey] = <span class="hljs-variable language_">this</span>;
   <span class="hljs-keyword">let</span> args = [];
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; <span class="hljs-built_in">arguments</span>.length; i++) &#123;
-    args.push(<span class="hljs-string">&#x27;arguments[&#x27;</span> + i + <span class="hljs-string">&#x27;]&#x27;</span>);
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; <span class="hljs-variable language_">arguments</span>.<span class="hljs-property">length</span>; i++) &#123;
+    args.<span class="hljs-title function_">push</span>(<span class="hljs-string">&#x27;arguments[&#x27;</span> + i + <span class="hljs-string">&#x27;]&#x27;</span>);
   &#125;
 
   <span class="hljs-keyword">const</span> result = <span class="hljs-built_in">eval</span>(<span class="hljs-string">&#x27;context[uniqueKey](&#x27;</span> + args + <span class="hljs-string">&#x27;)&#x27;</span>);
@@ -254,14 +256,14 @@ test.call(&#123;<span class="hljs-attr">a</span>:<span class="hljs-number">1</sp
 <li>apply 的 第二个参数，<strong>如果是 object/funciton/null/undefined ,那么 arguments.length 直接为 0</strong></li>
 <li>apply 的 第二个参数， <strong>如果是 number/string/boolean，会报错</strong></li>
 </ol>
-<h3 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h3><div class="hljs"><pre><code class="hljs js"><span class="hljs-built_in">Function</span>.prototype.myApply = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">context, args</span>) </span>&#123;
-  context = context ? <span class="hljs-built_in">Object</span>(context) : <span class="hljs-built_in">window</span>;
-  <span class="hljs-keyword">let</span> uniqueKey = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime().toString();
-  context[uniqueKey] = <span class="hljs-built_in">this</span>;
+<h3 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h3><div class="hljs"><pre><code class="hljs js"><span class="hljs-title class_">Function</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">myApply</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">context, args</span>) &#123;
+  context = context ? <span class="hljs-title class_">Object</span>(context) : <span class="hljs-variable language_">window</span>;
+  <span class="hljs-keyword">let</span> uniqueKey = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>().<span class="hljs-title function_">getTime</span>().<span class="hljs-title function_">toString</span>();
+  context[uniqueKey] = <span class="hljs-variable language_">this</span>;
   <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> args === <span class="hljs-string">&#x27;number&#x27;</span> || <span class="hljs-keyword">typeof</span> args === <span class="hljs-string">&#x27;string&#x27;</span> || <span class="hljs-keyword">typeof</span> args === <span class="hljs-string">&#x27;boolean&#x27;</span>) &#123;
-    <span class="hljs-keyword">throw</span>  <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">&#x27;CreateListFromArrayLike called on non-object&#x27;</span>);
+    <span class="hljs-keyword">throw</span>  <span class="hljs-keyword">new</span> <span class="hljs-title class_">TypeError</span>(<span class="hljs-string">&#x27;CreateListFromArrayLike called on non-object&#x27;</span>);
   &#125;
-  <span class="hljs-keyword">if</span> (!args || <span class="hljs-built_in">Array</span>.isArray(args) === <span class="hljs-literal">false</span>) &#123;
+  <span class="hljs-keyword">if</span> (!args || <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(args) === <span class="hljs-literal">false</span>) &#123;
     <span class="hljs-keyword">return</span> context[uniqueKey]();
   &#125;
 
@@ -285,76 +287,88 @@ test.call(&#123;<span class="hljs-attr">a</span>:<span class="hljs-number">1</sp
 </li>
 </ol>
 <p>根据以上特点来实现一下</p>
-<h3 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h3><div class="hljs"><pre><code class="hljs js"><span class="hljs-built_in">Function</span>.prototype.myBind = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">context</span>) </span>&#123;
-   <span class="hljs-keyword">let</span> _this = <span class="hljs-built_in">this</span>,
+<h3 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h3><div class="hljs"><pre><code class="hljs js"><span class="hljs-title class_">Function</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">myBind</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">context</span>) &#123;
+   <span class="hljs-keyword">let</span> _this = <span class="hljs-variable language_">this</span>,
      <span class="hljs-comment">// bind()传的参数列表</span>
-     args = [].slice.call(<span class="hljs-built_in">arguments</span>, <span class="hljs-number">1</span>), <span class="hljs-comment">// 去掉第一个，因为第一个是this指向的东西</span>
-     _tempFn = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;&#125;;  <span class="hljs-comment">// 作为原型链继承的中间件函数</span>
+     args = [].<span class="hljs-property">slice</span>.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">arguments</span>, <span class="hljs-number">1</span>), <span class="hljs-comment">// 去掉第一个，因为第一个是this指向的东西</span>
+     _tempFn = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;&#125;;  <span class="hljs-comment">// 作为原型链继承的中间件函数</span>
    
-   <span class="hljs-keyword">let</span> newFn = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+   <span class="hljs-keyword">let</span> newFn = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
      <span class="hljs-comment">// 返回的新函数的参数列表</span>
-     <span class="hljs-keyword">let</span> newArgs = [].slice.call(<span class="hljs-built_in">arguments</span>);
-     <span class="hljs-keyword">return</span> _this.apply(<span class="hljs-built_in">this</span> <span class="hljs-keyword">instanceof</span> newFn ? <span class="hljs-built_in">this</span> : context, args.concat(newArgs));
+     <span class="hljs-keyword">let</span> newArgs = [].<span class="hljs-property">slice</span>.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">arguments</span>);
+     <span class="hljs-keyword">return</span> _this.<span class="hljs-title function_">apply</span>(<span class="hljs-variable language_">this</span> <span class="hljs-keyword">instanceof</span> newFn ? <span class="hljs-variable language_">this</span> : context, args.<span class="hljs-title function_">concat</span>(newArgs));
    &#125;;
    <span class="hljs-comment">// newFn.prototype = this.prototype  // 这个共用了一个原型，不太好</span>
-   _tempFn.prototype = <span class="hljs-built_in">this</span>.prototype;
-   newFn.prototype = <span class="hljs-keyword">new</span> _tempFn();
+   _tempFn.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>;
+   newFn.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = <span class="hljs-keyword">new</span> <span class="hljs-title function_">_tempFn</span>();
    <span class="hljs-keyword">return</span> newFn;
  &#125;;</code></pre></div>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/JavaScript/">JavaScript</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/JavaScript/">JavaScript</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2021/03/20/58-%E9%87%8D%E5%86%99JS%E6%96%B9%E6%B3%95%E4%BA%8C/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">重写数组遍历方法（forEach,filter,map,reduce）</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2021/03/16/56-%E5%AE%9E%E7%8E%B0%E5%87%A0%E4%B8%AA%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">
-                    <span class="hidden-mobile">实现几个经典排序算法</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/JavaScript/">
+                              JavaScript
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/JavaScript/">
+                                  JavaScript
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2021/03/20/58-%E9%87%8D%E5%86%99JS%E6%96%B9%E6%B3%95%E4%BA%8C/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      重写数组遍历方法（forEach,filter,map,reduce）
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2021/03/16/56-%E5%AE%9E%E7%8E%B0%E5%87%A0%E4%B8%AA%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">
+                                    <span class="hidden-mobile">
+                                      实现几个经典排序算法
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -381,26 +395,26 @@ test.call(&#123;<span class="hljs-attr">a</span>:<span class="hljs-number">1</sp
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

@@ -203,20 +203,22 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">回调地狱（callback hell） 和 promise</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h2 id="1-callback-hell-回调地狱"><a href="#1-callback-hell-回调地狱" class="headerlink" title="1. callback hell  回调地狱"></a>1. callback hell  回调地狱</h2><h3 id="1-1-没有顺序的读取-a-b-c-三个文件"><a href="#1-1-没有顺序的读取-a-b-c-三个文件" class="headerlink" title="1.1 没有顺序的读取 a  b  c 三个文件"></a>1.1 没有顺序的读取 a  b  c 三个文件</h3><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>)
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                回调地狱（callback hell） 和 promise
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h2 id="1-callback-hell-回调地狱"><a href="#1-callback-hell-回调地狱" class="headerlink" title="1. callback hell  回调地狱"></a>1. callback hell  回调地狱</h2><h3 id="1-1-没有顺序的读取-a-b-c-三个文件"><a href="#1-1-没有顺序的读取-a-b-c-三个文件" class="headerlink" title="1.1 没有顺序的读取 a  b  c 三个文件"></a>1.1 没有顺序的读取 a  b  c 三个文件</h3><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>)
 
-fs.readFile(<span class="hljs-string">&#x27;./a.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err, data</span>) </span>&#123;
+fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./a.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">err, data</span>) &#123;
     <span class="hljs-keyword">if</span> (err) &#123;
         <span class="hljs-comment">// return console.log(&#x27;读取错误&#x27;);</span>
 
@@ -224,9 +226,9 @@ fs.readFile(<span class="hljs-string">&#x27;./a.txt&#x27;</span>, <span class="h
         <span class="hljs-comment">// 1.阻止程序的执行  2. 把错误消息打印到控制台  </span>
         <span class="hljs-keyword">throw</span> err
     &#125;
-    <span class="hljs-built_in">console</span>.log(data);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data);
 &#125;)
-fs.readFile(<span class="hljs-string">&#x27;./b.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err, data</span>) </span>&#123;
+fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./b.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">err, data</span>) &#123;
     <span class="hljs-keyword">if</span> (err) &#123;
         <span class="hljs-comment">// return console.log(&#x27;读取错误&#x27;);</span>
 
@@ -234,9 +236,9 @@ fs.readFile(<span class="hljs-string">&#x27;./b.txt&#x27;</span>, <span class="h
         <span class="hljs-comment">// 1.阻止程序的执行  2. 把错误消息打印到控制台  </span>
         <span class="hljs-keyword">throw</span> err
     &#125;
-    <span class="hljs-built_in">console</span>.log(data);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data);
 &#125;)
-fs.readFile(<span class="hljs-string">&#x27;./c.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err, data</span>) </span>&#123;
+fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./c.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">err, data</span>) &#123;
     <span class="hljs-keyword">if</span> (err) &#123;
         <span class="hljs-comment">// return console.log(&#x27;读取错误&#x27;);</span>
 
@@ -244,7 +246,7 @@ fs.readFile(<span class="hljs-string">&#x27;./c.txt&#x27;</span>, <span class="h
         <span class="hljs-comment">// 1.阻止程序的执行  2. 把错误消息打印到控制台  </span>
         <span class="hljs-keyword">throw</span> err
     &#125;
-    <span class="hljs-built_in">console</span>.log(data);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data);
 &#125;)
 </code></pre></div>
 <div class="hljs"><pre><code class="hljs shell">PS F:\nodejs\Node_test&gt; node .\13.回调地狱.js
@@ -261,7 +263,7 @@ hello cccc
 hello bbbb</code></pre></div>
 <h3 id="1-2-想要有顺序的分别-读取-a-b-c-三个文件"><a href="#1-2-想要有顺序的分别-读取-a-b-c-三个文件" class="headerlink" title="1.2 想要有顺序的分别 读取 a b c 三个文件"></a>1.2 想要有顺序的分别 读取 a b c 三个文件</h3><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>)
 
-fs.readFile(<span class="hljs-string">&#x27;./a.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err, data</span>) </span>&#123;
+fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./a.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">err, data</span>) &#123;
     <span class="hljs-keyword">if</span> (err) &#123;
         <span class="hljs-comment">// return console.log(&#x27;读取错误&#x27;);</span>
 
@@ -269,8 +271,8 @@ fs.readFile(<span class="hljs-string">&#x27;./a.txt&#x27;</span>, <span class="h
         <span class="hljs-comment">// 1.阻止程序的执行  2. 把错误消息打印到控制台  </span>
         <span class="hljs-keyword">throw</span> err
     &#125;
-    <span class="hljs-built_in">console</span>.log(data);
-    fs.readFile(<span class="hljs-string">&#x27;./b.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err, data</span>) </span>&#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data);
+    fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./b.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">err, data</span>) &#123;
         <span class="hljs-keyword">if</span> (err) &#123;
             <span class="hljs-comment">// return console.log(&#x27;读取错误&#x27;);</span>
 
@@ -278,8 +280,8 @@ fs.readFile(<span class="hljs-string">&#x27;./a.txt&#x27;</span>, <span class="h
             <span class="hljs-comment">// 1.阻止程序的执行  2. 把错误消息打印到控制台  </span>
             <span class="hljs-keyword">throw</span> err
         &#125;
-        <span class="hljs-built_in">console</span>.log(data);
-        fs.readFile(<span class="hljs-string">&#x27;./c.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err, data</span>) </span>&#123;
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data);
+        fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;./c.txt&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">err, data</span>) &#123;
             <span class="hljs-keyword">if</span> (err) &#123;
                 <span class="hljs-comment">// return console.log(&#x27;读取错误&#x27;);</span>
 
@@ -287,7 +289,7 @@ fs.readFile(<span class="hljs-string">&#x27;./a.txt&#x27;</span>, <span class="h
                 <span class="hljs-comment">// 1.阻止程序的执行  2. 把错误消息打印到控制台  </span>
                 <span class="hljs-keyword">throw</span> err
             &#125;
-            <span class="hljs-built_in">console</span>.log(data);
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data);
         &#125;)
     &#125;)
 
@@ -323,141 +325,155 @@ hello cccc</code></pre></div>
 </ol>
 <h3 id="promise是什么？"><a href="#promise是什么？" class="headerlink" title="promise是什么？"></a>promise是什么？</h3><p>打印出来看看：<br><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4bb8ec4f75084af59036203bd363d7e9~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="promise是什么"></p>
 <p>很显然，promise是一个构造函数，它除了自身有 <strong>resolve 、 reject、 all 、race</strong>方法等，原型上还有<strong>then 、catch</strong> 等我们最常用到的方法。 所以我们 new promise 里面是肯定有 then 、 catch 方法的。</p>
-<h3 id="如何创建一个promise"><a href="#如何创建一个promise" class="headerlink" title="如何创建一个promise"></a>如何创建一个promise</h3><div class="hljs"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">runAsync</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-keyword">const</span> p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;
+<h3 id="如何创建一个promise"><a href="#如何创建一个promise" class="headerlink" title="如何创建一个promise"></a>如何创建一个promise</h3><div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">runAsync</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-keyword">const</span> p = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;
     <span class="hljs-comment">// 异步操作</span>
     <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;执行成功&#x27;</span>);
-      resolve(<span class="hljs-string">&#x27;数据&#x27;</span>)
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;执行成功&#x27;</span>);
+      <span class="hljs-title function_">resolve</span>(<span class="hljs-string">&#x27;数据&#x27;</span>)
     &#125;, <span class="hljs-number">1000</span>)
   &#125;)
   <span class="hljs-keyword">return</span> p
 &#125;
 
-runAsync()</code></pre></div>
+<span class="hljs-title function_">runAsync</span>()</code></pre></div>
 
 
 <p>其中Promise构造函数接受一个参数，就是<strong>函数</strong>。并且会传入俩个参数：<strong>resolve，reject</strong> 。 分别表示异步操作<strong>执行成功后的回调函数和执行失败后的回调函数</strong>。</p>
 <p>我们将包装一个函数，把promise放在里面并返回它， <strong>这样做的意义在于我们可以使用promise原型上的then,catch方法</strong></p>
-<div class="hljs"><pre><code class="hljs js">runAsync().then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>&#123;
-    <span class="hljs-built_in">console</span>.log(data);
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-title function_">runAsync</span>().<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)&#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data);
     <span class="hljs-comment">//后面可以用传过来的数据做些其他操作</span>
 &#125;);</code></pre></div>
 <p>效果展示<br><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/424e9af706c841ee8533e78e42743644~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="效果展示"></p>
 <p>以上就是Promise的作用了，简单的说，<strong>就是能把原来的回调写法分离出来，在异步操作执行完后，用链式操作的形式执行回调函数。</strong></p>
 <h3 id="promise-all-用法"><a href="#promise-all-用法" class="headerlink" title="promise.all 用法"></a>promise.all 用法</h3><p>all方法提供了并行执行异步操作的能力，并且在所有异步操作执行完毕后才执行回调。</p>
 <p>请看下面例子:</p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">runAsync1</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-keyword">const</span> p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">runAsync1</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-keyword">const</span> p = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;
     <span class="hljs-comment">// 异步操作</span>
     <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;执行成功&#x27;</span>);
-      resolve(<span class="hljs-string">&#x27;数据1&#x27;</span>)
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;执行成功&#x27;</span>);
+      <span class="hljs-title function_">resolve</span>(<span class="hljs-string">&#x27;数据1&#x27;</span>)
     &#125;, <span class="hljs-number">1000</span>)
   &#125;)
   <span class="hljs-keyword">return</span> p
 &#125;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">runAsync2</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-keyword">const</span> p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">runAsync2</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-keyword">const</span> p = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;
     <span class="hljs-comment">// 异步操作</span>
     <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;执行成功&#x27;</span>);
-      resolve(<span class="hljs-string">&#x27;数据2&#x27;</span>)
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;执行成功&#x27;</span>);
+      <span class="hljs-title function_">resolve</span>(<span class="hljs-string">&#x27;数据2&#x27;</span>)
     &#125;, <span class="hljs-number">1500</span>)
   &#125;)
   <span class="hljs-keyword">return</span> p
 &#125;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">runAsync3</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-keyword">const</span> p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">runAsync3</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-keyword">const</span> p = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;
     <span class="hljs-comment">// 异步操作</span>
     <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;执行成功&#x27;</span>);
-      resolve(<span class="hljs-string">&#x27;数据3&#x27;</span>)
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;执行成功&#x27;</span>);
+      <span class="hljs-title function_">resolve</span>(<span class="hljs-string">&#x27;数据3&#x27;</span>)
     &#125;, <span class="hljs-number">2000</span>)
   &#125;)
   <span class="hljs-keyword">return</span> p
 &#125;
 
 
-<span class="hljs-built_in">Promise</span>
-  .all([
-    runAsync1(),
-    runAsync2(),
-    runAsync3()
+<span class="hljs-title class_">Promise</span>
+  .<span class="hljs-title function_">all</span>([
+    <span class="hljs-title function_">runAsync1</span>(),
+    <span class="hljs-title function_">runAsync2</span>(),
+    <span class="hljs-title function_">runAsync3</span>()
   ])
-  .then(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(result))</code></pre></div>
+  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result))</code></pre></div>
 <p><strong>我们用Promise.all 来执行， 并且接受三个数组，里面的值都返回的是Promise对象，然后这三个异步操作并行执行，等它们都执行完毕后，数据才会在then方法里面。即all方法会把所有异步操作的结果放在一个属猪中再传给then。</strong></p>
 <p> <img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c4cefd2b822e4df787213b60947d1d46~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="call方法"></p>
 <h3 id="Promise-race-用法"><a href="#Promise-race-用法" class="headerlink" title="Promise.race 用法"></a>Promise.race 用法</h3><p>用法和Promise.all 一样，只不过all方法是<strong>谁跑得慢，就以谁为准执行回调</strong>， 而race方法就是<strong>谁跑得快，就以谁为准执行回调</strong></p>
 <p>将上面展示的代码 的all方法换成race看看是什么效果</p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-built_in">Promise</span>
-  .race([
-    runAsync1(),
-    runAsync2(),
-    runAsync3()
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-title class_">Promise</span>
+  .<span class="hljs-title function_">race</span>([
+    <span class="hljs-title function_">runAsync1</span>(),
+    <span class="hljs-title function_">runAsync2</span>(),
+    <span class="hljs-title function_">runAsync3</span>()
   ])
-  .then(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(result))</code></pre></div>
+  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result))</code></pre></div>
 <p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9db2c77f359241849d2de2e8d84a7c15~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt=" Promise.race "></p>
 <p>瞧！他会去优先输出最快（1s）的runAsync1函数的数据，</p>
 <p><strong>原因是因为异步处理问题，runAsync1函数的数据并不会等待上面的Promise执行完在开始执行，所以由于时间延迟，优先输出‘数据1’。</strong></p>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/JavaScript/">JavaScript</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/promise/">promise</a>
-                  
-                  <a class="hover-with-bg" href="/tags/es6/">es6</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2020/08/18/11.%E6%80%BBNode%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">Node基础总结</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2020/08/12/09.Mongodb%20%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                    <span class="hidden-mobile">Mongodb数据库的基本使用</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/JavaScript/">
+                              JavaScript
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/promise/">
+                                  promise
+                                </a>
+                                
+                                <a class="hover-with-bg" href="/tags/es6/">
+                                  es6
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2020/08/18/11.%E6%80%BBNode%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      Node基础总结
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2020/08/12/09.Mongodb%20%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                    <span class="hidden-mobile">
+                                      Mongodb数据库的基本使用
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -484,26 +500,26 @@ runAsync()</code></pre></div>
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

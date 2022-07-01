@@ -203,18 +203,20 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">JavaScript中的MVC</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h2 id="MVC三类对象"><a href="#MVC三类对象" class="headerlink" title="MVC三类对象"></a>MVC三类对象</h2><p>MVC模式（Model-view-controller） 是一种设计模式（软件架构）。</p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                JavaScript中的MVC
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h2 id="MVC三类对象"><a href="#MVC三类对象" class="headerlink" title="MVC三类对象"></a>MVC三类对象</h2><p>MVC模式（Model-view-controller） 是一种设计模式（软件架构）。</p>
 <p>MVC包括三类对象，将它们分离以提高灵活性和复用性。</p>
 <ul>
 <li><strong>模型（Model）</strong> ： 同于数据管理， 一旦模型的数据发生改变，Model将通知有关的视图。</li>
@@ -224,38 +226,38 @@
 <h2 id="MVC-for-JAVASCRIPT"><a href="#MVC-for-JAVASCRIPT" class="headerlink" title="MVC for JAVASCRIPT"></a>MVC for JAVASCRIPT</h2><div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">//数据Model</span>
 <span class="hljs-keyword">const</span> model = &#123;
   <span class="hljs-comment">// 数据</span>
-  data: &#123;&#125;,
+  <span class="hljs-attr">data</span>: &#123;&#125;,
   <span class="hljs-comment">// 对数据处理的一些方法</span>
-  create() &#123;&#125;,
-  <span class="hljs-keyword">delete</span>() &#123;&#125;,
-  update() &#123;&#125;,
-  get() &#123;&#125;
+  <span class="hljs-title function_">create</span>(<span class="hljs-params"></span>) &#123;&#125;,
+  <span class="hljs-title function_">delete</span>(<span class="hljs-params"></span>) &#123;&#125;,
+  <span class="hljs-title function_">update</span>(<span class="hljs-params"></span>) &#123;&#125;,
+  <span class="hljs-title function_">get</span>(<span class="hljs-params"></span>) &#123;&#125;
 &#125;
 
 <span class="hljs-comment">//视图View</span>
 <span class="hljs-keyword">const</span> view = &#123;
   <span class="hljs-comment">//1、一个空容器，以后就是装html的容器</span>
-  el: <span class="hljs-literal">null</span>,
+  <span class="hljs-attr">el</span>: <span class="hljs-literal">null</span>,
   <span class="hljs-comment">//2、要添加的html</span>
-  html: <span class="hljs-string">`&lt;div&gt;123&lt;/div&gt;....`</span>,
+  <span class="hljs-attr">html</span>: <span class="hljs-string">`&lt;div&gt;123&lt;/div&gt;....`</span>,
   <span class="hljs-comment">//3、初始化容器函数，参数是我们给的要当容器的元素（应该是index.html里就有的元素）</span>
-  init(container) &#123;v.el = $(container);&#125;,
+  <span class="hljs-title function_">init</span>(<span class="hljs-params">container</span>) &#123;v.<span class="hljs-property">el</span> = $(container);&#125;,
   <span class="hljs-comment">//4、渲染函数，参数将是数据。也就是视图全都是对数据渲染 view = render(data)</span>
-  render(x) &#123;&#125;
+  <span class="hljs-title function_">render</span>(<span class="hljs-params">x</span>) &#123;&#125;
 &#125;
 
 <span class="hljs-comment">// 控制Controller  </span>
 <span class="hljs-comment">// 处理数据的事件，并把结果渲染到视图View上</span>
 <span class="hljs-keyword">const</span> c = &#123;
   <span class="hljs-comment">//1.总初始化函数。</span>
-  init(container) &#123;&#125;,	
+  <span class="hljs-title function_">init</span>(<span class="hljs-params">container</span>) &#123;&#125;,	
   <span class="hljs-comment">// 事件</span>
-  events: &#123;&#125;,
+  <span class="hljs-attr">events</span>: &#123;&#125;,
   <span class="hljs-comment">//事件要执行的函数</span>
-  add() &#123;&#125;,
-  minus() &#123;&#125;,
-  mul() &#123;&#125;,
-  div() &#123;&#125;,
+  <span class="hljs-title function_">add</span>(<span class="hljs-params"></span>) &#123;&#125;,
+  <span class="hljs-title function_">minus</span>(<span class="hljs-params"></span>) &#123;&#125;,
+  <span class="hljs-title function_">mul</span>(<span class="hljs-params"></span>) &#123;&#125;,
+  <span class="hljs-title function_">div</span>(<span class="hljs-params"></span>) &#123;&#125;,
 &#125;</code></pre></div>
 
 <h2 id="EventBus"><a href="#EventBus" class="headerlink" title="EventBus"></a>EventBus</h2><p><strong>EventBus的实现方法：</strong></p>
@@ -273,7 +275,7 @@
 <p>而这种做法的意义就在于： <strong>逻辑和数据是分离的</strong></p>
 <p>举个例子，比如国家简写转换，给一个国家全名，转换成国家简写，用if else语法来写:</p>
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">//  伪代码</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">contry</span>(<span class="hljs-params">国家名</span>)</span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">contry</span>(<span class="hljs-params">国家名</span>)&#123;
 	<span class="hljs-keyword">if</span>(中国)&#123;
     	<span class="hljs-keyword">return</span> <span class="hljs-string">&quot;CHN&quot;</span>
     &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(日本)&#123;
@@ -289,13 +291,13 @@
 <p>毕竟，<strong>数据</strong>的添加是<strong>简单，低成本和低风险</strong>的。 而<strong>逻辑</strong>的添加是<strong>负责，高成本和高风险</strong>的。</p>
 <p>表驱动编程做法：</p>
 <div class="hljs"><pre><code class="hljs js">伪代码
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">contry</span>(<span class="hljs-params">国家名</span>)</span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">contry</span>(<span class="hljs-params">国家名</span>)&#123;
 	<span class="hljs-keyword">const</span> 国家列表 = [
     	<span class="hljs-string">&quot;中国&quot;</span>  = <span class="hljs-string">&quot;CHN&quot;</span>
     	<span class="hljs-string">&quot;日本&quot;</span>  = <span class="hljs-string">&quot;JPN&quot;</span>
     	<span class="hljs-string">&quot;美国&quot;</span>  = <span class="hljs-string">&quot;USA&quot;</span>
     ]
-   国家简写转换：funciton()&#123;
+   国家简写转换：<span class="hljs-title function_">funciton</span>(<span class="hljs-params"></span>)&#123;
    	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> 国家名 <span class="hljs-keyword">in</span> 国家列表)&#123;
     	<span class="hljs-keyword">return</span> 国家列表[国家名]  <span class="hljs-comment">// 返回的就是 国家简写</span>
     &#125;
@@ -315,61 +317,75 @@
 <li>在项目结构上更加清晰，便于维护。</li>
 </ul>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/JavaScript/">JavaScript</a>
-                  
-                  <a class="hover-with-bg" href="/tags/MVC/">MVC</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2020/12/18/34-Webpack%E5%85%A5%E9%97%A8%E9%85%8D%E7%BD%AE%E6%80%BB%E7%BB%93/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">Webpack入门配置总结</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2020/12/12/32-%E8%B7%A8%E5%9F%9F/">
-                    <span class="hidden-mobile">跨域</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                              设计模式
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/JavaScript/">
+                                  JavaScript
+                                </a>
+                                
+                                <a class="hover-with-bg" href="/tags/MVC/">
+                                  MVC
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2020/12/18/34-Webpack%E5%85%A5%E9%97%A8%E9%85%8D%E7%BD%AE%E6%80%BB%E7%BB%93/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      Webpack入门配置总结
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2020/12/12/32-%E8%B7%A8%E5%9F%9F/">
+                                    <span class="hidden-mobile">
+                                      跨域
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -396,26 +412,26 @@
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

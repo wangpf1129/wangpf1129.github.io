@@ -203,18 +203,20 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">让人疑惑的闭包</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h2 id="让人迷惑的闭包"><a href="#让人迷惑的闭包" class="headerlink" title="让人迷惑的闭包"></a>让人迷惑的闭包</h2><blockquote>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                让人疑惑的闭包
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h2 id="让人迷惑的闭包"><a href="#让人迷惑的闭包" class="headerlink" title="让人迷惑的闭包"></a>让人迷惑的闭包</h2><blockquote>
 <p>闭包是 JavaScript 中一个非常容易让人迷惑的知识点：</p>
 </blockquote>
 <blockquote>
@@ -255,23 +257,23 @@
 <blockquote>
 <p>光看定义可能会很懵，后面我会通过内存的角度来解析闭包</p>
 </blockquote>
-<h3 id="闭包的访问过程"><a href="#闭包的访问过程" class="headerlink" title="闭包的访问过程"></a>闭包的访问过程</h3><div class="hljs"><pre><code class="hljs js"><span class="hljs-number">1</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;
+<h3 id="闭包的访问过程"><a href="#闭包的访问过程" class="headerlink" title="闭包的访问过程"></a>闭包的访问过程</h3><div class="hljs"><pre><code class="hljs js"><span class="hljs-number">1</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params"></span>) &#123;
 <span class="hljs-number">2</span> 	<span class="hljs-keyword">var</span> username = <span class="hljs-string">&#x27;wpf&#x27;</span>;
-<span class="hljs-number">3</span> 	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bar</span>(<span class="hljs-params"></span>) </span>&#123;
-<span class="hljs-number">4</span>   	 <span class="hljs-built_in">console</span>.log(username);
+<span class="hljs-number">3</span> 	<span class="hljs-keyword">function</span> <span class="hljs-title function_">bar</span>(<span class="hljs-params"></span>) &#123;
+<span class="hljs-number">4</span>   	 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(username);
 <span class="hljs-number">5</span> 	&#125;
 <span class="hljs-number">6</span>   <span class="hljs-keyword">return</span> bar;
 <span class="hljs-number">7</span> &#125;
-<span class="hljs-number">8</span> <span class="hljs-keyword">var</span> fn = foo();
-<span class="hljs-number">9</span> fn();</code></pre></div>
+<span class="hljs-number">8</span> <span class="hljs-keyword">var</span> fn = <span class="hljs-title function_">foo</span>();
+<span class="hljs-number">9</span> <span class="hljs-title function_">fn</span>();</code></pre></div>
 
 <p>例如上述代码， <strong>函数 bar</strong> 和它外部的<strong>自由变量 username</strong> ，这俩部分组合起来就是一个闭包。</p>
 <p>从内存角度分析：</p>
 <ol>
-<li>此时 GO（global object） 中 变量 fn 目前为 undefined</li>
-<li>当代码执行到 第 8 行后， foo 函数被调用了，之后就会被销毁， 然后 变量 fn 指向 bar 函数</li>
-<li>当执行第 9 行时，bar 函数被调用， 但之后不会被销毁，因为 bar 函数还引用这一个外部变量 username</li>
-<li>此时导致闭包的形成</li>
+<li> 此时 GO（global object） 中 变量 fn 目前为 undefined</li>
+<li> 当代码执行到 第 8 行后， foo 函数被调用了，之后就会被销毁， 然后 变量 fn 指向 bar 函数</li>
+<li> 当执行第 9 行时，bar 函数被调用， 但之后不会被销毁，因为 bar 函数还引用这一个外部变量 username</li>
+<li> 此时导致闭包的形成</li>
 </ol>
 <h3 id="内存泄漏"><a href="#内存泄漏" class="headerlink" title="内存泄漏"></a>内存泄漏</h3><p>我们经常听说 闭包是有内存泄漏的</p>
 <ul>
@@ -282,77 +284,89 @@
 <p>如何解决内存泄漏这个问题呢？</p>
 <p>很简单，将 <code>fn = null </code> ，fn 变量引用 bar 函数的 ”链“ 就会被断开， 这样根据 垃圾回收算法，就会把 bar 函数回收掉，即销毁掉。</p>
 <h3 id="AO-不使用的属性"><a href="#AO-不使用的属性" class="headerlink" title="AO 不使用的属性"></a>AO 不使用的属性</h3><p>我们再来研究一个问题： 当 AO 对象不会被销毁时，里面的所有属性是否都不会被释放？</p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params"></span>) &#123;
   <span class="hljs-keyword">var</span> username = <span class="hljs-string">&#x27;wpf&#x27;</span>
   <span class="hljs-keyword">var</span> age = <span class="hljs-number">18</span>
 
-  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bar</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">bar</span>(<span class="hljs-params"></span>) &#123;
     <span class="hljs-keyword">debugger</span>
-    <span class="hljs-built_in">console</span>.log(username)
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(username)
   &#125;
 &#125;
 
-<span class="hljs-keyword">var</span> fn = foo()
-fn()</code></pre></div>
+<span class="hljs-keyword">var</span> fn = <span class="hljs-title function_">foo</span>()
+<span class="hljs-title function_">fn</span>()</code></pre></div>
 
 <p>上面这段代码中 变量 age 属于闭包父作用域里面的变量， 我们知道形式闭包之后， 变量 username 一定不会被销毁 那么 变量 age 是否会被销毁呢？</p>
 <p>我打了个断点，可以在浏览器上看下结果：</p>
 <p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/dd9285c966c74061a264369af784f8ce~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="闭包.png"></p>
 <p>发现 变量 age 是被销毁了的</p>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/JavaScript%E9%AB%98%E7%BA%A7/">JavaScript高级</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/JavaScript%E9%AB%98%E7%BA%A7/">JavaScript高级</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2021/11/09/72-this/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">捉摸不清的“this”</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2021/11/04/70-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">
-                    <span class="hidden-mobile">内存管理</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/JavaScript%E9%AB%98%E7%BA%A7/">
+                              JavaScript高级
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/JavaScript%E9%AB%98%E7%BA%A7/">
+                                  JavaScript高级
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2021/11/09/72-this/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      捉摸不清的“this”
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2021/11/04/70-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">
+                                    <span class="hidden-mobile">
+                                      内存管理
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -379,26 +393,26 @@ fn()</code></pre></div>
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

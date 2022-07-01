@@ -203,18 +203,20 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">Vuex详解</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h1 id="Vuex⭐"><a href="#Vuex⭐" class="headerlink" title="Vuex⭐"></a>Vuex⭐</h1><blockquote>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                Vuex详解
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h1 id="Vuex⭐"><a href="#Vuex⭐" class="headerlink" title="Vuex⭐"></a>Vuex⭐</h1><blockquote>
 <p>Vuex是一个专为Vue开发的应用程序的状态管理模式，它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。</p>
 </blockquote>
 <p>简而言之，Vuex采用<strong>类似全局对象</strong>的形式来管理所有组件的公用数据，如果想修改这个全局对象的数据，得按照Vuex提供的方式来修改（不能自己随意用自己的方式来修改）</p>
@@ -222,15 +224,15 @@
 <div class="hljs"><pre><code class="hljs js">npm install vuex --save</code></pre></div>
 
 <p><strong>2.引用Vuex</strong></p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
-<span class="hljs-keyword">import</span> Vuex <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vuex&#x27;</span>
-Vue.use(Vuex)
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">Vue</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">Vuex</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vuex&#x27;</span>
+<span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">use</span>(<span class="hljs-title class_">Vuex</span>)
 <span class="hljs-number">123</span></code></pre></div>
 
 <p><strong>3.创建仓库Store</strong></p>
 <p>要使用Vuex，我们要创建一个实例 <code>store</code>，我们称之为仓库，利用这个仓库 <code>store</code> 来对我们的状态进行管理。</p>
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">//创建一个 store</span>
-<span class="hljs-keyword">const</span> store = <span class="hljs-keyword">new</span> Vuex.Store(&#123;&#125;);</code></pre></div>
+<span class="hljs-keyword">const</span> store = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vuex</span>.<span class="hljs-title class_">Store</span>(&#123;&#125;);</code></pre></div>
 
 
 
@@ -248,16 +250,16 @@ Vue.use(Vuex)
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
 
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
-<span class="javascript">	<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span>
-<span class="javascript">        name:<span class="hljs-string">&#x27;HelloWorld&#x27;</span>,</span>
-        data()&#123;
-<span class="javascript">            <span class="hljs-keyword">return</span> &#123; </span>
-            	counter: 0
-            &#125;
-        &#125;
-    &#125;
-<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span>
+<span class="language-javascript">	<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span>
+<span class="language-javascript">        <span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;HelloWorld&#x27;</span>,</span>
+<span class="language-javascript">        <span class="hljs-title function_">data</span>(<span class="hljs-params"></span>)&#123;</span>
+<span class="language-javascript">            <span class="hljs-keyword">return</span> &#123; </span>
+<span class="language-javascript">            	<span class="hljs-attr">counter</span>: <span class="hljs-number">0</span></span>
+<span class="language-javascript">            &#125;</span>
+<span class="language-javascript">        &#125;</span>
+<span class="language-javascript">    &#125;</span>
+<span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span></code></pre></div>
@@ -281,7 +283,8 @@ Vue.use(Vuex)
 <li><p>它应该是唯一的</p>
 <div class="hljs"><pre><code> const state = &#123;
    xxx: initValue
-  &#125;</code></pre></div>
+  &#125;
+</code></pre></div>
 </li>
 </ol>
 <h3 id="2、-mutations"><a href="#2、-mutations" class="headerlink" title="2、 mutations"></a>2、 mutations</h3><p>​         1) 包含多个直接更新 state 的方法(回调函数)的对象<br>​         2) 谁来触发: <strong>action 中的 commit(‘mutation 名称’)</strong><br>​         3) <strong>只能包含同步的代码, 不能写异步代码</strong><br>​           const mutations = {<br>​              yyy (state, {data1}) {<br>​                // 更新 state 的某个属性<br>​             }<br>​           }</p>
@@ -325,59 +328,71 @@ Vue.use(Vuex)
 <p>③ mutations 可以直接与devtool（如本地存储工具 → 在实例代码中的utils里的storageUtils.js）交互与直接更新state（数据状态）。</p>
 <p>④ 如果有计算属性（get函数写在getters里面），则状态通过getters的$store.getters()或<strong>mapGetters()**来更新组件；反之就通过$store.state()或者</strong>mapState()**的方式来更新组件。</p>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/vue/">vue</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/vue/">vue</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2020/09/26/25-axios/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">axios</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2020/09/26/23-VueRouter/">
-                    <span class="hidden-mobile">VueRouter--前端路由</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/vue/">
+                              vue
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/vue/">
+                                  vue
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2020/09/26/25-axios/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      axios
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2020/09/26/23-VueRouter/">
+                                    <span class="hidden-mobile">
+                                      VueRouter--前端路由
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -404,26 +419,26 @@ Vue.use(Vuex)
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

@@ -203,18 +203,20 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">VueRouter--前端路由</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h1 id="Vue-router-前端路由⭐"><a href="#Vue-router-前端路由⭐" class="headerlink" title="Vue-router  前端路由⭐"></a>Vue-router  前端路由⭐</h1><blockquote>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                VueRouter--前端路由
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h1 id="Vue-router-前端路由⭐"><a href="#Vue-router-前端路由⭐" class="headerlink" title="Vue-router  前端路由⭐"></a>Vue-router  前端路由⭐</h1><blockquote>
 <p>前端路由核心： 改变URL，但是页面不进行整体的刷新。</p>
 </blockquote>
 <h2 id="1-单页面导航路径"><a href="#1-单页面导航路径" class="headerlink" title="1 单页面导航路径"></a>1 单页面导航路径</h2><blockquote>
@@ -292,7 +294,8 @@
       import Vue <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span> 
       import VueRouter <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue-router&#x27;</span> 
       <span class="hljs-comment">// 1. 调用插件</span>
-      Vue.<span class="hljs-keyword">use</span>(VueRouter)</code></pre></div></code></pre>
+      Vue.<span class="hljs-keyword">use</span>(VueRouter)</code></pre></div>
+</code></pre>
 </li>
 <li><p>第二步：创建路由实例，并且传入路由映射配置</p>
 </li>
@@ -324,8 +327,8 @@
 </ul>
 <div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> routes = [
   &#123;
-    path: <span class="hljs-string">&#x27;&#x27;</span>,
-    redirect: <span class="hljs-string">&#x27;/home&#x27;</span>
+    <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;&#x27;</span>,
+    <span class="hljs-attr">redirect</span>: <span class="hljs-string">&#x27;/home&#x27;</span>
   &#125;,
   ]</code></pre></div>
 
@@ -348,10 +351,10 @@
 </li>
 </ul>
 <div class="hljs"><pre><code class="hljs javascript"><span class="hljs-comment">//  2. 创建 Router 实例对象 并 导出它</span>
-<span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router(&#123;
+<span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Router</span>(&#123;
   <span class="hljs-comment">// 3.  routes 属性： 配置路由和组件之间的映射关系</span>
   routes,
-  mode: <span class="hljs-string">&#x27;history&#x27;</span> <span class="hljs-comment">// 默认是 hash 模式， </span>
+  <span class="hljs-attr">mode</span>: <span class="hljs-string">&#x27;history&#x27;</span> <span class="hljs-comment">// 默认是 hash 模式， </span>
 &#125;)</code></pre></div>
 
 
@@ -381,22 +384,22 @@
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
 
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
-<span class="javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span>
-<span class="javascript">  name: <span class="hljs-string">&quot;App&quot;</span>,</span>
-  data() &#123;
-<span class="javascript">    <span class="hljs-keyword">return</span> &#123;</span>
-<span class="javascript">      id: <span class="hljs-string">&quot;wpfzzz&quot;</span>,</span>
-    &#125;;
-  &#125;,
-&#125;;
-<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span>
+<span class="language-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span>
+<span class="language-javascript">  <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;App&quot;</span>,</span>
+<span class="language-javascript">  <span class="hljs-title function_">data</span>(<span class="hljs-params"></span>) &#123;</span>
+<span class="language-javascript">    <span class="hljs-keyword">return</span> &#123;</span>
+<span class="language-javascript">      <span class="hljs-attr">id</span>: <span class="hljs-string">&quot;wpfzzz&quot;</span>,</span>
+<span class="language-javascript">    &#125;;</span>
+<span class="language-javascript">  &#125;,</span>
+<span class="language-javascript">&#125;;</span>
+<span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-<span class="hljs-tag">&lt;<span class="hljs-name">style</span>  <span class="hljs-attr">scoped</span>&gt;</span>
-<span class="css"><span class="hljs-selector-class">.router-link-active</span> &#123;</span>
-<span class="css">  <span class="hljs-selector-tag">color</span>: <span class="hljs-selector-id">#f00</span>;</span>
-&#125;
-<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span>  <span class="hljs-attr">scoped</span>&gt;</span><span class="language-css"></span>
+<span class="language-css"><span class="hljs-selector-class">.router-link-active</span> &#123;</span>
+<span class="language-css">  <span class="hljs-attribute">color</span>: <span class="hljs-number">#f00</span>;</span>
+<span class="language-css">&#125;</span>
+<span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
 
 </code></pre></div>
 
@@ -405,16 +408,16 @@
 <h3 id="2-9-路由代码跳转"><a href="#2-9-路由代码跳转" class="headerlink" title="2.9 路由代码跳转"></a>2.9 路由代码跳转</h3><div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;homeClick&quot;</span>&gt;</span>首页<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;loginClick&quot;</span>&gt;</span>登录<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></code></pre></div>
 
-<div class="hljs"><pre><code class="hljs javascript">methods: &#123;
-  homeClick() &#123;
+<div class="hljs"><pre><code class="hljs javascript"><span class="hljs-attr">methods</span>: &#123;
+  <span class="hljs-title function_">homeClick</span>(<span class="hljs-params"></span>) &#123;
     <span class="hljs-comment">// this.$router.push(&quot;/htmo&quot;);</span>
-    <span class="hljs-built_in">this</span>.$router.replace(<span class="hljs-string">&quot;/htmo&quot;</span>).catch(<span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> err);;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;home&quot;</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">$router</span>.<span class="hljs-title function_">replace</span>(<span class="hljs-string">&quot;/htmo&quot;</span>).<span class="hljs-title function_">catch</span>(<span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> err);;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;home&quot;</span>);
   &#125;,
-  loginClick() &#123;
+  <span class="hljs-title function_">loginClick</span>(<span class="hljs-params"></span>) &#123;
     <span class="hljs-comment">// this.$router.push(&quot;/login&quot;);</span>
-    <span class="hljs-built_in">this</span>.$router.replace(<span class="hljs-string">&quot;/login&quot;</span>).catch(<span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> err);;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;login&quot;</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">$router</span>.<span class="hljs-title function_">replace</span>(<span class="hljs-string">&quot;/login&quot;</span>).<span class="hljs-title function_">catch</span>(<span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> err);;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;login&quot;</span>);
   &#125;,
 &#125;,</code></pre></div>
 
@@ -432,13 +435,13 @@
 <span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">:to</span>=<span class="hljs-string">&quot;&#123;path:&#x27;/profile&#x27;,query:&#123;name:&#x27;wpf&#x27;,age:&#x27;23&#x27;,sex:&#x27;男&#x27;&#125;&#125;&quot;</span> <span class="hljs-attr">tag</span>=<span class="hljs-string">&quot;button&quot;</span>&gt;</span>档案<span class="hljs-tag">&lt;/<span class="hljs-name">router-link</span>&gt;</span>
  // 注意： 要使用 v-bind 动态绑定 这样可以获取data中的数据， 否则是个字符串</code></pre></div>
 
-<div class="hljs"><pre><code class="hljs json">&#123;
-  path: &#x27;/user/:userId&#x27;,   // 这个 
-  component: User,
-  meta: &#123;
-    title: &#x27;用户&#x27;
-  &#125;
-&#125;,</code></pre></div>
+<div class="hljs"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span>
+  path<span class="hljs-punctuation">:</span> &#x27;/user/<span class="hljs-punctuation">:</span>userId&#x27;<span class="hljs-punctuation">,</span>   <span class="hljs-comment">// 这个 </span>
+  component<span class="hljs-punctuation">:</span> User<span class="hljs-punctuation">,</span>
+  meta<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>
+    title<span class="hljs-punctuation">:</span> &#x27;用户&#x27;
+  <span class="hljs-punctuation">&#125;</span>
+<span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span></code></pre></div>
 
 <div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>&#123;&#123;$route.params.userId&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></code></pre></div>
 
@@ -473,34 +476,35 @@
 <li><p><strong>方式一: 结合Vue的异步组件和Webpack的代码分析.</strong></p>
 <ul>
 <li><div class="hljs"><pre><code class="javascript">const Home = resolve =&gt; &#123; require.ensure([&#39;../components/Home.vue&#39;], () =&gt; &#123; resolve(require(&#39;../components/Home.vue&#39;)) &#125;)&#125;;
-<pre><code class="hljs coffeescript">
+<pre><code class="hljs zephir">
 - **方式二: AMD写法**
 
-  - ```<span class="javascript">javascript</span>
-<span class="javascript">    <span class="hljs-keyword">const</span> About = <span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> <span class="hljs-built_in">require</span>([<span class="hljs-string">&#x27;../components/About.vue&#x27;</span>], resolve);</span></code></pre></div></code></pre>
+  - ```javascript
+    <span class="hljs-keyword">const</span> About = resolve =&gt; <span class="hljs-keyword">require</span>([<span class="hljs-string">&#x27;../components/About.vue&#x27;</span>], resolve);</code></pre></div>
+</code></pre>
 </li>
 </ul>
 </li>
 <li><p><strong>方式三: 在ES6中, 我们可以有更加简单的写法来组织Vue异步组件和Webpack的代码分割.</strong></p>
 <ul>
 <li><div class="hljs"><pre><code class="javascript">const Home = () =&gt; import(&#39;../components/Home.vue&#39;)
-<pre><code class="hljs">
+<pre><code class="hljs moonscript">
 
 
 
 
 ```javascript
-// import Home from &#x27;../components/Home.vue&#x27;
-// import Login from &#x27;../components/Login.vue&#x27;
-// import User from &#x27;../components/User.vue&#x27;;
+// <span class="hljs-keyword">import</span> Home <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../components/Home.vue&#x27;</span>
+// <span class="hljs-keyword">import</span> Login <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../components/Login.vue&#x27;</span>
+// <span class="hljs-keyword">import</span> User <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../components/User.vue&#x27;</span>;
 
 // 使用路由懒加载
-const Home = () =&gt; import(&#x27;../components/Home.vue&#x27;)
-const HomeNews = () =&gt; import(&#x27;../components/HomeNews.vue&#x27;)
-const HomeMessage = () =&gt; import(&#x27;../components/HomeMessage.vue&#x27;)
-const Login = () =&gt; import(&#x27;../components/Login.vue&#x27;)
-const User = () =&gt; import(&#x27;../components/User.vue&#x27;)
-const Profile = () =&gt; import(&#x27;../components/Profile.vue&#x27;)</code></pre></div>
+const Home = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;../components/Home.vue&#x27;</span>)
+const HomeNews = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;../components/HomeNews.vue&#x27;</span>)
+const HomeMessage = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;../components/HomeMessage.vue&#x27;</span>)
+const Login = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;../components/Login.vue&#x27;</span>)
+const User = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;../components/User.vue&#x27;</span>)
+const Profile = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;../components/Profile.vue&#x27;</span>)</code></pre></div>
 
 
 
@@ -551,11 +555,11 @@ const Profile = () =&gt; import(&#x27;../components/Profile.vue&#x27;)</code></p
 
 <h3 id="5-3-query-参数传递方式二："><a href="#5-3-query-参数传递方式二：" class="headerlink" title="5.3   query 参数传递方式二："></a>5.3   query 参数传递方式二：</h3><div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;toProfile&quot;</span>&gt;</span>登录<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></code></pre></div>
 
-<div class="hljs"><pre><code class="hljs javascript">mehtods:&#123;
-    toProfile()&#123;
-        <span class="hljs-built_in">this</span>.$router.push(&#123;
-            path:<span class="hljs-string">&#x27;/proflie&#x27;</span>,
-            query:&#123;<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;wpf&#x27;</span>,<span class="hljs-attr">age</span>:<span class="hljs-number">23</span>,<span class="hljs-attr">sex</span>:<span class="hljs-string">&#x27;男&#x27;</span>&#125;
+<div class="hljs"><pre><code class="hljs javascript"><span class="hljs-attr">mehtods</span>:&#123;
+    <span class="hljs-title function_">toProfile</span>(<span class="hljs-params"></span>)&#123;
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">$router</span>.<span class="hljs-title function_">push</span>(&#123;
+            <span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/proflie&#x27;</span>,
+            <span class="hljs-attr">query</span>:&#123;<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;wpf&#x27;</span>,<span class="hljs-attr">age</span>:<span class="hljs-number">23</span>,<span class="hljs-attr">sex</span>:<span class="hljs-string">&#x27;男&#x27;</span>&#125;
         &#125;)
     &#125;
 &#125;</code></pre></div>
@@ -597,25 +601,25 @@ const Profile = () =&gt; import(&#x27;../components/Profile.vue&#x27;)</code></p
 <p><strong>全局路由 要在 main.js 文件下创建</strong></p>
 <p>想用<strong>导航守卫</strong>先要有路由</p>
 <div class="hljs"><pre><code class="hljs javascript"><span class="hljs-comment">//main.js</span>
-<span class="hljs-keyword">const</span> router= <span class="hljs-keyword">new</span> VueRouter(&#123;
-  routes:[
-    &#123;<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/&#x27;</span>,<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;home&#x27;</span>,<span class="hljs-attr">component</span>:Home&#125;,
-    &#123;<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/menu&#x27;</span>,<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;menu&#x27;</span>,<span class="hljs-attr">component</span>:Menu&#125;,
-    &#123;<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/admin&#x27;</span>,<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;admin&#x27;</span>,<span class="hljs-attr">component</span>:Admin&#125;,
-    &#123;<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/about&#x27;</span>,<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;about&#x27;</span>,<span class="hljs-attr">component</span>:About,<span class="hljs-attr">redirect</span>: &#123;<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;contactLink&#x27;</span>&#125;,<span class="hljs-attr">children</span>:[   <span class="hljs-comment">//二级路由</span>
-        &#123;<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/about/contact&#x27;</span>,<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;contactLink&#x27;</span>,<span class="hljs-attr">component</span>:Contact&#125;,
-        &#123;<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/history&#x27;</span>,<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;historyLink&#x27;</span>,<span class="hljs-attr">component</span>:History&#125;,
-        &#123;<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/delivery&#x27;</span>,<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;deliveryLink&#x27;</span>,<span class="hljs-attr">component</span>:Delivery&#125;,
-        &#123;<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/orderingGuide&#x27;</span>,<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;orderingGuideLink&#x27;</span>,<span class="hljs-attr">component</span>:OrderingGuide,<span class="hljs-attr">redirect</span>:&#123;<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;phonelink&#x27;</span>&#125;,<span class="hljs-attr">children</span>: [  <span class="hljs-comment">//三级路由</span>
-            &#123;<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/phone&#x27;</span>,<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;phonelink&#x27;</span>,<span class="hljs-attr">component</span>:Phone&#125;,
-            &#123;<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/name&#x27;</span>,<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;namelink&#x27;</span>,<span class="hljs-attr">component</span>:Name&#125;
+<span class="hljs-keyword">const</span> router= <span class="hljs-keyword">new</span> <span class="hljs-title class_">VueRouter</span>(&#123;
+  <span class="hljs-attr">routes</span>:[
+    &#123;<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/&#x27;</span>,<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;home&#x27;</span>,<span class="hljs-attr">component</span>:<span class="hljs-title class_">Home</span>&#125;,
+    &#123;<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/menu&#x27;</span>,<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;menu&#x27;</span>,<span class="hljs-attr">component</span>:<span class="hljs-title class_">Menu</span>&#125;,
+    &#123;<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/admin&#x27;</span>,<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;admin&#x27;</span>,<span class="hljs-attr">component</span>:<span class="hljs-title class_">Admin</span>&#125;,
+    &#123;<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/about&#x27;</span>,<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;about&#x27;</span>,<span class="hljs-attr">component</span>:<span class="hljs-title class_">About</span>,<span class="hljs-attr">redirect</span>: &#123;<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;contactLink&#x27;</span>&#125;,<span class="hljs-attr">children</span>:[   <span class="hljs-comment">//二级路由</span>
+        &#123;<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/about/contact&#x27;</span>,<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;contactLink&#x27;</span>,<span class="hljs-attr">component</span>:<span class="hljs-title class_">Contact</span>&#125;,
+        &#123;<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/history&#x27;</span>,<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;historyLink&#x27;</span>,<span class="hljs-attr">component</span>:<span class="hljs-title class_">History</span>&#125;,
+        &#123;<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/delivery&#x27;</span>,<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;deliveryLink&#x27;</span>,<span class="hljs-attr">component</span>:<span class="hljs-title class_">Delivery</span>&#125;,
+        &#123;<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/orderingGuide&#x27;</span>,<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;orderingGuideLink&#x27;</span>,<span class="hljs-attr">component</span>:<span class="hljs-title class_">OrderingGuide</span>,<span class="hljs-attr">redirect</span>:&#123;<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;phonelink&#x27;</span>&#125;,<span class="hljs-attr">children</span>: [  <span class="hljs-comment">//三级路由</span>
+            &#123;<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/phone&#x27;</span>,<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;phonelink&#x27;</span>,<span class="hljs-attr">component</span>:<span class="hljs-title class_">Phone</span>&#125;,
+            &#123;<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/name&#x27;</span>,<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;namelink&#x27;</span>,<span class="hljs-attr">component</span>:<span class="hljs-title class_">Name</span>&#125;
           ]&#125;,
       ]&#125;,
-    &#123;<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/login&#x27;</span>,<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;login&#x27;</span>,<span class="hljs-attr">component</span>:Login&#125;,
-    &#123;<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/register&#x27;</span>,<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;register&#x27;</span>,<span class="hljs-attr">component</span>:Register&#125;,
+    &#123;<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/login&#x27;</span>,<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;login&#x27;</span>,<span class="hljs-attr">component</span>:<span class="hljs-title class_">Login</span>&#125;,
+    &#123;<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/register&#x27;</span>,<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;register&#x27;</span>,<span class="hljs-attr">component</span>:<span class="hljs-title class_">Register</span>&#125;,
     &#123;<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;*&#x27;</span>,<span class="hljs-attr">redirect</span>:<span class="hljs-string">&#x27;/&#x27;</span>&#125;
   ],
-  mode:<span class="hljs-string">&quot;history&quot;</span>
+  <span class="hljs-attr">mode</span>:<span class="hljs-string">&quot;history&quot;</span>
 &#125;);</code></pre></div>
 
 
@@ -623,12 +627,12 @@ const Profile = () =&gt; import(&#x27;../components/Profile.vue&#x27;)</code></p
 <p>利用上面路由对象 router 的方法 beforeEach() 实现导航守卫</p>
 <div class="hljs"><pre><code class="hljs javascript"><span class="hljs-comment">//main.js</span>
 <span class="hljs-comment">//to:跳转到的路由 from:从哪个路由离开  next:显示函数</span>
-router.beforeEach(<span class="hljs-function">(<span class="hljs-params">to,<span class="hljs-keyword">from</span>,next</span>)=&gt;</span>&#123;     
-  <span class="hljs-keyword">if</span>(to.path == <span class="hljs-string">&#x27;/login&#x27;</span> || to.path == <span class="hljs-string">&#x27;/register&#x27;</span>)&#123;
-    next();
+router.<span class="hljs-title function_">beforeEach</span>(<span class="hljs-function">(<span class="hljs-params">to,<span class="hljs-keyword">from</span>,next</span>)=&gt;</span>&#123;     
+  <span class="hljs-keyword">if</span>(to.<span class="hljs-property">path</span> == <span class="hljs-string">&#x27;/login&#x27;</span> || to.<span class="hljs-property">path</span> == <span class="hljs-string">&#x27;/register&#x27;</span>)&#123;
+    <span class="hljs-title function_">next</span>();
   &#125;<span class="hljs-keyword">else</span>&#123;
-    alert(<span class="hljs-string">&quot;请先登录&quot;</span>);
-    next(<span class="hljs-string">&#x27;/login&#x27;</span>);
+    <span class="hljs-title function_">alert</span>(<span class="hljs-string">&quot;请先登录&quot;</span>);
+    <span class="hljs-title function_">next</span>(<span class="hljs-string">&#x27;/login&#x27;</span>);
   &#125;
 &#125;);</code></pre></div>
 
@@ -638,7 +642,7 @@ router.beforeEach(<span class="hljs-function">(<span class="hljs-params">to,<spa
 <p>next(‘/login’) 跳转到指定路由并显示指定路由的内容</p>
 <p>to 对象可获取的信息（console.log(to) 查看）</p>
 <p><img src="https://img-blog.csdn.net/20180823114816241?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MDg5NTAz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" srcset="/img/loading.gif" alt="img"></p>
-<h3 id="7-1-全局守卫"><a href="#7-1-全局守卫" class="headerlink" title="7.1  全局守卫"></a>7.1  全局守卫</h3><h4 id="前置守卫"><a href="#前置守卫" class="headerlink" title="前置守卫 :"></a><strong>前置守卫 :</strong></h4><div class="hljs"><pre><code class="hljs javascript">router.beforeEach(<span class="hljs-function">(<span class="hljs-params">to,<span class="hljs-keyword">from</span>,next</span>)=&gt;</span>&#123;&#125;)</code></pre></div>
+<h3 id="7-1-全局守卫"><a href="#7-1-全局守卫" class="headerlink" title="7.1  全局守卫"></a>7.1  全局守卫</h3><h4 id="前置守卫"><a href="#前置守卫" class="headerlink" title="前置守卫 :"></a><strong>前置守卫 :</strong></h4><div class="hljs"><pre><code class="hljs javascript">router.<span class="hljs-title function_">beforeEach</span>(<span class="hljs-function">(<span class="hljs-params">to,<span class="hljs-keyword">from</span>,next</span>)=&gt;</span>&#123;&#125;)</code></pre></div>
 
 <ul>
 <li><strong>回调函数中的参数，</strong><ul>
@@ -648,7 +652,7 @@ router.beforeEach(<span class="hljs-function">(<span class="hljs-params">to,<spa
 </ul>
 </li>
 </ul>
-<h4 id="后置钩子"><a href="#后置钩子" class="headerlink" title="后置钩子:"></a><strong>后置钩子:</strong></h4><div class="hljs"><pre><code class="hljs javascript">router.afterEach(<span class="hljs-function">(<span class="hljs-params">to,<span class="hljs-keyword">from</span></span>)=&gt;</span>&#123;&#125;)</code></pre></div>
+<h4 id="后置钩子"><a href="#后置钩子" class="headerlink" title="后置钩子:"></a><strong>后置钩子:</strong></h4><div class="hljs"><pre><code class="hljs javascript">router.<span class="hljs-title function_">afterEach</span>(<span class="hljs-function">(<span class="hljs-params">to,<span class="hljs-keyword">from</span></span>)=&gt;</span>&#123;&#125;)</code></pre></div>
 
 <ul>
 <li><strong>只有两个参数，</strong><ul>
@@ -660,16 +664,16 @@ router.beforeEach(<span class="hljs-function">(<span class="hljs-params">to,<spa
 <h3 id="7-2-组件守卫"><a href="#7-2-组件守卫" class="headerlink" title="7.2 组件守卫"></a>7.2 组件守卫</h3><blockquote>
 <p>在路由组件内直接定义以下路由导航守卫：</p>
 </blockquote>
-<div class="hljs"><pre><code class="hljs javascript">beforeRouteEnter(to,<span class="hljs-keyword">from</span>,next)&#123;
+<div class="hljs"><pre><code class="hljs javascript"><span class="hljs-title function_">beforeRouteEnter</span>(<span class="hljs-params">to,<span class="hljs-keyword">from</span>,next</span>)&#123;
     <span class="hljs-comment">// 在渲染该组件的对应路由被 confirm 前调用</span>
     <span class="hljs-comment">// 不能！！！ 获取组件实例中的 `this`</span>
     <span class="hljs-comment">// 因为当守卫执行前，组件实例还没被创建</span>
 &#125;,
-beforeRouteUpdate(to,<span class="hljs-keyword">from</span>,next)&#123;
+<span class="hljs-title function_">beforeRouteUpdate</span>(<span class="hljs-params">to,<span class="hljs-keyword">from</span>,next</span>)&#123;
     <span class="hljs-comment">// 在当前路由改变，但是该组件被复用时调用</span>
     <span class="hljs-comment">// 可以访问组件实例 `this`</span>
 &#125;,
-beforeRouteLeave(to,<span class="hljs-keyword">from</span>,next)&#123;
+<span class="hljs-title function_">beforeRouteLeave</span>(<span class="hljs-params">to,<span class="hljs-keyword">from</span>,next</span>)&#123;
     <span class="hljs-comment">// 导航离开该组件的对应路由时调用</span>
     <span class="hljs-comment">// 可以访问组件实例 `this`</span>
 &#125;</code></pre></div>
@@ -718,11 +722,11 @@ beforeRouteLeave(to,<span class="hljs-keyword">from</span>,next)&#123;
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
 
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
-<span class="javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span>
-<span class="javascript">  name: <span class="hljs-string">&#x27;App&#x27;</span></span>
-&#125;
-<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span>
+<span class="language-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span>
+<span class="language-javascript">  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;App&#x27;</span></span>
+<span class="language-javascript">&#125;</span>
+<span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre></div>
 
 
 
@@ -756,67 +760,79 @@ beforeRouteLeave(to,<span class="hljs-keyword">from</span>,next)&#123;
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
 
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
-<span class="javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span>
-<span class="javascript">  name: <span class="hljs-string">&#x27;App&#x27;</span></span>
-&#125;
-<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span>
+<span class="language-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span>
+<span class="language-javascript">  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;App&#x27;</span></span>
+<span class="language-javascript">&#125;</span>
+<span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre></div>
 
 
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/vue/">vue</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/vue/">vue</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2020/09/26/24-Vuex%E8%AF%A6%E8%A7%A3/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">Vuex详解</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2020/09/26/22-Vue-Cli%E8%84%9A%E6%89%8B%E6%9E%B6/">
-                    <span class="hidden-mobile">Vue-Cli脚手架</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/vue/">
+                              vue
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/vue/">
+                                  vue
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2020/09/26/24-Vuex%E8%AF%A6%E8%A7%A3/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      Vuex详解
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2020/09/26/22-Vue-Cli%E8%84%9A%E6%89%8B%E6%9E%B6/">
+                                    <span class="hidden-mobile">
+                                      Vue-Cli脚手架
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -843,26 +859,26 @@ beforeRouteLeave(to,<span class="hljs-keyword">from</span>,next)&#123;
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

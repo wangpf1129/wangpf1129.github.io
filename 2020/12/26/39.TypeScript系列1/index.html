@@ -203,18 +203,20 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">TypeScript学习总结之基础类型</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <p>​<br><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/408cfbc308734bd8bcbb8a36c40135d0~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="TypeScript"></p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                TypeScript学习总结之基础类型
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <p>​<br><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/408cfbc308734bd8bcbb8a36c40135d0~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="TypeScript"></p>
 <h2 id="对TypeScript-的认识"><a href="#对TypeScript-的认识" class="headerlink" title="对TypeScript 的认识"></a>对TypeScript 的认识</h2><p>TypeScript  是什么？</p>
 <ol>
 <li><p>TypeScript  是 JavaScript类型的超集，它可以编译纯JavaScript  ， 是由 微软开发的开源的编程语言。</p>
@@ -246,47 +248,47 @@
 <li>针对于数组的：number[] 、string[] 、boolean[] 等， 泛型的写法：Array&lt;元素类型&gt; (Array<number>) </li>
 <li>函数的注解</li>
 </ol>
-<h4 id="TypeScript-原始数据的注解"><a href="#TypeScript-原始数据的注解" class="headerlink" title="TypeScript 原始数据的注解"></a>TypeScript 原始数据的注解</h4><h5 id="布尔值的注解-："><a href="#布尔值的注解-：" class="headerlink" title="布尔值的注解  ："></a>布尔值的注解  ：</h5><div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">let</span> isDone: <span class="hljs-built_in">boolean</span> = <span class="hljs-literal">false</span>;</code></pre></div>
+<h4 id="TypeScript-原始数据的注解"><a href="#TypeScript-原始数据的注解" class="headerlink" title="TypeScript 原始数据的注解"></a>TypeScript 原始数据的注解</h4><h5 id="布尔值的注解-："><a href="#布尔值的注解-：" class="headerlink" title="布尔值的注解  ："></a>布尔值的注解  ：</h5><div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">let</span> <span class="hljs-attr">isDone</span>: <span class="hljs-built_in">boolean</span> = <span class="hljs-literal">false</span>;</code></pre></div>
 <p>//注意boolean 首字母不能大写，</p>
 <p>注解：Boolean 指的是如下：<br><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/12c8d64a47724d5ca52e85bcaaae69b2~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="Boolean"></p>
-<h5 id="数字的注解："><a href="#数字的注解：" class="headerlink" title="数字的注解："></a>数字的注解：</h5><div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">let</span> decLiteral: <span class="hljs-built_in">number</span> = <span class="hljs-number">6</span>;</code></pre></div>
+<h5 id="数字的注解："><a href="#数字的注解：" class="headerlink" title="数字的注解："></a>数字的注解：</h5><div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">let</span> <span class="hljs-attr">decLiteral</span>: <span class="hljs-built_in">number</span> = <span class="hljs-number">6</span>;</code></pre></div>
 
-<h5 id="字符串的注解："><a href="#字符串的注解：" class="headerlink" title="字符串的注解："></a>字符串的注解：</h5><div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">let</span> myName: <span class="hljs-built_in">string</span> = <span class="hljs-string">&quot;bob&quot;</span>;
+<h5 id="字符串的注解："><a href="#字符串的注解：" class="headerlink" title="字符串的注解："></a>字符串的注解：</h5><div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">let</span> <span class="hljs-attr">myName</span>: <span class="hljs-built_in">string</span> = <span class="hljs-string">&quot;bob&quot;</span>;
 myName = <span class="hljs-string">&quot;smith&quot;</span>;
-<span class="hljs-keyword">let</span> sentence: <span class="hljs-built_in">string</span> = <span class="hljs-string">`Hello, my name is <span class="hljs-subst">$&#123; myName &#125;</span>.</span></code></pre></div>
+<span class="hljs-keyword">let</span> <span class="hljs-attr">sentence</span>: <span class="hljs-built_in">string</span> = <span class="hljs-string">`Hello, my name is <span class="hljs-subst">$&#123; myName &#125;</span>.</span></code></pre></div>
 
 <p>// 注意这点不能用 name来命名</p>
 <p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/167bcf4d02ac47d0ad6f0066a8432024~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="不能name来命名"></p>
 <h5 id="any-数据类型：-任意数据类型；"><a href="#any-数据类型：-任意数据类型；" class="headerlink" title="any 数据类型： 任意数据类型；"></a>any 数据类型： 任意数据类型；</h5><ol>
 <li><p><strong>如果是不同变量的话，可以是任意的数据类型</strong></p>
-<div class="hljs"><pre><code class="hljs typescript"><span class="hljs-keyword">let</span> notSure: <span class="hljs-built_in">any</span> = <span class="hljs-number">4</span>;
+<div class="hljs"><pre><code class="hljs typescript"><span class="hljs-keyword">let</span> <span class="hljs-attr">notSure</span>: <span class="hljs-built_in">any</span> = <span class="hljs-number">4</span>;
 notSure = <span class="hljs-string">&quot;maybe a string instead&quot;</span>;
 notSure = <span class="hljs-literal">false</span>; <span class="hljs-comment">// okay, definitely a boolean</span></code></pre></div>
 </li>
 <li><p><strong>如果是对象的话， any 是不能够提示原型上的共有属性和方法的。</strong></p>
- <div class="hljs"><pre><code class="hljs typescript"><span class="hljs-keyword">let</span> notSure: <span class="hljs-built_in">any</span> = <span class="hljs-number">4</span>;
-notSure.ifItExists(); <span class="hljs-comment">// okay, ifItExists might exist at runtime</span>
-notSure.toFixed(); <span class="hljs-comment">// okay, toFixed exists (but the compiler doesn&#x27;t check)</span></code></pre></div>
+  <div class="hljs"><pre><code class="hljs typescript"><span class="hljs-keyword">let</span> <span class="hljs-attr">notSure</span>: <span class="hljs-built_in">any</span> = <span class="hljs-number">4</span>;
+notSure.<span class="hljs-title function_">ifItExists</span>(); <span class="hljs-comment">// okay, ifItExists might exist at runtime</span>
+notSure.<span class="hljs-title function_">toFixed</span>(); <span class="hljs-comment">// okay, toFixed exists (but the compiler doesn&#x27;t check)</span></code></pre></div>
 
-<p> 相反，如果是 Object的话，它就会提示使用Object类型上的属性</p>
- <div class="hljs"><pre><code class="hljs typescript"><span class="hljs-keyword">let</span> prettySure: <span class="hljs-built_in">Object</span> = <span class="hljs-number">4</span>;
-prettySure.toFixed(); <span class="hljs-comment">// Error: Property &#x27;toFixed&#x27; doesn&#x27;t exist on type &#x27;Object&#x27;.</span>
-prettySure.toString()  <span class="hljs-comment">// OK</span></code></pre></div>
+<p>  相反，如果是 Object的话，它就会提示使用Object类型上的属性</p>
+  <div class="hljs"><pre><code class="hljs typescript"><span class="hljs-keyword">let</span> <span class="hljs-attr">prettySure</span>: <span class="hljs-title class_">Object</span> = <span class="hljs-number">4</span>;
+prettySure.<span class="hljs-title function_">toFixed</span>(); <span class="hljs-comment">// Error: Property &#x27;toFixed&#x27; doesn&#x27;t exist on type &#x27;Object&#x27;.</span>
+prettySure.<span class="hljs-title function_">toString</span>()  <span class="hljs-comment">// OK</span></code></pre></div>
 
-<p> 如下图<br> <img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/84e70431681d4d4b94cd4e3a2ca04ee7~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif"></p>
+<p>  如下图<br>  <img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/84e70431681d4d4b94cd4e3a2ca04ee7~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif"></p>
 </li>
-</ol>
-<ol start="3">
-<li><strong>未给初始值的变量类型 为 any 类型</strong> <div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">let</span> a
+<li><p><strong>未给初始值的变量类型 为 any 类型</strong></p>
+ <div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">let</span> a
 a = <span class="hljs-string">&#x27;123&#x27;</span>
 a = <span class="hljs-number">123</span></code></pre></div>
-  <img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f571820298be45b88dffb6c0602f0e86~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt=" any 类型"></li>
+<p>  <img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f571820298be45b88dffb6c0602f0e86~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt=" any 类型"></p>
+<h5 id="void"><a href="#void" class="headerlink" title="void"></a>void</h5></li>
 </ol>
-<h5 id="void"><a href="#void" class="headerlink" title="void"></a>void</h5><blockquote>
+<blockquote>
 <p> void<code>类型像是与</code>any<code>类型相反，它表示没有任何类型。 当一个函数没有返回值时，你通常会见到其返回值类型是 </code>void</p>
 </blockquote>
-<div class="hljs"><pre><code class="hljs typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">warnUser</span>(<span class="hljs-params"></span>): <span class="hljs-title">void</span> </span>&#123;
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;This is my warning message&quot;</span>);
+<div class="hljs"><pre><code class="hljs typescript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">warnUser</span>(<span class="hljs-params"></span>): <span class="hljs-built_in">void</span> &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;This is my warning message&quot;</span>);
   <span class="hljs-comment">//相当于 return undefined  </span>
 &#125;</code></pre></div>
 
@@ -294,22 +296,22 @@ a = <span class="hljs-number">123</span></code></pre></div>
 <p> 默认情况下null和undefined是所有类型的子类型</p>
 </blockquote>
 <p>在tsconfig.json 中配置 strictNullChecks = false 时，<br>就可证明null和undefined是所有类型的子类型 </p>
-<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">let</span> u: <span class="hljs-built_in">number</span> = <span class="hljs-literal">undefined</span>;  <span class="hljs-comment">// strictNullChecks = false 时， 不报错</span></code></pre></div>
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">let</span> <span class="hljs-attr">u</span>: <span class="hljs-built_in">number</span> = <span class="hljs-literal">undefined</span>;  <span class="hljs-comment">// strictNullChecks = false 时， 不报错</span></code></pre></div>
 <blockquote>
 <p>但官方建议让我们 strictNullChecks = true ，但在配置中这个标记是关闭的。</p>
 </blockquote>
 <h5 id="Never"><a href="#Never" class="headerlink" title="Never"></a>Never</h5><p> <code>never</code>类型表示的是那些永不存在的值的类型, 例如， <code>never</code>类型是那些总是会抛出异常或根本就不会有返回值的函数表达式或箭头函数表达式的返回值类型； 变量也可能是 <code>never</code>类型，当它们被永不为真的类型保护所约束时。</p>
 <p> （目前我接触的这种实际情景不多，以后遇到了我再去单独了解）</p>
 <h5 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h5><p> object表示非原始类型，也就是除number，string，boolean，symbol，null或undefined之外的类型。</p>
-<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">declare</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">create</span>(<span class="hljs-params">o: <span class="hljs-built_in">object</span> | <span class="hljs-literal">null</span></span>): <span class="hljs-title">void</span></span>;
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">declare</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">create</span>(<span class="hljs-params">o: <span class="hljs-built_in">object</span> | <span class="hljs-literal">null</span></span>): <span class="hljs-built_in">void</span>;
 
-create(&#123; prop: <span class="hljs-number">0</span> &#125;); <span class="hljs-comment">// OK</span>
-create(<span class="hljs-literal">null</span>); <span class="hljs-comment">// OK</span>
+<span class="hljs-title function_">create</span>(&#123; <span class="hljs-attr">prop</span>: <span class="hljs-number">0</span> &#125;); <span class="hljs-comment">// OK</span>
+<span class="hljs-title function_">create</span>(<span class="hljs-literal">null</span>); <span class="hljs-comment">// OK</span>
 
-create(<span class="hljs-number">42</span>); <span class="hljs-comment">// Error</span>
-create(<span class="hljs-string">&quot;string&quot;</span>); <span class="hljs-comment">// Error</span>
-create(<span class="hljs-literal">false</span>); <span class="hljs-comment">// Error</span>
-create(<span class="hljs-literal">undefined</span>); <span class="hljs-comment">// Error</span></code></pre></div>
+<span class="hljs-title function_">create</span>(<span class="hljs-number">42</span>); <span class="hljs-comment">// Error</span>
+<span class="hljs-title function_">create</span>(<span class="hljs-string">&quot;string&quot;</span>); <span class="hljs-comment">// Error</span>
+<span class="hljs-title function_">create</span>(<span class="hljs-literal">false</span>); <span class="hljs-comment">// Error</span>
+<span class="hljs-title function_">create</span>(<span class="hljs-literal">undefined</span>); <span class="hljs-comment">// Error</span></code></pre></div>
 <p>以上是官网的例子， 上面代码说明了 object 不能是去使用 原始类型 ， 比如<code>create(function()&#123;&#125;)</code>、 <code>create([])</code> 这些是可以OK的。</p>
 <h3 id="类型注解-amp-类型推论-amp-联合类型"><a href="#类型注解-amp-类型推论-amp-联合类型" class="headerlink" title="类型注解 &amp; 类型推论 &amp; 联合类型"></a>类型注解 &amp; 类型推论 &amp; 联合类型</h3><p>在我们定义变量时，而这个变量是原始数据，那么，我们不需要对它进行类型注解，它也能推论出该变量属于什么类型的。  </p>
 <p>如下图： 类型推论</p>
@@ -317,31 +319,31 @@ create(<span class="hljs-literal">undefined</span>); <span class="hljs-comment">
 <p><strong>所以正常情况下，能够做出类型推论的话，我们专门去对它注解，会显得有些繁琐了。</strong></p>
 <p>但是肯定有别的情况需要我们去做类型注解，</p>
 <p>比如：当我们定义一个方式， 它会提示我们去进行类型注解</p>
-<div class="hljs"><pre><code class="hljs ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params">a, b</span>) </span>&#123;  <span class="hljs-comment">// 在编辑器中会提示你要做类型注解</span>
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">test</span>(<span class="hljs-params">a, b</span>) &#123;  <span class="hljs-comment">// 在编辑器中会提示你要做类型注解</span>
   <span class="hljs-keyword">return</span> a + b
 &#125;
  
-test(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)</code></pre></div>
+<span class="hljs-title function_">test</span>(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)</code></pre></div>
 
 <p>做类型注解：</p>
-<div class="hljs"><pre><code class="hljs ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params">a:<span class="hljs-built_in">number</span>, b:<span class="hljs-built_in">number</span></span>) </span>&#123;
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">test</span>(<span class="hljs-params">a:<span class="hljs-built_in">number</span>, b:<span class="hljs-built_in">number</span></span>) &#123;
   <span class="hljs-keyword">return</span> a + b
 &#125;
  
-test(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)</code></pre></div>
+<span class="hljs-title function_">test</span>(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)</code></pre></div>
 
 <p><strong>联合类型：</strong>  多个类型当中，我们可以选择其中类型的一种</p>
-<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">let</span> union: <span class="hljs-built_in">string</span> | <span class="hljs-built_in">number</span>
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">let</span> <span class="hljs-attr">union</span>: <span class="hljs-built_in">string</span> | <span class="hljs-built_in">number</span>
 union= <span class="hljs-string">&#x27;123&#x27;</span>  <span class="hljs-comment">// is OK</span>
 union= <span class="hljs-number">123</span>    <span class="hljs-comment">// is OK</span></code></pre></div>
 
 <p>而当我们去定义一个函数时：</p>
-<div class="hljs"><pre><code class="hljs ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params">a: <span class="hljs-built_in">number</span> | <span class="hljs-built_in">string</span></span>) </span>&#123;
-  <span class="hljs-keyword">return</span> a.toString()   <span class="hljs-comment">// 共有属性， OK</span>
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">test</span>(<span class="hljs-params">a: <span class="hljs-built_in">number</span> | <span class="hljs-built_in">string</span></span>) &#123;
+  <span class="hljs-keyword">return</span> a.<span class="hljs-title function_">toString</span>()   <span class="hljs-comment">// 共有属性， OK</span>
   <span class="hljs-comment">//  return  a.split()  // 这个是 String 独有的属性，不能联合起来使用</span>
 &#125;
 
-test(<span class="hljs-number">1</span>)</code></pre></div>
+<span class="hljs-title function_">test</span>(<span class="hljs-number">1</span>)</code></pre></div>
 
 
 <p>因此，我们要注意，</p>
@@ -362,30 +364,30 @@ test(<span class="hljs-number">1</span>)</code></pre></div>
 <p>简单使用：(对 对象的形状进行描述)</p>
 <p><strong>// interface默认不能多属性也不能少属性</strong></p>
 <div class="hljs"><pre><code class="hljs ts">
-<span class="hljs-keyword">interface</span> Person &#123;
-  name: <span class="hljs-built_in">string</span>
-  age: <span class="hljs-built_in">number</span>
+<span class="hljs-keyword">interface</span> <span class="hljs-title class_">Person</span> &#123;
+  <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>
+  <span class="hljs-attr">age</span>: <span class="hljs-built_in">number</span>
 &#125;
 
-<span class="hljs-keyword">let</span> preson: Person = &#123;
-  name: <span class="hljs-string">&#x27;wpf&#x27;</span>,
-  age: <span class="hljs-number">18</span>
+<span class="hljs-keyword">let</span> <span class="hljs-attr">preson</span>: <span class="hljs-title class_">Person</span> = &#123;
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;wpf&#x27;</span>,
+  <span class="hljs-attr">age</span>: <span class="hljs-number">18</span>
 &#125;</code></pre></div>
 
 <ul>
 <li><strong>可选属性：如果偏偏少属性呢？  就在属性后边加<code>?</code>即可。 如果想多属性呢，</strong></li>
 <li><strong>任意/多选 属性<code>[propName:string]:any</code></strong></li>
-<li><strong>只读属性: <code>readonly</code>后面加属性</strong><div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">interface</span> Person &#123; 
-  <span class="hljs-keyword">readonly</span> id: <span class="hljs-built_in">number</span>,    <span class="hljs-comment">// 只读属性</span>
-  name: <span class="hljs-built_in">string</span>
+<li><strong>只读属性: <code>readonly</code>后面加属性</strong><div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Person</span> &#123; 
+  <span class="hljs-keyword">readonly</span> <span class="hljs-attr">id</span>: <span class="hljs-built_in">number</span>,    <span class="hljs-comment">// 只读属性</span>
+  <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>
   age?: <span class="hljs-built_in">number</span>  <span class="hljs-comment">// 可选属性</span>
-  [propName:<span class="hljs-built_in">string</span>]:<span class="hljs-built_in">any</span>   <span class="hljs-comment">// 任意属性</span>
+  [<span class="hljs-attr">propName</span>:<span class="hljs-built_in">string</span>]:<span class="hljs-built_in">any</span>   <span class="hljs-comment">// 任意属性</span>
 &#125;
 
-<span class="hljs-keyword">let</span> preson: Person = &#123;
-  id: <span class="hljs-number">1</span>,
-  name: <span class="hljs-string">&#x27;wpf&#x27;</span>,
-  male: <span class="hljs-string">&#x27;男&#x27;</span>
+<span class="hljs-keyword">let</span> <span class="hljs-attr">preson</span>: <span class="hljs-title class_">Person</span> = &#123;
+  <span class="hljs-attr">id</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;wpf&#x27;</span>,
+  <span class="hljs-attr">male</span>: <span class="hljs-string">&#x27;男&#x27;</span>
 &#125;</code></pre></div>
 
 
@@ -398,84 +400,98 @@ test(<span class="hljs-number">1</span>)</code></pre></div>
 <li>interface 方式</li>
 </ol>
 <p><strong>类型[]</strong></p>
-<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">let</span> list: <span class="hljs-built_in">number</span>[] = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];  <span class="hljs-comment">// 默认不写，会类型推论 推出来</span>
-<span class="hljs-keyword">let</span> list1: (<span class="hljs-built_in">string</span> | <span class="hljs-built_in">number</span>)[] = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-string">&#x27;1&#x27;</span>]  <span class="hljs-comment">// 联合类型</span></code></pre></div>
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">let</span> <span class="hljs-attr">list</span>: <span class="hljs-built_in">number</span>[] = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];  <span class="hljs-comment">// 默认不写，会类型推论 推出来</span>
+<span class="hljs-keyword">let</span> <span class="hljs-attr">list1</span>: (<span class="hljs-built_in">string</span> | <span class="hljs-built_in">number</span>)[] = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-string">&#x27;1&#x27;</span>]  <span class="hljs-comment">// 联合类型</span></code></pre></div>
 
 <p><strong>Array&lt;类型&gt;</strong></p>
-<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">let</span> list: <span class="hljs-built_in">Array</span>&lt;<span class="hljs-built_in">number</span>&gt; = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];</code></pre></div>
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">let</span> <span class="hljs-attr">list</span>: <span class="hljs-title class_">Array</span>&lt;<span class="hljs-built_in">number</span>&gt; = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];</code></pre></div>
 
 <p><strong>interface 方式</strong></p>
-<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">interface</span> List &#123;
-  [index: <span class="hljs-built_in">number</span>]: <span class="hljs-built_in">number</span>
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">List</span> &#123;
+  [<span class="hljs-attr">index</span>: <span class="hljs-built_in">number</span>]: <span class="hljs-built_in">number</span>
 &#125;
-<span class="hljs-keyword">let</span> list: List = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]</code></pre></div>
+<span class="hljs-keyword">let</span> <span class="hljs-attr">list</span>: <span class="hljs-title class_">List</span> = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]</code></pre></div>
 
 <div class="hljs"><pre><code class="hljs ts"><span class="hljs-comment">// 联合类型</span>
-<span class="hljs-keyword">interface</span> List &#123;
-  [index: <span class="hljs-built_in">number</span>]: <span class="hljs-built_in">number</span> | <span class="hljs-built_in">string</span>
+<span class="hljs-keyword">interface</span> <span class="hljs-title class_">List</span> &#123;
+  [<span class="hljs-attr">index</span>: <span class="hljs-built_in">number</span>]: <span class="hljs-built_in">number</span> | <span class="hljs-built_in">string</span>
 &#125;
 
-<span class="hljs-keyword">let</span> list: List = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-string">&#x27;6&#x27;</span>]</code></pre></div>
+<span class="hljs-keyword">let</span> <span class="hljs-attr">list</span>: <span class="hljs-title class_">List</span> = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-string">&#x27;6&#x27;</span>]</code></pre></div>
 
 <p><strong>类数组</strong></p>
 <p>// args 就是个类数组</p>
 <p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cd2eaf920d594d9f8cadcb5b680bf873~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="类数组"></p>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/typescript/">typescript</a>
-                  
-                  <a class="hover-with-bg" href="/categories/typescript/JavaScript/">JavaScript</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/typescript/">typescript</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2020/12/27/40.TypeScript%E7%B3%BB%E5%88%972/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">TypeScript学习总结之函数</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2020/12/21/38.nodejs%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81/">
-                    <span class="hidden-mobile">node.js中使用nodemailer插件发送邮件 (学习总结)</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/typescript/">
+                              typescript
+                            </a>
+                            
+                            <a class="hover-with-bg" href="/categories/typescript/JavaScript/">
+                              JavaScript
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/typescript/">
+                                  typescript
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2020/12/27/40.TypeScript%E7%B3%BB%E5%88%972/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      TypeScript学习总结之函数
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2020/12/21/38.nodejs%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81/">
+                                    <span class="hidden-mobile">
+                                      node.js中使用nodemailer插件发送邮件 (学习总结)
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -502,26 +518,26 @@ test(<span class="hljs-number">1</span>)</code></pre></div>
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

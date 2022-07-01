@@ -203,18 +203,20 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">实现几个经典排序算法</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><h3 id="冒泡排序实现思路"><a href="#冒泡排序实现思路" class="headerlink" title="冒泡排序实现思路"></a>冒泡排序实现思路</h3><blockquote>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                实现几个经典排序算法
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><h3 id="冒泡排序实现思路"><a href="#冒泡排序实现思路" class="headerlink" title="冒泡排序实现思路"></a>冒泡排序实现思路</h3><blockquote>
 <p>冒泡排序算法相对其他排序运行效率较低，但是在概念上他是排序算法中最简单的</p>
 </blockquote>
 <p><strong>思路：</strong></p>
@@ -226,46 +228,46 @@
 </ol>
 <p>最后需要 第 （n-1） 趟就能完成排序。</p>
 <p>参考动画：<br><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fac3f7394d324da589050a06e6850be6~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="冒泡排序动画"></p>
-<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><div class="hljs"><pre><code class="hljs javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrayList</span> </span>&#123;
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">ArrayList</span> &#123;
   array = []
   <span class="hljs-comment">// 用于插入数据</span>
-  insert(item) &#123;
-    <span class="hljs-built_in">this</span>.array.push(item)
+  <span class="hljs-title function_">insert</span>(<span class="hljs-params">item</span>) &#123;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span>.<span class="hljs-title function_">push</span>(item)
   &#125;
-  swap(m,n) &#123;
-    <span class="hljs-keyword">let</span> temp = <span class="hljs-built_in">this</span>.array[m]
-    <span class="hljs-built_in">this</span>.array[m] = <span class="hljs-built_in">this</span>.array[n]
-    <span class="hljs-built_in">this</span>.array[n] = temp
+  <span class="hljs-title function_">swap</span>(<span class="hljs-params">m,n</span>) &#123;
+    <span class="hljs-keyword">let</span> temp = <span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span>[m]
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span>[m] = <span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span>[n]
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span>[n] = temp
   &#125;
 
  <span class="hljs-comment">// 冒泡排序  （核心代码在这里）</span>
-  bubblesSort() &#123;
-    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.array === <span class="hljs-literal">null</span> || <span class="hljs-built_in">this</span>.array.length &lt; <span class="hljs-number">2</span>) &#123; <span class="hljs-keyword">return</span> &#125;
+  <span class="hljs-title function_">bubblesSort</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span> === <span class="hljs-literal">null</span> || <span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span>.<span class="hljs-property">length</span> &lt; <span class="hljs-number">2</span>) &#123; <span class="hljs-keyword">return</span> &#125;
     <span class="hljs-comment">// 这里注意需要 length -1 。 原因是 如果是最后一个数会有bug，因为没有 第最后一个数+1的数</span>
     <span class="hljs-comment">// 也可以理解将 length -1 为 比较的次数</span>
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-built_in">this</span>.array.length - <span class="hljs-number">1</span>; j &gt;= <span class="hljs-number">0</span>; j--) &#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span>.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>; j &gt;= <span class="hljs-number">0</span>; j--) &#123;
       <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; j; i++) &#123;
-        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.array[i] &gt; <span class="hljs-built_in">this</span>.array[i + <span class="hljs-number">1</span>]) &#123;
-          <span class="hljs-built_in">this</span>.swap(i, i + <span class="hljs-number">1</span>)
+        <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span>[i] &gt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span>[i + <span class="hljs-number">1</span>]) &#123;
+          <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">swap</span>(i, i + <span class="hljs-number">1</span>)
         &#125;
       &#125;
     &#125;
   &#125;
 
 
-<span class="hljs-keyword">let</span> list = <span class="hljs-keyword">new</span> ArrayList()
-list.insert(<span class="hljs-number">12</span>)
-list.insert(<span class="hljs-number">2</span>)
-list.insert(<span class="hljs-number">45</span>)
-list.insert(<span class="hljs-number">123</span>)
-list.insert(<span class="hljs-number">481</span>)
-list.insert(<span class="hljs-number">56</span>)
-<span class="hljs-built_in">console</span>.log(list.array);   <span class="hljs-comment">// [ 12, 2, 45, 123, 481, 56 ]</span>
+<span class="hljs-keyword">let</span> list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>()
+list.<span class="hljs-title function_">insert</span>(<span class="hljs-number">12</span>)
+list.<span class="hljs-title function_">insert</span>(<span class="hljs-number">2</span>)
+list.<span class="hljs-title function_">insert</span>(<span class="hljs-number">45</span>)
+list.<span class="hljs-title function_">insert</span>(<span class="hljs-number">123</span>)
+list.<span class="hljs-title function_">insert</span>(<span class="hljs-number">481</span>)
+list.<span class="hljs-title function_">insert</span>(<span class="hljs-number">56</span>)
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(list.<span class="hljs-property">array</span>);   <span class="hljs-comment">// [ 12, 2, 45, 123, 481, 56 ]</span>
 
 
 <span class="hljs-comment">// 调用冒泡排序</span>
-list.bubblesSort()
-<span class="hljs-built_in">console</span>.log(list.array);  <span class="hljs-comment">// [ 2, 12, 45, 56, 123, 481 ]</span></code></pre></div>
+list.<span class="hljs-title function_">bubblesSort</span>()
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(list.<span class="hljs-property">array</span>);  <span class="hljs-comment">// [ 2, 12, 45, 56, 123, 481 ]</span></code></pre></div>
 
 
 
@@ -289,53 +291,53 @@ list.bubblesSort()
 </ol>
 <p>参考动画：</p>
 <p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d3440515605140ac8c6efe7e9a05261f~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="select.gif"></p>
-<h3 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h3><div class="hljs"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrayList</span> </span>&#123;
+<h3 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h3><div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">ArrayList</span> &#123;
   array = [];
 
   <span class="hljs-comment">// 用于插入数字</span>
-  insert(item) &#123;
-    <span class="hljs-built_in">this</span>.array.push(item);
+  <span class="hljs-title function_">insert</span>(<span class="hljs-params">item</span>) &#123;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span>.<span class="hljs-title function_">push</span>(item);
   &#125;
 
   <span class="hljs-comment">// 交换两个数字</span>
-  swap(m, n) &#123;
-    <span class="hljs-keyword">let</span> temp = <span class="hljs-built_in">this</span>.array[m];
-    <span class="hljs-built_in">this</span>.array[m] = <span class="hljs-built_in">this</span>.array[n];
-    <span class="hljs-built_in">this</span>.array[n] = temp;
+  <span class="hljs-title function_">swap</span>(<span class="hljs-params">m, n</span>) &#123;
+    <span class="hljs-keyword">let</span> temp = <span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span>[m];
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span>[m] = <span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span>[n];
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span>[n] = temp;
   &#125;
 
 
 
   <span class="hljs-comment">// 选择排序</span>
-  selectSort() &#123;
+  <span class="hljs-title function_">selectSort</span>(<span class="hljs-params"></span>) &#123;
     <span class="hljs-comment">// 外部的循环表示 : 从0的位置开始取出数据，直到倒数第二个数的位置，即 length - 2</span>
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-built_in">this</span>.array.length - <span class="hljs-number">1</span>; j++) &#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span>.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>; j++) &#123;
       <span class="hljs-keyword">let</span> min = j;
       <span class="hljs-comment">// 内部的循环表示：从 min+1位置开始，和后面的数进行比较</span>
-      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = min + <span class="hljs-number">1</span>; i &lt; <span class="hljs-built_in">this</span>.array.length; i++) &#123;
-        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.array[min] &gt; <span class="hljs-built_in">this</span>.array[i]) &#123;
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = min + <span class="hljs-number">1</span>; i &lt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span>.<span class="hljs-property">length</span>; i++) &#123;
+        <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span>[min] &gt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span>[i]) &#123;
           min = i;
         &#125;
       &#125;
-      <span class="hljs-built_in">this</span>.swap(min, j);
+      <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">swap</span>(min, j);
     &#125;
   &#125;
   
 &#125;
 
-<span class="hljs-keyword">let</span> list = <span class="hljs-keyword">new</span> ArrayList();
-list.insert(<span class="hljs-number">12</span>);
-list.insert(<span class="hljs-number">2</span>);
-list.insert(<span class="hljs-number">45</span>);
-list.insert(<span class="hljs-number">123</span>);
-list.insert(<span class="hljs-number">481</span>);
-list.insert(<span class="hljs-number">56</span>);
-<span class="hljs-built_in">console</span>.log(list.array); <span class="hljs-comment">// [ 12, 2, 45, 123, 481, 56 ]</span>
+<span class="hljs-keyword">let</span> list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>();
+list.<span class="hljs-title function_">insert</span>(<span class="hljs-number">12</span>);
+list.<span class="hljs-title function_">insert</span>(<span class="hljs-number">2</span>);
+list.<span class="hljs-title function_">insert</span>(<span class="hljs-number">45</span>);
+list.<span class="hljs-title function_">insert</span>(<span class="hljs-number">123</span>);
+list.<span class="hljs-title function_">insert</span>(<span class="hljs-number">481</span>);
+list.<span class="hljs-title function_">insert</span>(<span class="hljs-number">56</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(list.<span class="hljs-property">array</span>); <span class="hljs-comment">// [ 12, 2, 45, 123, 481, 56 ]</span>
 
 
 <span class="hljs-comment">// 调用选择排序</span>
-list.selectSort();
-<span class="hljs-built_in">console</span>.log(list.array); <span class="hljs-comment">// [ 2, 12, 45, 56, 123, 481 ]</span></code></pre></div>
+list.<span class="hljs-title function_">selectSort</span>();
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(list.<span class="hljs-property">array</span>); <span class="hljs-comment">// [ 2, 12, 45, 56, 123, 481 ]</span></code></pre></div>
 
 <h4 id="选择算法效率"><a href="#选择算法效率" class="headerlink" title="选择算法效率"></a>选择算法效率</h4><p>同样和冒泡排序效率差不多</p>
 <p>时间复杂度:O(N²)</p>
@@ -350,44 +352,44 @@ list.selectSort();
 </ul>
 <p>参考动画：</p>
 <p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ceb7dd06b55748b88d6c799d4954af58~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="insert.gif"></p>
-<h3 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h3><div class="hljs"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrayList</span> </span>&#123;
+<h3 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h3><div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">ArrayList</span> &#123;
   array = [];
 
   <span class="hljs-comment">// 用于插入数字</span>
-  insert(item) &#123;
-    <span class="hljs-built_in">this</span>.array.push(item);
+  <span class="hljs-title function_">insert</span>(<span class="hljs-params">item</span>) &#123;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span>.<span class="hljs-title function_">push</span>(item);
   &#125;
 
 
   <span class="hljs-comment">//  插入排序</span>
-  insertSort() &#123;
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; <span class="hljs-built_in">this</span>.array.length; i++) &#123;
+  <span class="hljs-title function_">insertSort</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span>.<span class="hljs-property">length</span>; i++) &#123;
       <span class="hljs-keyword">let</span> j = i; <span class="hljs-comment">// 获取当前的下标值，存起来。</span>
-      <span class="hljs-keyword">let</span> current = <span class="hljs-built_in">this</span>.array[i];  <span class="hljs-comment">// 获取当前的数，存起来</span>
+      <span class="hljs-keyword">let</span> current = <span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span>[i];  <span class="hljs-comment">// 获取当前的数，存起来</span>
     <span class="hljs-comment">// 由于不确定循环次数，所有用while</span>
-      <span class="hljs-keyword">while</span> (<span class="hljs-built_in">this</span>.array[j - <span class="hljs-number">1</span>] &gt; current &amp;&amp; j &gt; <span class="hljs-number">0</span>) &#123; 
+      <span class="hljs-keyword">while</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span>[j - <span class="hljs-number">1</span>] &gt; current &amp;&amp; j &gt; <span class="hljs-number">0</span>) &#123; 
       <span class="hljs-comment">// 如果当前数的前一个比当前数大，就交换。</span>
-        <span class="hljs-built_in">this</span>.array[j] = <span class="hljs-built_in">this</span>.array[j - <span class="hljs-number">1</span>];
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span>[j] = <span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span>[j - <span class="hljs-number">1</span>];
         j--;
       &#125;
       <span class="hljs-comment">// 将j位置的数，放到当前位置。</span>
-      <span class="hljs-built_in">this</span>.array[j] = current;
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span>[j] = current;
     &#125;
   &#125;
 &#125;
 
-<span class="hljs-keyword">let</span> list = <span class="hljs-keyword">new</span> ArrayList();
-list.insert(<span class="hljs-number">12</span>);
-list.insert(<span class="hljs-number">2</span>);
-list.insert(<span class="hljs-number">45</span>);
-list.insert(<span class="hljs-number">123</span>);
-list.insert(<span class="hljs-number">481</span>);
-list.insert(<span class="hljs-number">56</span>);
-<span class="hljs-built_in">console</span>.log(list.array);  <span class="hljs-comment">// [ 12, 2, 45, 123, 481, 56 ]</span>
+<span class="hljs-keyword">let</span> list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>();
+list.<span class="hljs-title function_">insert</span>(<span class="hljs-number">12</span>);
+list.<span class="hljs-title function_">insert</span>(<span class="hljs-number">2</span>);
+list.<span class="hljs-title function_">insert</span>(<span class="hljs-number">45</span>);
+list.<span class="hljs-title function_">insert</span>(<span class="hljs-number">123</span>);
+list.<span class="hljs-title function_">insert</span>(<span class="hljs-number">481</span>);
+list.<span class="hljs-title function_">insert</span>(<span class="hljs-number">56</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(list.<span class="hljs-property">array</span>);  <span class="hljs-comment">// [ 12, 2, 45, 123, 481, 56 ]</span>
 
 <span class="hljs-comment">// 调用 插入排序</span>
-list.insertSort();
-<span class="hljs-built_in">console</span>.log(list.array); <span class="hljs-comment">// [ 2, 12, 45, 56, 123, 481 ]</span></code></pre></div>
+list.<span class="hljs-title function_">insertSort</span>();
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(list.<span class="hljs-property">array</span>); <span class="hljs-comment">// [ 2, 12, 45, 56, 123, 481 ]</span></code></pre></div>
 
 <h3 id="插入排序的效率"><a href="#插入排序的效率" class="headerlink" title="插入排序的效率"></a>插入排序的效率</h3><p><strong>插入排序的比较次数：</strong></p>
 <ul>
@@ -409,48 +411,48 @@ list.insertSort();
 <li>对”基准”左部分和右部分，不断重复第一步和第二步，直到所有部分只剩下一个元素为止。</li>
 </ul>
 <p>动画参考:<br><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3044a244fd864c48b0c5f841b617526b~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="quick.gif"></p>
-<h3 id="代码实现-3"><a href="#代码实现-3" class="headerlink" title="代码实现"></a>代码实现</h3><div class="hljs"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrayList</span> </span>&#123;
+<h3 id="代码实现-3"><a href="#代码实现-3" class="headerlink" title="代码实现"></a>代码实现</h3><div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">ArrayList</span> &#123;
   array = [];
 
   <span class="hljs-comment">// 用于插入数字</span>
-  insert(item) &#123;
-    <span class="hljs-built_in">this</span>.array.push(item);
+  <span class="hljs-title function_">insert</span>(<span class="hljs-params">item</span>) &#123;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span>.<span class="hljs-title function_">push</span>(item);
   &#125;
 
   <span class="hljs-comment">// 快速排序</span>
-  quickSort() &#123;
-    <span class="hljs-keyword">const</span> quick = <span class="hljs-function">(<span class="hljs-params">array</span>) =&gt;</span> &#123;
-      <span class="hljs-keyword">if</span> (array.length &lt;= <span class="hljs-number">1</span>) &#123;<span class="hljs-keyword">return</span> array;&#125;
-      <span class="hljs-keyword">let</span> pivotIndex = <span class="hljs-built_in">Math</span>.floor(array.length / <span class="hljs-number">2</span>);
-      <span class="hljs-keyword">let</span> pivot = array.splice(pivotIndex, <span class="hljs-number">1</span>)[<span class="hljs-number">0</span>];
+  <span class="hljs-title function_">quickSort</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-keyword">const</span> <span class="hljs-title function_">quick</span> = (<span class="hljs-params">array</span>) =&gt; &#123;
+      <span class="hljs-keyword">if</span> (array.<span class="hljs-property">length</span> &lt;= <span class="hljs-number">1</span>) &#123;<span class="hljs-keyword">return</span> array;&#125;
+      <span class="hljs-keyword">let</span> pivotIndex = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(array.<span class="hljs-property">length</span> / <span class="hljs-number">2</span>);
+      <span class="hljs-keyword">let</span> pivot = array.<span class="hljs-title function_">splice</span>(pivotIndex, <span class="hljs-number">1</span>)[<span class="hljs-number">0</span>];
       <span class="hljs-keyword">let</span> left = [];
       <span class="hljs-keyword">let</span> right = [];
-      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; array.length; i++) &#123;
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; array.<span class="hljs-property">length</span>; i++) &#123;
         <span class="hljs-keyword">if</span> (array[i] &gt; pivot) &#123;
-          right.push(array[i]);
+          right.<span class="hljs-title function_">push</span>(array[i]);
         &#125; <span class="hljs-keyword">else</span> &#123;
-          left.push(array[i]);
+          left.<span class="hljs-title function_">push</span>(array[i]);
         &#125;
       &#125;
-      <span class="hljs-keyword">return</span> quick(left).concat([pivot], quick(right));
+      <span class="hljs-keyword">return</span> <span class="hljs-title function_">quick</span>(left).<span class="hljs-title function_">concat</span>([pivot], <span class="hljs-title function_">quick</span>(right));
     &#125;;
-    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.array = quick(<span class="hljs-built_in">this</span>.array);
+    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span> = <span class="hljs-title function_">quick</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span>);
   &#125;
 
 &#125;
 
-<span class="hljs-keyword">let</span> list = <span class="hljs-keyword">new</span> ArrayList();
-list.insert(<span class="hljs-number">12</span>);
-list.insert(<span class="hljs-number">2</span>);
-list.insert(<span class="hljs-number">45</span>);
-list.insert(<span class="hljs-number">123</span>);
-list.insert(<span class="hljs-number">481</span>);
-list.insert(<span class="hljs-number">56</span>);
-<span class="hljs-built_in">console</span>.log(list.array);
+<span class="hljs-keyword">let</span> list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>();
+list.<span class="hljs-title function_">insert</span>(<span class="hljs-number">12</span>);
+list.<span class="hljs-title function_">insert</span>(<span class="hljs-number">2</span>);
+list.<span class="hljs-title function_">insert</span>(<span class="hljs-number">45</span>);
+list.<span class="hljs-title function_">insert</span>(<span class="hljs-number">123</span>);
+list.<span class="hljs-title function_">insert</span>(<span class="hljs-number">481</span>);
+list.<span class="hljs-title function_">insert</span>(<span class="hljs-number">56</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(list.<span class="hljs-property">array</span>);
 
 <span class="hljs-comment">// 调用快速排序</span>
-list.quickSort();
-<span class="hljs-built_in">console</span>.log(list.array);
+list.<span class="hljs-title function_">quickSort</span>();
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(list.<span class="hljs-property">array</span>);
 </code></pre></div>
 
 <h3 id="快速排序的效率"><a href="#快速排序的效率" class="headerlink" title="快速排序的效率"></a>快速排序的效率</h3><p>时间复杂度: O(nlogn)</p>
@@ -459,101 +461,113 @@ list.quickSort();
 <p><strong>思路:</strong><br><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/480f8a177c1c4c32867c39a6ed1c9dd1~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="merge.png"></p>
 <p>动画参考:</p>
 <p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d283596ede884232aeb1ce05f828e732~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="merge.gif"></p>
-<h3 id="代码实现-4"><a href="#代码实现-4" class="headerlink" title="代码实现"></a>代码实现</h3><div class="hljs"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrayList</span> </span>&#123;
+<h3 id="代码实现-4"><a href="#代码实现-4" class="headerlink" title="代码实现"></a>代码实现</h3><div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">ArrayList</span> &#123;
   array = [];
 
   <span class="hljs-comment">// 用于插入数字</span>
-  insert(item) &#123;
-    <span class="hljs-built_in">this</span>.array.push(item);
+  <span class="hljs-title function_">insert</span>(<span class="hljs-params">item</span>) &#123;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span>.<span class="hljs-title function_">push</span>(item);
   &#125;
 
   <span class="hljs-comment">// 归并排序</span>
-  mergeSort() &#123;
-    <span class="hljs-keyword">const</span> mergerSorts = <span class="hljs-function">(<span class="hljs-params">array</span>) =&gt;</span> &#123;
-      <span class="hljs-keyword">if</span> (array.length === <span class="hljs-number">1</span>) &#123;<span class="hljs-keyword">return</span> array;&#125;
-      <span class="hljs-keyword">let</span> left = array.slice(<span class="hljs-number">0</span>, <span class="hljs-built_in">Math</span>.floor(array.length / <span class="hljs-number">2</span>));
-      <span class="hljs-keyword">let</span> right = array.slice(<span class="hljs-built_in">Math</span>.floor(array.length / <span class="hljs-number">2</span>));
-      <span class="hljs-keyword">const</span> merge = <span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> &#123;
-        <span class="hljs-keyword">if</span> (a.length === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> b;
-        <span class="hljs-keyword">if</span> (b.length === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> a;
-        <span class="hljs-keyword">return</span> a[<span class="hljs-number">0</span>] &lt; b[<span class="hljs-number">0</span>] ? [a[<span class="hljs-number">0</span>]].concat(merge(a.slice(<span class="hljs-number">1</span>), b)) : [b[<span class="hljs-number">0</span>]].concat(merge(a, b.slice(<span class="hljs-number">1</span>)));
+  <span class="hljs-title function_">mergeSort</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-keyword">const</span> <span class="hljs-title function_">mergerSorts</span> = (<span class="hljs-params">array</span>) =&gt; &#123;
+      <span class="hljs-keyword">if</span> (array.<span class="hljs-property">length</span> === <span class="hljs-number">1</span>) &#123;<span class="hljs-keyword">return</span> array;&#125;
+      <span class="hljs-keyword">let</span> left = array.<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span>, <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(array.<span class="hljs-property">length</span> / <span class="hljs-number">2</span>));
+      <span class="hljs-keyword">let</span> right = array.<span class="hljs-title function_">slice</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(array.<span class="hljs-property">length</span> / <span class="hljs-number">2</span>));
+      <span class="hljs-keyword">const</span> <span class="hljs-title function_">merge</span> = (<span class="hljs-params">a, b</span>) =&gt; &#123;
+        <span class="hljs-keyword">if</span> (a.<span class="hljs-property">length</span> === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> b;
+        <span class="hljs-keyword">if</span> (b.<span class="hljs-property">length</span> === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> a;
+        <span class="hljs-keyword">return</span> a[<span class="hljs-number">0</span>] &lt; b[<span class="hljs-number">0</span>] ? [a[<span class="hljs-number">0</span>]].<span class="hljs-title function_">concat</span>(<span class="hljs-title function_">merge</span>(a.<span class="hljs-title function_">slice</span>(<span class="hljs-number">1</span>), b)) : [b[<span class="hljs-number">0</span>]].<span class="hljs-title function_">concat</span>(<span class="hljs-title function_">merge</span>(a, b.<span class="hljs-title function_">slice</span>(<span class="hljs-number">1</span>)));
       &#125;;
-      <span class="hljs-keyword">return</span> merge(mergerSorts(left), mergerSorts(right));
+      <span class="hljs-keyword">return</span> <span class="hljs-title function_">merge</span>(<span class="hljs-title function_">mergerSorts</span>(left), <span class="hljs-title function_">mergerSorts</span>(right));
 
     &#125;;
-    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.array = mergerSorts(<span class="hljs-built_in">this</span>.array);
+    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span> = <span class="hljs-title function_">mergerSorts</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span>);
   &#125;
 &#125;
 
-<span class="hljs-keyword">let</span> list = <span class="hljs-keyword">new</span> ArrayList();
-list.insert(<span class="hljs-number">12</span>);
-list.insert(<span class="hljs-number">2</span>);
-list.insert(<span class="hljs-number">45</span>);
-list.insert(<span class="hljs-number">123</span>);
-list.insert(<span class="hljs-number">481</span>);
-list.insert(<span class="hljs-number">56</span>);
-<span class="hljs-built_in">console</span>.log(list.array);
+<span class="hljs-keyword">let</span> list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>();
+list.<span class="hljs-title function_">insert</span>(<span class="hljs-number">12</span>);
+list.<span class="hljs-title function_">insert</span>(<span class="hljs-number">2</span>);
+list.<span class="hljs-title function_">insert</span>(<span class="hljs-number">45</span>);
+list.<span class="hljs-title function_">insert</span>(<span class="hljs-number">123</span>);
+list.<span class="hljs-title function_">insert</span>(<span class="hljs-number">481</span>);
+list.<span class="hljs-title function_">insert</span>(<span class="hljs-number">56</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(list.<span class="hljs-property">array</span>);
 
 
 <span class="hljs-comment">// 调用归并排序</span>
-list.mergeSort();
-<span class="hljs-built_in">console</span>.log(list.array);</code></pre></div>
+list.<span class="hljs-title function_">mergeSort</span>();
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(list.<span class="hljs-property">array</span>);</code></pre></div>
 
 <h3 id="快速排序的效率-1"><a href="#快速排序的效率-1" class="headerlink" title="快速排序的效率"></a>快速排序的效率</h3><p>时间复杂度: O(nlogn)</p>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2021/03/17/57-%E9%87%8D%E5%86%99JS%E6%96%B9%E6%B3%95/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">重写bind,call,apply方法</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2021/02/20/55-TCP%E8%BF%9E%E6%8E%A5%E5%92%8C%E6%96%AD%E5%BC%80/">
-                    <span class="hidden-mobile">三次握手和四次挥手</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/">
+                              算法
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">
+                                  算法
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2021/03/17/57-%E9%87%8D%E5%86%99JS%E6%96%B9%E6%B3%95/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      重写bind,call,apply方法
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2021/02/20/55-TCP%E8%BF%9E%E6%8E%A5%E5%92%8C%E6%96%AD%E5%BC%80/">
+                                    <span class="hidden-mobile">
+                                      三次握手和四次挥手
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -580,26 +594,26 @@ list.mergeSort();
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

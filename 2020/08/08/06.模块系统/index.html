@@ -203,61 +203,61 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">Node的模板系统</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h1 id="06-模块系统"><a href="#06-模块系统" class="headerlink" title="06.模块系统"></a>06.模块系统</h1><p>在node中JavaScript还有一个很重要的概念：模块系统</p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                Node的模板系统
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h1 id="06-模块系统"><a href="#06-模块系统" class="headerlink" title="06.模块系统"></a>06.模块系统</h1><p>在node中JavaScript还有一个很重要的概念：模块系统</p>
 <ul>
 <li>模块作用域</li>
 <li>使用require方法用来加载模块</li>
 <li>使用exports 接口对象用来到处模块中的成员<h2 id="1-加载require"><a href="#1-加载require" class="headerlink" title="1.加载require"></a>1.加载<code>require</code></h2>语法：<div class="hljs"><pre><code class="hljs javaScript"><span class="hljs-keyword">const</span> 自定义变量名称 = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;模块&#x27;</span>)</code></pre></div>
-俩个作用：<ul>
+俩个作用：</li>
 <li>执行被加载模块中的代码</li>
 <li>得到被加载模块中的 <code>exports</code>导出接口对象<h2 id="2-导出-exports"><a href="#2-导出-exports" class="headerlink" title="2.导出 exports"></a>2.导出 <code>exports</code></h2></li>
-</ul>
-</li>
 <li>node中的模块作用域，默认文件中所有成员只在当前文件模块有效</li>
 <li>对于希望可以被其他模块访问的信息，我们就需要把这些公共的成员都挂载到 <code>exports</code> 接口对象中就可以导出多个成员（必须在对象中）</li>
 </ul>
 <p>导出多个成员（必须在对象中:此时exports是个对象）：</p>
-<div class="hljs"><pre><code class="hljs javaScript"><span class="hljs-built_in">exports</span>.a=<span class="hljs-number">123</span>
-<span class="hljs-built_in">exports</span>.b=<span class="hljs-string">&#x27;hello&#x27;</span>
-<span class="hljs-built_in">exports</span>.c=<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;ccc&#x27;</span>)
+<div class="hljs"><pre><code class="hljs javaScript"><span class="hljs-built_in">exports</span>.<span class="hljs-property">a</span>=<span class="hljs-number">123</span>
+<span class="hljs-built_in">exports</span>.<span class="hljs-property">b</span>=<span class="hljs-string">&#x27;hello&#x27;</span>
+<span class="hljs-built_in">exports</span>.<span class="hljs-property">c</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;ccc&#x27;</span>)
 &#125;</code></pre></div>
 <p>导出单个成员（就是拿到：函数，字符串等）</p>
-<div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-built_in">module</span>.exports = <span class="hljs-string">&#x27;hello&#x27;</span></code></pre></div>
+<div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-string">&#x27;hello&#x27;</span></code></pre></div>
 <p>以下情况会覆盖：最下边会覆盖上边的</p>
-<div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-built_in">module</span>.exports = <span class="hljs-string">&#x27;hello&#x27;</span>
-<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;ccc&#x27;</span>)
+<div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-string">&#x27;hello&#x27;</span>
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;ccc&#x27;</span>)
 &#125;</code></pre></div>
 <p>也可以导出多个成员：就是把它变为对象了</p>
-<div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-built_in">module</span>.exports = &#123;
-    add:<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+<div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;
+    <span class="hljs-attr">add</span>:<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
         
     &#125;
     str : <span class="hljs-string">&#x27;heelo&#x27;</span>
 &#125;</code></pre></div>
 <h2 id="3-导出-module-exports-原理解析"><a href="#3-导出-module-exports-原理解析" class="headerlink" title="3.导出 module.exports 原理解析"></a>3.导出 <code>module.exports</code> 原理解析</h2><p><code>exports</code> 和 <code>module.exports</code> 的一个引用<br>内部隐藏代码实际是这样子的：</p>
-<div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-keyword">let</span> <span class="hljs-built_in">module</span> = &#123;
+<div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-keyword">let</span> <span class="hljs-variable language_">module</span> = &#123;
     <span class="hljs-built_in">exports</span>  = &#123;
         
     &#125;
 &#125;
-<span class="hljs-keyword">let</span> <span class="hljs-built_in">exports</span> = <span class="hljs-built_in">module</span>.exports
+<span class="hljs-keyword">let</span> <span class="hljs-built_in">exports</span> = <span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span>
 
 <span class="hljs-comment">// console.log(exports === module.exports)  // true</span>
 
-<span class="hljs-keyword">return</span> <span class="hljs-built_in">module</span>.exports</code></pre></div>
+<span class="hljs-keyword">return</span> <span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span></code></pre></div>
 <h2 id="4-exports-和-module-exports-的-区别"><a href="#4-exports-和-module-exports-的-区别" class="headerlink" title="4.exports 和 module.exports 的 区别"></a>4.exports 和 module.exports 的 区别</h2><ul>
 <li><p>每个模块中都有一个<code>module</code>对象</p>
 </li>
@@ -291,9 +291,9 @@
 <li><p>自己的定义的模块 （路径形式的模块）</p>
 <ul>
 <li>自定义模块形式的书写：</li>
-<li>./  代表 当前目录，不可省略</li>
-<li>../ 代表 上一级目录， 不可省略</li>
-<li>/xxx  和 d:/a/foo.js  这种形式的 不用</li>
+<li> ./  代表 当前目录，不可省略</li>
+<li> ../ 代表 上一级目录， 不可省略</li>
+<li> /xxx  和 d:/a/foo.js  这种形式的 不用</li>
 <li>首位的 / 在这里表示的是当前文件模块所属磁盘根路径</li>
 <li>.js 后缀名可以省略</li>
 <li>require(‘./foo.js’)</li>
@@ -328,16 +328,16 @@
 npm install --global npm   // 升级npm</code></pre></div>
 <h3 id="6-3解决npm被墙的问题"><a href="#6-3解决npm被墙的问题" class="headerlink" title="6.3解决npm被墙的问题"></a>6.3解决npm被墙的问题</h3>npm存储包文件的服务器在国外，有时候会被强，速度会很慢。</li>
 <li>[<a target="_blank" rel="noopener" href="http://npm.taobao.org/]">http://npm.taobao.org/]</a> 淘宝的开发团队把npm在国内做了一个备份</li>
-<li>安装淘宝的npm<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 在任意目录执行都可以</span>
-<span class="hljs-meta">#</span><span class="bash"> -- global 表示安装到全局， 而非当前目录  注意不能省略 --global</span>
+<li>安装淘宝的npm<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">在任意目录执行都可以</span>
+<span class="hljs-meta prompt_"># </span><span class="language-bash">-- global 表示安装到全局， 而非当前目录  注意不能省略 --global</span>
 npm install --global cnpm</code></pre></div>
-接下来你安装包的时候把之前的<code>npm</code>替换成<code>cnpm</code>就行了<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 这里 还是走国外的服务器，速度慢</span>
+接下来你安装包的时候把之前的<code>npm</code>替换成<code>cnpm</code>就行了<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">这里 还是走国外的服务器，速度慢</span>
 npm install jquert
-<span class="hljs-meta">#</span><span class="bash"> 使用cnpm 就会通过淘宝的服务器来下载jquery</span>
+<span class="hljs-meta prompt_"># </span><span class="language-bash">使用cnpm 就会通过淘宝的服务器来下载jquery</span>
 cnpm install jquert</code></pre></div>
 如果不想安装 <code>cnpm</code> 又想使用淘宝的服务器下载：<div class="hljs"><pre><code class="hljs shell">npm install jquery --registry=https://registry.npm.taobao.org</code></pre></div>
 但是每一次手都这样会很麻烦，所有可以把这个选项加入配置文件中<div class="hljs"><pre><code class="hljs shell">npm config set registry https://registry.npm.taobao.org
-<span class="hljs-meta">#</span><span class="bash"> 查看npm配置信息</span>
+<span class="hljs-meta prompt_"># </span><span class="language-bash">查看npm配置信息</span>
 npm config list</code></pre></div>
 只要经过上面的命令配置，则以后你所有的 <code>npm install</code> 都会默认通过淘宝的服务器来下载</li>
 </ul>
@@ -374,7 +374,7 @@ npm config list</code></pre></div>
 <span class="hljs-comment">//  /data/a.txt   绝对路径，当前文件模块所处磁盘根目录</span>
 <span class="hljs-comment">//  c;/xx/xx  绝对路径</span>
 
-fs.readFile(<span class="hljs-string">&#x27;./data/a.txt&#x27;</span>,<span class="hljs-function">(<span class="hljs-params">err</span>)=&gt;</span>&#123;data&#125;)&#123;
+fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-params"><span class="hljs-string">&#x27;./data/a.txt&#x27;</span>,(err)=&gt;&#123;data&#125;</span>)&#123;
     
 &#125;</code></pre></div>
 
@@ -389,26 +389,26 @@ fs.readFile(<span class="hljs-string">&#x27;./data/a.txt&#x27;</span>,<span clas
 <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./data/foo.js&#x27;</span>)</code></pre></div>
 <h2 id="9-nodemon-修改代码自动重启服务器"><a href="#9-nodemon-修改代码自动重启服务器" class="headerlink" title="9.nodemon 修改代码自动重启服务器"></a>9.nodemon 修改代码自动重启服务器</h2></li>
 <li>我们这里可以使用一个nodemon 第三方命令行工具 来解决我们频繁修改代码重启服务器的问题</li>
-<li><code>nodemon</code> 是一个基于Node.js开发的一个第三方命令行工具，需要独立安装<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">在任意目录中执行该命令都行</span>
+<li><code>nodemon</code> 是一个基于Node.js开发的一个第三方命令行工具，需要独立安装<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">在任意目录中执行该命令都行</span>
 npm  install --global nodemon</code></pre></div></li>
-<li>安装完毕后，使用:<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta"> #</span><span class="bash"> 使用nodemon</span>
+<li>安装完毕后，使用:<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta prompt_"> # </span><span class="language-bash">使用nodemon</span>
 nodemon app.js</code></pre></div>
 <h2 id="10-path-路径操作模块"><a href="#10-path-路径操作模块" class="headerlink" title="10.path 路径操作模块"></a>10.path 路径操作模块</h2></li>
 <li>path.basename <ul>
-<li>获取一个路径的文件名  （默认包含扩展名）<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">&gt;</span><span class="bash"> path.basename(<span class="hljs-string">&#x27;c:/a/b/c/index.js&#x27;</span>)</span>
+<li>获取一个路径的文件名  （默认包含扩展名）<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">path.basename(<span class="hljs-string">&#x27;c:/a/b/c/index.js&#x27;</span>)</span>
 &#x27;index.js&#x27;
-
-<span class="hljs-meta">&gt;</span><span class="bash"> path.basename(<span class="hljs-string">&#x27;c:/a/b/c/index.js&#x27;</span>,<span class="hljs-string">&#x27;.js&#x27;</span>)</span>
+<span class="hljs-meta prompt_"></span>
+<span class="hljs-meta prompt_">&gt; </span><span class="language-bash">path.basename(<span class="hljs-string">&#x27;c:/a/b/c/index.js&#x27;</span>,<span class="hljs-string">&#x27;.js&#x27;</span>)</span>
 &#x27;index&#x27;</code></pre></div></li>
 </ul>
 </li>
 <li>path.dirname<ul>
-<li>获取一个路径中的目录部分<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta"> &gt;</span><span class="bash"> path.dirname(<span class="hljs-string">&#x27;c:/a/b/c/index.js&#x27;</span>)</span>
+<li>获取一个路径中的目录部分<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta prompt_"> &gt; </span><span class="language-bash">path.dirname(<span class="hljs-string">&#x27;c:/a/b/c/index.js&#x27;</span>)</span>
 &#x27;c:/a/b/c&#x27;</code></pre></div></li>
 </ul>
 </li>
 <li>path.extname<ul>
-<li>获取一个路径中的扩展名部分<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">&gt;</span><span class="bash"> path.extname(<span class="hljs-string">&#x27;c:/a/b/c/index.js&#x27;</span>)</span>
+<li>获取一个路径中的扩展名部分<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">path.extname(<span class="hljs-string">&#x27;c:/a/b/c/index.js&#x27;</span>)</span>
 &#x27;.js&#x27;</code></pre></div></li>
 </ul>
 </li>
@@ -418,7 +418,7 @@ nodemon app.js</code></pre></div>
 <li>dir 目录</li>
 <li>base  包含后缀名的文件名</li>
 <li>ext 后缀名</li>
-<li>name 不包含后缀名的文件名<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">&gt;</span><span class="bash"> path.parse(<span class="hljs-string">&#x27;c:/a/b/c/index.js&#x27;</span>)</span>
+<li>name 不包含后缀名的文件名<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">path.parse(<span class="hljs-string">&#x27;c:/a/b/c/index.js&#x27;</span>)</span>
 &#123;
   root: &#x27;c:/&#x27;,
   dir: &#x27;c:/a/b/c&#x27;,
@@ -431,23 +431,23 @@ nodemon app.js</code></pre></div>
 </ul>
 </li>
 <li>path.join<ul>
-<li>当你需要进行路径拼接的时候， 推荐使用<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">&gt;</span><span class="bash"> path.join(<span class="hljs-string">&#x27;c:/a&#x27;</span>,<span class="hljs-string">&#x27;b&#x27;</span>)</span>
+<li>当你需要进行路径拼接的时候， 推荐使用<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">path.join(<span class="hljs-string">&#x27;c:/a&#x27;</span>,<span class="hljs-string">&#x27;b&#x27;</span>)</span>
 &#x27;c:\\a\\b&#x27;</code></pre></div></li>
 </ul>
 </li>
 <li>path.isAbsolute<ul>
-<li>判断一个路径是否为绝对路径<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">&gt;</span><span class="bash"> path.isAbsolute(<span class="hljs-string">&#x27;c:/a/b/c/index.js&#x27;</span>)</span>
+<li>判断一个路径是否为绝对路径<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">path.isAbsolute(<span class="hljs-string">&#x27;c:/a/b/c/index.js&#x27;</span>)</span>
 true
-<span class="hljs-meta">&gt;</span><span class="bash"> path.isAbsolute(<span class="hljs-string">&#x27;/a/b/c/index.js&#x27;</span>)</span>
+<span class="hljs-meta prompt_">&gt; </span><span class="language-bash">path.isAbsolute(<span class="hljs-string">&#x27;/a/b/c/index.js&#x27;</span>)</span>
 true
-<span class="hljs-meta">&gt;</span><span class="bash"> path.isAbsolute(<span class="hljs-string">&#x27;./a/b/c/index.js&#x27;</span>)</span>
+<span class="hljs-meta prompt_">&gt; </span><span class="language-bash">path.isAbsolute(<span class="hljs-string">&#x27;./a/b/c/index.js&#x27;</span>)</span>
 false</code></pre></div>
 <h2 id="11-Node中的其他成员-（-dirname-和-filename）"><a href="#11-Node中的其他成员-（-dirname-和-filename）" class="headerlink" title="11.Node中的其他成员 （__dirname 和 __filename）"></a>11.Node中的其他成员 （__dirname 和 __filename）</h2>在每个模块中， 除了 <code>require</code> 和 <code>exports</code> 等模块相关AIP之外，还有俩个特殊成员：</li>
 </ul>
 </li>
 <li><code>__dirname</code> <strong>动态获取</strong> 可以用来获取当前文件的所属目录的绝对路径 （这个没有加文件 只是文件的绝对目录）</li>
 <li><code>__filename</code> <strong>动态获取</strong> 可以用来获取当前文件的绝对路径 （这个加上了文件）</li>
-<li><code>__dirname</code> 和<code>__filename</code>是不受执行node命令所属路径影响的</li>
+<li> <code>__dirname</code> 和<code>__filename</code>是不受执行node命令所属路径影响的</li>
 </ul>
 <p>在文件操作中，使用相对路径是不可靠的，因为<strong>在Node 中 文件操作 的路径被设计为相对于执行node命令所处的路径</strong>（不是bug，人家这样设计是有使用场景）<br>所以为了解决这个问题，只需要把 <strong>相对路径变为绝对路径</strong> 就可以了<br>所以我们可以使用<code>__dirname</code>和<code>__filename</code>来帮我们解决这个问题</p>
 <p>在拼接路径过程中，为了 避免手动凭借带来的一些低级错误， 我们推荐使用： <code>path.join()</code> 来辅助拼接。</p>
@@ -459,59 +459,71 @@ false</code></pre></div>
 <p>模块中的路径表示就是相当于当前文件模块，不受执行node 命令所处路径影响</p>
 </blockquote>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/Nodejs/">Nodejs</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/Node/">Node</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2020/08/08/07.Express%E7%9A%84%E4%BD%BF%E7%94%A8/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">Express的使用⭐⭐⭐</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2020/08/06/03.%E7%AE%80%E5%8D%95%E7%BB%93%E5%90%88fs%E6%A8%A1%E5%9D%97%E6%9D%A5%E8%AE%BF%E9%97%AE%E4%B8%8D%E5%90%8C%E8%B5%84%E6%BA%90%E5%AE%9E%E4%BE%8B/">
-                    <span class="hidden-mobile">使用Node来简单结合fs模块来访问不同资源实例</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/Nodejs/">
+                              Nodejs
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/Node/">
+                                  Node
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2020/08/08/07.Express%E7%9A%84%E4%BD%BF%E7%94%A8/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      Express的使用⭐⭐⭐
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2020/08/06/03.%E7%AE%80%E5%8D%95%E7%BB%93%E5%90%88fs%E6%A8%A1%E5%9D%97%E6%9D%A5%E8%AE%BF%E9%97%AE%E4%B8%8D%E5%90%8C%E8%B5%84%E6%BA%90%E5%AE%9E%E4%BE%8B/">
+                                    <span class="hidden-mobile">
+                                      使用Node来简单结合fs模块来访问不同资源实例
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -538,26 +550,26 @@ false</code></pre></div>
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

@@ -203,18 +203,20 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">基于Express 下的 增删改查项目</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h1 id="基于Express-下的-增删改查项目"><a href="#基于Express-下的-增删改查项目" class="headerlink" title="基于Express 下的 增删改查项目"></a>基于Express 下的 增删改查项目</h1><h2 id="整体步骤："><a href="#整体步骤：" class="headerlink" title="整体步骤："></a>整体步骤：</h2><ul>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                基于Express 下的 增删改查项目
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h1 id="基于Express-下的-增删改查项目"><a href="#基于Express-下的-增删改查项目" class="headerlink" title="基于Express 下的 增删改查项目"></a>基于Express 下的 增删改查项目</h1><h2 id="整体步骤："><a href="#整体步骤：" class="headerlink" title="整体步骤："></a>整体步骤：</h2><ul>
 <li>处理模块</li>
 <li>配置开放静态资源</li>
 <li>配置模板引擎</li>
@@ -223,11 +225,11 @@
 <li>提取路由模块</li>
 <li>由于接下来一系列的业务操作都需要处理文件数据，所以我们需要封装一个 students.js 模块</li>
 <li>写好  students.js 文件结构<ul>
-<li>find  查询所有学生列表的 API </li>
-<li>findById 查询单个学生的ID</li>
-<li>save   保存学生信息</li>
-<li>updateById   更新学生信息</li>
-<li>deleteById  删除学生信息</li>
+<li> find  查询所有学生列表的 API </li>
+<li>  findById 查询单个学生的ID</li>
+<li> save   保存学生信息</li>
+<li> updateById   更新学生信息</li>
+<li> deleteById  删除学生信息</li>
 </ul>
 </li>
 <li>实现具体功能<ul>
@@ -304,125 +306,125 @@
 </tbody></table>
 <h2 id="1-app-js"><a href="#1-app-js" class="headerlink" title="1.app.js"></a>1.app.js</h2><h3 id="用来加载模块和模板引擎"><a href="#用来加载模块和模板引擎" class="headerlink" title="用来加载模块和模板引擎"></a>用来加载模块和模板引擎</h3><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-comment">//  引入express 模块</span>
 <span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>)
-<span class="hljs-keyword">const</span> app = express()
+<span class="hljs-keyword">const</span> app = <span class="hljs-title function_">express</span>()
 <span class="hljs-keyword">const</span> bodyParser = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;body-parser&#x27;</span>)
 
 <span class="hljs-comment">// 引入 touter.js 模块（自定义模块）</span>
 <span class="hljs-keyword">const</span> router = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./router&#x27;</span>)
 
 <span class="hljs-comment">// 在express中使用 art-template 模块引擎</span>
-app.engine(<span class="hljs-string">&#x27;html&#x27;</span>, <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express-art-template&#x27;</span>))
+app.<span class="hljs-title function_">engine</span>(<span class="hljs-string">&#x27;html&#x27;</span>, <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express-art-template&#x27;</span>))
 
 <span class="hljs-comment">// 开放静态资源</span>
-app.use(<span class="hljs-string">&#x27;/node_modules/&#x27;</span>, express.static(<span class="hljs-string">&#x27;./node_modules/&#x27;</span>))
-app.use(<span class="hljs-string">&#x27;/public/&#x27;</span>, express.static(<span class="hljs-string">&#x27;./public/&#x27;</span>))
+app.<span class="hljs-title function_">use</span>(<span class="hljs-string">&#x27;/node_modules/&#x27;</span>, express.<span class="hljs-title function_">static</span>(<span class="hljs-string">&#x27;./node_modules/&#x27;</span>))
+app.<span class="hljs-title function_">use</span>(<span class="hljs-string">&#x27;/public/&#x27;</span>, express.<span class="hljs-title function_">static</span>(<span class="hljs-string">&#x27;./public/&#x27;</span>))
 
 <span class="hljs-comment">//一定要放在 app.use(router) 挂载路由之前</span>
 <span class="hljs-comment">// create application/json parser</span>
-app.use(bodyParser.json())
+app.<span class="hljs-title function_">use</span>(bodyParser.<span class="hljs-title function_">json</span>())
 <span class="hljs-comment">// create application/x-www-form-urlencoded parser</span>
-app.use(bodyParser.urlencoded(&#123;
-    extended: <span class="hljs-literal">false</span>
+app.<span class="hljs-title function_">use</span>(bodyParser.<span class="hljs-title function_">urlencoded</span>(&#123;
+    <span class="hljs-attr">extended</span>: <span class="hljs-literal">false</span>
 &#125;))
 
 <span class="hljs-comment">// 把 router模块中 的 路由容器挂载在app这个服务上</span>
-app.use(router)
+app.<span class="hljs-title function_">use</span>(router)
 
-app.listen(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> &#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;running...&#x27;</span>);
+app.<span class="hljs-title function_">listen</span>(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;running...&#x27;</span>);
 &#125;)</code></pre></div>
 <h2 id="2-router-js"><a href="#2-router-js" class="headerlink" title="2.router.js"></a>2.router.js</h2><h3 id="用来挂载路由"><a href="#用来挂载路由" class="headerlink" title="用来挂载路由"></a>用来挂载路由</h3><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>)
 <span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>)
-<span class="hljs-keyword">const</span> Student = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./students.js&#x27;</span>)
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">Student</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./students.js&#x27;</span>)
 <span class="hljs-comment">// 创建一个路由容器</span>
-<span class="hljs-keyword">const</span> router = express.Router()
+<span class="hljs-keyword">const</span> router = express.<span class="hljs-title class_">Router</span>()
 
 
 <span class="hljs-comment">// 把路由都挂载到 router 路由容器中</span>
-router.get(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+router.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
    
 &#125;)
-router.get(<span class="hljs-string">&#x27;/new&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+router.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/new&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
     
 &#125;)
-router.post(<span class="hljs-string">&#x27;/new&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+router.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x27;/new&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
 
 
 &#125;)
-router.get(<span class="hljs-string">&#x27;/edit&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+router.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/edit&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
 
 &#125;)
-router.post(<span class="hljs-string">&#x27;/edit&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+router.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x27;/edit&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
 
 &#125;)
-router.get(<span class="hljs-string">&#x27;/delete&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+router.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/delete&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
 
 &#125;)
-<span class="hljs-built_in">module</span>.exports = router</code></pre></div>
-<h3 id="2-1-调用-获取学生信息的封装函数"><a href="#2-1-调用-获取学生信息的封装函数" class="headerlink" title="2.1  调用  获取学生信息的封装函数"></a>2.1  调用  获取学生信息的封装函数</h3><div class="hljs"><pre><code class="hljs JavaScript">router.get(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
-    Student.find(<span class="hljs-function">(<span class="hljs-params">err,students</span>)=&gt;</span>&#123;
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = router</code></pre></div>
+<h3 id="2-1-调用-获取学生信息的封装函数"><a href="#2-1-调用-获取学生信息的封装函数" class="headerlink" title="2.1  调用  获取学生信息的封装函数"></a>2.1  调用  获取学生信息的封装函数</h3><div class="hljs"><pre><code class="hljs JavaScript">router.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+    <span class="hljs-title class_">Student</span>.<span class="hljs-title function_">find</span>(<span class="hljs-function">(<span class="hljs-params">err,students</span>)=&gt;</span>&#123;
         <span class="hljs-keyword">if</span>(err)&#123;
-        <span class="hljs-keyword">return</span> res.status(<span class="hljs-number">500</span>).send(<span class="hljs-string">&#x27;Servererr..&#x27;</span>)
+        <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">status</span>(<span class="hljs-number">500</span>).<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;Servererr..&#x27;</span>)
         &#125;
-        res.render(<span class="hljs-string">&#x27;index.html&#x27;</span>,&#123;
-            comments: [<span class="hljs-string">&#x27;苹果&#x27;</span>, <span class="hljs-string">&#x27;橘子&#x27;</span>, <span class="hljs-string">&#x27;香蕉&#x27;</span>, <span class="hljs-string">&#x27;菠萝&#x27;</span>],
-            students: students
+        res.<span class="hljs-title function_">render</span>(<span class="hljs-string">&#x27;index.html&#x27;</span>,&#123;
+            <span class="hljs-attr">comments</span>: [<span class="hljs-string">&#x27;苹果&#x27;</span>, <span class="hljs-string">&#x27;橘子&#x27;</span>, <span class="hljs-string">&#x27;香蕉&#x27;</span>, <span class="hljs-string">&#x27;菠萝&#x27;</span>],
+            <span class="hljs-attr">students</span>: students
         &#125;)
     &#125;)
 &#125;)</code></pre></div>
-<h3 id="2-2-调用-添加并保存学生信息的封装函数"><a href="#2-2-调用-添加并保存学生信息的封装函数" class="headerlink" title="2.2 调用 添加并保存学生信息的封装函数"></a>2.2 调用 添加并保存学生信息的封装函数</h3><div class="hljs"><pre><code class="hljs JavaScript">router.post(<span class="hljs-string">&#x27;/new&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+<h3 id="2-2-调用-添加并保存学生信息的封装函数"><a href="#2-2-调用-添加并保存学生信息的封装函数" class="headerlink" title="2.2 调用 添加并保存学生信息的封装函数"></a>2.2 调用 添加并保存学生信息的封装函数</h3><div class="hljs"><pre><code class="hljs JavaScript">router.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x27;/new&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
 
-   Student.save(req.body, <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> &#123;
+   <span class="hljs-title class_">Student</span>.<span class="hljs-title function_">save</span>(req.<span class="hljs-property">body</span>, <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> &#123;
         <span class="hljs-keyword">if</span> (err) &#123;
-            <span class="hljs-keyword">return</span> res.status(<span class="hljs-number">500</span>).send(<span class="hljs-string">&#x27;Server err..&#x27;</span>)
+            <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">status</span>(<span class="hljs-number">500</span>).<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;Server err..&#x27;</span>)
         &#125;
-        res.redirect(<span class="hljs-string">&#x27;/&#x27;</span>)
+        res.<span class="hljs-title function_">redirect</span>(<span class="hljs-string">&#x27;/&#x27;</span>)
     &#125;)
 &#125;)</code></pre></div>
-<h3 id="2-3-1-修改前-前调取-修改该学生的ID"><a href="#2-3-1-修改前-前调取-修改该学生的ID" class="headerlink" title="2.3 1.修改前 前调取 修改该学生的ID"></a>2.3 1.修改前 前调取 修改该学生的ID</h3><div class="hljs"><pre><code class="hljs JavaScript">router.get(<span class="hljs-string">&#x27;/edit&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+<h3 id="2-3-1-修改前-前调取-修改该学生的ID"><a href="#2-3-1-修改前-前调取-修改该学生的ID" class="headerlink" title="2.3 1.修改前 前调取 修改该学生的ID"></a>2.3 1.修改前 前调取 修改该学生的ID</h3><div class="hljs"><pre><code class="hljs JavaScript">router.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/edit&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
     <span class="hljs-comment">// 1. 在客户端的列表页中处理链接问题 （需要有 id 的参数）</span>
     <span class="hljs-comment">// 2. 获取要编辑的 id</span>
     <span class="hljs-comment">// console.log(req.query.id);</span>
     <span class="hljs-comment">// 3. 渲染编辑页面   </span>
     <span class="hljs-comment">//   根据id 吧学生信息查出来</span>
     <span class="hljs-comment">//   使用模板引擎来渲染页面</span>
-    Student.findById(<span class="hljs-built_in">parseInt</span>(req.query.id), <span class="hljs-function">(<span class="hljs-params">err, student</span>) =&gt;</span> &#123;
+    <span class="hljs-title class_">Student</span>.<span class="hljs-title function_">findById</span>(<span class="hljs-built_in">parseInt</span>(req.<span class="hljs-property">query</span>.<span class="hljs-property">id</span>), <span class="hljs-function">(<span class="hljs-params">err, student</span>) =&gt;</span> &#123;
         <span class="hljs-comment">// req.query.id 是字符串 而我们要的 id 是个 数字型 所以要转换</span>
         <span class="hljs-keyword">if</span> (err) &#123;
-            <span class="hljs-keyword">return</span> res.status(<span class="hljs-number">500</span>).send(<span class="hljs-string">&#x27;Server err..&#x27;</span>)
+            <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">status</span>(<span class="hljs-number">500</span>).<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;Server err..&#x27;</span>)
         &#125;
         <span class="hljs-comment">// console.log(studnet);   id 是多 传过来的数据 就是 该 id 的对象</span>
         <span class="hljs-comment">// 把 所取到该 id 对象的 值 来渲染到页面上</span>
-        res.render(<span class="hljs-string">&#x27;edit.html&#x27;</span>, &#123;
-            student: student
+        res.<span class="hljs-title function_">render</span>(<span class="hljs-string">&#x27;edit.html&#x27;</span>, &#123;
+            <span class="hljs-attr">student</span>: student
         &#125;)
     &#125;)
 &#125;)</code></pre></div>
-<h3 id="2-3-2-调用-修改学生信息的封装函数"><a href="#2-3-2-调用-修改学生信息的封装函数" class="headerlink" title="2.3 2.调用 修改学生信息的封装函数"></a>2.3 2.调用 修改学生信息的封装函数</h3><div class="hljs"><pre><code class="hljs JavaScript">router.post(<span class="hljs-string">&#x27;/edit&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+<h3 id="2-3-2-调用-修改学生信息的封装函数"><a href="#2-3-2-调用-修改学生信息的封装函数" class="headerlink" title="2.3 2.调用 修改学生信息的封装函数"></a>2.3 2.调用 修改学生信息的封装函数</h3><div class="hljs"><pre><code class="hljs JavaScript">router.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x27;/edit&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
     <span class="hljs-comment">// 1. 获取表单数据  req.body </span>
     <span class="hljs-comment">// console.log(req.body);</span>
     <span class="hljs-comment">// 2.  更新       Student.updataById()</span>
     <span class="hljs-comment">//  3.  发送响应</span>
-    Student.updateById(req.body, <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> &#123;
+    <span class="hljs-title class_">Student</span>.<span class="hljs-title function_">updateById</span>(req.<span class="hljs-property">body</span>, <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> &#123;
         <span class="hljs-keyword">if</span> (err) &#123;
-            <span class="hljs-keyword">return</span> res.status(<span class="hljs-number">500</span>).send(<span class="hljs-string">&#x27;Server err..&#x27;</span>)
+            <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">status</span>(<span class="hljs-number">500</span>).<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;Server err..&#x27;</span>)
         &#125;
-        res.redirect(<span class="hljs-string">&#x27;/&#x27;</span>)
+        res.<span class="hljs-title function_">redirect</span>(<span class="hljs-string">&#x27;/&#x27;</span>)
     &#125;)
 &#125;)</code></pre></div>
-<h3 id="2-4-调用-删除学生信息的封装函数"><a href="#2-4-调用-删除学生信息的封装函数" class="headerlink" title="2.4 调用 删除学生信息的封装函数"></a>2.4 调用 删除学生信息的封装函数</h3><div class="hljs"><pre><code class="hljs JavaScript">router.get(<span class="hljs-string">&#x27;/delete&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+<h3 id="2-4-调用-删除学生信息的封装函数"><a href="#2-4-调用-删除学生信息的封装函数" class="headerlink" title="2.4 调用 删除学生信息的封装函数"></a>2.4 调用 删除学生信息的封装函数</h3><div class="hljs"><pre><code class="hljs JavaScript">router.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/delete&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
     <span class="hljs-comment">// 1. 在客户端的列表页中处理链接问题 （需要有 id 的参数）</span>
     <span class="hljs-comment">// 2. 获取要编辑的 id</span>
-    <span class="hljs-built_in">console</span>.log(req.query.id);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(req.<span class="hljs-property">query</span>.<span class="hljs-property">id</span>);
     <span class="hljs-comment">// 3. 渲染编辑页面   </span>
     <span class="hljs-comment">//   根据id 把学生信息查出来</span>
     <span class="hljs-comment">//   使用模板引擎来渲染页面</span>
-    Student.deleteById(<span class="hljs-built_in">parseInt</span>(req.query.id), <span class="hljs-function">(<span class="hljs-params">err, student</span>) =&gt;</span> &#123;
+    <span class="hljs-title class_">Student</span>.<span class="hljs-title function_">deleteById</span>(<span class="hljs-built_in">parseInt</span>(req.<span class="hljs-property">query</span>.<span class="hljs-property">id</span>), <span class="hljs-function">(<span class="hljs-params">err, student</span>) =&gt;</span> &#123;
         <span class="hljs-comment">// req.query.id 是字符串 而我们要的 id 是个 数字型 所以要转换</span>
         <span class="hljs-keyword">if</span> (err) &#123;
-            <span class="hljs-keyword">return</span> res.status(<span class="hljs-number">500</span>).send(<span class="hljs-string">&#x27;Server err..&#x27;</span>)
+            <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">status</span>(<span class="hljs-number">500</span>).<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;Server err..&#x27;</span>)
         &#125;
-        res.redirect(<span class="hljs-string">&#x27;/&#x27;</span>)
+        res.<span class="hljs-title function_">redirect</span>(<span class="hljs-string">&#x27;/&#x27;</span>)
     &#125;)
 &#125;)</code></pre></div>
 <h2 id="3-students-js"><a href="#3-students-js" class="headerlink" title="3.students.js"></a>3.students.js</h2><h3 id="设计操作文件数据的API模块"><a href="#设计操作文件数据的API模块" class="headerlink" title="设计操作文件数据的API模块"></a>设计操作文件数据的API模块</h3><h4 id="用来处理增删改查数据"><a href="#用来处理增删改查数据" class="headerlink" title="用来处理增删改查数据"></a>用来处理增删改查数据</h4><div class="hljs"><pre><code class="hljs JavaScript">/  数据文件操作模块
@@ -430,99 +432,99 @@ router.get(<span class="hljs-string">&#x27;/delete&#x27;</span>, <span class="hl
 
 
 <span class="hljs-comment">// 1. 获取所有学生信息列表</span>
-<span class="hljs-built_in">exports</span>.find = <span class="hljs-function">() =&gt;</span> &#123; 
+<span class="hljs-built_in">exports</span>.<span class="hljs-property">find</span> = <span class="hljs-function">() =&gt;</span> &#123; 
 
 &#125;
 <span class="hljs-comment">// 1.1 通过ID 来获取 该学生的信息</span>
-<span class="hljs-built_in">exports</span>.findById = <span class="hljs-function">() =&gt;</span> &#123; 
+<span class="hljs-built_in">exports</span>.<span class="hljs-property">findById</span> = <span class="hljs-function">() =&gt;</span> &#123; 
 
 &#125;
 <span class="hljs-comment">// 2. 添加保存学生信息</span>
-<span class="hljs-built_in">exports</span>.save = <span class="hljs-function">() =&gt;</span> &#123; 
+<span class="hljs-built_in">exports</span>.<span class="hljs-property">save</span> = <span class="hljs-function">() =&gt;</span> &#123; 
 
 &#125;
 
 
 <span class="hljs-comment">// 3. 更新学生信息</span>
-<span class="hljs-built_in">exports</span>.updateById = <span class="hljs-function">() =&gt;</span> &#123; 
+<span class="hljs-built_in">exports</span>.<span class="hljs-property">updateById</span> = <span class="hljs-function">() =&gt;</span> &#123; 
 
 &#125;
 
 
 <span class="hljs-comment">// 4. 删除学生信息</span>
-<span class="hljs-built_in">exports</span>.delete = <span class="hljs-function">() =&gt;</span> &#123; 
+<span class="hljs-built_in">exports</span>.<span class="hljs-property">delete</span> = <span class="hljs-function">() =&gt;</span> &#123; 
 
 &#125;</code></pre></div>
-<h3 id="3-1-获取所有学生信息封装函数"><a href="#3-1-获取所有学生信息封装函数" class="headerlink" title="3.1 获取所有学生信息封装函数"></a>3.1 获取所有学生信息封装函数</h3><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-built_in">exports</span>.find = <span class="hljs-function">(<span class="hljs-params">callback</span>) =&gt;</span> &#123;
-    fs.readFile(dbPath, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">err, data</span>) =&gt;</span> &#123;
+<h3 id="3-1-获取所有学生信息封装函数"><a href="#3-1-获取所有学生信息封装函数" class="headerlink" title="3.1 获取所有学生信息封装函数"></a>3.1 获取所有学生信息封装函数</h3><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-built_in">exports</span>.<span class="hljs-property">find</span> = <span class="hljs-function">(<span class="hljs-params">callback</span>) =&gt;</span> &#123;
+    fs.<span class="hljs-title function_">readFile</span>(dbPath, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">err, data</span>) =&gt;</span> &#123;
         <span class="hljs-keyword">if</span> (err) &#123;
-            <span class="hljs-keyword">return</span> callback(err)
+            <span class="hljs-keyword">return</span> <span class="hljs-title function_">callback</span>(err)
         &#125;
         <span class="hljs-comment">// err  成功时返回 null  错误返回 err</span>
         <span class="hljs-comment">// data  成功时返回 data  错误返回 undefined</span>
-        callback(<span class="hljs-literal">null</span>, <span class="hljs-built_in">JSON</span>.parse(data).students)
+        <span class="hljs-title function_">callback</span>(<span class="hljs-literal">null</span>, <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(data).<span class="hljs-property">students</span>)
     &#125;)
 &#125;
 </code></pre></div>
 <h3 id="3-2-添加并保存学生信息"><a href="#3-2-添加并保存学生信息" class="headerlink" title="3.2 添加并保存学生信息"></a>3.2 添加并保存学生信息</h3><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-comment">// student 表示 添加的值</span>
-<span class="hljs-built_in">exports</span>.save = <span class="hljs-function">(<span class="hljs-params">student, callback</span>) =&gt;</span> &#123;
+<span class="hljs-built_in">exports</span>.<span class="hljs-property">save</span> = <span class="hljs-function">(<span class="hljs-params">student, callback</span>) =&gt;</span> &#123;
     <span class="hljs-comment">// 1. 读文件</span>
-    fs.readFile(dbPath, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">err, data</span>) =&gt;</span> &#123;
+    fs.<span class="hljs-title function_">readFile</span>(dbPath, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">err, data</span>) =&gt;</span> &#123;
         <span class="hljs-keyword">if</span> (err) &#123;
-            <span class="hljs-keyword">return</span> callback(err)
+            <span class="hljs-keyword">return</span> <span class="hljs-title function_">callback</span>(err)
         &#125;
        <span class="hljs-comment">// 2. 转成对象</span>
-        <span class="hljs-keyword">let</span> students = <span class="hljs-built_in">JSON</span>.parse(data).students
+        <span class="hljs-keyword">let</span> students = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(data).<span class="hljs-property">students</span>
 
         <span class="hljs-comment">// 2.1处理id 唯一  不重复</span>
-        student.id = students[students.length - <span class="hljs-number">1</span>].id + <span class="hljs-number">1</span>
+        student.<span class="hljs-property">id</span> = students[students.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>].<span class="hljs-property">id</span> + <span class="hljs-number">1</span>
 
         <span class="hljs-comment">// 3.把用户传递的对象push到数组中</span>
-        students.push(student)
+        students.<span class="hljs-title function_">push</span>(student)
 
         <span class="hljs-comment">// 4.把对象转成字符串</span>
-        <span class="hljs-keyword">let</span> fileData = <span class="hljs-built_in">JSON</span>.stringify(&#123;
-            students: students
+        <span class="hljs-keyword">let</span> fileData = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(&#123;
+            <span class="hljs-attr">students</span>: students
         &#125;)
 
         <span class="hljs-comment">// 5.把字符串保存在 文件中</span>
-        fs.writeFile(dbPath, fileData, <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> &#123;
+        fs.<span class="hljs-title function_">writeFile</span>(dbPath, fileData, <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> &#123;
             <span class="hljs-keyword">if</span> (err) &#123;
-                <span class="hljs-keyword">return</span> callback(err)
+                <span class="hljs-keyword">return</span> <span class="hljs-title function_">callback</span>(err)
             &#125;
-            callback(<span class="hljs-literal">null</span>)
+            <span class="hljs-title function_">callback</span>(<span class="hljs-literal">null</span>)
         &#125;)
     &#125;)
 &#125;</code></pre></div>
 <h3 id="3-3-修改学生信息"><a href="#3-3-修改学生信息" class="headerlink" title="3.3  修改学生信息"></a>3.3  修改学生信息</h3><h4 id="3-3-1-获得修改该学生个人ID"><a href="#3-3-1-获得修改该学生个人ID" class="headerlink" title="3.3.1 获得修改该学生个人ID"></a>3.3.1 获得修改该学生个人ID</h4><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 1.1  通过ID 来获取 该学生的信息</span>
-<span class="hljs-built_in">exports</span>.findById = <span class="hljs-function">(<span class="hljs-params">id, callback</span>) =&gt;</span> &#123;
-    fs.readFile(dbPath, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">err, data</span>) =&gt;</span> &#123;
+<span class="hljs-built_in">exports</span>.<span class="hljs-property">findById</span> = <span class="hljs-function">(<span class="hljs-params">id, callback</span>) =&gt;</span> &#123;
+    fs.<span class="hljs-title function_">readFile</span>(dbPath, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">err, data</span>) =&gt;</span> &#123;
         <span class="hljs-keyword">if</span> (err) &#123;
-            <span class="hljs-keyword">return</span> callback(err)
+            <span class="hljs-keyword">return</span> <span class="hljs-title function_">callback</span>(err)
         &#125;
-        <span class="hljs-keyword">let</span> students = <span class="hljs-built_in">JSON</span>.parse(data).students
-        <span class="hljs-keyword">let</span> ret = students.find(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> &#123;
-            <span class="hljs-keyword">return</span> item.id === <span class="hljs-built_in">parseInt</span>(id)
+        <span class="hljs-keyword">let</span> students = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(data).<span class="hljs-property">students</span>
+        <span class="hljs-keyword">let</span> ret = students.<span class="hljs-title function_">find</span>(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> &#123;
+            <span class="hljs-keyword">return</span> item.<span class="hljs-property">id</span> === <span class="hljs-built_in">parseInt</span>(id)
         &#125;)
-        callback(<span class="hljs-literal">null</span>, ret)
+        <span class="hljs-title function_">callback</span>(<span class="hljs-literal">null</span>, ret)
     &#125;)
 &#125;</code></pre></div>
 
 <h4 id="3-3-2-修改学生信息"><a href="#3-3-2-修改学生信息" class="headerlink" title="3.3.2  修改学生信息"></a>3.3.2  修改学生信息</h4><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 3. 更新学生信息</span>
-<span class="hljs-built_in">exports</span>.updateById = <span class="hljs-function">(<span class="hljs-params">student, callback</span>) =&gt;</span> &#123;
+<span class="hljs-built_in">exports</span>.<span class="hljs-property">updateById</span> = <span class="hljs-function">(<span class="hljs-params">student, callback</span>) =&gt;</span> &#123;
     <span class="hljs-comment">// 1. 读文件</span>
-    fs.readFile(dbPath, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">err, data</span>) =&gt;</span> &#123;
+    fs.<span class="hljs-title function_">readFile</span>(dbPath, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">err, data</span>) =&gt;</span> &#123;
         <span class="hljs-keyword">if</span> (err) &#123;
-            <span class="hljs-keyword">return</span> callback(err)
+            <span class="hljs-keyword">return</span> <span class="hljs-title function_">callback</span>(err)
         &#125;
         <span class="hljs-comment">// 2. 转成对象</span>
-        <span class="hljs-keyword">let</span> students = <span class="hljs-built_in">JSON</span>.parse(data).students
+        <span class="hljs-keyword">let</span> students = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(data).<span class="hljs-property">students</span>
         <span class="hljs-comment">// 注意要把 id 改成数字型  因为 更改信息的时候 id会变成字符串</span>
-        <span class="hljs-keyword">let</span> studentsId = <span class="hljs-built_in">parseInt</span>(student.id)
+        <span class="hljs-keyword">let</span> studentsId = <span class="hljs-built_in">parseInt</span>(student.<span class="hljs-property">id</span>)
         <span class="hljs-comment">// 3.需要修改谁， 就把谁的ID找出来     （找出修改的 对象 ）</span>
         <span class="hljs-comment">// 使用 ES6 中 find 方法来 遍历符合 item.id === studnent.id 条件的时候， find会终止遍历并返回</span>
-        <span class="hljs-keyword">let</span> stu = students.find(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> &#123;
-            <span class="hljs-keyword">return</span> item.id === studentsId
+        <span class="hljs-keyword">let</span> stu = students.<span class="hljs-title function_">find</span>(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> &#123;
+            <span class="hljs-keyword">return</span> item.<span class="hljs-property">id</span> === studentsId
         &#125;)
         <span class="hljs-comment">// console.log(stu);  // &#123; id: 1, name: &#x27;朱元璋111&#x27;, gender: 0, age: 22, hobbies: &#x27;写代码&#x27; &#125;</span>
         <span class="hljs-comment">// 4. 拿到 需要修改的  让它遍历拷贝对象  （ 修改这个被找出来的 对象）</span>
@@ -531,16 +533,16 @@ router.get(<span class="hljs-string">&#x27;/delete&#x27;</span>, <span class="hl
         &#125;
         <span class="hljs-comment">// console.log(students);  // 是jsonw文件中的 students 内的 所有对象</span>
         <span class="hljs-comment">// 5.把对象转成字符串</span>
-        <span class="hljs-keyword">let</span> fileData = <span class="hljs-built_in">JSON</span>.stringify(&#123;
-            students: students
+        <span class="hljs-keyword">let</span> fileData = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(&#123;
+            <span class="hljs-attr">students</span>: students
         &#125;)
 
         <span class="hljs-comment">// 6.把字符串保存在 文件中</span>
-        fs.writeFile(dbPath, fileData, <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> &#123;
+        fs.<span class="hljs-title function_">writeFile</span>(dbPath, fileData, <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> &#123;
             <span class="hljs-keyword">if</span> (err) &#123;
-                <span class="hljs-keyword">return</span> callback(err)
+                <span class="hljs-keyword">return</span> <span class="hljs-title function_">callback</span>(err)
             &#125;
-            callback(<span class="hljs-literal">null</span>)
+            <span class="hljs-title function_">callback</span>(<span class="hljs-literal">null</span>)
         &#125;)
 
 
@@ -549,31 +551,31 @@ router.get(<span class="hljs-string">&#x27;/delete&#x27;</span>, <span class="hl
 
 &#125;</code></pre></div>
 <h3 id="3-4-删除学生信息"><a href="#3-4-删除学生信息" class="headerlink" title="3.4  删除学生信息"></a>3.4  删除学生信息</h3><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 4. 删除学生信息</span>
-<span class="hljs-built_in">exports</span>.deleteById = <span class="hljs-function">(<span class="hljs-params">id, callback</span>) =&gt;</span> &#123;
+<span class="hljs-built_in">exports</span>.<span class="hljs-property">deleteById</span> = <span class="hljs-function">(<span class="hljs-params">id, callback</span>) =&gt;</span> &#123;
     <span class="hljs-comment">// 1. 读文件</span>
-    fs.readFile(dbPath, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">err, data</span>) =&gt;</span> &#123;
+    fs.<span class="hljs-title function_">readFile</span>(dbPath, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">err, data</span>) =&gt;</span> &#123;
         <span class="hljs-keyword">if</span> (err) &#123;
-            <span class="hljs-keyword">return</span> callback(err)
+            <span class="hljs-keyword">return</span> <span class="hljs-title function_">callback</span>(err)
         &#125;
         <span class="hljs-comment">// 2. 转成对象</span>
-        <span class="hljs-keyword">let</span> students = <span class="hljs-built_in">JSON</span>.parse(data).students
+        <span class="hljs-keyword">let</span> students = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(data).<span class="hljs-property">students</span>
 
-        <span class="hljs-keyword">let</span> deleteID = students.findIndex(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> &#123;
-            <span class="hljs-keyword">return</span> item.id === <span class="hljs-built_in">parseInt</span>(id)
+        <span class="hljs-keyword">let</span> deleteID = students.<span class="hljs-title function_">findIndex</span>(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> &#123;
+            <span class="hljs-keyword">return</span> item.<span class="hljs-property">id</span> === <span class="hljs-built_in">parseInt</span>(id)
         &#125;)
-        students.splice(deleteID, <span class="hljs-number">1</span>)
+        students.<span class="hljs-title function_">splice</span>(deleteID, <span class="hljs-number">1</span>)
 
         <span class="hljs-comment">// 4.把对象转成字符串</span>
-        <span class="hljs-keyword">let</span> fileData = <span class="hljs-built_in">JSON</span>.stringify(&#123;
-            students: students
+        <span class="hljs-keyword">let</span> fileData = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(&#123;
+            <span class="hljs-attr">students</span>: students
         &#125;)
 
         <span class="hljs-comment">// 5.把字符串保存在 文件中</span>
-        fs.writeFile(dbPath, fileData, <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> &#123;
+        fs.<span class="hljs-title function_">writeFile</span>(dbPath, fileData, <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> &#123;
             <span class="hljs-keyword">if</span> (err) &#123;
-                <span class="hljs-keyword">return</span> callback(err)
+                <span class="hljs-keyword">return</span> <span class="hljs-title function_">callback</span>(err)
             &#125;
-            callback(<span class="hljs-literal">null</span>)
+            <span class="hljs-title function_">callback</span>(<span class="hljs-literal">null</span>)
         &#125;)
 
     &#125;)
@@ -596,61 +598,75 @@ router.get(<span class="hljs-string">&#x27;/delete&#x27;</span>, <span class="hl
 
 
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/Nodejs/">Nodejs</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/Node/">Node</a>
-                  
-                  <a class="hover-with-bg" href="/tags/Express/">Express</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2020/08/05/02.%E7%AE%80%E5%8D%95%E7%9A%84HTTP%E5%93%8D%E5%BA%94%E8%AF%B7%E6%B1%82/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">使用Node来实现简单的HTTP响应请求</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2020/08/04/01.Nodejs%E4%BB%8B%E7%BB%8D/">
-                    <span class="hidden-mobile">Node介绍</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/Nodejs/">
+                              Nodejs
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/Node/">
+                                  Node
+                                </a>
+                                
+                                <a class="hover-with-bg" href="/tags/Express/">
+                                  Express
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2020/08/05/02.%E7%AE%80%E5%8D%95%E7%9A%84HTTP%E5%93%8D%E5%BA%94%E8%AF%B7%E6%B1%82/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      使用Node来实现简单的HTTP响应请求
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2020/08/04/01.Nodejs%E4%BB%8B%E7%BB%8D/">
+                                    <span class="hidden-mobile">
+                                      Node介绍
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -677,26 +693,26 @@ router.get(<span class="hljs-string">&#x27;/delete&#x27;</span>, <span class="hl
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

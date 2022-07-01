@@ -203,63 +203,65 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">以jQuery的设计思想封装DOM(总结)</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>实现了用JQuery的设计思想去封装DOM。</p>
-<p><strong>源代码链接：</strong> <a target="_blank" rel="noopener" href="https://github.com/wwwpppfffzzz/jQuery-dom/blob/master/src/jquery.js">https://github.com/wwwpppfffzzz/jQuery-dom/blob/master/src/jquery.js</a></p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                以jQuery的设计思想封装DOM(总结)
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>实现了用JQuery的设计思想去封装DOM。</p>
+<p><strong>源代码链接：</strong> <a target="_blank" rel="noopener" href="https://github.com/wangpf1129/jQuery-dom/blob/master/src/jquery.js">https://github.com/wangpf1129/jQuery-dom/blob/master/src/jquery.js</a></p>
 <h2 id="jQuery的思想"><a href="#jQuery的思想" class="headerlink" title="jQuery的思想"></a>jQuery的思想</h2><p>jQuery的基本设计思想就是：<code>选择某个网页元素，对其进行某种操作。</code></p>
 <p>八个字可以概括：<code>选取元素，对其操作。</code></p>
 <h2 id="jQuery获取网页元素思想"><a href="#jQuery获取网页元素思想" class="headerlink" title="jQuery获取网页元素思想"></a>jQuery获取网页元素思想</h2><p>使用jQuery的第一步，就是要得到你选中的元素，放在jQuery()（或者$()）里面。</p>
 <p><strong>实现方法:</strong> 使用重载设计模式获取对应的元素，利用闭包，在调用方法时使用到<code>elements</code></p>
 <p><strong>代码展示：</strong></p>
-<div class="hljs"><pre><code class="hljs js">winddow.$ = <span class="hljs-built_in">window</span>.jQuery = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">selectorOrArray</span>) </span>&#123;
+<div class="hljs"><pre><code class="hljs js">winddow.<span class="hljs-property">$</span> = <span class="hljs-variable language_">window</span>.<span class="hljs-property">jQuery</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">selectorOrArray</span>) &#123;
   <span class="hljs-keyword">let</span> elements = <span class="hljs-literal">null</span>
   <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> selectorOrArray === <span class="hljs-string">&#x27;string&#x27;</span>) &#123;
-    elements = <span class="hljs-built_in">document</span>.querySelectorAll(selectorOrArray)
-  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (selectorOrArray <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Array</span>) &#123;
+    elements = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelectorAll</span>(selectorOrArray)
+  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (selectorOrArray <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Array</span>) &#123;
     elements = selectorOrArray
   &#125;
 
   <span class="hljs-keyword">let</span> api = &#123;
-    find(selector) &#123;
+    <span class="hljs-title function_">find</span>(<span class="hljs-params">selector</span>) &#123;
       <span class="hljs-keyword">let</span> array = [];
-      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; elements.length; i++) &#123;
-        <span class="hljs-keyword">const</span> elements2 = <span class="hljs-built_in">Array</span>.from(elements[i].querySelectorAll(selector));
-        array.push(...elements2);
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; elements.<span class="hljs-property">length</span>; i++) &#123;
+        <span class="hljs-keyword">const</span> elements2 = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(elements[i].<span class="hljs-title function_">querySelectorAll</span>(selector));
+        array.<span class="hljs-title function_">push</span>(...elements2);
       &#125;
-      array.oldThis = <span class="hljs-built_in">this</span>; 
-      <span class="hljs-keyword">return</span> jQuery(array);
+      array.<span class="hljs-property">oldThis</span> = <span class="hljs-variable language_">this</span>; 
+      <span class="hljs-keyword">return</span> <span class="hljs-title function_">jQuery</span>(array);
     &#125;,
-    addClass(className) &#123;&#125;,
+    <span class="hljs-title function_">addClass</span>(<span class="hljs-params">className</span>) &#123;&#125;,
   &#125;;
   <span class="hljs-keyword">return</span> api;
 &#125;;</code></pre></div>
 
 <h2 id="jQuery的链式操作实现思想"><a href="#jQuery的链式操作实现思想" class="headerlink" title="jQuery的链式操作实现思想"></a>jQuery的链式操作实现思想</h2><p><strong>链式操作</strong>: 选中网页元素以后，可以对它进行一系列操作，并且所有操作可以连接在一起，以链条的形式写出来.</p>
-<div class="hljs"><pre><code class="hljs js">$(<span class="hljs-string">&#x27;div&#x27;</span>).find(<span class="hljs-string">&#x27;h3&#x27;</span>).eq(<span class="hljs-number">2</span>).html(<span class="hljs-string">&#x27;Hello&#x27;</span>);</code></pre></div>
+<div class="hljs"><pre><code class="hljs js">$(<span class="hljs-string">&#x27;div&#x27;</span>).<span class="hljs-title function_">find</span>(<span class="hljs-string">&#x27;h3&#x27;</span>).<span class="hljs-title function_">eq</span>(<span class="hljs-number">2</span>).<span class="hljs-title function_">html</span>(<span class="hljs-string">&#x27;Hello&#x27;</span>);</code></pre></div>
 <p><strong>实现思想：</strong> 原理在于于每一步的jQuery操作，返回的都是一个新的jQuery对象。</p>
 <p><strong>代码展示（以find方法举例）：</strong></p>
-<div class="hljs"><pre><code class="hljs js">find(selector) &#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-title function_">find</span>(<span class="hljs-params">selector</span>) &#123;
   <span class="hljs-keyword">let</span> array = []
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">this</span>.elements.length; i++) &#123;
-    <span class="hljs-keyword">const</span> elements2 = <span class="hljs-built_in">Array</span>.from(<span class="hljs-built_in">this</span>.elements[i]
-      .querySelectorAll(selector))
-    array = array.concat(elements2)
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">elements</span>.<span class="hljs-property">length</span>; i++) &#123;
+    <span class="hljs-keyword">const</span> elements2 = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">elements</span>[i]
+      .<span class="hljs-title function_">querySelectorAll</span>(selector))
+    array = array.<span class="hljs-title function_">concat</span>(elements2)
   &#125;
   <span class="hljs-comment">//  将当前的对象存放在array里</span>
-  array.oldThis = <span class="hljs-built_in">this</span>
+  array.<span class="hljs-property">oldThis</span> = <span class="hljs-variable language_">this</span>
   <span class="hljs-comment">// 然后在返回一个新的jQuery对象， 防止污染</span>
   <span class="hljs-comment">// 如果直接把数组赋值给elements返回的话，会污染到addClass方法</span>
-  <span class="hljs-keyword">return</span> jQuery(array)
+  <span class="hljs-keyword">return</span> <span class="hljs-title function_">jQuery</span>(array)
 &#125;,</code></pre></div>
 
 <h2 id="把方法放在原型上的实现思想"><a href="#把方法放在原型上的实现思想" class="headerlink" title="把方法放在原型上的实现思想"></a>把方法放在原型上的实现思想</h2><p><strong>优点：</strong> </p>
@@ -268,44 +270,44 @@
 <li>所有创建的jQuery对象中的方法都放在原型上，这样省内存。</li>
 </ul>
 <p><strong>代码展示：</strong></p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-built_in">window</span>.$ = <span class="hljs-built_in">window</span>.jQuery = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">selectorOrArray</span>) </span>&#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-variable language_">window</span>.<span class="hljs-property">$</span> = <span class="hljs-variable language_">window</span>.<span class="hljs-property">jQuery</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">selectorOrArray</span>) &#123;
   <span class="hljs-keyword">let</span> elements = <span class="hljs-literal">null</span>
   <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> selectorOrArray === <span class="hljs-string">&#x27;string&#x27;</span>) &#123;
-    elements = <span class="hljs-built_in">document</span>.querySelectorAll(selectorOrArray)
-  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (selectorOrArray <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Array</span>) &#123;
+    elements = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelectorAll</span>(selectorOrArray)
+  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (selectorOrArray <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Array</span>) &#123;
     elements = selectorOrArray
   &#125;
 
-  <span class="hljs-keyword">const</span> api = <span class="hljs-built_in">Object</span>.create(jQuery.prototype) <span class="hljs-comment">// 创建一个对象，这个对象的__proto__为括号里的</span>
+  <span class="hljs-keyword">const</span> api = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">create</span>(jQuery.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>) <span class="hljs-comment">// 创建一个对象，这个对象的__proto__为括号里的</span>
   <span class="hljs-comment">// Object.assign方法就是把&#123;&#125;中的对象都赋值给api</span>
   <span class="hljs-comment">// 相当于 api.elements = elements</span>
-  <span class="hljs-built_in">Object</span>.assign(api, &#123;
-    elements: elements,
+  <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>(api, &#123;
+    <span class="hljs-attr">elements</span>: elements,
     <span class="hljs-comment">// 把oldThis 存在这个对象里。 要不然别的方法访问不到</span>
     <span class="hljs-comment">// find中返回的是新的jQuery对象，而selectorOrArray是有oldThis这个属性的</span>
-    oldThis: selectorOrArray.oldThis,
+    <span class="hljs-attr">oldThis</span>: selectorOrArray.<span class="hljs-property">oldThis</span>,
   &#125;)
   <span class="hljs-keyword">return</span> api
 &#125;
 
-jQuery.prototype = &#123;
-  <span class="hljs-keyword">constructor</span>: jQuery,
-  addClass(className) &#123;
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">this</span>.elements.length; i++) &#123;
-      <span class="hljs-built_in">this</span>.elements[i].classList.add(className)
+jQuery.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = &#123;
+  <span class="hljs-attr">constructor</span>: jQuery,
+  <span class="hljs-title function_">addClass</span>(<span class="hljs-params">className</span>) &#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">elements</span>.<span class="hljs-property">length</span>; i++) &#123;
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">elements</span>[i].<span class="hljs-property">classList</span>.<span class="hljs-title function_">add</span>(className)
     &#125;
     <span class="hljs-comment">// 要求返回this 的原因是因为能够链式操作</span>
-    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>
   &#125;,
-  find(selector) &#123;&#125;,
-  end() &#123;&#125;,
-  each(fn) &#123;&#125;,
-  print() &#123;&#125;,
-  parent() &#123;&#125;,
-  children() &#123;&#125;,
-  siblings() &#123;&#125;,
-  next() &#123;,
-  prev() &#123;&#125;,
+  <span class="hljs-title function_">find</span>(<span class="hljs-params">selector</span>) &#123;&#125;,
+  <span class="hljs-title function_">end</span>(<span class="hljs-params"></span>) &#123;&#125;,
+  <span class="hljs-title function_">each</span>(<span class="hljs-params">fn</span>) &#123;&#125;,
+  <span class="hljs-title function_">print</span>(<span class="hljs-params"></span>) &#123;&#125;,
+  <span class="hljs-title function_">parent</span>(<span class="hljs-params"></span>) &#123;&#125;,
+  <span class="hljs-title function_">children</span>(<span class="hljs-params"></span>) &#123;&#125;,
+  <span class="hljs-title function_">siblings</span>(<span class="hljs-params"></span>) &#123;&#125;,
+  <span class="hljs-title function_">next</span>(<span class="hljs-params"></span>) &#123;,
+  <span class="hljs-title function_">prev</span>(<span class="hljs-params"></span>) &#123;&#125;,
 &#125;</code></pre></div>
 
 
@@ -317,59 +319,71 @@ jQuery.prototype = &#123;
 <p>设计模式其实就是一套反复使用的通用代码取个专业性的名字。</p>
 <p>我们不需要刻意的使用设计模式，而是在写完代码后知道这个是属于哪种设计模式。</p>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/jQuery/">jQuery</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/JavaScript/">JavaScript</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2020/12/11/31-DOM%E4%BA%8B%E4%BB%B6%E5%92%8C%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">DOM事件&事件委托</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2020/12/06/29-%E6%89%8B%E5%86%99DOM/">
-                    <span class="hidden-mobile">手写DOM</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/jQuery/">
+                              jQuery
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/JavaScript/">
+                                  JavaScript
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2020/12/11/31-DOM%E4%BA%8B%E4%BB%B6%E5%92%8C%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      DOM事件&事件委托
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2020/12/06/29-%E6%89%8B%E5%86%99DOM/">
+                                    <span class="hidden-mobile">
+                                      手写DOM
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -396,26 +410,26 @@ jQuery.prototype = &#123;
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

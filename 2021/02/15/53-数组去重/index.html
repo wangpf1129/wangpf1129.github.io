@@ -203,45 +203,47 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">数组去重</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h2 id="借鉴计数排序的原理-使用hash"><a href="#借鉴计数排序的原理-使用hash" class="headerlink" title="借鉴计数排序的原理,使用hash"></a>借鉴计数排序的原理,使用hash</h2><div class="hljs"><pre><code class="hljs js">unique = <span class="hljs-function">(<span class="hljs-params">array</span>) =&gt;</span> &#123;
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                数组去重
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h2 id="借鉴计数排序的原理-使用hash"><a href="#借鉴计数排序的原理-使用hash" class="headerlink" title="借鉴计数排序的原理,使用hash"></a>借鉴计数排序的原理,使用hash</h2><div class="hljs"><pre><code class="hljs js">unique = <span class="hljs-function">(<span class="hljs-params">array</span>) =&gt;</span> &#123;
     <span class="hljs-keyword">const</span> hash = []
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;array.length; i++)&#123;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;array.<span class="hljs-property">length</span>; i++)&#123;
         hash[array[i]] = <span class="hljs-literal">true</span>
     &#125;
     <span class="hljs-keyword">const</span> result = []
     <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> k <span class="hljs-keyword">in</span> hash)&#123;
-        result.push(k)
+        result.<span class="hljs-title function_">push</span>(k)
     &#125;
     <span class="hljs-keyword">return</span> result
 &#125;</code></pre></div>
 
 <p><strong>缺点</strong>：只支持数字或者字符串数组，如果数组里面有对象，比如 array = [{number:1}, 2]，就会出错。</p>
 <h2 id="使用-Set"><a href="#使用-Set" class="headerlink" title="使用 Set"></a>使用 Set</h2><div class="hljs"><pre><code class="hljs js">unique = <span class="hljs-function">(<span class="hljs-params">array</span>) =&gt;</span> &#123;
-    <span class="hljs-keyword">return</span> [...new <span class="hljs-built_in">Set</span>(array)] 
+    <span class="hljs-keyword">return</span> [...<span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>(array)] 
     <span class="hljs-comment">// 或者 return Array.from(new Set(array))</span>
 &#125;</code></pre></div>
 
 <p><strong>缺点</strong>：不支持对象去重</p>
 <h2 id="Map数据结构实现"><a href="#Map数据结构实现" class="headerlink" title="Map数据结构实现"></a>Map数据结构实现</h2><div class="hljs"><pre><code class="hljs js">unique = <span class="hljs-function">(<span class="hljs-params">array</span>) =&gt;</span> &#123;
-  <span class="hljs-keyword">let</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
+  <span class="hljs-keyword">let</span> map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();
   <span class="hljs-keyword">let</span> result = []
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; array.length; i++) &#123;
-    <span class="hljs-keyword">if</span>(map.has(array[i])) &#123; <span class="hljs-comment">// 判断 map 中是否已有该 key</span>
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; array.<span class="hljs-property">length</span>; i++) &#123;
+    <span class="hljs-keyword">if</span>(map.<span class="hljs-title function_">has</span>(array[i])) &#123; <span class="hljs-comment">// 判断 map 中是否已有该 key</span>
       <span class="hljs-keyword">continue</span>
     &#125; <span class="hljs-keyword">else</span> &#123;  <span class="hljs-comment">// 如果 map 中没有该 key，就加入 result 中</span>
-      map.set(array[i], <span class="hljs-literal">true</span>);
-      result.push(array[i]);
+      map.<span class="hljs-title function_">set</span>(array[i], <span class="hljs-literal">true</span>);
+      result.<span class="hljs-title function_">push</span>(array[i]);
     &#125;
   &#125;
   <span class="hljs-keyword">return</span> result;
@@ -249,59 +251,71 @@
 <span class="hljs-keyword">let</span> arr = [<span class="hljs-string">&quot;1&quot;</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-string">&quot;1&quot;</span>,&#123;<span class="hljs-attr">a</span>:<span class="hljs-number">1</span>,<span class="hljs-attr">b</span>:<span class="hljs-number">2</span>&#125;,&#123;<span class="hljs-attr">b</span>:<span class="hljs-number">2</span>,<span class="hljs-attr">c</span>:<span class="hljs-number">3</span>&#125;]
 </code></pre></div>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/JavaScript/">JavaScript</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/JavaScript/">JavaScript</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2021/02/17/54-typeof%E5%92%8Cinstanceof/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">运算符 typeof 与 instanceof 区别</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2021/02/12/52.%E7%BB%91%E5%AE%9Athis%E6%8C%87%E5%90%91/">
-                    <span class="hidden-mobile">call、apply、bind 的用法分别是什么？</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/JavaScript/">
+                              JavaScript
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/JavaScript/">
+                                  JavaScript
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2021/02/17/54-typeof%E5%92%8Cinstanceof/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      运算符 typeof 与 instanceof 区别
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2021/02/12/52.%E7%BB%91%E5%AE%9Athis%E6%8C%87%E5%90%91/">
+                                    <span class="hidden-mobile">
+                                      call、apply、bind 的用法分别是什么？
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -328,26 +342,26 @@
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

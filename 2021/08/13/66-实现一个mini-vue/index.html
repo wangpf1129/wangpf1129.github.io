@@ -203,18 +203,20 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">实现一个简洁版的Mini-Vue</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <p>实现一个简洁版 Mini-Vue</p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                实现一个简洁版的Mini-Vue
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <p>实现一个简洁版 Mini-Vue</p>
 <h2 id="Vue-三大核心系统"><a href="#Vue-三大核心系统" class="headerlink" title="Vue 三大核心系统"></a>Vue 三大核心系统</h2><p>Vue源码包含三大核心：</p>
 <ol>
 <li>Compiler模块： 编译模板系统</li>
@@ -255,7 +257,7 @@
 <p>h函数的作用就是 生成VNode， 而vnode本质上是一个JavaScript对象</p>
 </blockquote>
 <p>实现一个<strong>h 函数</strong>很简单，直接返回一个VNode对象即可</p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> h = <span class="hljs-function">(<span class="hljs-params">tag, props, children</span>) =&gt;</span> &#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> <span class="hljs-title function_">h</span> = (<span class="hljs-params">tag, props, children</span>) =&gt; &#123;
 
   <span class="hljs-keyword">return</span> &#123;
     tag,
@@ -285,7 +287,7 @@
 </li>
 </ol>
 <p>代码如下：</p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> h = <span class="hljs-function">(<span class="hljs-params">tag, props, children</span>) =&gt;</span> &#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> <span class="hljs-title function_">h</span> = (<span class="hljs-params">tag, props, children</span>) =&gt; &#123;
 
   <span class="hljs-keyword">return</span> &#123;
     tag,
@@ -295,36 +297,36 @@
 &#125;
 
 
-<span class="hljs-keyword">const</span> mount = <span class="hljs-function">(<span class="hljs-params">vnode, container</span>) =&gt;</span> &#123;
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">mount</span> = (<span class="hljs-params">vnode, container</span>) =&gt; &#123;
   <span class="hljs-comment">// 1. 创建 html 元素</span>
-  <span class="hljs-keyword">const</span> el = vnode.el = <span class="hljs-built_in">document</span>.createElement(vnode.tag)
+  <span class="hljs-keyword">const</span> el = vnode.<span class="hljs-property">el</span> = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(vnode.<span class="hljs-property">tag</span>)
 
   <span class="hljs-comment">// 2. 处理 props属性</span>
-  <span class="hljs-keyword">if</span> (vnode.props) &#123;
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">in</span> vnode.props) &#123;
-      <span class="hljs-keyword">if</span> (!vnode.props.hasOwnProperty(key)) &#123;<span class="hljs-keyword">return</span>&#125;
-      <span class="hljs-keyword">const</span> value = vnode.props[key]
+  <span class="hljs-keyword">if</span> (vnode.<span class="hljs-property">props</span>) &#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">in</span> vnode.<span class="hljs-property">props</span>) &#123;
+      <span class="hljs-keyword">if</span> (!vnode.<span class="hljs-property">props</span>.<span class="hljs-title function_">hasOwnProperty</span>(key)) &#123;<span class="hljs-keyword">return</span>&#125;
+      <span class="hljs-keyword">const</span> value = vnode.<span class="hljs-property">props</span>[key]
 
-      <span class="hljs-keyword">if</span> (key.startsWith(<span class="hljs-string">&#x27;on&#x27;</span>)) &#123;
-        el.addEventListener(key.slice(<span class="hljs-number">2</span>).toLowerCase(), value)
+      <span class="hljs-keyword">if</span> (key.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">&#x27;on&#x27;</span>)) &#123;
+        el.<span class="hljs-title function_">addEventListener</span>(key.<span class="hljs-title function_">slice</span>(<span class="hljs-number">2</span>).<span class="hljs-title function_">toLowerCase</span>(), value)
       &#125; <span class="hljs-keyword">else</span> &#123;
-        el.setAttribute(key, value)
+        el.<span class="hljs-title function_">setAttribute</span>(key, value)
       &#125;
     &#125;
   &#125;
 
   <span class="hljs-comment">// 3. 处理子节点</span>
-  <span class="hljs-keyword">if</span> (vnode.children) &#123;
-    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> vnode.children === <span class="hljs-string">&#x27;string&#x27;</span>) &#123;
-      el.textContent = vnode.children
+  <span class="hljs-keyword">if</span> (vnode.<span class="hljs-property">children</span>) &#123;
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> vnode.<span class="hljs-property">children</span> === <span class="hljs-string">&#x27;string&#x27;</span>) &#123;
+      el.<span class="hljs-property">textContent</span> = vnode.<span class="hljs-property">children</span>
     &#125; <span class="hljs-keyword">else</span> &#123;
-      vnode.children.forEach(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> &#123;
-        mount(item, el)
+      vnode.<span class="hljs-property">children</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> &#123;
+        <span class="hljs-title function_">mount</span>(item, el)
       &#125;)
     &#125;
   &#125;
 
-  container.appendChild(el)
+  container.<span class="hljs-title function_">appendChild</span>(el)
 &#125;
 </code></pre></div>
 
@@ -333,15 +335,15 @@
 <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;renderer.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
-<span class="javascript">  <span class="hljs-keyword">const</span> vnode = h(<span class="hljs-string">&#x27;div&#x27;</span>, &#123; <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;wangpf&#x27;</span> &#125;, [</span>
-<span class="javascript">    h(<span class="hljs-string">&#x27;h2&#x27;</span>, &#123; <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;title&#x27;</span> &#125;, <span class="hljs-string">&#x27;hello,I am wangpf&#x27;</span>),</span>
-<span class="javascript">    h(<span class="hljs-string">&#x27;div&#x27;</span>, <span class="hljs-literal">null</span>, <span class="hljs-string">&#x27;当前计数：100&#x27;</span>),</span>
-<span class="javascript">    h(<span class="hljs-string">&#x27;button&#x27;</span>, &#123; <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;btn&#x27;</span> &#125;, <span class="hljs-string">&#x27;+1&#x27;</span>)</span>
-  ])
-  
-<span class="javascript">  mount(vnode, <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&#x27;#app&#x27;</span>))</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span>
+<span class="language-javascript">  <span class="hljs-keyword">const</span> vnode = <span class="hljs-title function_">h</span>(<span class="hljs-string">&#x27;div&#x27;</span>, &#123; <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;wangpf&#x27;</span> &#125;, [</span>
+<span class="language-javascript">    <span class="hljs-title function_">h</span>(<span class="hljs-string">&#x27;h2&#x27;</span>, &#123; <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;title&#x27;</span> &#125;, <span class="hljs-string">&#x27;hello,I am wangpf&#x27;</span>),</span>
+<span class="language-javascript">    <span class="hljs-title function_">h</span>(<span class="hljs-string">&#x27;div&#x27;</span>, <span class="hljs-literal">null</span>, <span class="hljs-string">&#x27;当前计数：100&#x27;</span>),</span>
+<span class="language-javascript">    <span class="hljs-title function_">h</span>(<span class="hljs-string">&#x27;button&#x27;</span>, &#123; <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;btn&#x27;</span> &#125;, <span class="hljs-string">&#x27;+1&#x27;</span>)</span>
+<span class="language-javascript">  ])</span>
+<span class="language-javascript">  </span>
+<span class="language-javascript">  <span class="hljs-title function_">mount</span>(vnode, <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;#app&#x27;</span>))</span>
+<span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre></div>
 
 <p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8566def27dbf48908cf54d3acc0773c9~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="test"></p>
@@ -384,79 +386,79 @@
 </li>
 </ul>
 <p>代码实现：</p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> patch = <span class="hljs-function">(<span class="hljs-params">n1, n2</span>) =&gt;</span> &#123;
-  <span class="hljs-keyword">if</span> (n1.tag !== n2.tag) &#123;
-    <span class="hljs-keyword">const</span> n1ElParent = n1.el.parentElement
-    n1ElParent.removeChild(n1.el)
-    mount(n2, n1ElParent)
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> <span class="hljs-title function_">patch</span> = (<span class="hljs-params">n1, n2</span>) =&gt; &#123;
+  <span class="hljs-keyword">if</span> (n1.<span class="hljs-property">tag</span> !== n2.<span class="hljs-property">tag</span>) &#123;
+    <span class="hljs-keyword">const</span> n1ElParent = n1.<span class="hljs-property">el</span>.<span class="hljs-property">parentElement</span>
+    n1ElParent.<span class="hljs-title function_">removeChild</span>(n1.<span class="hljs-property">el</span>)
+    <span class="hljs-title function_">mount</span>(n2, n1ElParent)
   &#125; <span class="hljs-keyword">else</span> &#123;
     <span class="hljs-comment">// 1.取出 element对象，并且在 n2中进行保存</span>
-    <span class="hljs-keyword">const</span> el = n2.el = n1.el
+    <span class="hljs-keyword">const</span> el = n2.<span class="hljs-property">el</span> = n1.<span class="hljs-property">el</span>
 
     <span class="hljs-comment">// 2. 处理 props</span>
-    <span class="hljs-keyword">const</span> oldProps = n1.props || &#123;&#125;
-    <span class="hljs-keyword">const</span> newProps = n2.props || &#123;&#125;
+    <span class="hljs-keyword">const</span> oldProps = n1.<span class="hljs-property">props</span> || &#123;&#125;
+    <span class="hljs-keyword">const</span> newProps = n2.<span class="hljs-property">props</span> || &#123;&#125;
 
     <span class="hljs-comment">// 2.1 获取所有的 newProps 添加到 el</span>
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">in</span> newProps) &#123;
-      <span class="hljs-keyword">if</span> (!newProps.hasOwnProperty(key)) &#123;<span class="hljs-keyword">return</span>&#125;
+      <span class="hljs-keyword">if</span> (!newProps.<span class="hljs-title function_">hasOwnProperty</span>(key)) &#123;<span class="hljs-keyword">return</span>&#125;
       <span class="hljs-keyword">const</span> oldValue = oldProps[key]
       <span class="hljs-keyword">const</span> newValue = newProps[key]
       <span class="hljs-keyword">if</span> (oldValue !== newValue) &#123;
-        <span class="hljs-keyword">if</span> (key.startsWith(<span class="hljs-string">&#x27;on&#x27;</span>)) &#123;
-          el.addEventListener(key.slice(<span class="hljs-number">2</span>).toLowerCase(), newValue)
+        <span class="hljs-keyword">if</span> (key.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">&#x27;on&#x27;</span>)) &#123;
+          el.<span class="hljs-title function_">addEventListener</span>(key.<span class="hljs-title function_">slice</span>(<span class="hljs-number">2</span>).<span class="hljs-title function_">toLowerCase</span>(), newValue)
         &#125; <span class="hljs-keyword">else</span> &#123;
-          el.setAttribute(key, newValue)
+          el.<span class="hljs-title function_">setAttribute</span>(key, newValue)
         &#125;
       &#125;
     &#125;
 
     <span class="hljs-comment">// 2.2 删除旧的props</span>
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">in</span> oldProps) &#123;
-      <span class="hljs-keyword">if</span> (!newProps.hasOwnProperty(key)) &#123;<span class="hljs-keyword">return</span>&#125;
-      <span class="hljs-keyword">if</span> (key.startsWith(<span class="hljs-string">&#x27;on&#x27;</span>)) &#123;
-        el.removeEventListener(key.slice(<span class="hljs-number">2</span>).toLowerCase())
+      <span class="hljs-keyword">if</span> (!newProps.<span class="hljs-title function_">hasOwnProperty</span>(key)) &#123;<span class="hljs-keyword">return</span>&#125;
+      <span class="hljs-keyword">if</span> (key.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">&#x27;on&#x27;</span>)) &#123;
+        el.<span class="hljs-title function_">removeEventListener</span>(key.<span class="hljs-title function_">slice</span>(<span class="hljs-number">2</span>).<span class="hljs-title function_">toLowerCase</span>())
       &#125;
       <span class="hljs-keyword">if</span> (!(key <span class="hljs-keyword">in</span> newProps)) &#123;
-        el.removeAttribute(key)
+        el.<span class="hljs-title function_">removeAttribute</span>(key)
       &#125;
     &#125;
 
     <span class="hljs-comment">// 3. 处理 children</span>
-    <span class="hljs-keyword">const</span> oldChildren = n1.children || []
-    <span class="hljs-keyword">const</span> newChildren = n2.children || []
+    <span class="hljs-keyword">const</span> oldChildren = n1.<span class="hljs-property">children</span> || []
+    <span class="hljs-keyword">const</span> newChildren = n2.<span class="hljs-property">children</span> || []
     <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> newChildren === <span class="hljs-string">&#x27;string&#x27;</span>) &#123; <span class="hljs-comment">// 情况一</span>
       <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> oldChildren === <span class="hljs-string">&#x27;string&#x27;</span>) &#123;
         <span class="hljs-keyword">if</span> (newChildren !== oldChildren) &#123;
-          el.textContent = newChildren
+          el.<span class="hljs-property">textContent</span> = newChildren
         &#125;
       &#125; <span class="hljs-keyword">else</span> &#123;
-        el.innerHTML = newChildren
+        el.<span class="hljs-property">innerHTML</span> = newChildren
       &#125;
     &#125; <span class="hljs-keyword">else</span> &#123;  <span class="hljs-comment">// 情况二：newChildren是个数组</span>
       <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> oldChildren === <span class="hljs-string">&#x27;string&#x27;</span>) &#123;
-        el.innerHTML = <span class="hljs-string">&#x27;&#x27;</span>
-        newChildren.forEach(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> &#123;
-          mount(item, el)
+        el.<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&#x27;&#x27;</span>
+        newChildren.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> &#123;
+          <span class="hljs-title function_">mount</span>(item, el)
         &#125;)
       &#125; <span class="hljs-keyword">else</span> &#123;
         <span class="hljs-comment">// 如果都是数组</span>
         <span class="hljs-comment">// oldChildren : [v1,v2,v3]</span>
         <span class="hljs-comment">// newChildren : [v1,v5,v7,v8,v9]</span>
-        <span class="hljs-keyword">const</span> commonLength = <span class="hljs-built_in">Math</span>.min(newChildren.length, oldChildren.length)
+        <span class="hljs-keyword">const</span> commonLength = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">min</span>(newChildren.<span class="hljs-property">length</span>, oldChildren.<span class="hljs-property">length</span>)
         <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; commonLength; i++) &#123;
-          patch(oldChildren[i], newChildren[i])
+          <span class="hljs-title function_">patch</span>(oldChildren[i], newChildren[i])
         &#125;
 
-        <span class="hljs-keyword">if</span> (newChildren.length &gt; oldChildren.length) &#123;
-          newChildren.slice(oldChildren.length).forEach(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> &#123;
-            mount(item, el)
+        <span class="hljs-keyword">if</span> (newChildren.<span class="hljs-property">length</span> &gt; oldChildren.<span class="hljs-property">length</span>) &#123;
+          newChildren.<span class="hljs-title function_">slice</span>(oldChildren.<span class="hljs-property">length</span>).<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> &#123;
+            <span class="hljs-title function_">mount</span>(item, el)
           &#125;)
         &#125;
 
-        <span class="hljs-keyword">if</span> (newChildren.length &lt; oldChildren.length) &#123;
-          oldChildren.slice(newChildren.length).forEach(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> &#123;
-            el.removeChild(item.el)
+        <span class="hljs-keyword">if</span> (newChildren.<span class="hljs-property">length</span> &lt; oldChildren.<span class="hljs-property">length</span>) &#123;
+          oldChildren.<span class="hljs-title function_">slice</span>(newChildren.<span class="hljs-property">length</span>).<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> &#123;
+            el.<span class="hljs-title function_">removeChild</span>(item.<span class="hljs-property">el</span>)
           &#125;)
         &#125;
       &#125;
@@ -468,28 +470,28 @@
 <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;renderer.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
-<span class="javascript">  <span class="hljs-comment">// 1.通过 h 函数创建一个 vnode</span></span>
-<span class="javascript">  <span class="hljs-keyword">const</span> vnode = h(<span class="hljs-string">&#x27;div&#x27;</span>, &#123; <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;wangpf&#x27;</span>, <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;aaa&#x27;</span> &#125;, [</span>
-<span class="javascript">    h(<span class="hljs-string">&#x27;h2&#x27;</span>, &#123; <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;title&#x27;</span> &#125;, <span class="hljs-string">&#x27;hello,I am wangpf&#x27;</span>),</span>
-<span class="javascript">    h(<span class="hljs-string">&#x27;div&#x27;</span>, <span class="hljs-literal">null</span>, <span class="hljs-string">&#x27;当前计数：100&#x27;</span>),</span>
-<span class="javascript">    h(<span class="hljs-string">&#x27;button&#x27;</span>, &#123; <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;btn&#x27;</span> &#125;, <span class="hljs-string">&#x27;+1&#x27;</span>)</span>
-  ])
-  
-<span class="javascript">  <span class="hljs-comment">// 2. 通过 mount 函数， 将 vnode 挂载在div#app上</span></span>
-<span class="javascript">  mount(vnode, <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&#x27;#app&#x27;</span>))</span>
-  
-<span class="javascript">  <span class="hljs-comment">// 3. 创建新的 vnode</span></span>
-<span class="javascript">  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;</span>
-<span class="javascript">    <span class="hljs-keyword">const</span> newVnode = h(<span class="hljs-string">&#x27;div&#x27;</span>, &#123; <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;pf&#x27;</span>, <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;aaa&#x27;</span> &#125;, [</span>
-<span class="javascript">      h(<span class="hljs-string">&#x27;h2&#x27;</span>, &#123; <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;title&#x27;</span> &#125;, <span class="hljs-string">&#x27;hello,I am wangpf&#x27;</span>),</span>
-<span class="javascript">      h(<span class="hljs-string">&#x27;div&#x27;</span>, <span class="hljs-literal">null</span>, <span class="hljs-string">&#x27;当前计数：0&#x27;</span>),</span>
-<span class="javascript">      h(<span class="hljs-string">&#x27;button&#x27;</span>, &#123; <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;btn222&#x27;</span> &#125;, <span class="hljs-string">&#x27;-1&#x27;</span>)</span>
-    ])
-    patch(vnode, newVnode)
-  &#125;, 2000)
-
-<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span>
+<span class="language-javascript">  <span class="hljs-comment">// 1.通过 h 函数创建一个 vnode</span></span>
+<span class="language-javascript">  <span class="hljs-keyword">const</span> vnode = <span class="hljs-title function_">h</span>(<span class="hljs-string">&#x27;div&#x27;</span>, &#123; <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;wangpf&#x27;</span>, <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;aaa&#x27;</span> &#125;, [</span>
+<span class="language-javascript">    <span class="hljs-title function_">h</span>(<span class="hljs-string">&#x27;h2&#x27;</span>, &#123; <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;title&#x27;</span> &#125;, <span class="hljs-string">&#x27;hello,I am wangpf&#x27;</span>),</span>
+<span class="language-javascript">    <span class="hljs-title function_">h</span>(<span class="hljs-string">&#x27;div&#x27;</span>, <span class="hljs-literal">null</span>, <span class="hljs-string">&#x27;当前计数：100&#x27;</span>),</span>
+<span class="language-javascript">    <span class="hljs-title function_">h</span>(<span class="hljs-string">&#x27;button&#x27;</span>, &#123; <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;btn&#x27;</span> &#125;, <span class="hljs-string">&#x27;+1&#x27;</span>)</span>
+<span class="language-javascript">  ])</span>
+<span class="language-javascript">  </span>
+<span class="language-javascript">  <span class="hljs-comment">// 2. 通过 mount 函数， 将 vnode 挂载在div#app上</span></span>
+<span class="language-javascript">  <span class="hljs-title function_">mount</span>(vnode, <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;#app&#x27;</span>))</span>
+<span class="language-javascript">  </span>
+<span class="language-javascript">  <span class="hljs-comment">// 3. 创建新的 vnode</span></span>
+<span class="language-javascript">  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;</span>
+<span class="language-javascript">    <span class="hljs-keyword">const</span> newVnode = <span class="hljs-title function_">h</span>(<span class="hljs-string">&#x27;div&#x27;</span>, &#123; <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;pf&#x27;</span>, <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;aaa&#x27;</span> &#125;, [</span>
+<span class="language-javascript">      <span class="hljs-title function_">h</span>(<span class="hljs-string">&#x27;h2&#x27;</span>, &#123; <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;title&#x27;</span> &#125;, <span class="hljs-string">&#x27;hello,I am wangpf&#x27;</span>),</span>
+<span class="language-javascript">      <span class="hljs-title function_">h</span>(<span class="hljs-string">&#x27;div&#x27;</span>, <span class="hljs-literal">null</span>, <span class="hljs-string">&#x27;当前计数：0&#x27;</span>),</span>
+<span class="language-javascript">      <span class="hljs-title function_">h</span>(<span class="hljs-string">&#x27;button&#x27;</span>, &#123; <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;btn222&#x27;</span> &#125;, <span class="hljs-string">&#x27;-1&#x27;</span>)</span>
+<span class="language-javascript">    ])</span>
+<span class="language-javascript">    <span class="hljs-title function_">patch</span>(vnode, newVnode)</span>
+<span class="language-javascript">  &#125;, <span class="hljs-number">2000</span>)</span>
+<span class="language-javascript"></span>
+<span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre></div>
 
 <p>当定时器达到2s后, 新的vnode 会替换掉旧的vnode，通过 ptach 函数来diff出不同的地方进行替换。</p>
@@ -499,174 +501,174 @@
 <p>换为 <code>proxy</code> 原因在于 <code>defineProperty </code> 这个API虽然兼容性好，但是不能检测到对象和数组的变化，比如对对象的新增属性，我们需要去手动的给该属性收集依赖（通过**$set**）,才能实现响应式。<br>对于 <code>proxy</code>来说, Proxy 是劫持的整个对象，不需要做特殊处理 （我觉得这个为什么换为 proxy 的根本原因）</p>
 <h4 id="代码实现思路"><a href="#代码实现思路" class="headerlink" title="代码实现思路"></a>代码实现思路</h4><p>雏形的响应式系统： 发布订阅的思想</p>
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// 响应式系统模块</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dep</span> </span>&#123;
-  <span class="hljs-keyword">constructor</span>() &#123;
-    <span class="hljs-built_in">this</span>.subscribers = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>()
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Dep</span> &#123;
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">subscribers</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>()
   &#125;
 
-  addEffect(effect) &#123;
-    <span class="hljs-built_in">this</span>.subscribers.add(effect)
+  <span class="hljs-title function_">addEffect</span>(<span class="hljs-params">effect</span>) &#123;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">subscribers</span>.<span class="hljs-title function_">add</span>(effect)
   &#125;
 
-  notify() &#123;
-    <span class="hljs-built_in">this</span>.subscribers.forEach(<span class="hljs-function"><span class="hljs-params">effect</span> =&gt;</span> &#123;
-      effect()
+  <span class="hljs-title function_">notify</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">subscribers</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">effect</span> =&gt;</span> &#123;
+      <span class="hljs-title function_">effect</span>()
     &#125;)
   &#125;
 &#125;
 
 
 <span class="hljs-keyword">const</span> info = &#123; <span class="hljs-attr">counter</span>: <span class="hljs-number">100</span> &#125;
-<span class="hljs-keyword">const</span> doubleCounter = <span class="hljs-function">() =&gt;</span> &#123;
-  <span class="hljs-built_in">console</span>.log(info.counter * <span class="hljs-number">2</span>)
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">doubleCounter</span> = (<span class="hljs-params"></span>) =&gt; &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(info.<span class="hljs-property">counter</span> * <span class="hljs-number">2</span>)
 &#125;
 
-<span class="hljs-keyword">const</span> multiplyCounter = <span class="hljs-function">() =&gt;</span> &#123;
-  <span class="hljs-built_in">console</span>.log(info.counter * info.counter)
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">multiplyCounter</span> = (<span class="hljs-params"></span>) =&gt; &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(info.<span class="hljs-property">counter</span> * info.<span class="hljs-property">counter</span>)
 &#125;
 
-<span class="hljs-keyword">const</span> dep = <span class="hljs-keyword">new</span> Dep()
-dep.addEffect(doubleCounter)
-dep.addEffect(multiplyCounter)
+<span class="hljs-keyword">const</span> dep = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Dep</span>()
+dep.<span class="hljs-title function_">addEffect</span>(doubleCounter)
+dep.<span class="hljs-title function_">addEffect</span>(multiplyCounter)
 
 
 <span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =&gt;</span> &#123;
-  info.counter++
-  dep.notify()
+  info.<span class="hljs-property">counter</span>++
+  dep.<span class="hljs-title function_">notify</span>()
 &#125;, <span class="hljs-number">2000</span>)</code></pre></div>
 
 <p>上述代码有很多不足之处，只要数据发生变化就得手动去调用。</p>
 <p>我们希望数据只要一发生变化，那么就自动的去收集依赖并执行</p>
 <p>所以改进了如下：</p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> dep = <span class="hljs-keyword">new</span> Dep()
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> dep = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Dep</span>()
 
-<span class="hljs-keyword">const</span> watchEffect = <span class="hljs-function">(<span class="hljs-params">effect</span>) =&gt;</span> &#123;
-  dep.addEffect(effect)
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">watchEffect</span> = (<span class="hljs-params">effect</span>) =&gt; &#123;
+  dep.<span class="hljs-title function_">addEffect</span>(effect)
 &#125;
 
 <span class="hljs-keyword">const</span> info = &#123; <span class="hljs-attr">counter</span>: <span class="hljs-number">100</span> &#125;
 
-watchEffect(<span class="hljs-function">() =&gt;</span> &#123;
-  <span class="hljs-built_in">console</span>.log(info.counter * <span class="hljs-number">2</span>)
+<span class="hljs-title function_">watchEffect</span>(<span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(info.<span class="hljs-property">counter</span> * <span class="hljs-number">2</span>)
 &#125;)
-watchEffect(<span class="hljs-function">() =&gt;</span> &#123;
-  <span class="hljs-built_in">console</span>.log(info.counter * info.counter)
+<span class="hljs-title function_">watchEffect</span>(<span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(info.<span class="hljs-property">counter</span> * info.<span class="hljs-property">counter</span>)
 &#125;)
 
 
 <span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =&gt;</span> &#123;
-  info.counter++
-  dep.notify()
+  info.<span class="hljs-property">counter</span>++
+  dep.<span class="hljs-title function_">notify</span>()
 &#125;, <span class="hljs-number">2000</span>)</code></pre></div>
 
 <p>我就用 watchEffect 来统一管理它， 只不过需要在 watchEffect 函数中执行逻辑。</p>
 <p>但这还是有些不足，比如不知道是谁的逻辑，而且并不是自动收集依赖</p>
 <p>因此，再次进行改进，如下：</p>
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// 响应式系统模块</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dep</span> </span>&#123;
-  <span class="hljs-keyword">constructor</span>() &#123;
-    <span class="hljs-built_in">this</span>.subscribers = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>()
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Dep</span> &#123;
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">subscribers</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>()
   &#125;
 
-  depend() &#123;
+  <span class="hljs-title function_">depend</span>(<span class="hljs-params"></span>) &#123;
     <span class="hljs-keyword">if</span> (activeEffect) &#123;
-      <span class="hljs-built_in">this</span>.subscribers.add(activeEffect)
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">subscribers</span>.<span class="hljs-title function_">add</span>(activeEffect)
     &#125;
   &#125;
 
-  notify() &#123;
-    <span class="hljs-built_in">this</span>.subscribers.forEach(<span class="hljs-function"><span class="hljs-params">effect</span> =&gt;</span> &#123;
-      effect()
+  <span class="hljs-title function_">notify</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">subscribers</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">effect</span> =&gt;</span> &#123;
+      <span class="hljs-title function_">effect</span>()
     &#125;)
   &#125;
 &#125;
 
-<span class="hljs-keyword">const</span> dep = <span class="hljs-keyword">new</span> Dep()
+<span class="hljs-keyword">const</span> dep = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Dep</span>()
 <span class="hljs-keyword">let</span> activeEffect = <span class="hljs-literal">null</span>
-<span class="hljs-keyword">const</span> watchEffect = <span class="hljs-function">(<span class="hljs-params">effect</span>) =&gt;</span> &#123;
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">watchEffect</span> = (<span class="hljs-params">effect</span>) =&gt; &#123;
   activeEffect = effect
-  dep.depend()
+  dep.<span class="hljs-title function_">depend</span>()
   activeEffect = <span class="hljs-literal">null</span>
 &#125;
 
 <span class="hljs-keyword">const</span> info = &#123; <span class="hljs-attr">counter</span>: <span class="hljs-number">100</span> &#125;
 
-watchEffect(<span class="hljs-function">() =&gt;</span> &#123;
-  <span class="hljs-built_in">console</span>.log(info.counter * <span class="hljs-number">2</span>)
+<span class="hljs-title function_">watchEffect</span>(<span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(info.<span class="hljs-property">counter</span> * <span class="hljs-number">2</span>)
 &#125;)
-watchEffect(<span class="hljs-function">() =&gt;</span> &#123;
-  <span class="hljs-built_in">console</span>.log(info.counter * info.counter)
+<span class="hljs-title function_">watchEffect</span>(<span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(info.<span class="hljs-property">counter</span> * info.<span class="hljs-property">counter</span>)
 &#125;)
 
 
 <span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =&gt;</span> &#123;
-  info.counter++
-  dep.notify()
+  info.<span class="hljs-property">counter</span>++
+  dep.<span class="hljs-title function_">notify</span>()
 &#125;, <span class="hljs-number">2000</span>)</code></pre></div>
 
 <p>用 depend 来取代替 addEffect ， 这样做的目的是 不需要去知道 subscribers 添加的具体是什么</p>
 <p>但是呢， 这样做会使得对 info 整个有依赖， 如果我想监听 info 的某一个属性，所有我们需要有一个数据劫持的方法来实现。</p>
 <p>这时候就可以用vue2响应式原理的思想来实现了， 通过 <code>Object.defineProperty</code> (Vue2响应式原理的核心)</p>
 <h4 id="使用-Object-defineProperty-来实现"><a href="#使用-Object-defineProperty-来实现" class="headerlink" title="使用 Object.defineProperty 来实现"></a>使用 Object.defineProperty 来实现</h4><div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// 响应式系统模块</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dep</span> </span>&#123;
-  <span class="hljs-keyword">constructor</span>() &#123;
-    <span class="hljs-built_in">this</span>.subscribers = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>()
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Dep</span> &#123;
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">subscribers</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>()
   &#125;
 
-  depend() &#123;
+  <span class="hljs-title function_">depend</span>(<span class="hljs-params"></span>) &#123;
     <span class="hljs-keyword">if</span> (activeEffect) &#123;
-      <span class="hljs-built_in">this</span>.subscribers.add(activeEffect)
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">subscribers</span>.<span class="hljs-title function_">add</span>(activeEffect)
     &#125;
   &#125;
 
-  notify() &#123;
-    <span class="hljs-built_in">this</span>.subscribers.forEach(<span class="hljs-function"><span class="hljs-params">effect</span> =&gt;</span> &#123;
-      effect()
+  <span class="hljs-title function_">notify</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">subscribers</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">effect</span> =&gt;</span> &#123;
+      <span class="hljs-title function_">effect</span>()
     &#125;)
   &#125;
 &#125;
 
 <span class="hljs-keyword">let</span> activeEffect = <span class="hljs-literal">null</span>
-<span class="hljs-keyword">const</span> watchEffect = <span class="hljs-function">(<span class="hljs-params">effect</span>) =&gt;</span> &#123;
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">watchEffect</span> = (<span class="hljs-params">effect</span>) =&gt; &#123;
   activeEffect = effect
-  effect()  <span class="hljs-comment">//  vue3 中 watchEffect 就会默认执行一次</span>
+  <span class="hljs-title function_">effect</span>()  <span class="hljs-comment">//  vue3 中 watchEffect 就会默认执行一次</span>
   activeEffect = <span class="hljs-literal">null</span>
 &#125;
 
 
-<span class="hljs-keyword">const</span> targetMap = <span class="hljs-keyword">new</span> <span class="hljs-built_in">WeakMap</span>()
+<span class="hljs-keyword">const</span> targetMap = <span class="hljs-keyword">new</span> <span class="hljs-title class_">WeakMap</span>()
 
-<span class="hljs-keyword">const</span> getDep = <span class="hljs-function">(<span class="hljs-params">target, key</span>) =&gt;</span> &#123;
-  <span class="hljs-keyword">let</span> depsMap = targetMap.get(target)
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">getDep</span> = (<span class="hljs-params">target, key</span>) =&gt; &#123;
+  <span class="hljs-keyword">let</span> depsMap = targetMap.<span class="hljs-title function_">get</span>(target)
   <span class="hljs-keyword">if</span> (!depsMap) &#123;
-    depsMap = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>()
-    targetMap.set(target, depsMap)
+    depsMap = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>()
+    targetMap.<span class="hljs-title function_">set</span>(target, depsMap)
   &#125;
 
-  <span class="hljs-keyword">let</span> dep = depsMap.get(key)
+  <span class="hljs-keyword">let</span> dep = depsMap.<span class="hljs-title function_">get</span>(key)
   <span class="hljs-keyword">if</span> (!dep) &#123;
-    dep = <span class="hljs-keyword">new</span> Dep()
-    depsMap.set(key, dep)
+    dep = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Dep</span>()
+    depsMap.<span class="hljs-title function_">set</span>(key, dep)
   &#125;
   <span class="hljs-keyword">return</span> dep
 &#125;
 
 
 <span class="hljs-comment">// vue2 数据劫持原理</span>
-<span class="hljs-keyword">const</span> reactive = <span class="hljs-function">(<span class="hljs-params">raw</span>) =&gt;</span> &#123;
-  <span class="hljs-built_in">Object</span>.keys(raw).forEach(<span class="hljs-function"><span class="hljs-params">key</span> =&gt;</span> &#123;
-    <span class="hljs-keyword">const</span> dep = getDep(raw, key)
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">reactive</span> = (<span class="hljs-params">raw</span>) =&gt; &#123;
+  <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">keys</span>(raw).<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">key</span> =&gt;</span> &#123;
+    <span class="hljs-keyword">const</span> dep = <span class="hljs-title function_">getDep</span>(raw, key)
     <span class="hljs-keyword">let</span> value = raw[key];
 
-    <span class="hljs-built_in">Object</span>.defineProperty(raw, key, &#123;
-      get() &#123;
-        dep.depend()
+    <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">defineProperty</span>(raw, key, &#123;
+      <span class="hljs-title function_">get</span>(<span class="hljs-params"></span>) &#123;
+        dep.<span class="hljs-title function_">depend</span>()
         <span class="hljs-keyword">return</span> value
       &#125;,
-      set(newValue) &#123;
+      <span class="hljs-title function_">set</span>(<span class="hljs-params">newValue</span>) &#123;
         <span class="hljs-keyword">if</span> (value !== newValue) &#123;
           value = newValue
-          dep.notify()
+          dep.<span class="hljs-title function_">notify</span>()
         &#125;
       &#125;
     &#125;)
@@ -675,16 +677,16 @@ watchEffect(<span class="hljs-function">() =&gt;</span> &#123;
 &#125;</code></pre></div>
 
 <p>实现效果：</p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> info = reactive(&#123; <span class="hljs-attr">counter</span>: <span class="hljs-number">100</span> &#125;)
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> info = <span class="hljs-title function_">reactive</span>(&#123; <span class="hljs-attr">counter</span>: <span class="hljs-number">100</span> &#125;)
 
-watchEffect(<span class="hljs-function">() =&gt;</span> &#123;
-  <span class="hljs-built_in">console</span>.log(info.counter * <span class="hljs-number">2</span>)
+<span class="hljs-title function_">watchEffect</span>(<span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(info.<span class="hljs-property">counter</span> * <span class="hljs-number">2</span>)
 &#125;)
-watchEffect(<span class="hljs-function">() =&gt;</span> &#123;
-  <span class="hljs-built_in">console</span>.log(info.counter * info.counter)
+<span class="hljs-title function_">watchEffect</span>(<span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(info.<span class="hljs-property">counter</span> * info.<span class="hljs-property">counter</span>)
 &#125;)
 
-info.counter++
+info.<span class="hljs-property">counter</span>++
 
 <span class="hljs-comment">// 70 10000</span>
 <span class="hljs-comment">// 67 202</span>
@@ -692,17 +694,17 @@ info.counter++
 
 <p><code>defineProperty</code> 已经说过了，所以我们可以使用<code>proxy</code> 对 <strong>reactive 函数</strong>进行重构</p>
 <h4 id="使用-Proxy-来实现"><a href="#使用-Proxy-来实现" class="headerlink" title="使用 Proxy 来实现"></a>使用 Proxy 来实现</h4><div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// vue3 proxy 数据劫持</span>
-<span class="hljs-keyword">const</span> reactive = <span class="hljs-function">(<span class="hljs-params">raw</span>) =&gt;</span> &#123;
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(raw, &#123;
-    get(target, p, receiver) &#123;
-      <span class="hljs-keyword">const</span> dep = getDep(target, p)
-      dep.depend()
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">reactive</span> = (<span class="hljs-params">raw</span>) =&gt; &#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Proxy</span>(raw, &#123;
+    <span class="hljs-title function_">get</span>(<span class="hljs-params">target, p, receiver</span>) &#123;
+      <span class="hljs-keyword">const</span> dep = <span class="hljs-title function_">getDep</span>(target, p)
+      dep.<span class="hljs-title function_">depend</span>()
       <span class="hljs-keyword">return</span> target[p]
     &#125;,
-    set(target, p, newValue, receiver) &#123;
-      <span class="hljs-keyword">const</span> dep = getDep(target, p)
+    <span class="hljs-title function_">set</span>(<span class="hljs-params">target, p, newValue, receiver</span>) &#123;
+      <span class="hljs-keyword">const</span> dep = <span class="hljs-title function_">getDep</span>(target, p)
       target[p] = newValue
-      dep.notify()
+      dep.<span class="hljs-title function_">notify</span>()
     &#125;
   &#125;)
 &#125;</code></pre></div>
@@ -715,21 +717,21 @@ info.counter++
 <li>createApp 用于创建一个app对象</li>
 <li>该app对象有一个 mount 方法，可以将根组件挂载到某一个dom元素上。</li>
 </ul>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> createApp = <span class="hljs-function">(<span class="hljs-params">rootComponent</span>) =&gt;</span> &#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> <span class="hljs-title function_">createApp</span> = (<span class="hljs-params">rootComponent</span>) =&gt; &#123;
   <span class="hljs-keyword">return</span> &#123;
-    mount(selector) &#123;
+    <span class="hljs-title function_">mount</span>(<span class="hljs-params">selector</span>) &#123;
       <span class="hljs-keyword">let</span> isMounted = <span class="hljs-literal">false</span>
       <span class="hljs-keyword">let</span> preVnode = <span class="hljs-literal">null</span>
 
-      watchEffect(<span class="hljs-function">() =&gt;</span> &#123;
+      <span class="hljs-title function_">watchEffect</span>(<span class="hljs-function">() =&gt;</span> &#123;
         <span class="hljs-comment">// 首次需要挂载， 后边就 patch</span>
         <span class="hljs-keyword">if</span> (!isMounted) &#123;
-          preVnode = rootComponent.render()
-          mount(preVnode, <span class="hljs-built_in">document</span>.querySelector(selector))
+          preVnode = rootComponent.<span class="hljs-title function_">render</span>()
+          <span class="hljs-title function_">mount</span>(preVnode, <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(selector))
           isMounted = <span class="hljs-literal">true</span>
         &#125; <span class="hljs-keyword">else</span> &#123;
-          <span class="hljs-keyword">const</span> newVnode = rootComponent.render()
-          patch(preVnode, newVnode)
+          <span class="hljs-keyword">const</span> newVnode = rootComponent.<span class="hljs-title function_">render</span>()
+          <span class="hljs-title function_">patch</span>(preVnode, newVnode)
           preVnode = newVnode
         &#125;
       &#125;)
@@ -738,79 +740,91 @@ info.counter++
 &#125;</code></pre></div>
 
 <h4 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h4><div class="hljs"><pre><code class="hljs js">  <span class="hljs-comment">// 1. 创建根组件</span>
-<span class="hljs-keyword">const</span> App = &#123;
-  data: reactive(&#123;
-    counter: <span class="hljs-number">0</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">App</span> = &#123;
+  <span class="hljs-attr">data</span>: <span class="hljs-title function_">reactive</span>(&#123;
+    <span class="hljs-attr">counter</span>: <span class="hljs-number">0</span>
   &#125;),
-  render() &#123;
-    <span class="hljs-keyword">return</span> h(<span class="hljs-string">&#x27;div&#x27;</span>, <span class="hljs-literal">null</span>, [
-      h(<span class="hljs-string">&#x27;h2&#x27;</span>, <span class="hljs-literal">null</span>, <span class="hljs-string">`计数:<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.data.counter&#125;</span>`</span>),
-      h(<span class="hljs-string">&#x27;button&#x27;</span>, &#123;
-        onClick: <span class="hljs-function">() =&gt;</span> &#123;<span class="hljs-built_in">this</span>.data.counter++&#125;
+  <span class="hljs-title function_">render</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-title function_">h</span>(<span class="hljs-string">&#x27;div&#x27;</span>, <span class="hljs-literal">null</span>, [
+      <span class="hljs-title function_">h</span>(<span class="hljs-string">&#x27;h2&#x27;</span>, <span class="hljs-literal">null</span>, <span class="hljs-string">`计数:<span class="hljs-subst">$&#123;<span class="hljs-variable language_">this</span>.data.counter&#125;</span>`</span>),
+      <span class="hljs-title function_">h</span>(<span class="hljs-string">&#x27;button&#x27;</span>, &#123;
+        <span class="hljs-attr">onClick</span>: <span class="hljs-function">() =&gt;</span> &#123;<span class="hljs-variable language_">this</span>.<span class="hljs-property">data</span>.<span class="hljs-property">counter</span>++&#125;
       &#125;, <span class="hljs-string">&#x27;+1&#x27;</span>)
     ])
   &#125;
 &#125;
 
 <span class="hljs-comment">// 2. 挂载根组件</span>
-createApp(App).mount(<span class="hljs-string">&#x27;#app&#x27;</span>)</code></pre></div>
+<span class="hljs-title function_">createApp</span>(<span class="hljs-title class_">App</span>).<span class="hljs-title function_">mount</span>(<span class="hljs-string">&#x27;#app&#x27;</span>)</code></pre></div>
 
 <p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/21be39e02a714a96b2f4841610cc8b71~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="test1"></p>
 <p>点击即可完成加一操作！</p>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/Vue-js/">Vue.js</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/Vue3/">Vue3</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2021/08/23/67-Vue3%E4%B8%AD%E8%BE%85%E5%8A%A9%E5%87%BD%E6%95%B0%E7%9A%84%E6%AD%A3%E7%A1%AE%E4%BD%BF%E7%94%A8/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">如何正确的在vue3中使用vuex的辅助函数</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2021/08/07/65-Composition_API/">
-                    <span class="hidden-mobile">Vue3|Composition_API （全）总结</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/Vue-js/">
+                              Vue.js
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/Vue3/">
+                                  Vue3
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2021/08/23/67-Vue3%E4%B8%AD%E8%BE%85%E5%8A%A9%E5%87%BD%E6%95%B0%E7%9A%84%E6%AD%A3%E7%A1%AE%E4%BD%BF%E7%94%A8/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      如何正确的在vue3中使用vuex的辅助函数
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2021/08/07/65-Composition_API/">
+                                    <span class="hidden-mobile">
+                                      Vue3|Composition_API （全）总结
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -837,26 +851,26 @@ createApp(App).mount(<span class="hljs-string">&#x27;#app&#x27;</span>)</code></
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

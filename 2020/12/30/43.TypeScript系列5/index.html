@@ -203,42 +203,44 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">TypeScript 学习总结之 泛型</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <p>​<br><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/408cfbc308734bd8bcbb8a36c40135d0~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="TypeScript"></p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                TypeScript 学习总结之 泛型
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <p>​<br><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/408cfbc308734bd8bcbb8a36c40135d0~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="TypeScript"></p>
 <h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>在像C#和Java这样的语言中，可以使用泛型来创建可重用的组件，一个组件可以支持多种类型的数据。 这样用户就可以以自己的数据类型来使用组件。</p>
 <div class="hljs"><pre><code class="hljs ts"><span class="hljs-comment">// T : 泛型变量 | 类型变量</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">identity</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">arg: T</span>): <span class="hljs-title">T</span> </span>&#123;
+<span class="hljs-keyword">function</span> identity&lt;T&gt;(<span class="hljs-attr">arg</span>: T): T &#123;
   <span class="hljs-keyword">return</span> arg;
 &#125;
-identity(<span class="hljs-number">123</span>)
-identity(<span class="hljs-string">&#x27;123&#x27;</span>)</code></pre></div>
+<span class="hljs-title function_">identity</span>(<span class="hljs-number">123</span>)
+<span class="hljs-title function_">identity</span>(<span class="hljs-string">&#x27;123&#x27;</span>)</code></pre></div>
 
 <p>代码中 <strong>T 代表 「Type」</strong>，在定义泛型时通常用作第一个类型变量名称。但实际上 T 可以用任何有效名称代替。</p>
 <p>由于我们操作的是数组，所以.length属性是应该存在的。 我们可以像创建其它数组一样创建这个数组：</p>
-<div class="hljs"><pre><code class="hljs ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loggingIdentity</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">arg: T[]</span>): <span class="hljs-title">T</span>[] </span>&#123;
-  <span class="hljs-built_in">console</span>.log(arg.length);  <span class="hljs-comment">// Array has a .length, so no more error</span>
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> loggingIdentity&lt;T&gt;(<span class="hljs-attr">arg</span>: T[]): T[] &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(arg.<span class="hljs-property">length</span>);  <span class="hljs-comment">// Array has a .length, so no more error</span>
   <span class="hljs-keyword">return</span> arg;
 &#125;</code></pre></div>
 
 
 
 <p>其实并不是只能定义一个类型变量，我们可以引入希望定义的任何数量的类型变量。比如我们引入一个新的类型变量 <code>U</code>，用于扩展我们定义的 <code>identity</code> 函数：</p>
-<div class="hljs"><pre><code class="hljs ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">identity</span>&lt;<span class="hljs-title">T</span>, <span class="hljs-title">U</span>&gt;(<span class="hljs-params">value: T, message: U</span>): <span class="hljs-title">T</span> </span>&#123;
-  <span class="hljs-built_in">console</span>.log(message);
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> identity&lt;T, U&gt;(<span class="hljs-attr">value</span>: T, <span class="hljs-attr">message</span>: U): T &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(message);
   <span class="hljs-keyword">return</span> value;
 &#125;
 
-<span class="hljs-built_in">console</span>.log(identity(<span class="hljs-number">666</span>, <span class="hljs-string">&quot;jack is cool!&quot;</span>));</code></pre></div>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">identity</span>(<span class="hljs-number">666</span>, <span class="hljs-string">&quot;jack is cool!&quot;</span>));</code></pre></div>
 
 
 <h2 id="泛型类型-amp-amp-泛型接口"><a href="#泛型类型-amp-amp-泛型接口" class="headerlink" title="泛型类型 &amp;&amp; 泛型接口"></a>泛型类型 &amp;&amp; 泛型接口</h2><p>泛型类型不同的注解方式:</p>
@@ -246,36 +248,36 @@ identity(<span class="hljs-string">&#x27;123&#x27;</span>)</code></pre></div>
 <li>函数泛型的注解方式</li>
 <li>对象字面量的方式来定义泛型类型</li>
 <li>泛型接口的定义方式<div class="hljs"><pre><code class="hljs ts"><span class="hljs-comment">//  泛型类型的不同方式</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">identity</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">arg: T</span>): <span class="hljs-title">T</span> </span>&#123;
+<span class="hljs-keyword">function</span> identity&lt;T&gt;(<span class="hljs-attr">arg</span>: T): T &#123;
   <span class="hljs-keyword">return</span> arg;
 &#125;
 
 <span class="hljs-comment">// 1. 函数泛型的注解方式：</span>
-<span class="hljs-keyword">let</span> a: &lt;T&gt;<span class="hljs-function">(<span class="hljs-params">arg: T</span>) =&gt;</span> T = identity
+<span class="hljs-keyword">let</span> <span class="hljs-attr">a</span>: &lt;T&gt;<span class="hljs-function">(<span class="hljs-params">arg: T</span>) =&gt;</span> T = identity
 
 <span class="hljs-comment">// 2. 对象字面量的方式来定义泛型类型</span>
-<span class="hljs-keyword">let</span> b: &#123; &lt;T&gt;(arg: T): T &#125; = identity
+<span class="hljs-keyword">let</span> <span class="hljs-attr">b</span>: &#123; &lt;T&gt;(<span class="hljs-attr">arg</span>: T): T &#125; = identity
 
 <span class="hljs-comment">// 3. 泛型接口的定义方式</span>
-<span class="hljs-keyword">interface</span> IdentityInterface &#123;
-  &lt;T&gt;(arg: T): T
+<span class="hljs-keyword">interface</span> <span class="hljs-title class_">IdentityInterface</span> &#123;
+  &lt;T&gt;(<span class="hljs-attr">arg</span>: T): T
 &#125;
-<span class="hljs-keyword">let</span> c: IdentityInterface = identity</code></pre></div>
+<span class="hljs-keyword">let</span> <span class="hljs-attr">c</span>: <span class="hljs-title class_">IdentityInterface</span> = identity</code></pre></div>
 
 </li>
 </ol>
 <h2 id="泛型类-amp-泛型约束"><a href="#泛型类-amp-泛型约束" class="headerlink" title="泛型类 &amp; 泛型约束"></a>泛型类 &amp; 泛型约束</h2><h3 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h3><p>泛型类看上去与泛型接口差不多，我们只需要在类名后面，使用 &lt;T, …&gt; 的语法定义任意多个类型变量，具体示例如下：</p>
 <div class="hljs"><pre><code class="hljs ts"><span class="hljs-comment">// 泛型类</span>
-<span class="hljs-keyword">class</span> MinClass&lt;T&gt;&#123;
-  <span class="hljs-keyword">public</span> list: T[] = []
-  add(num: T) &#123;
-    <span class="hljs-built_in">this</span>.list.push(num)
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">MinClass</span>&lt;T&gt;&#123;
+  <span class="hljs-keyword">public</span> <span class="hljs-attr">list</span>: T[] = []
+  <span class="hljs-title function_">add</span>(<span class="hljs-params">num: T</span>) &#123;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">list</span>.<span class="hljs-title function_">push</span>(num)
   &#125;
-  min(): T &#123;
-    <span class="hljs-keyword">let</span> minNum = <span class="hljs-built_in">this</span>.list[<span class="hljs-number">0</span>]
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">this</span>.list.length; i++) &#123;
-      <span class="hljs-keyword">if</span> (minNum &gt; <span class="hljs-built_in">this</span>.list[i]) &#123;
-        minNum = <span class="hljs-built_in">this</span>.list[i]
+  <span class="hljs-title function_">min</span>(): T &#123;
+    <span class="hljs-keyword">let</span> minNum = <span class="hljs-variable language_">this</span>.<span class="hljs-property">list</span>[<span class="hljs-number">0</span>]
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">list</span>.<span class="hljs-property">length</span>; i++) &#123;
+      <span class="hljs-keyword">if</span> (minNum &gt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">list</span>[i]) &#123;
+        minNum = <span class="hljs-variable language_">this</span>.<span class="hljs-property">list</span>[i]
       &#125;
     &#125;
     <span class="hljs-keyword">return</span> minNum
@@ -291,190 +293,204 @@ identity(<span class="hljs-string">&#x27;123&#x27;</span>)</code></pre></div>
 <p>以官方文档例子为例：</p>
 <p>我们需要去定义一个接口来描述约束条件。</p>
 <p>创建一个包含 .length属性的接口，使用这个接口和extends关键字来实现约束：</p>
-<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">interface</span> LengthInterface &#123;
-  length: <span class="hljs-built_in">number</span>
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">LengthInterface</span> &#123;
+  <span class="hljs-attr">length</span>: <span class="hljs-built_in">number</span>
 &#125;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loggingIdentity</span>&lt;<span class="hljs-title">T</span> <span class="hljs-title">extends</span> <span class="hljs-title">LengthInterface</span>&gt;(<span class="hljs-params">arg: T</span>): <span class="hljs-title">T</span> </span>&#123;
-  <span class="hljs-built_in">console</span>.log(arg.length);
+<span class="hljs-keyword">function</span> loggingIdentity&lt;T <span class="hljs-keyword">extends</span> <span class="hljs-title class_">LengthInterface</span>&gt;(<span class="hljs-attr">arg</span>: T): T &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(arg.<span class="hljs-property">length</span>);
   <span class="hljs-keyword">return</span> arg;
 &#125;</code></pre></div>
 
 <p>其中,<strong>泛型约束用的是： extends 继承接口的方式（不一定非要是接口）</strong> 、<code>T extends LengthInterface </code>用于告诉编译器，我们支持已经实现 Length 接口的任何类型</p>
 <p>另外， 泛型约束并不一定用接口方式， 比如 我们可以把以上代码 接口 换成 类型别名 ,<br>如下例子：<br>// 以类型别名的方式依然可以</p>
-<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> LengthType = <span class="hljs-built_in">string</span>
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">type</span> <span class="hljs-title class_">LengthType</span> = <span class="hljs-built_in">string</span>
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loggingIdentity</span>&lt;<span class="hljs-title">T</span> <span class="hljs-title">extends</span> <span class="hljs-title">LengthType</span>&gt;(<span class="hljs-params">arg: T</span>): <span class="hljs-title">T</span> </span>&#123;
-  <span class="hljs-built_in">console</span>.log(arg.length);
+<span class="hljs-keyword">function</span> loggingIdentity&lt;T <span class="hljs-keyword">extends</span> <span class="hljs-title class_">LengthType</span>&gt;(<span class="hljs-attr">arg</span>: T): T &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(arg.<span class="hljs-property">length</span>);
   <span class="hljs-keyword">return</span> arg;
 &#125;</code></pre></div>
 
 <h4 id="keyof-操作符"><a href="#keyof-操作符" class="headerlink" title="keyof 操作符"></a>keyof 操作符</h4><p><strong>keyof操作符可以用于获取某种类型的所有键，其返回类型是联合类型。</strong></p>
 <div class="hljs"><pre><code class="hljs ts"><span class="hljs-comment">// keyof 操作符</span>
 
-<span class="hljs-keyword">interface</span> Person &#123;
-  name: <span class="hljs-built_in">string</span>;
-  age: <span class="hljs-built_in">number</span>;
-  location: <span class="hljs-built_in">string</span>;
+<span class="hljs-keyword">interface</span> <span class="hljs-title class_">Person</span> &#123;
+  <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;
+  <span class="hljs-attr">age</span>: <span class="hljs-built_in">number</span>;
+  <span class="hljs-attr">location</span>: <span class="hljs-built_in">string</span>;
 &#125;
 
-<span class="hljs-keyword">type</span> K1 = keyof Person; <span class="hljs-comment">// &quot;name&quot; | &quot;age&quot; | &quot;location&quot;</span>
-<span class="hljs-keyword">type</span> K2 = keyof Person[];  <span class="hljs-comment">// number | &quot;length&quot; | &quot;push&quot; | &quot;concat&quot; | ...</span>
-<span class="hljs-keyword">type</span> K3 = keyof &#123; [x: <span class="hljs-built_in">string</span>]: Person &#125;;  <span class="hljs-comment">// string | number</span></code></pre></div>
+<span class="hljs-keyword">type</span> <span class="hljs-variable constant_">K1</span> = keyof <span class="hljs-title class_">Person</span>; <span class="hljs-comment">// &quot;name&quot; | &quot;age&quot; | &quot;location&quot;</span>
+<span class="hljs-keyword">type</span> <span class="hljs-variable constant_">K2</span> = keyof <span class="hljs-title class_">Person</span>[];  <span class="hljs-comment">// number | &quot;length&quot; | &quot;push&quot; | &quot;concat&quot; | ...</span>
+<span class="hljs-keyword">type</span> <span class="hljs-variable constant_">K3</span> = keyof &#123; [<span class="hljs-attr">x</span>: <span class="hljs-built_in">string</span>]: <span class="hljs-title class_">Person</span> &#125;;  <span class="hljs-comment">// string | number</span></code></pre></div>
 <p>可以看出， k1,k2,k3其实是键名</p>
 <h4 id="在泛型约束中使用类型参数"><a href="#在泛型约束中使用类型参数" class="headerlink" title="在泛型约束中使用类型参数"></a>在泛型约束中使用类型参数</h4><p>当我们理解了 keyof 操作符时， 看下面代码就很好理解了</p>
-<div class="hljs"><pre><code class="hljs ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getProperty</span>&lt;<span class="hljs-title">T</span>, <span class="hljs-title">K</span> <span class="hljs-title">extends</span> <span class="hljs-title">keyof</span> <span class="hljs-title">T</span>&gt;(<span class="hljs-params">obj: T, key: K</span>) </span>&#123;
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">function</span> getProperty&lt;T, K <span class="hljs-keyword">extends</span> keyof T&gt;(<span class="hljs-attr">obj</span>: T, <span class="hljs-attr">key</span>: K) &#123;
   <span class="hljs-keyword">return</span> obj[key];
 &#125;
 
-<span class="hljs-keyword">let</span> x = &#123; a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>, c: <span class="hljs-number">3</span>, d: <span class="hljs-number">4</span> &#125;;
+<span class="hljs-keyword">let</span> x = &#123; <span class="hljs-attr">a</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">b</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">c</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">d</span>: <span class="hljs-number">4</span> &#125;;
 
-getProperty(x, <span class="hljs-string">&quot;a&quot;</span>); <span class="hljs-comment">// okay</span>
-getProperty(x, <span class="hljs-string">&quot;m&quot;</span>); <span class="hljs-comment">// error: Argument of type &#x27;m&#x27; isn&#x27;t assignable to &#x27;a&#x27; | &#x27;b&#x27; | &#x27;c&#x27; | &#x27;d&#x27;.</span></code></pre></div>
+<span class="hljs-title function_">getProperty</span>(x, <span class="hljs-string">&quot;a&quot;</span>); <span class="hljs-comment">// okay</span>
+<span class="hljs-title function_">getProperty</span>(x, <span class="hljs-string">&quot;m&quot;</span>); <span class="hljs-comment">// error: Argument of type &#x27;m&#x27; isn&#x27;t assignable to &#x27;a&#x27; | &#x27;b&#x27; | &#x27;c&#x27; | &#x27;d&#x27;.</span></code></pre></div>
 <p>**而 K 就是指  ‘a’ , ‘b’ , ‘c’ , ‘d’ **</p>
 <p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6c050952b0be44d5bd16b959967b04ac~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="K"></p>
 <p>很明显通过使用泛型约束，在编译阶段我们就可以提前发现错误，大大提高了程序的健壮性和稳定性。</p>
 <h3 id="多重泛型约束-amp-交叉类型"><a href="#多重泛型约束-amp-交叉类型" class="headerlink" title="多重泛型约束 &amp;  交叉类型"></a>多重泛型约束 &amp;  交叉类型</h3><p>交叉类型是将多个类型合并为一个类型。 这让我们可以把现有的多种类型叠加到一起成为一种类型，它包含了所需的所有类型的特性。</p>
 <div class="hljs"><pre><code class="hljs typescript">
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">extend</span>&lt;<span class="hljs-title">T</span>, <span class="hljs-title">U</span>&gt;(<span class="hljs-params">first: T, second: U</span>): <span class="hljs-title">T</span> &amp; <span class="hljs-title">U</span> </span>&#123;
-  <span class="hljs-keyword">let</span> result = &lt;T &amp; U&gt;&#123;&#125;;  <span class="hljs-comment">// 断言， 表示 result 包含 T  U 俩种类型</span>
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> id <span class="hljs-keyword">in</span> first) &#123;  
-    (&lt;<span class="hljs-built_in">any</span>&gt;result)[id] = (&lt;<span class="hljs-built_in">any</span>&gt;first)[id];   <span class="hljs-comment">// 将 first 中所有属性 给 result</span>
+<span class="hljs-keyword">function</span> extend&lt;T, U&gt;(<span class="hljs-attr">first</span>: T, <span class="hljs-attr">second</span>: U): T &amp; U &#123;
+  <span class="hljs-keyword">let</span> result = &lt;T &amp; U&gt;&#123;&#125;;  // 断言， 表示 result 包含 T  U 俩种类型
+  for (let id in first) &#123;  
+    (&lt;any&gt;result)[id] = (&lt;any&gt;first)[id];   // 将 first 中所有属性 给 result
   &#125;
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> id <span class="hljs-keyword">in</span> second) &#123;
-    <span class="hljs-keyword">if</span> (!result.hasOwnProperty(id)) &#123;
-      (&lt;<span class="hljs-built_in">any</span>&gt;result)[id] = (&lt;<span class="hljs-built_in">any</span>&gt;second)[id];  
-      <span class="hljs-comment">// 将 second 中所有属性 给 result, 前提是result 没有该属性时</span>
+  for (let id in second) &#123;
+    if (!result.hasOwnProperty(id)) &#123;
+      (&lt;any&gt;result)[id] = (&lt;any&gt;second)[id];  
+      // 将 second 中所有属性 给 result, 前提是result 没有该属性时
     &#125;
   &#125;
-  <span class="hljs-keyword">return</span> result;   <span class="hljs-comment">// 返回的 result 就有  first 和 second 的所有属性</span>
+  return result;   // 返回的 result 就有  first 和 second 的所有属性
 &#125;
 
 
-<span class="hljs-keyword">class</span> Person &#123;
-  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">public</span> name: <span class="hljs-built_in">string</span></span>) &#123; &#125;
+class Person &#123;
+  constructor(public name: string) &#123; &#125;
 &#125;
-<span class="hljs-keyword">interface</span> Loggable &#123;
-  log(): <span class="hljs-built_in">void</span>;
+interface Loggable &#123;
+  log(): void;
 &#125;
-<span class="hljs-keyword">class</span> ConsoleLogger <span class="hljs-keyword">implements</span> Loggable &#123;
+class ConsoleLogger implements Loggable &#123;
   log() &#123;
-    <span class="hljs-comment">// ...</span>
+    // ...
   &#125;
 &#125;
-<span class="hljs-keyword">var</span> jim = extend(<span class="hljs-keyword">new</span> Person(<span class="hljs-string">&quot;Jim&quot;</span>), <span class="hljs-keyword">new</span> ConsoleLogger());
-<span class="hljs-keyword">var</span> n = jim.name;
+var jim = extend(new Person(&quot;Jim&quot;), new ConsoleLogger());
+var n = jim.name;
 jim.log();
 </code></pre></div>
 
 <p>再举个简单例子：</p>
-<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">interface</span> Sentence &#123;
-  content: <span class="hljs-built_in">string</span>
-  title: <span class="hljs-built_in">string</span>
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Sentence</span> &#123;
+  <span class="hljs-attr">content</span>: <span class="hljs-built_in">string</span>
+  <span class="hljs-attr">title</span>: <span class="hljs-built_in">string</span>
 &#125;
 
-<span class="hljs-keyword">interface</span> Music &#123;
-  url: <span class="hljs-built_in">string</span>
+<span class="hljs-keyword">interface</span> <span class="hljs-title class_">Music</span> &#123;
+  <span class="hljs-attr">url</span>: <span class="hljs-built_in">string</span>
 &#125;
 
-<span class="hljs-keyword">class</span> Test&lt;T <span class="hljs-keyword">extends</span> Sentence &amp; Music&gt;&#123;
-  props: T
-  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">public</span> arg: T</span>) &#123;
-    <span class="hljs-built_in">this</span>.props = arg
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span>&lt;T <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Sentence</span> &amp; <span class="hljs-title class_">Music</span>&gt;&#123;
+  <span class="hljs-attr">props</span>: T
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">public</span> arg: T</span>) &#123;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">props</span> = arg
   &#125;
 
-  info() &#123;
+  <span class="hljs-title function_">info</span>(<span class="hljs-params"></span>) &#123;
     <span class="hljs-keyword">return</span> &#123;
     <span class="hljs-comment">// 这里可以 this.props.xxx 的原因是因为 arg 符合 T类型， 而T 又继承了上面俩个接口的属性。</span>
-      content: <span class="hljs-built_in">this</span>.props.content,
-      title: <span class="hljs-built_in">this</span>.props.title,
-      url: <span class="hljs-built_in">this</span>.props.url
+      <span class="hljs-attr">content</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">props</span>.<span class="hljs-property">content</span>,
+      <span class="hljs-attr">title</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">props</span>.<span class="hljs-property">title</span>,
+      <span class="hljs-attr">url</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">props</span>.<span class="hljs-property">url</span>
     &#125;
   &#125;
 &#125;</code></pre></div>
 
 <h3 id="泛型中的类类型"><a href="#泛型中的类类型" class="headerlink" title="泛型中的类类型"></a>泛型中的类类型</h3><p><strong>泛型中的类类型 目的是 约束或者更好的推论</strong></p>
-<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">class</span> BeeKeeper &#123;
-  hasMask: <span class="hljs-built_in">boolean</span>;
+<div class="hljs"><pre><code class="hljs ts"><span class="hljs-keyword">class</span> <span class="hljs-title class_">BeeKeeper</span> &#123;
+  <span class="hljs-attr">hasMask</span>: <span class="hljs-built_in">boolean</span>;
 &#125;
 
-<span class="hljs-keyword">class</span> ZooKeeper &#123;
-  nametag: <span class="hljs-built_in">string</span>;
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ZooKeeper</span> &#123;
+  <span class="hljs-attr">nametag</span>: <span class="hljs-built_in">string</span>;
 &#125;
 
-<span class="hljs-keyword">class</span> Animal &#123;
-  numLegs: <span class="hljs-built_in">number</span>;
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Animal</span> &#123;
+  <span class="hljs-attr">numLegs</span>: <span class="hljs-built_in">number</span>;
 &#125;
 
-<span class="hljs-keyword">class</span> Bee <span class="hljs-keyword">extends</span> Animal &#123;
-  keeper: BeeKeeper;
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Bee</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Animal</span> &#123;
+  <span class="hljs-attr">keeper</span>: <span class="hljs-title class_">BeeKeeper</span>;
 &#125;
 
-<span class="hljs-keyword">class</span> Lion <span class="hljs-keyword">extends</span> Animal &#123;
-  keeper: ZooKeeper;
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Lion</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Animal</span> &#123;
+  <span class="hljs-attr">keeper</span>: <span class="hljs-title class_">ZooKeeper</span>;
 &#125;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createInstance</span>&lt;<span class="hljs-title">A</span> <span class="hljs-title">extends</span> <span class="hljs-title">Animal</span>&gt;(<span class="hljs-params">c: <span class="hljs-keyword">new</span> () =&gt; A</span>): <span class="hljs-title">A</span> </span>&#123;
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> c();
+<span class="hljs-keyword">function</span> createInstance&lt;A <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Animal</span>&gt;(<span class="hljs-attr">c</span>: <span class="hljs-keyword">new</span> () =&gt; A): A &#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title function_">c</span>();
 &#125;
 
-createInstance(Lion).keeper.nametag;  <span class="hljs-comment">// typechecks!</span>
-createInstance(Bee).keeper.hasMask;   <span class="hljs-comment">// typechecks!</span></code></pre></div>
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/typescript/">typescript</a>
-                  
-                  <a class="hover-with-bg" href="/categories/typescript/JavaScript/">JavaScript</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/typescript/">typescript</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2021/01/05/44-%E5%9C%A8Node.js%E4%B8%8A%E5%81%9A%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%93%8D%E4%BD%9Ctodo/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">在Node.js上做一个使用命令行操作todo</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2020/12/29/42.TypeScript%E7%B3%BB%E5%88%974/">
-                    <span class="hidden-mobile">TypeScript 学习总结之 接口</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+<span class="hljs-title function_">createInstance</span>(<span class="hljs-title class_">Lion</span>).<span class="hljs-property">keeper</span>.<span class="hljs-property">nametag</span>;  <span class="hljs-comment">// typechecks!</span>
+<span class="hljs-title function_">createInstance</span>(<span class="hljs-title class_">Bee</span>).<span class="hljs-property">keeper</span>.<span class="hljs-property">hasMask</span>;   <span class="hljs-comment">// typechecks!</span></code></pre></div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/typescript/">
+                              typescript
+                            </a>
+                            
+                            <a class="hover-with-bg" href="/categories/typescript/JavaScript/">
+                              JavaScript
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/typescript/">
+                                  typescript
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2021/01/05/44-%E5%9C%A8Node.js%E4%B8%8A%E5%81%9A%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%93%8D%E4%BD%9Ctodo/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      在Node.js上做一个使用命令行操作todo
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2020/12/29/42.TypeScript%E7%B3%BB%E5%88%974/">
+                                    <span class="hidden-mobile">
+                                      TypeScript 学习总结之 接口
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -501,26 +517,26 @@ createInstance(Bee).keeper.hasMask;   <span class="hljs-comment">// typechecks!<
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

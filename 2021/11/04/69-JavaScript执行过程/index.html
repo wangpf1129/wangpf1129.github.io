@@ -203,18 +203,20 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">JavaScript执行过程</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h2 id="JavaScript-执行过程"><a href="#JavaScript-执行过程" class="headerlink" title="JavaScript 执行过程"></a>JavaScript 执行过程</h2><p>假设有以下一段代码：</p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                JavaScript执行过程
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h2 id="JavaScript-执行过程"><a href="#JavaScript-执行过程" class="headerlink" title="JavaScript 执行过程"></a>JavaScript 执行过程</h2><p>假设有以下一段代码：</p>
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">var</span> username = <span class="hljs-string">&#x27;wpf&#x27;</span>
 <span class="hljs-keyword">var</span> num1 = <span class="hljs-number">1</span>
 <span class="hljs-keyword">var</span> num2 = <span class="hljs-number">2</span>
@@ -246,7 +248,7 @@
 <h5 id="2-GEC-开始执行代码"><a href="#2-GEC-开始执行代码" class="headerlink" title="2. GEC 开始执行代码"></a>2. GEC 开始执行代码</h5><div class="hljs"><pre><code class="hljs JS"><span class="hljs-keyword">var</span> username = <span class="hljs-string">&#x27;wpf&#x27;</span>
 <span class="hljs-keyword">var</span> num1 = <span class="hljs-number">1</span>
 <span class="hljs-keyword">var</span> num2 = <span class="hljs-number">2</span>
-<span class="hljs-built_in">console</span>.log(sum)
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(sum)
 <span class="hljs-keyword">var</span> sum = num1 + num2</code></pre></div>
 
 <p>我们都知道 第四行代码 sum 是 undefined ， 也知道因为是作用域提升， 那么为什么会提升呢？ 接下俩就看看这段代码是如何执行的</p>
@@ -271,11 +273,11 @@
 <p>执行函数前也会有一个解析：VO 指向的是一个叫做 AO 的活跃对象，那么真正执行函数前会在堆内存就会创建一个叫做当前函数的 AO 对象，然后会解析函数内的代码，</p>
 <p>用以下代码为例：</p>
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">var</span> bar = <span class="hljs-number">111</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params"></span>) &#123;
   <span class="hljs-keyword">var</span> bar = <span class="hljs-number">123</span>
-  <span class="hljs-built_in">console</span>.log(age)
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(age)
 &#125;
-foo()</code></pre></div>
+<span class="hljs-title function_">foo</span>()</code></pre></div>
 
 <p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f8f7f3b50b0147ad9b1bd53f49e6403b~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="image.png"></p>
 <p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/92b2ab08e87d4e7e9b4098ef6ac94ad5~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="image.png"></p>
@@ -287,111 +289,123 @@ foo()</code></pre></div>
 </blockquote>
 <p><strong>Q1:</strong></p>
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">var</span> n = <span class="hljs-number">100</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params"></span>) &#123;
   n = <span class="hljs-number">200</span>
 &#125;
-foo()
-<span class="hljs-built_in">console</span>.log(n)</code></pre></div>
+<span class="hljs-title function_">foo</span>()
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(n)</code></pre></div>
 
 <p><strong>A1:</strong> 200</p>
 <p><strong>Q2:</strong></p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-built_in">console</span>.log(n)
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(n)
   <span class="hljs-keyword">var</span> n = <span class="hljs-number">200</span>
-  <span class="hljs-built_in">console</span>.log(n)
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(n)
 &#125;
 <span class="hljs-keyword">var</span> n = <span class="hljs-number">100</span>
-foo()</code></pre></div>
+<span class="hljs-title function_">foo</span>()</code></pre></div>
 
 <p><strong>A2:</strong> undefined 200</p>
 <p><strong>Q3:</strong></p>
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">var</span> n = <span class="hljs-number">100</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo1</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-built_in">console</span>.log(n) <span class="hljs-comment">// 100</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">foo1</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(n) <span class="hljs-comment">// 100</span>
 &#125;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo2</span>(<span class="hljs-params"></span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">foo2</span>(<span class="hljs-params"></span>) &#123;
   <span class="hljs-keyword">var</span> n = <span class="hljs-number">200</span>
-  <span class="hljs-built_in">console</span>.log(n) <span class="hljs-comment">// 200</span>
-  foo1()
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(n) <span class="hljs-comment">// 200</span>
+  <span class="hljs-title function_">foo1</span>()
 &#125;
-foo2()
-<span class="hljs-built_in">console</span>.log(n) <span class="hljs-comment">// 100</span></code></pre></div>
+<span class="hljs-title function_">foo2</span>()
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(n) <span class="hljs-comment">// 100</span></code></pre></div>
 
 <p><strong>A3:</strong> 200 100 100</p>
 <p><strong>Q4:</strong></p>
 <div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">var</span> a = <span class="hljs-number">100</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-built_in">console</span>.log(a)
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a)
   <span class="hljs-keyword">return</span>
   <span class="hljs-keyword">var</span> a = <span class="hljs-number">100</span>
 &#125;
-foo()</code></pre></div>
+<span class="hljs-title function_">foo</span>()</code></pre></div>
 
 <p><strong>A4:</strong> undefined</p>
 <p><strong>Q5:</strong></p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params"></span>) &#123;
   <span class="hljs-keyword">var</span> a = (b = <span class="hljs-number">100</span>) <span class="hljs-comment">//  ==&gt;  var a =100; b =100</span>
 &#125;
-foo()
-<span class="hljs-built_in">console</span>.log(a)
-<span class="hljs-built_in">console</span>.log(b)</code></pre></div>
+<span class="hljs-title function_">foo</span>()
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a)
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(b)</code></pre></div>
 
 <p><strong>A5:</strong> 报错 （如果把 console.log(a) 注释掉 那么 会打印 100）</p>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/JavaScript%E9%AB%98%E7%BA%A7/">JavaScript高级</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/JavaScript%E9%AB%98%E7%BA%A7/">JavaScript高级</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2021/11/04/70-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">内存管理</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2021/11/04/68-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/">
-                    <span class="hidden-mobile">浏览器运行原理</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/JavaScript%E9%AB%98%E7%BA%A7/">
+                              JavaScript高级
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/JavaScript%E9%AB%98%E7%BA%A7/">
+                                  JavaScript高级
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2021/11/04/70-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      内存管理
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2021/11/04/68-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/">
+                                    <span class="hidden-mobile">
+                                      浏览器运行原理
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -418,26 +432,26 @@ foo()
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

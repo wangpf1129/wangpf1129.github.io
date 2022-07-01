@@ -203,31 +203,33 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">vue俩个版本：runtime-compiler和 runtime-only 的区别</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <blockquote>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                vue俩个版本：runtime-compiler和 runtime-only 的区别
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <blockquote>
 <p>参考vue文档链接： <a target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/installation.html#%E5%BC%80%E5%8F%91%E7%89%88%E6%9C%AC">https://cn.vuejs.org/v2/guide/installation.html#%E5%BC%80%E5%8F%91%E7%89%88%E6%9C%AC</a></p>
 </blockquote>
 <h2 id="runtime-Compiler-和-runtime-only在main-js文件的区别"><a href="#runtime-Compiler-和-runtime-only在main-js文件的区别" class="headerlink" title="runtime-Compiler 和 runtime-only在main.js文件的区别"></a>runtime-Compiler 和 runtime-only在main.js文件的区别</h2><div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">//（1） Runtime-Compiler</span>
-<span class="hljs-keyword">new</span> Vue(&#123;
-  el: <span class="hljs-string">&#x27;#app&#x27;</span>,
-  components: &#123; App &#125;,
-  template: <span class="hljs-string">&#x27;&lt;App/&gt;&#x27;</span>
+<span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;
+  <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>,
+  <span class="hljs-attr">components</span>: &#123; <span class="hljs-title class_">App</span> &#125;,
+  <span class="hljs-attr">template</span>: <span class="hljs-string">&#x27;&lt;App/&gt;&#x27;</span>
 &#125;)
  
 <span class="hljs-comment">// （2）Runtime-only</span>
-<span class="hljs-keyword">new</span> Vue(&#123;
-  el: <span class="hljs-string">&#x27;#app&#x27;</span>,
-  render: <span class="hljs-function"><span class="hljs-params">h</span> =&gt;</span> h(App)
+<span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;
+  <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>,
+  <span class="hljs-attr">render</span>: <span class="hljs-function"><span class="hljs-params">h</span> =&gt;</span> <span class="hljs-title function_">h</span>(<span class="hljs-title class_">App</span>)
 &#125;)</code></pre></div>
 
 <p>在上述代码块中可以看出最大的区别在于 ：</p>
@@ -296,59 +298,71 @@
 <li>累活都让loader做，vue-loader把vue文件里的html转为h函数。</li>
 </ul>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/vue/">vue</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/vue/">vue</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2020/12/20/36-vue/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">Vue 里 computed  和 watch 的区别</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2020/12/18/34-Webpack%E5%85%A5%E9%97%A8%E9%85%8D%E7%BD%AE%E6%80%BB%E7%BB%93/">
-                    <span class="hidden-mobile">Webpack入门配置总结</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/vue/">
+                              vue
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/vue/">
+                                  vue
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2020/12/20/36-vue/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      Vue 里 computed  和 watch 的区别
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2020/12/18/34-Webpack%E5%85%A5%E9%97%A8%E9%85%8D%E7%BD%AE%E6%80%BB%E7%BB%93/">
+                                    <span class="hidden-mobile">
+                                      Webpack入门配置总结
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -375,26 +389,26 @@
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>

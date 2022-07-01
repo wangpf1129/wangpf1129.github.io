@@ -203,29 +203,31 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">手写DOM</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h1 id="手写DOM库"><a href="#手写DOM库" class="headerlink" title="手写DOM库"></a>手写DOM库</h1><p>因为DOM原生API太难用了<br><a target="_blank" rel="noopener" href="https://github.com/wwwpppfffzzz/DOM-Library/blob/master/src/dom.js">源代码链接</a></p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2"></div>
+      <div class="col-lg-8 nopadding-md">
+        <div class="container nopadding-md" id="board-ctn">
+          <div class="py-5" id="board">
+            <article class="post-content mx-auto" id="post">
+              <!-- SEO header -->
+              <h1 style="display: none">
+                手写DOM
+              </h1>
+              
+                  <div class="markdown-body" id="post-body">
+                    <h1 id="手写DOM库"><a href="#手写DOM库" class="headerlink" title="手写DOM库"></a>手写DOM库</h1><p>因为DOM原生API太难用了<br><a target="_blank" rel="noopener" href="https://github.com/wangpf1129/DOM-Library/blob/master/src/dom.js">源代码链接</a></p>
 <h2 id="对象风格"><a href="#对象风格" class="headerlink" title="对象风格"></a>对象风格</h2><ul>
 <li>window.dom  是我们提供的全局对象</li>
 </ul>
-<h2 id="增加节点"><a href="#增加节点" class="headerlink" title="增加节点"></a>增加节点</h2><div class="hljs"><pre><code class="hljs js">dom.append(parent,child)  <span class="hljs-comment">// 用于新增儿子节点</span></code></pre></div>
+<h2 id="增加节点"><a href="#增加节点" class="headerlink" title="增加节点"></a>增加节点</h2><div class="hljs"><pre><code class="hljs js">dom.<span class="hljs-title function_">append</span>(parent,child)  <span class="hljs-comment">// 用于新增儿子节点</span></code></pre></div>
 
 
-<div class="hljs"><pre><code class="hljs js">dom.wrap(<span class="hljs-string">`&lt;div&gt;&lt;/div&gt;`</span>)   <span class="hljs-comment">// 用于新增爸爸节点</span></code></pre></div>
+<div class="hljs"><pre><code class="hljs js">dom.<span class="hljs-title function_">wrap</span>(<span class="hljs-string">`&lt;div&gt;&lt;/div&gt;`</span>)   <span class="hljs-comment">// 用于新增爸爸节点</span></code></pre></div>
 
 
 
-<h3 id="dom-create-函数"><a href="#dom-create-函数" class="headerlink" title="dom.create 函数"></a>dom.create 函数</h3><div class="hljs"><pre><code class="hljs js">dom.create(<span class="hljs-string">`&lt;div&gt;&lt;span&gt;hi&lt;/span&gt;&lt;/div&gt;`</span>) <span class="hljs-comment">// 用于创建节点</span></code></pre></div>
+<h3 id="dom-create-函数"><a href="#dom-create-函数" class="headerlink" title="dom.create 函数"></a>dom.create 函数</h3><div class="hljs"><pre><code class="hljs js">dom.<span class="hljs-title function_">create</span>(<span class="hljs-string">`&lt;div&gt;&lt;span&gt;hi&lt;/span&gt;&lt;/div&gt;`</span>) <span class="hljs-comment">// 用于创建节点</span></code></pre></div>
 
 <ul>
 <li>一般我们创造节点的目的就是在别的节点中插入此节点，</li>
@@ -234,13 +236,13 @@
 <li>传入的字符串要是以有标签的 以html的形式来</li>
 </ul>
 <p><strong>dom.create源代码</strong></p>
-<div class="hljs"><pre><code class="hljs js">create(string) &#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-title function_">create</span>(<span class="hljs-params">string</span>) &#123;
     <span class="hljs-comment">// 创建容器    template标签可以容纳任意元素</span>
-    <span class="hljs-keyword">const</span> container = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;template&#x27;</span>)
+    <span class="hljs-keyword">const</span> container = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;template&#x27;</span>)
     <span class="hljs-comment">// 要trim，防止拿到空字符</span>
-    container.innerHTML = string.trim()
+    container.<span class="hljs-property">innerHTML</span> = string.<span class="hljs-title function_">trim</span>()
     <span class="hljs-comment">// 必须要 使用 .content  要不然拿不到</span>
-    <span class="hljs-keyword">return</span> container.content.firstChild
+    <span class="hljs-keyword">return</span> container.<span class="hljs-property">content</span>.<span class="hljs-property">firstChild</span>
 
     <span class="hljs-comment">// 或者</span>
     <span class="hljs-comment">// container.innerHTML = string</span>
@@ -250,14 +252,14 @@
 
 
 <p><strong>示例</strong></p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> div = dom.create(<span class="hljs-string">&#x27;&lt;div&gt;&lt;span&gt;hello&lt;/span&gt;&lt;/div&gt;&#x27;</span>)
-<span class="hljs-built_in">console</span>.log(div);</code></pre></div>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-keyword">const</span> div = dom.<span class="hljs-title function_">create</span>(<span class="hljs-string">&#x27;&lt;div&gt;&lt;span&gt;hello&lt;/span&gt;&lt;/div&gt;&#x27;</span>)
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(div);</code></pre></div>
 
 <p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/36537b52b1f34ae8a5b6fcbc0ef2b6c4~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif"></p>
 <h3 id="dom-after-函数"><a href="#dom-after-函数" class="headerlink" title="dom.after 函数"></a>dom.after 函数</h3><blockquote>
 <p> 由于dom中的api由于只有添加前面的节点的方法，如果想要往某个节点的后面插入节点非常的费劲</p>
 </blockquote>
-<div class="hljs"><pre><code class="hljs js">dom.after(node,newNode)     <span class="hljs-comment">// 用于新增下一个（弟弟）节点</span></code></pre></div>
+<div class="hljs"><pre><code class="hljs js">dom.<span class="hljs-title function_">after</span>(node,newNode)     <span class="hljs-comment">// 用于新增下一个（弟弟）节点</span></code></pre></div>
 
 
 
@@ -265,47 +267,47 @@
 <blockquote>
 <p>这里不比担心 如果 node 这个节点是最后一个节点怎么办。   即使为null，依然能插入的 </p>
 </blockquote>
-<div class="hljs"><pre><code class="hljs js">after(node, newNode) &#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-title function_">after</span>(<span class="hljs-params">node, newNode</span>) &#123;
    <span class="hljs-comment">// 找到此节点的爸爸然后调用insertBefore（插入某个节点的前面）方法，</span>
    <span class="hljs-comment">//把 newNode 插入到下一个节点的前面</span>
-   <span class="hljs-keyword">return</span> node.parentNode.insertBefore(newNode, node.nextSibling)
+   <span class="hljs-keyword">return</span> node.<span class="hljs-property">parentNode</span>.<span class="hljs-title function_">insertBefore</span>(newNode, node.<span class="hljs-property">nextSibling</span>)
  &#125;</code></pre></div>
 
 <p><strong>示例</strong><br><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fa16a738b5f34d46966261afd6b3dace~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif"></p>
 <h3 id="dom-before-函数"><a href="#dom-before-函数" class="headerlink" title="dom.before 函数"></a>dom.before 函数</h3><blockquote>
 <p>这个方法和 dom.after 方法思路一致，</p>
 </blockquote>
-<div class="hljs"><pre><code class="hljs js">dom.before(node,node2)   <span class="hljs-comment">// 用于新增上一个(哥哥)节点</span></code></pre></div>
+<div class="hljs"><pre><code class="hljs js">dom.<span class="hljs-title function_">before</span>(node,node2)   <span class="hljs-comment">// 用于新增上一个(哥哥)节点</span></code></pre></div>
 
 
 <p><strong>dom.before 源代码</strong></p>
-<div class="hljs"><pre><code class="hljs js">before(node, newNode) &#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-title function_">before</span>(<span class="hljs-params">node, newNode</span>) &#123;
     <span class="hljs-comment">// 正常的返回DOM原生的添加前面的节点的方法即可</span>
-    <span class="hljs-keyword">return</span> node.parentNode.insertBefore(newNode, Node)
+    <span class="hljs-keyword">return</span> node.<span class="hljs-property">parentNode</span>.<span class="hljs-title function_">insertBefore</span>(newNode, <span class="hljs-title class_">Node</span>)
   &#125;</code></pre></div>
 
-<h3 id="dom-append-函数"><a href="#dom-append-函数" class="headerlink" title="dom.append 函数"></a>dom.append 函数</h3><div class="hljs"><pre><code class="hljs js">dom.append(parent,child)  <span class="hljs-comment">// 用于新增儿子节点</span></code></pre></div>
+<h3 id="dom-append-函数"><a href="#dom-append-函数" class="headerlink" title="dom.append 函数"></a>dom.append 函数</h3><div class="hljs"><pre><code class="hljs js">dom.<span class="hljs-title function_">append</span>(parent,child)  <span class="hljs-comment">// 用于新增儿子节点</span></code></pre></div>
 
 
 
 <p><strong>dom.append 源代码</strong></p>
-<div class="hljs"><pre><code class="hljs js">append(parent, node) &#123;
-  <span class="hljs-keyword">return</span> parent.appendChild(node)
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-title function_">append</span>(<span class="hljs-params">parent, node</span>) &#123;
+  <span class="hljs-keyword">return</span> parent.<span class="hljs-title function_">appendChild</span>(node)
 &#125;</code></pre></div>
 
 <h3 id="dom-wrap函数"><a href="#dom-wrap函数" class="headerlink" title="dom.wrap函数"></a>dom.wrap函数</h3><blockquote>
 <p>实现思路:     先把这个节点先从DOM树中移出来，把原来的位置插入新的(爸爸)节点，然后在这个爸爸节点中插入原来的节点</p>
 </blockquote>
-<div class="hljs"><pre><code class="hljs js">dom.wrap(<span class="hljs-string">`&lt;div&gt;&lt;/div&gt;`</span>)   <span class="hljs-comment">// 用于添加在此节点外面套一个节点   (爸爸)节点</span></code></pre></div>
+<div class="hljs"><pre><code class="hljs js">dom.<span class="hljs-title function_">wrap</span>(<span class="hljs-string">`&lt;div&gt;&lt;/div&gt;`</span>)   <span class="hljs-comment">// 用于添加在此节点外面套一个节点   (爸爸)节点</span></code></pre></div>
 
 
 
 <p><strong>dom.wrap 源代码</strong></p>
-<div class="hljs"><pre><code class="hljs js">wrap(node, newNode) &#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-title function_">wrap</span>(<span class="hljs-params">node, newNode</span>) &#123;
   <span class="hljs-comment">// 先把newNode放在node节点的前面   后面也行</span>
-  dom.before(node, newNode)
+  dom.<span class="hljs-title function_">before</span>(node, newNode)
   <span class="hljs-comment">// 然后把node节点放在newNode里面</span>
-  dom.append(newNode, node)
+  dom.<span class="hljs-title function_">append</span>(newNode, node)
 &#125;</code></pre></div>
 
 
@@ -314,9 +316,9 @@
 <p><strong>示例：</strong><br><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/13007f4503b94595869b700d5781008a~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="示例"></p>
 <h2 id="删除节点"><a href="#删除节点" class="headerlink" title="删除节点"></a>删除节点</h2><ul>
 <li><div class="hljs"><pre><code class="js">dom.remove(node) // 用于删除节点
-<pre><code class="hljs php">
+<pre><code class="hljs autohotkey">
 - ```js
-  dom.<span class="hljs-keyword">empty</span>(<span class="hljs-built_in">parent</span>)  <span class="hljs-comment">// 用于删除后代</span></code></pre></div>
+  dom.empty(parent)  // 用于删除后代</code></pre></div>
 
 
 </code></pre>
@@ -327,8 +329,8 @@
 <p>思路 ： 让他的爸爸删除他的儿子。  </p>
 </blockquote>
 <p><strong>源代码</strong></p>
-<div class="hljs"><pre><code class="hljs js">remove(node) &#123;
-  node.parentNode.removeChild(node)
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-title function_">remove</span>(<span class="hljs-params">node</span>) &#123;
+  node.<span class="hljs-property">parentNode</span>.<span class="hljs-title function_">removeChild</span>(node)
   <span class="hljs-comment">//返回删除的节点</span>
   <span class="hljs-keyword">return</span> node
  &#125;</code></pre></div>
@@ -345,10 +347,10 @@
 <p>不能用for循环的原因：因为每次 dom.remove 删除的时候，它的长度就会随之改变， 而我们又在for循环它，因此我测试时候会出现bug，因此我们选择使用 while 循环 解决。</p>
 </blockquote>
 <p><strong>源代码</strong></p>
-<div class="hljs"><pre><code class="hljs js">empty(node) &#123;
-  <span class="hljs-keyword">const</span> firstChild = node.firstChild
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-title function_">empty</span>(<span class="hljs-params">node</span>) &#123;
+  <span class="hljs-keyword">const</span> firstChild = node.<span class="hljs-property">firstChild</span>
   <span class="hljs-keyword">while</span> (firstChild) &#123; 
-    array.push(dom.remove(node.firstChild))
+    array.<span class="hljs-title function_">push</span>(dom.<span class="hljs-title function_">remove</span>(node.<span class="hljs-property">firstChild</span>))
   &#125;
   <span class="hljs-comment">// 返回删除的节点</span>
   <span class="hljs-keyword">return</span> array
@@ -359,51 +361,55 @@
 <h2 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h2><ul>
 <li><div class="hljs"><pre><code class="js">dom.attr(node,&#39;title&#39;,&#39;hello&#39;)  //将node节点中的 title 属性值改为 hello    用于读写属性,,
 dom.attr(node,&#39;title&#39;)  // 获取 node节点的title属性值
-<pre><code class="hljs crmsh">
+<pre><code class="hljs xquery">
 - ```js
-  dom.text(<span class="hljs-keyword">node</span><span class="hljs-title">,&#x27;我是修改后的&#x27;)  //将node</span>节点中的文本修改为xxxxx    用于读写文本内容
-  dom.text(<span class="hljs-keyword">node</span><span class="hljs-title">)   // 查看文本内容</span></code></pre></div></code></pre>
+  dom.<span class="hljs-type">text</span>(<span class="hljs-type">node</span>,<span class="hljs-string">&#x27;我是修改后的&#x27;</span>)  //将<span class="hljs-type">node</span>节点中的文本修改为xxxxx    用于读写文本内容
+  dom.<span class="hljs-type">text</span>(<span class="hljs-type">node</span>)   // 查看文本内容</code></pre></div>
+</code></pre>
 </li>
 <li><div class="hljs"><pre><code class="js">dom.html(node,&#39;&lt;em&gt;我是修改后的&lt;/em&gt;&#39;)  //将node节点中的html元素内容修改为xxxx ,  用于读写html内容
 dom.html(node)  // 查看此节点中的html内容
-<pre><code class="hljs crmsh">
+<pre><code class="hljs awk">
 - ```js
-  dom.style(<span class="hljs-keyword">node</span><span class="hljs-title">,&#123;color</span>:&#x27;red&#x27;&#125;)   // 用于修改style样式</code></pre></div></code></pre>
+  dom.style(node,&#123;color:<span class="hljs-string">&#x27;red&#x27;</span>&#125;)   <span class="hljs-regexp">//</span> 用于修改style样式</code></pre></div>
+</code></pre>
 </li>
 <li><div class="hljs"><pre><code class="js">dom.class.add(node,&#39;btn&#39;)  // 用于添加class类名
-<pre><code class="hljs crmsh">
+<pre><code class="hljs csharp">
 - ```js
-  dom.class.remove(<span class="hljs-keyword">node</span><span class="hljs-title">,&#x27;btn</span>&#x27;)   // 用于删除class</code></pre></div></code></pre>
+  dom.<span class="hljs-keyword">class</span>.<span class="hljs-keyword">remove</span>(node,<span class="hljs-string">&#x27;btn&#x27;</span>)   <span class="hljs-comment">// 用于删除class</span></code></pre></div>
+</code></pre>
 </li>
 <li><div class="hljs"><pre><code class="js">dom.class.has(node,&#39;btn&#39;)  // 查看是否拥有类名
-<pre><code class="hljs crmsh">
+<pre><code class="hljs awk">
 - ```js
-  dom.on(<span class="hljs-keyword">node</span><span class="hljs-title">,&#x27;click</span>&#x27;,fn) // 用于添加事件监听</code></pre></div></code></pre>
+  dom.on(node,<span class="hljs-string">&#x27;click&#x27;</span>,fn) <span class="hljs-regexp">//</span> 用于添加事件监听</code></pre></div>
+</code></pre>
 </li>
 <li><div class="hljs"><pre><code class="js">dom.off(node,&#39;click&#39;,fn)  // 用于删除事件监听
-<pre><code class="hljs">
+<pre><code class="hljs node-repl">
 
 
 
 
 ### dom.attr 函数
 
-&gt; 用法： 如果传入的是三个参数     设置/修改 该节点中的属性值和属性名 
-&gt;
-&gt; ```js
-&gt; dom.attr(node,&#x27;title&#x27;,&#x27;hello&#x27;)		// 传入三个参数，就设置它的属性名和属性值
-&gt; dom.attr(node,&#x27;title&#x27;)    // 如果传入的是俩个参数    获取属性名</code></pre></div>
+<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">用法： 如果传入的是三个参数     设置/修改 该节点中的属性值和属性名 </span>
+<span class="hljs-meta prompt_">&gt;</span>
+<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-string">``</span><span class="hljs-string">`js</span></span>
+<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-string">dom.attr(node,&#x27;title&#x27;,&#x27;hello&#x27;)		// 传入三个参数，就设置它的属性名和属性值</span></span>
+<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-string">dom.attr(node,&#x27;title&#x27;)    // 如果传入的是俩个参数    获取属性名</span></span></code></pre></div>
 </code></pre>
 </li>
 </ul>
 <p><strong>源代码</strong></p>
-<div class="hljs"><pre><code class="hljs js">attr(node, name, value) &#123;
-  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">arguments</span>.length === <span class="hljs-number">3</span>) &#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-title function_">attr</span>(<span class="hljs-params">node, name, value</span>) &#123;
+  <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">arguments</span>.<span class="hljs-property">length</span> === <span class="hljs-number">3</span>) &#123;
     <span class="hljs-comment">// 设置该节点某个属性和属性值</span>
-    node.setAttribute(name, value)
-  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">arguments</span>.length === <span class="hljs-number">2</span>) &#123;
+    node.<span class="hljs-title function_">setAttribute</span>(name, value)
+  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">arguments</span>.<span class="hljs-property">length</span> === <span class="hljs-number">2</span>) &#123;
     <span class="hljs-comment">// 查看该节点某个属性的值</span>
-    <span class="hljs-keyword">return</span> node.getAttribute(name)
+    <span class="hljs-keyword">return</span> node.<span class="hljs-title function_">getAttribute</span>(name)
   &#125;
 &#125;</code></pre></div>
 
@@ -415,18 +421,18 @@ dom.html(node)  // 查看此节点中的html内容
 <p>用法  和 <code>innerText </code>一致</p>
 </blockquote>
 <p><strong>源代码</strong></p>
-<div class="hljs"><pre><code class="hljs js">text(node, string) &#123;
-  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">arguments</span>.length === <span class="hljs-number">2</span>) &#123;   <span class="hljs-comment">// 重载</span>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-title function_">text</span>(<span class="hljs-params">node, string</span>) &#123;
+  <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">arguments</span>.<span class="hljs-property">length</span> === <span class="hljs-number">2</span>) &#123;   <span class="hljs-comment">// 重载</span>
     <span class="hljs-keyword">if</span> (<span class="hljs-string">&#x27;innerText&#x27;</span> <span class="hljs-keyword">in</span> node) &#123;  <span class="hljs-comment">// 适配 </span>
-      node.innerText = string
+      node.<span class="hljs-property">innerText</span> = string
     &#125; <span class="hljs-keyword">else</span> &#123;
-      node.textContent = string
+      node.<span class="hljs-property">textContent</span> = string
     &#125;
-  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">arguments</span>.length === <span class="hljs-number">1</span>) &#123;
+  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">arguments</span>.<span class="hljs-property">length</span> === <span class="hljs-number">1</span>) &#123;
     <span class="hljs-keyword">if</span> (<span class="hljs-string">&#x27;innerText&#x27;</span> <span class="hljs-keyword">in</span> node) &#123;
-      <span class="hljs-keyword">return</span> node.innerText
+      <span class="hljs-keyword">return</span> node.<span class="hljs-property">innerText</span>
     &#125; <span class="hljs-keyword">else</span> &#123;
-      <span class="hljs-keyword">return</span> node.textContent
+      <span class="hljs-keyword">return</span> node.<span class="hljs-property">textContent</span>
     &#125;
   &#125;
 &#125;</code></pre></div>
@@ -439,11 +445,11 @@ dom.html(node)  // 查看此节点中的html内容
 <p>用法和 innerHTML 一致</p>
 </blockquote>
 <p><strong>源代码</strong></p>
-<div class="hljs"><pre><code class="hljs js">html(node, string) &#123;
-   <span class="hljs-keyword">if</span> (<span class="hljs-built_in">arguments</span>.length === <span class="hljs-number">2</span>) &#123;
-     node.innerHTML = string
-   &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">arguments</span>.length === <span class="hljs-number">1</span>) &#123;
-     <span class="hljs-keyword">return</span> node.innerHTML
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-title function_">html</span>(<span class="hljs-params">node, string</span>) &#123;
+   <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">arguments</span>.<span class="hljs-property">length</span> === <span class="hljs-number">2</span>) &#123;
+     node.<span class="hljs-property">innerHTML</span> = string
+   &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">arguments</span>.<span class="hljs-property">length</span> === <span class="hljs-number">1</span>) &#123;
+     <span class="hljs-keyword">return</span> node.<span class="hljs-property">innerHTML</span>
    &#125;
  &#125;</code></pre></div>
 
@@ -455,32 +461,32 @@ dom.html(node)  // 查看此节点中的html内容
 
 <h3 id="dom-style-函数"><a href="#dom-style-函数" class="headerlink" title="dom.style 函数"></a>dom.style 函数</h3><blockquote>
 <p>原生DOM操作style的写法是： </p>
-<div class="hljs"><pre><code class="hljs js">xxx.style.color = <span class="hljs-string">&#x27;red&#x27;</span>  或者  xxx.style[<span class="hljs-string">&#x27;color&#x27;</span>]  = <span class="hljs-string">&#x27;red&#x27;</span></code></pre></div>
+<div class="hljs"><pre><code class="hljs js">xxx.<span class="hljs-property">style</span>.<span class="hljs-property">color</span> = <span class="hljs-string">&#x27;red&#x27;</span>  或者  xxx.<span class="hljs-property">style</span>[<span class="hljs-string">&#x27;color&#x27;</span>]  = <span class="hljs-string">&#x27;red&#x27;</span></code></pre></div>
 
 <p>我封装的修饰style 的写法：</p>
-<div class="hljs"><pre><code class="hljs js">dom.style(xxx,<span class="hljs-string">&#x27;color&#x27;</span>,<span class="hljs-string">&#x27;red&#x27;</span>)		<span class="hljs-comment">// 使用字符串的形式 来修改样式</span>
-dom.style(xxx,&#123;<span class="hljs-attr">color</span>:<span class="hljs-string">&#x27;red&#x27;</span>&#125;)        <span class="hljs-comment">// 使用对象的形式   来修改样式</span>
+<div class="hljs"><pre><code class="hljs js">dom.<span class="hljs-title function_">style</span>(xxx,<span class="hljs-string">&#x27;color&#x27;</span>,<span class="hljs-string">&#x27;red&#x27;</span>)		<span class="hljs-comment">// 使用字符串的形式 来修改样式</span>
+dom.<span class="hljs-title function_">style</span>(xxx,&#123;<span class="hljs-attr">color</span>:<span class="hljs-string">&#x27;red&#x27;</span>&#125;)        <span class="hljs-comment">// 使用对象的形式   来修改样式</span>
 
-dom.style(xxx,<span class="hljs-string">&#x27;color&#x27;</span>)    <span class="hljs-comment">// 查看样式的内容</span></code></pre></div>
+dom.<span class="hljs-title function_">style</span>(xxx,<span class="hljs-string">&#x27;color&#x27;</span>)    <span class="hljs-comment">// 查看样式的内容</span></code></pre></div>
 </blockquote>
 <blockquote>
 <p>思路: 我们可以引用原生的第二种写法 ，遍历属性值key‘，用xxx.style[key]实现  ， 此时的color 是一个变量需要从我们传入的对象中获取。 为什么不用  style.color=’red’ 的原因是因为 对象的属性值是字符串。</p>
 </blockquote>
 <p><strong>源代码</strong></p>
-<div class="hljs"><pre><code class="hljs js">style(node, name, value) &#123;
-  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">arguments</span>.length === <span class="hljs-number">3</span>) &#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-title function_">style</span>(<span class="hljs-params">node, name, value</span>) &#123;
+  <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">arguments</span>.<span class="hljs-property">length</span> === <span class="hljs-number">3</span>) &#123;
       <span class="hljs-comment">// dom.style(xxx,&#x27;color&#x27;,&#x27;red&#x27;)</span>
-    node.style[name] = value
-  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">arguments</span>.length === <span class="hljs-number">2</span>) &#123;
+    node.<span class="hljs-property">style</span>[name] = value
+  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">arguments</span>.<span class="hljs-property">length</span> === <span class="hljs-number">2</span>) &#123;
     <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> name === <span class="hljs-string">&#x27;string&#x27;</span>) &#123;
       <span class="hljs-comment">// dom.style(xxx,&#x27;color&#x27;)</span>
-      <span class="hljs-keyword">return</span> node.style[name]
-    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (name <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span>) &#123;
+      <span class="hljs-keyword">return</span> node.<span class="hljs-property">style</span>[name]
+    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (name <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Object</span>) &#123;
       <span class="hljs-comment">// dom.style(xxx,&#123;color:&#x27;red&#x27;&#125;)</span>
       <span class="hljs-keyword">const</span> object = name
       <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> key <span class="hljs-keyword">in</span> object) &#123;
         <span class="hljs-comment">// 不能用 style.key 是因为 key是变量</span>
-        node.style[key] = object[key]
+        node.<span class="hljs-property">style</span>[key] = object[key]
       &#125;
     &#125;
   &#125;
@@ -501,23 +507,23 @@ dom.style(xxx,<span class="hljs-string">&#x27;color&#x27;</span>)    <span class
 
 <h3 id="dom-class-函数"><a href="#dom-class-函数" class="headerlink" title="dom.class 函数"></a>dom.class 函数</h3><blockquote>
 <p>用法：</p>
-<div class="hljs"><pre><code class="hljs js">dom.class.add(test, <span class="hljs-string">&#x27;red&#x27;</span>)   <span class="hljs-comment">// 添加类名</span>
-dom.class.remove(test, <span class="hljs-string">&#x27;red&#x27;</span>)   <span class="hljs-comment">//  删除类名</span>
-<span class="hljs-built_in">console</span>.log(dom.class.has(test, <span class="hljs-string">&#x27;red&#x27;</span>));   <span class="hljs-comment">// 查看类名</span></code></pre></div>
+<div class="hljs"><pre><code class="hljs js">dom.<span class="hljs-property">class</span>.<span class="hljs-title function_">add</span>(test, <span class="hljs-string">&#x27;red&#x27;</span>)   <span class="hljs-comment">// 添加类名</span>
+dom.<span class="hljs-property">class</span>.<span class="hljs-title function_">remove</span>(test, <span class="hljs-string">&#x27;red&#x27;</span>)   <span class="hljs-comment">//  删除类名</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(dom.<span class="hljs-property">class</span>.<span class="hljs-title function_">has</span>(test, <span class="hljs-string">&#x27;red&#x27;</span>));   <span class="hljs-comment">// 查看类名</span></code></pre></div>
 </blockquote>
 <blockquote>
 <p>思路：首先在class 对象中 创建三个不同功能的方法。 然后封装一下原生的DOM即可。</p>
 </blockquote>
 <p><strong>源代码</strong></p>
-<div class="hljs"><pre><code class="hljs js">class: &#123;
-  add(node, className) &#123;
-    node.classList.add(className)
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-attr">class</span>: &#123;
+  <span class="hljs-title function_">add</span>(<span class="hljs-params">node, className</span>) &#123;
+    node.<span class="hljs-property">classList</span>.<span class="hljs-title function_">add</span>(className)
   &#125;,
-  remove(node, className) &#123;
-    node.classList.remove(className)
+  <span class="hljs-title function_">remove</span>(<span class="hljs-params">node, className</span>) &#123;
+    node.<span class="hljs-property">classList</span>.<span class="hljs-title function_">remove</span>(className)
   &#125;,
-  has(node, className) &#123;
-    <span class="hljs-keyword">return</span> node.classList.contains(className)
+  <span class="hljs-title function_">has</span>(<span class="hljs-params">node, className</span>) &#123;
+    <span class="hljs-keyword">return</span> node.<span class="hljs-property">classList</span>.<span class="hljs-title function_">contains</span>(className)
   &#125;
 &#125;</code></pre></div>
 
@@ -527,18 +533,18 @@ dom.class.remove(test, <span class="hljs-string">&#x27;red&#x27;</span>)   <span
 <p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/270cf57e749d4750bc25cee4c5e3e17f~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="示例1"></p>
 <h3 id="dom-on-函数-和-dom-off-函数"><a href="#dom-on-函数-和-dom-off-函数" class="headerlink" title="dom.on 函数 和  dom.off 函数"></a>dom.on 函数 和  dom.off 函数</h3><blockquote>
 <p>用法：</p>
-<div class="hljs"><pre><code class="hljs js">dom.on(test, <span class="hljs-string">&#x27;click&#x27;</span>, fn)  <span class="hljs-comment">// fn是函数，  添加了点击事件</span>
-dom.off(test,<span class="hljs-string">&#x27;click&#x27;</span>,fn) <span class="hljs-comment">// 移除点击事件</span></code></pre></div>
+<div class="hljs"><pre><code class="hljs js">dom.<span class="hljs-title function_">on</span>(test, <span class="hljs-string">&#x27;click&#x27;</span>, fn)  <span class="hljs-comment">// fn是函数，  添加了点击事件</span>
+dom.<span class="hljs-title function_">off</span>(test,<span class="hljs-string">&#x27;click&#x27;</span>,fn) <span class="hljs-comment">// 移除点击事件</span></code></pre></div>
 </blockquote>
 <blockquote>
 <p>思路： 封装一下原生的DOM的addEventListener即可。</p>
 </blockquote>
 <p><strong>源代码</strong></p>
-<div class="hljs"><pre><code class="hljs js">on(node, eventName, fn) &#123;
-   node.addEventListener(eventName,fn)
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-title function_">on</span>(<span class="hljs-params">node, eventName, fn</span>) &#123;
+   node.<span class="hljs-title function_">addEventListener</span>(eventName,fn)
  &#125;,
- off(node, eventName, fn) &#123; 
-   node.removeEventListener(eventName,fn)
+ <span class="hljs-title function_">off</span>(<span class="hljs-params">node, eventName, fn</span>) &#123; 
+   node.<span class="hljs-title function_">removeEventListener</span>(eventName,fn)
  &#125;</code></pre></div>
 
 
@@ -547,19 +553,22 @@ dom.off(test,<span class="hljs-string">&#x27;click&#x27;</span>,fn) <span class=
 <p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7ab7686a5a6a4ca6877f2aca3fc353de~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="示例1"></p>
 <h2 id="查-（获取元素）"><a href="#查-（获取元素）" class="headerlink" title="查  （获取元素）"></a>查  （获取元素）</h2><ul>
 <li><div class="hljs"><pre><code class="js">dom.find(&#39;选择器&#39;)  // 用于获取标签或标签们
-<pre><code class="hljs crmsh">
+<pre><code class="hljs autohotkey">
 - ```js
-  dom.parent(<span class="hljs-keyword">node</span><span class="hljs-title">)  // 用于获取父元素</span></code></pre></div></code></pre>
+  dom.parent(node)  // 用于获取父元素</code></pre></div>
+</code></pre>
 </li>
 <li><div class="hljs"><pre><code class="js">dom.children(node)  // 用于获取子元素
-<pre><code class="hljs crmsh">
+<pre><code class="hljs autohotkey">
 - ```js
-  dom.siblings(<span class="hljs-keyword">node</span><span class="hljs-title">)  //用于获取兄弟姐妹元素</span></code></pre></div></code></pre>
+  dom.siblings(node)  //用于获取兄弟姐妹元素</code></pre></div>
+</code></pre>
 </li>
 <li><div class="hljs"><pre><code class="js">dom.next(node)  // 用于获取弟弟
-<pre><code class="hljs crmsh">
+<pre><code class="hljs autohotkey">
 - ```js
-  dom.previous(<span class="hljs-keyword">node</span><span class="hljs-title">)  // 用于获取哥哥</span></code></pre></div></code></pre>
+  dom.previous(node)  // 用于获取哥哥</code></pre></div>
+</code></pre>
 </li>
 <li><div class="hljs"><pre><code class="js">dom.each(nodes,fn)  // 用于遍历所有节点
 <pre><code class="hljs crmsh">
@@ -576,8 +585,8 @@ dom.off(test,<span class="hljs-string">&#x27;click&#x27;</span>,fn) <span class=
 <p>用法 和  document.querySelectorAll()  一致</p>
 </blockquote>
 <p><strong>源代码</strong></p>
-<div class="hljs"><pre><code class="hljs js">find(selector,scope) &#123;
-   <span class="hljs-keyword">return</span> (scope || <span class="hljs-built_in">document</span>).querySelectorAll(selector)
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-title function_">find</span>(<span class="hljs-params">selector,scope</span>) &#123;
+   <span class="hljs-keyword">return</span> (scope || <span class="hljs-variable language_">document</span>).<span class="hljs-title function_">querySelectorAll</span>(selector)
  &#125;</code></pre></div>
 
 
@@ -587,31 +596,31 @@ dom.off(test,<span class="hljs-string">&#x27;click&#x27;</span>,fn) <span class=
 <p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5a7e2cd3859b43bdadb32899d209fd54~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="dom.find()示例2"></p>
 <h3 id="dom-parent-函数-和-dom-children-函数"><a href="#dom-parent-函数-和-dom-children-函数" class="headerlink" title="dom.parent  函数 和 dom.children 函数"></a>dom.parent  函数 和 dom.children 函数</h3><blockquote>
 <p>用法: </p>
-<div class="hljs"><pre><code class="hljs js">dom.parent(node)  <span class="hljs-comment">// 用于获取父元素</span>
-dom.children(node)  <span class="hljs-comment">// 用于获取子元素</span></code></pre></div>
+<div class="hljs"><pre><code class="hljs js">dom.<span class="hljs-title function_">parent</span>(node)  <span class="hljs-comment">// 用于获取父元素</span>
+dom.<span class="hljs-title function_">children</span>(node)  <span class="hljs-comment">// 用于获取子元素</span></code></pre></div>
 </blockquote>
 <p><strong>源代码</strong></p>
-<div class="hljs"><pre><code class="hljs js">parent(node) &#123;
-   <span class="hljs-keyword">return</span> node.parentNode
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-title function_">parent</span>(<span class="hljs-params">node</span>) &#123;
+   <span class="hljs-keyword">return</span> node.<span class="hljs-property">parentNode</span>
  &#125;,
      
- children(node) &#123;
-   <span class="hljs-keyword">return</span> node.children
+ <span class="hljs-title function_">children</span>(<span class="hljs-params">node</span>) &#123;
+   <span class="hljs-keyword">return</span> node.<span class="hljs-property">children</span>
   &#125;</code></pre></div>
 
 
 
 <h3 id="dom-siblings-函数"><a href="#dom-siblings-函数" class="headerlink" title="dom.siblings 函数"></a>dom.siblings 函数</h3><blockquote>
 <p>用法：</p>
-<div class="hljs"><pre><code class="hljs js">dom.siblings(node)  <span class="hljs-comment">//用于获取兄弟姐妹元素 (除了自己)</span></code></pre></div>
+<div class="hljs"><pre><code class="hljs js">dom.<span class="hljs-title function_">siblings</span>(node)  <span class="hljs-comment">//用于获取兄弟姐妹元素 (除了自己)</span></code></pre></div>
 </blockquote>
 <blockquote>
 <p>思路：  用 node.parentNode.children 获取所有子元素， 因为获取的伪数组， 转换为数组后过滤掉自己。</p>
 </blockquote>
 <p><strong>源代码</strong></p>
-<div class="hljs"><pre><code class="hljs js">siblings(node) &#123;
-  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Array</span>.from(node.parentNode.children)
-    .filter(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> n !== node)
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-title function_">siblings</span>(<span class="hljs-params">node</span>) &#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(node.<span class="hljs-property">parentNode</span>.<span class="hljs-property">children</span>)
+    .<span class="hljs-title function_">filter</span>(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> n !== node)
 &#125;,</code></pre></div>
 
 
@@ -620,24 +629,24 @@ dom.children(node)  <span class="hljs-comment">// 用于获取子元素</span></
 <p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1928c301d97e404ba905ef2ac1e54807~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="dom.parent  、dom.children  、 dom.siblings  示例"></p>
 <h3 id="dom-next-函数-和-dom-previous-函数"><a href="#dom-next-函数-和-dom-previous-函数" class="headerlink" title="dom.next 函数  和 dom.previous 函数"></a>dom.next 函数  和 dom.previous 函数</h3><blockquote>
 <p>用法：</p>
-<div class="hljs"><pre><code class="hljs js">dom.next(node)  <span class="hljs-comment">// 用于获取下一个节点       （弟弟）节点</span>
-dom.previous(node)   <span class="hljs-comment">// 用于获取上一个节点      （哥哥）节点</span></code></pre></div>
+<div class="hljs"><pre><code class="hljs js">dom.<span class="hljs-title function_">next</span>(node)  <span class="hljs-comment">// 用于获取下一个节点       （弟弟）节点</span>
+dom.<span class="hljs-title function_">previous</span>(node)   <span class="hljs-comment">// 用于获取上一个节点      （哥哥）节点</span></code></pre></div>
 </blockquote>
 <blockquote>
 <p>思路： 我们使用 node.nextSibing 时 可以会返回 文本节点， 这时我们需要排除文本节点即可  (nodeType 为1是元素节点、为3 是文本节点)       、    dom.previous的思路也是一样的</p>
 </blockquote>
 <p><strong>源代码</strong></p>
-<div class="hljs"><pre><code class="hljs js">next(node) &#123;
-   <span class="hljs-keyword">let</span> x = node.nextSibling
-   <span class="hljs-keyword">while</span> (x &amp;&amp; x.nodeType === <span class="hljs-number">3</span>) &#123; <span class="hljs-comment">//  1是元素节点， 3是文本节点</span>
-     x = x.nextSibling
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-title function_">next</span>(<span class="hljs-params">node</span>) &#123;
+   <span class="hljs-keyword">let</span> x = node.<span class="hljs-property">nextSibling</span>
+   <span class="hljs-keyword">while</span> (x &amp;&amp; x.<span class="hljs-property">nodeType</span> === <span class="hljs-number">3</span>) &#123; <span class="hljs-comment">//  1是元素节点， 3是文本节点</span>
+     x = x.<span class="hljs-property">nextSibling</span>
    &#125;
    <span class="hljs-keyword">return</span> x
  &#125;,
- previous(node) &#123;
-   <span class="hljs-keyword">let</span> x = node.previousSibling
-   <span class="hljs-keyword">while</span> (x &amp;&amp; x.nodeType === <span class="hljs-number">3</span>) &#123; <span class="hljs-comment">//  1是元素节点， 3是文本节点</span>
-     x = x.previousSibling
+ <span class="hljs-title function_">previous</span>(<span class="hljs-params">node</span>) &#123;
+   <span class="hljs-keyword">let</span> x = node.<span class="hljs-property">previousSibling</span>
+   <span class="hljs-keyword">while</span> (x &amp;&amp; x.<span class="hljs-property">nodeType</span> === <span class="hljs-number">3</span>) &#123; <span class="hljs-comment">//  1是元素节点， 3是文本节点</span>
+     x = x.<span class="hljs-property">previousSibling</span>
    &#125;
    <span class="hljs-keyword">return</span> x
  &#125;</code></pre></div>
@@ -651,12 +660,12 @@ dom.previous(node)   <span class="hljs-comment">// 用于获取上一个节点  
 <p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c8b6507260124bbe84d8b542eaa30ef9~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="dom.previous示例"></p>
 <h3 id="dom-each-函数"><a href="#dom-each-函数" class="headerlink" title="dom.each 函数"></a>dom.each 函数</h3><blockquote>
 <p>用法： 遍历每个元素，使他做对应的事</p>
-<div class="hljs"><pre><code class="hljs js">dom.each(nodes,fn)  <span class="hljs-comment">// 用于遍历所有节点</span></code></pre></div>
+<div class="hljs"><pre><code class="hljs js">dom.<span class="hljs-title function_">each</span>(nodes,fn)  <span class="hljs-comment">// 用于遍历所有节点</span></code></pre></div>
 </blockquote>
 <p><strong>源代码</strong></p>
-<div class="hljs"><pre><code class="hljs js">each(nodeList, fn) &#123;
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; nodeList.length; i++) &#123;
-    fn.call(<span class="hljs-literal">null</span>, nodeList[i])
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-title function_">each</span>(<span class="hljs-params">nodeList, fn</span>) &#123;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; nodeList.<span class="hljs-property">length</span>; i++) &#123;
+    fn.<span class="hljs-title function_">call</span>(<span class="hljs-literal">null</span>, nodeList[i])
   &#125;
 &#125;</code></pre></div>
 
@@ -666,15 +675,15 @@ dom.previous(node)   <span class="hljs-comment">// 用于获取上一个节点  
 <p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/308ff6e8cb4c4594a33b6dc8919ed0ac~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="dom.each"></p>
 <h3 id="dom-index-函数"><a href="#dom-index-函数" class="headerlink" title="dom.index 函数"></a>dom.index 函数</h3><blockquote>
 <p>用法： 返当前节点在父节点内的索引值</p>
-<div class="hljs"><pre><code class="hljs js">dom.index(node)  <span class="hljs-comment">// 返回当前节点在它父节点中的索引值</span></code></pre></div>
+<div class="hljs"><pre><code class="hljs js">dom.<span class="hljs-title function_">index</span>(node)  <span class="hljs-comment">// 返回当前节点在它父节点中的索引值</span></code></pre></div>
 </blockquote>
 <blockquote>
 <p>思路： 获取自己的父节点的所有子节点, 然后遍历， 如果遍历的子节点是自己，就返回 i</p>
 </blockquote>
 <p><strong>源代码</strong></p>
-<div class="hljs"><pre><code class="hljs js">index(node) &#123;
-  <span class="hljs-keyword">const</span> list = dom.children(node.parentNode)
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; list.length; i++) &#123;
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-title function_">index</span>(<span class="hljs-params">node</span>) &#123;
+  <span class="hljs-keyword">const</span> list = dom.<span class="hljs-title function_">children</span>(node.<span class="hljs-property">parentNode</span>)
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; list.<span class="hljs-property">length</span>; i++) &#123;
     <span class="hljs-keyword">if</span> (list[i] === node) &#123;
       <span class="hljs-keyword">return</span> i
     &#125;
@@ -686,59 +695,71 @@ dom.previous(node)   <span class="hljs-comment">// 用于获取上一个节点  
 <p><strong>示例：</strong></p>
 <p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/550cdf330dc04fd8bdcd1b0e6edfd958~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="dom.index "></p>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                <div class="post-meta mr-3">
-                  <i class="iconfont icon-category"></i>
-                  
-                  <a class="hover-with-bg" href="/categories/JavaScript/">JavaScript</a>
-                  
-                </div>
-                
-                
-                <div class="post-meta">
-                  <i class="iconfont icon-tags"></i>
-                  
-                  <a class="hover-with-bg" href="/tags/JavaScript/">JavaScript</a>
-                  
-                </div>
-                
-              </div>
-              
-              
-              <div class="post-prevnext row">
-                <article class="post-prev col-6">
-                  
-                  
-                  <a href="/2020/12/09/30-%E4%BB%A5jQuery%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3%E5%B0%81%E8%A3%85DOM/">
-                    <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">以jQuery的设计思想封装DOM(总结)</span>
-                    <span class="visible-mobile">上一篇</span>
-                  </a>
-                  
-                </article>
-                <article class="post-next col-6">
-                  
-                  
-                  <a href="/2020/11/28/28-%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JavaScript/">
-                    <span class="hidden-mobile">你不知道的JavaScript</span>
-                    <span class="visible-mobile">下一篇</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
-                  
-                </article>
-              </div>
-              
-            </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <div class="post-metas mb-3">
+                      
+                        <div class="post-meta mr-3">
+                          <i class="iconfont icon-category"></i>
+                          
+                            <a class="hover-with-bg" href="/categories/JavaScript/">
+                              JavaScript
+                            </a>
+                            
+                        </div>
+                        
+                          
+                            <div class="post-meta">
+                              <i class="iconfont icon-tags"></i>
+                              
+                                <a class="hover-with-bg" href="/tags/JavaScript/">
+                                  JavaScript
+                                </a>
+                                
+                            </div>
+                            
+                    </div>
+                    
+                        
+                          <div class="post-prevnext row">
+                            <article class="post-prev col-6">
+                              
+                                
+                                  <a href="/2020/12/09/30-%E4%BB%A5jQuery%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3%E5%B0%81%E8%A3%85DOM/">
+                                    <i class="iconfont icon-arrowleft"></i>
+                                    <span class="hidden-mobile">
+                                      以jQuery的设计思想封装DOM(总结)
+                                    </span>
+                                    <span class="visible-mobile">
+                                      上一篇
+                                    </span>
+                                  </a>
+                                  
+                            </article>
+                            <article class="post-next col-6">
+                              
+                                
+                                  <a href="/2020/11/28/28-%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JavaScript/">
+                                    <span class="hidden-mobile">
+                                      你不知道的JavaScript
+                                    </span>
+                                    <span class="visible-mobile">
+                                      下一篇
+                                    </span>
+                                    <i class="iconfont icon-arrowright"></i>
+                                  </a>
+                                  
+                            </article>
+                          </div>
+                          
+                  </div>
 
-            
-            <!-- Comments -->
-            <article class="comments" id="comments">
-              
-              
+                  
+                    <!-- Comments -->
+                    <article class="comments" id="comments">
+                      
+                        
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
@@ -765,26 +786,26 @@ dom.previous(node)   <span class="hljs-comment">// 用于获取上一个节点  
       powered by Valine.</a></noscript>
 
 
+                    </article>
+                    
             </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-      <div id="toc">
+      
+        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+          <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
+        </div>
+        
     </div>
-    
   </div>
-</div>
 
-<!-- Custom -->
-
+  <!-- Custom -->
+  
 
     
   </main>
