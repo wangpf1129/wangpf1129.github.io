@@ -1,63 +1,119 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/boshi.jpeg">
-  <link rel="icon" type="image/png" href="/img/boshi.jpeg">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <link rel="icon" href="/img/boshi.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
   <meta name="author" content="wangpf">
   <meta name="keywords" content="">
+  
+    <meta name="description" content="06.模块系统在node中JavaScript还有一个很重要的概念：模块系统  模块作用域 使用require方法用来加载模块 使用exports 接口对象用来到处模块中的成员1.加载require语法：1const 自定义变量名称 &#x3D; require(&amp;#x27;模块&amp;#x27;) 俩个作用： 执行被加载模块中的代码 得到被加载模块中的 exports导出接口对象2.导出 exports nod">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node的模板系统">
+<meta property="og:url" content="http://yoursite.com/2020/08/08/06.%E6%A8%A1%E5%9D%97%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="wpf的博客">
+<meta property="og:description" content="06.模块系统在node中JavaScript还有一个很重要的概念：模块系统  模块作用域 使用require方法用来加载模块 使用exports 接口对象用来到处模块中的成员1.加载require语法：1const 自定义变量名称 &#x3D; require(&amp;#x27;模块&amp;#x27;) 俩个作用： 执行被加载模块中的代码 得到被加载模块中的 exports导出接口对象2.导出 exports nod">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/img/node%E6%A8%A1%E5%9D%97%E7%B3%BB%E7%BB%9F.jpg">
+<meta property="article:published_time" content="2020-08-08T10:26:00.000Z">
+<meta property="article:modified_time" content="2022-07-06T13:16:37.570Z">
+<meta property="article:author" content="wangpf">
+<meta property="article:tag" content="Node">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://yoursite.com/img/node%E6%A8%A1%E5%9D%97%E7%B3%BB%E7%BB%9F.jpg">
+  
+  
+  
   <title>Node的模板系统 - wpf的博客</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  
-    
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/foundation.min.css" />
-  
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
 
-  
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
 
 
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"always","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
 <meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
-  <header style="height: 70vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>Wangpf's blog</strong>&nbsp;</a>
+    <a class="navbar-brand" href="/">
+      <strong>Wangpf&#39;s blog</strong>
+    </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -131,13 +187,15 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -146,81 +204,99 @@
   </div>
 </nav>
 
-    <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/article.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
-            <span class="h2" id="subtitle">
-              
-            </span>
+  
 
-            
-              
-  <div class="mt-3 post-meta">
-    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-08-08 10:26" pubdate>
-      2020年8月8日 上午
-    </time>
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/article.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Node的模板系统"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-08-08 10:26" pubdate>
+          2020年8月8日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          5.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          44 分钟
+        
+      </span>
+    
+
+    
+    
   </div>
 
 
-<div class="mt-1">
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      2.6k 字
-    </span>
-  
+        
+      </div>
 
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
       
-      
-      31
-       分钟
-    </span>
-  
-
-  
-  
+    </div>
+  </div>
 </div>
 
-            
-          </div>
+</div>
 
-          
-        </div>
-      </div>
-    </div>
   </header>
 
   <main>
     
       
 
-  <div class="container-fluid">
-    <div class="row">
-      <div class="d-none d-lg-block col-lg-2"></div>
-      <div class="col-lg-8 nopadding-md">
-        <div class="container nopadding-md" id="board-ctn">
-          <div class="py-5" id="board">
-            <article class="post-content mx-auto" id="post">
-              <!-- SEO header -->
-              <h1 style="display: none">
-                Node的模板系统
-              </h1>
-              
-                  <div class="markdown-body" id="post-body">
-                    <h1 id="06-模块系统"><a href="#06-模块系统" class="headerlink" title="06.模块系统"></a>06.模块系统</h1><p>在node中JavaScript还有一个很重要的概念：模块系统</p>
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Node的模板系统</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="06-模块系统"><a href="#06-模块系统" class="headerlink" title="06.模块系统"></a>06.模块系统</h1><p>在node中JavaScript还有一个很重要的概念：模块系统</p>
 <ul>
 <li>模块作用域</li>
 <li>使用require方法用来加载模块</li>
-<li>使用exports 接口对象用来到处模块中的成员<h2 id="1-加载require"><a href="#1-加载require" class="headerlink" title="1.加载require"></a>1.加载<code>require</code></h2>语法：<div class="hljs"><pre><code class="hljs javaScript"><span class="hljs-keyword">const</span> 自定义变量名称 = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;模块&#x27;</span>)</code></pre></div>
+<li>使用exports 接口对象用来到处模块中的成员<h2 id="1-加载require"><a href="#1-加载require" class="headerlink" title="1.加载require"></a>1.加载<code>require</code></h2>语法：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javaScript"><span class="hljs-keyword">const</span> 自定义变量名称 = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;模块&#x27;</span>)<br></code></pre></td></tr></table></figure>
 俩个作用：</li>
 <li>执行被加载模块中的代码</li>
 <li>得到被加载模块中的 <code>exports</code>导出接口对象<h2 id="2-导出-exports"><a href="#2-导出-exports" class="headerlink" title="2.导出 exports"></a>2.导出 <code>exports</code></h2></li>
@@ -228,36 +304,15 @@
 <li>对于希望可以被其他模块访问的信息，我们就需要把这些公共的成员都挂载到 <code>exports</code> 接口对象中就可以导出多个成员（必须在对象中）</li>
 </ul>
 <p>导出多个成员（必须在对象中:此时exports是个对象）：</p>
-<div class="hljs"><pre><code class="hljs javaScript"><span class="hljs-built_in">exports</span>.<span class="hljs-property">a</span>=<span class="hljs-number">123</span>
-<span class="hljs-built_in">exports</span>.<span class="hljs-property">b</span>=<span class="hljs-string">&#x27;hello&#x27;</span>
-<span class="hljs-built_in">exports</span>.<span class="hljs-property">c</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;ccc&#x27;</span>)
-&#125;</code></pre></div>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javaScript"><span class="hljs-built_in">exports</span>.<span class="hljs-property">a</span>=<span class="hljs-number">123</span><br><span class="hljs-built_in">exports</span>.<span class="hljs-property">b</span>=<span class="hljs-string">&#x27;hello&#x27;</span><br><span class="hljs-built_in">exports</span>.<span class="hljs-property">c</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;ccc&#x27;</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>导出单个成员（就是拿到：函数，字符串等）</p>
-<div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-string">&#x27;hello&#x27;</span></code></pre></div>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-string">&#x27;hello&#x27;</span><br></code></pre></td></tr></table></figure>
 <p>以下情况会覆盖：最下边会覆盖上边的</p>
-<div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-string">&#x27;hello&#x27;</span>
-<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;ccc&#x27;</span>)
-&#125;</code></pre></div>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-string">&#x27;hello&#x27;</span><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;ccc&#x27;</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>也可以导出多个成员：就是把它变为对象了</p>
-<div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;
-    <span class="hljs-attr">add</span>:<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
-        
-    &#125;
-    str : <span class="hljs-string">&#x27;heelo&#x27;</span>
-&#125;</code></pre></div>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>    <span class="hljs-attr">add</span>:<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>        <br>    &#125;<br>    str : <span class="hljs-string">&#x27;heelo&#x27;</span><br>&#125;<br></code></pre></td></tr></table></figure>
 <h2 id="3-导出-module-exports-原理解析"><a href="#3-导出-module-exports-原理解析" class="headerlink" title="3.导出 module.exports 原理解析"></a>3.导出 <code>module.exports</code> 原理解析</h2><p><code>exports</code> 和 <code>module.exports</code> 的一个引用<br>内部隐藏代码实际是这样子的：</p>
-<div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-keyword">let</span> <span class="hljs-variable language_">module</span> = &#123;
-    <span class="hljs-built_in">exports</span>  = &#123;
-        
-    &#125;
-&#125;
-<span class="hljs-keyword">let</span> <span class="hljs-built_in">exports</span> = <span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span>
-
-<span class="hljs-comment">// console.log(exports === module.exports)  // true</span>
-
-<span class="hljs-keyword">return</span> <span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span></code></pre></div>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-keyword">let</span> <span class="hljs-variable language_">module</span> = &#123;<br>    <span class="hljs-built_in">exports</span>  = &#123;<br>        <br>    &#125;<br>&#125;<br><span class="hljs-keyword">let</span> <span class="hljs-built_in">exports</span> = <span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span><br><br><span class="hljs-comment">// console.log(exports === module.exports)  // true</span><br><br><span class="hljs-keyword">return</span> <span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span><br></code></pre></td></tr></table></figure>
 <h2 id="4-exports-和-module-exports-的-区别"><a href="#4-exports-和-module-exports-的-区别" class="headerlink" title="4.exports 和 module.exports 的 区别"></a>4.exports 和 module.exports 的 区别</h2><ul>
 <li><p>每个模块中都有一个<code>module</code>对象</p>
 </li>
@@ -324,21 +379,13 @@
 <li>node package manager   意思就是 node 包管理者，帮助我们去安装一些第三方包的<h3 id="6-1npm-网站"><a href="#6-1npm-网站" class="headerlink" title="6.1npm 网站"></a>6.1npm 网站</h3></li>
 <li>[npmjs.com]   用来搜索第三方包， 所有的第三方包都在这里<h3 id="6-2-npm命令行工具"><a href="#6-2-npm命令行工具" class="headerlink" title="6.2 npm命令行工具"></a>6.2 npm命令行工具</h3></li>
 <li>npm 的第二次含义就是一个命令行工具，只要你安装了 node 就已经安装了npm</li>
-<li>npm也有版本这个概念  可以通过在命令行中输入 查看版本号<div class="hljs"><pre><code class="hljs shell">npm --version   //查看版本号
-npm install --global npm   // 升级npm</code></pre></div>
+<li>npm也有版本这个概念  可以通过在命令行中输入 查看版本号<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm --version   //查看版本号<br>npm install --global npm   // 升级npm<br></code></pre></td></tr></table></figure>
 <h3 id="6-3解决npm被墙的问题"><a href="#6-3解决npm被墙的问题" class="headerlink" title="6.3解决npm被墙的问题"></a>6.3解决npm被墙的问题</h3>npm存储包文件的服务器在国外，有时候会被强，速度会很慢。</li>
 <li>[<a target="_blank" rel="noopener" href="http://npm.taobao.org/]">http://npm.taobao.org/]</a> 淘宝的开发团队把npm在国内做了一个备份</li>
-<li>安装淘宝的npm<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">在任意目录执行都可以</span>
-<span class="hljs-meta prompt_"># </span><span class="language-bash">-- global 表示安装到全局， 而非当前目录  注意不能省略 --global</span>
-npm install --global cnpm</code></pre></div>
-接下来你安装包的时候把之前的<code>npm</code>替换成<code>cnpm</code>就行了<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">这里 还是走国外的服务器，速度慢</span>
-npm install jquert
-<span class="hljs-meta prompt_"># </span><span class="language-bash">使用cnpm 就会通过淘宝的服务器来下载jquery</span>
-cnpm install jquert</code></pre></div>
-如果不想安装 <code>cnpm</code> 又想使用淘宝的服务器下载：<div class="hljs"><pre><code class="hljs shell">npm install jquery --registry=https://registry.npm.taobao.org</code></pre></div>
-但是每一次手都这样会很麻烦，所有可以把这个选项加入配置文件中<div class="hljs"><pre><code class="hljs shell">npm config set registry https://registry.npm.taobao.org
-<span class="hljs-meta prompt_"># </span><span class="language-bash">查看npm配置信息</span>
-npm config list</code></pre></div>
+<li>安装淘宝的npm<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">在任意目录执行都可以</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">-- global 表示安装到全局， 而非当前目录  注意不能省略 --global</span><br>npm install --global cnpm<br></code></pre></td></tr></table></figure>
+接下来你安装包的时候把之前的<code>npm</code>替换成<code>cnpm</code>就行了<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">这里 还是走国外的服务器，速度慢</span><br>npm install jquert<br><span class="hljs-meta prompt_"># </span><span class="language-bash">使用cnpm 就会通过淘宝的服务器来下载jquery</span><br>cnpm install jquert<br></code></pre></td></tr></table></figure>
+如果不想安装 <code>cnpm</code> 又想使用淘宝的服务器下载：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm install jquery --registry=https://registry.npm.taobao.org<br></code></pre></td></tr></table></figure>
+但是每一次手都这样会很麻烦，所有可以把这个选项加入配置文件中<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm config set registry https://registry.npm.taobao.org<br><span class="hljs-meta prompt_"># </span><span class="language-bash">查看npm配置信息</span><br>npm config list<br></code></pre></td></tr></table></figure>
 只要经过上面的命令配置，则以后你所有的 <code>npm install</code> 都会默认通过淘宝的服务器来下载</li>
 </ul>
 <h2 id="7-package-json"><a href="#7-package-json" class="headerlink" title="7.package.json"></a>7.package.json</h2><ul>
@@ -366,50 +413,28 @@ npm config list</code></pre></div>
 </ul>
 </li>
 <li>文件操作路径</li>
-<li><div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 在文件操作的相对路径中</span>
-<span class="hljs-comment">// ./data/a.txt  相当于当前目录</span>
-<span class="hljs-comment">// data/a.txt  相当于当前目录</span>
-
-<span class="hljs-comment">// 以下俩种几乎不用 （不要用）</span>
-<span class="hljs-comment">//  /data/a.txt   绝对路径，当前文件模块所处磁盘根目录</span>
-<span class="hljs-comment">//  c;/xx/xx  绝对路径</span>
-
-fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-params"><span class="hljs-string">&#x27;./data/a.txt&#x27;</span>,(err)=&gt;&#123;data&#125;</span>)&#123;
-    
-&#125;</code></pre></div>
+<li><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 在文件操作的相对路径中</span><br><span class="hljs-comment">// ./data/a.txt  相当于当前目录</span><br><span class="hljs-comment">// data/a.txt  相当于当前目录</span><br><br><span class="hljs-comment">// 以下俩种几乎不用 （不要用）</span><br><span class="hljs-comment">//  /data/a.txt   绝对路径，当前文件模块所处磁盘根目录</span><br><span class="hljs-comment">//  c;/xx/xx  绝对路径</span><br><br>fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-params"><span class="hljs-string">&#x27;./data/a.txt&#x27;</span>,(err)=&gt;&#123;data&#125;</span>)&#123;<br>    <br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 </li>
 </ul>
 <ul>
-<li>模块操作路径<div class="hljs"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 如果这里忽略了 .   则也是磁盘根目录</span>
-<span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;/data/foo.js&#x27;</span>)
-
-<span class="hljs-comment">// 相当路径  在模块路径中 一定不能省略 ./  </span>
-<span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./data/foo.js&#x27;</span>)</code></pre></div>
+<li>模块操作路径<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 如果这里忽略了 .   则也是磁盘根目录</span><br><span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;/data/foo.js&#x27;</span>)<br><br><span class="hljs-comment">// 相当路径  在模块路径中 一定不能省略 ./  </span><br><span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./data/foo.js&#x27;</span>)<br></code></pre></td></tr></table></figure>
 <h2 id="9-nodemon-修改代码自动重启服务器"><a href="#9-nodemon-修改代码自动重启服务器" class="headerlink" title="9.nodemon 修改代码自动重启服务器"></a>9.nodemon 修改代码自动重启服务器</h2></li>
 <li>我们这里可以使用一个nodemon 第三方命令行工具 来解决我们频繁修改代码重启服务器的问题</li>
-<li><code>nodemon</code> 是一个基于Node.js开发的一个第三方命令行工具，需要独立安装<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">在任意目录中执行该命令都行</span>
-npm  install --global nodemon</code></pre></div></li>
-<li>安装完毕后，使用:<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta prompt_"> # </span><span class="language-bash">使用nodemon</span>
-nodemon app.js</code></pre></div>
+<li><code>nodemon</code> 是一个基于Node.js开发的一个第三方命令行工具，需要独立安装<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">在任意目录中执行该命令都行</span><br>npm  install --global nodemon<br></code></pre></td></tr></table></figure></li>
+<li>安装完毕后，使用:<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"> # </span><span class="language-bash">使用nodemon</span><br>nodemon app.js<br></code></pre></td></tr></table></figure>
 <h2 id="10-path-路径操作模块"><a href="#10-path-路径操作模块" class="headerlink" title="10.path 路径操作模块"></a>10.path 路径操作模块</h2></li>
 <li>path.basename <ul>
-<li>获取一个路径的文件名  （默认包含扩展名）<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">path.basename(<span class="hljs-string">&#x27;c:/a/b/c/index.js&#x27;</span>)</span>
-&#x27;index.js&#x27;
-<span class="hljs-meta prompt_"></span>
-<span class="hljs-meta prompt_">&gt; </span><span class="language-bash">path.basename(<span class="hljs-string">&#x27;c:/a/b/c/index.js&#x27;</span>,<span class="hljs-string">&#x27;.js&#x27;</span>)</span>
-&#x27;index&#x27;</code></pre></div></li>
+<li>获取一个路径的文件名  （默认包含扩展名）<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">path.basename(<span class="hljs-string">&#x27;c:/a/b/c/index.js&#x27;</span>)</span><br>&#x27;index.js&#x27;<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">path.basename(<span class="hljs-string">&#x27;c:/a/b/c/index.js&#x27;</span>,<span class="hljs-string">&#x27;.js&#x27;</span>)</span><br>&#x27;index&#x27;<br></code></pre></td></tr></table></figure></li>
 </ul>
 </li>
 <li>path.dirname<ul>
-<li>获取一个路径中的目录部分<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta prompt_"> &gt; </span><span class="language-bash">path.dirname(<span class="hljs-string">&#x27;c:/a/b/c/index.js&#x27;</span>)</span>
-&#x27;c:/a/b/c&#x27;</code></pre></div></li>
+<li>获取一个路径中的目录部分<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"> &gt; </span><span class="language-bash">path.dirname(<span class="hljs-string">&#x27;c:/a/b/c/index.js&#x27;</span>)</span><br>&#x27;c:/a/b/c&#x27;<br></code></pre></td></tr></table></figure></li>
 </ul>
 </li>
 <li>path.extname<ul>
-<li>获取一个路径中的扩展名部分<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">path.extname(<span class="hljs-string">&#x27;c:/a/b/c/index.js&#x27;</span>)</span>
-&#x27;.js&#x27;</code></pre></div></li>
+<li>获取一个路径中的扩展名部分<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">path.extname(<span class="hljs-string">&#x27;c:/a/b/c/index.js&#x27;</span>)</span><br>&#x27;.js&#x27;<br></code></pre></td></tr></table></figure></li>
 </ul>
 </li>
 <li>path.pars<ul>
@@ -418,30 +443,17 @@ nodemon app.js</code></pre></div>
 <li>dir 目录</li>
 <li>base  包含后缀名的文件名</li>
 <li>ext 后缀名</li>
-<li>name 不包含后缀名的文件名<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">path.parse(<span class="hljs-string">&#x27;c:/a/b/c/index.js&#x27;</span>)</span>
-&#123;
-  root: &#x27;c:/&#x27;,
-  dir: &#x27;c:/a/b/c&#x27;,
-  base: &#x27;index.js&#x27;,
-  ext: &#x27;.js&#x27;,
-  name: &#x27;index&#x27;
-&#125;</code></pre></div></li>
+<li>name 不包含后缀名的文件名<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">path.parse(<span class="hljs-string">&#x27;c:/a/b/c/index.js&#x27;</span>)</span><br>&#123;<br>  root: &#x27;c:/&#x27;,<br>  dir: &#x27;c:/a/b/c&#x27;,<br>  base: &#x27;index.js&#x27;,<br>  ext: &#x27;.js&#x27;,<br>  name: &#x27;index&#x27;<br>&#125;<br></code></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ul>
 </li>
 <li>path.join<ul>
-<li>当你需要进行路径拼接的时候， 推荐使用<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">path.join(<span class="hljs-string">&#x27;c:/a&#x27;</span>,<span class="hljs-string">&#x27;b&#x27;</span>)</span>
-&#x27;c:\\a\\b&#x27;</code></pre></div></li>
+<li>当你需要进行路径拼接的时候， 推荐使用<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">path.join(<span class="hljs-string">&#x27;c:/a&#x27;</span>,<span class="hljs-string">&#x27;b&#x27;</span>)</span><br>&#x27;c:\\a\\b&#x27;<br></code></pre></td></tr></table></figure></li>
 </ul>
 </li>
 <li>path.isAbsolute<ul>
-<li>判断一个路径是否为绝对路径<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">path.isAbsolute(<span class="hljs-string">&#x27;c:/a/b/c/index.js&#x27;</span>)</span>
-true
-<span class="hljs-meta prompt_">&gt; </span><span class="language-bash">path.isAbsolute(<span class="hljs-string">&#x27;/a/b/c/index.js&#x27;</span>)</span>
-true
-<span class="hljs-meta prompt_">&gt; </span><span class="language-bash">path.isAbsolute(<span class="hljs-string">&#x27;./a/b/c/index.js&#x27;</span>)</span>
-false</code></pre></div>
+<li>判断一个路径是否为绝对路径<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">path.isAbsolute(<span class="hljs-string">&#x27;c:/a/b/c/index.js&#x27;</span>)</span><br>true<br><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">path.isAbsolute(<span class="hljs-string">&#x27;/a/b/c/index.js&#x27;</span>)</span><br>true<br><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">path.isAbsolute(<span class="hljs-string">&#x27;./a/b/c/index.js&#x27;</span>)</span><br>false<br></code></pre></td></tr></table></figure>
 <h2 id="11-Node中的其他成员-（-dirname-和-filename）"><a href="#11-Node中的其他成员-（-dirname-和-filename）" class="headerlink" title="11.Node中的其他成员 （__dirname 和 __filename）"></a>11.Node中的其他成员 （__dirname 和 __filename）</h2>在每个模块中， 除了 <code>require</code> 和 <code>exports</code> 等模块相关AIP之外，还有俩个特殊成员：</li>
 </ul>
 </li>
@@ -459,129 +471,162 @@ false</code></pre></div>
 <p>模块中的路径表示就是相当于当前文件模块，不受执行node 命令所处路径影响</p>
 </blockquote>
 
-                  </div>
-                  <hr>
-                  <div>
-                    <div class="post-metas mb-3">
-                      
-                        <div class="post-meta mr-3">
-                          <i class="iconfont icon-category"></i>
-                          
-                            <a class="hover-with-bg" href="/categories/Nodejs/">
-                              Nodejs
-                            </a>
-                            
-                        </div>
-                        
-                          
-                            <div class="post-meta">
-                              <i class="iconfont icon-tags"></i>
-                              
-                                <a class="hover-with-bg" href="/tags/Node/">
-                                  Node
-                                </a>
-                                
-                            </div>
-                            
-                    </div>
-                    
-                        
-                          <div class="post-prevnext row">
-                            <article class="post-prev col-6">
-                              
-                                
-                                  <a href="/2020/08/08/07.Express%E7%9A%84%E4%BD%BF%E7%94%A8/">
-                                    <i class="iconfont icon-arrowleft"></i>
-                                    <span class="hidden-mobile">
-                                      Express的使用⭐⭐⭐
-                                    </span>
-                                    <span class="visible-mobile">
-                                      上一篇
-                                    </span>
-                                  </a>
-                                  
-                            </article>
-                            <article class="post-next col-6">
-                              
-                                
-                                  <a href="/2020/08/06/03.%E7%AE%80%E5%8D%95%E7%BB%93%E5%90%88fs%E6%A8%A1%E5%9D%97%E6%9D%A5%E8%AE%BF%E9%97%AE%E4%B8%8D%E5%90%8C%E8%B5%84%E6%BA%90%E5%AE%9E%E4%BE%8B/">
-                                    <span class="hidden-mobile">
-                                      使用Node来简单结合fs模块来访问不同资源实例
-                                    </span>
-                                    <span class="visible-mobile">
-                                      下一篇
-                                    </span>
-                                    <i class="iconfont icon-arrowright"></i>
-                                  </a>
-                                  
-                            </article>
-                          </div>
-                          
-                  </div>
-
-                  
-                    <!-- Comments -->
-                    <article class="comments" id="comments">
-                      
-                        
-  <div id="vcomments"></div>
-  <script type="text/javascript">
-    function loadValine() {
-      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
-        new Valine({
-          el: "#vcomments",
-          app_id: "hjxsDRXYScicliqD8I8JqoTu-gzGzoHsz",
-          app_key: "qUcAEReEqeEVp5wwXJ41uCCp",
-          placeholder: "说点什么",
-          path: window.location.pathname,
-          avatar: "retro",
-          meta: ["nick","mail","link"],
-          pageSize: "10",
-          lang: "zh-CN",
-          highlight: true,
-          recordIP: false,
-          serverURLs: "",
-        });
-      });
-    }
-    waitElementVisible('vcomments', loadValine);
-  </script>
-  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
-      powered by Valine.</a></noscript>
-
-
-                    </article>
-                    
-            </article>
-          </div>
-        </div>
-      </div>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
       
-        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-          <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Nodejs/" class="category-chain-item">Nodejs</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Node/">#Node</a>
+      
+    </div>
+  
 </div>
 
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/08/07.Express%E7%9A%84%E4%BD%BF%E7%94%A8/" title="Express的使用⭐⭐⭐">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Express的使用⭐⭐⭐</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/06/03.%E7%AE%80%E5%8D%95%E7%BB%93%E5%90%88fs%E6%A8%A1%E5%9D%97%E6%9D%A5%E8%AE%BF%E9%97%AE%E4%B8%8D%E5%90%8C%E8%B5%84%E6%BA%90%E5%AE%9E%E4%BE%8B/" title="使用Node来简单结合fs模块来访问不同资源实例">
+                        <span class="hidden-mobile">使用Node来简单结合fs模块来访问不同资源实例</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments">
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.17/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"hjxsDRXYScicliqD8I8JqoTu-gzGzoHsz","appKey":"qUcAEReEqeEVp5wwXJ41uCCp","path":"window.location.pathname","placeholder":"说点什么","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":null,"emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"hjxsDRXYScicliqD8I8JqoTu-gzGzoHsz","appkey":"qUcAEReEqeEVp5wwXJ41uCCp"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
         </div>
-        
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
     </div>
   </div>
+</div>
 
-  <!-- Custom -->
+
+
+
+
   
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
 
     
-  </main>
 
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -594,260 +639,161 @@ false</code></pre></div>
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
-  
 
-  
+    
 
-  
+    
+  </main>
 
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
-    
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
-    
-
-    
-  </div>
-</footer>
-
-<!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
-
-<!-- Plugins -->
-
-
   
-    
-      <script  src="/js/lazyload.js" ></script>
-    
   
+  
+  
+</div>
 
+  </footer>
 
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
   <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
 
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
       }
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "Node的模板系统&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "always",
+      var text = subtitle.getAttribute('data-typed-text');
       
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
+        typing(text);
+      
+    })(window, document);
   </script>
 
 
+
+
+  
+    
+      <script  src="/js/img-lazyload.js" ></script>
+    
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
-  <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
-      }
-    );
-  </script>
 
 
 
 
 
-
-
-  
-  
-    <script>
-      !function (e, t, a) {
-        function r() {
-          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
-          requestAnimationFrame(r)
-        }
-
-        function n() {
-          var t = "function" == typeof e.onclick && e.onclick;
-          e.onclick = function (e) {
-            t && t(), o(e)
-          }
-        }
-
-        function o(e) {
-          var a = t.createElement("div");
-          a.className = "heart", s.push({
-            el: a,
-            x: e.clientX - 5,
-            y: e.clientY - 5,
-            scale: 1,
-            alpha: 1,
-            color: c()
-          }), t.body.appendChild(a)
-        }
-
-        function i(e) {
-          var a = t.createElement("style");
-          a.type = "text/css";
-          try {
-            a.appendChild(t.createTextNode(e))
-          } catch (t) {
-            a.styleSheet.cssText = e
-          }
-          t.getElementsByTagName("head")[0].appendChild(a)
-        }
-
-        function c() {
-          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
-        }
-
-        var s = [];
-        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
-          setTimeout(e, 1e3 / 60)
-        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
-      }(window, document);
-    </script>
-  
-
-
-
-
-
-
-
-
-
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
 
 
   
 
-  
-
-  
-
-  
-
-  
-
-  
-
-
-
-
-
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

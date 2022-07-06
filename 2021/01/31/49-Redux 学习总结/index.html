@@ -1,63 +1,120 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/boshi.jpeg">
-  <link rel="icon" type="image/png" href="/img/boshi.jpeg">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <link rel="icon" href="/img/boshi.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
   <meta name="author" content="wangpf">
   <meta name="keywords" content="">
+  
+    <meta name="description" content="redux 是什么 rduex是一个专门用于做状态管理的JS库（注意:不是React插件库） 它可以在任何框架里使用，也可以在原生JS中使用，但基本与react搭配使用 作用:集中式管理 多个组件共享的状态  redux原理 看图很抽象，需要用一个生活中的例子来形象表达出来，估计会理解的更深。 比如： 我饿了，去餐馆吃饭，我给服务员说我要一份蛋炒饭，然后服务员把菜单传给餐馆老板，老板通知厨师要求做">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redux 学习总结">
+<meta property="og:url" content="http://yoursite.com/2021/01/31/49-Redux%20%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="wpf的博客">
+<meta property="og:description" content="redux 是什么 rduex是一个专门用于做状态管理的JS库（注意:不是React插件库） 它可以在任何框架里使用，也可以在原生JS中使用，但基本与react搭配使用 作用:集中式管理 多个组件共享的状态  redux原理 看图很抽象，需要用一个生活中的例子来形象表达出来，估计会理解的更深。 比如： 我饿了，去餐馆吃饭，我给服务员说我要一份蛋炒饭，然后服务员把菜单传给餐馆老板，老板通知厨师要求做">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/img/redux.jpg">
+<meta property="article:published_time" content="2021-01-31T09:52:00.000Z">
+<meta property="article:modified_time" content="2022-07-06T13:16:37.574Z">
+<meta property="article:author" content="wangpf">
+<meta property="article:tag" content="React">
+<meta property="article:tag" content="Redux">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://yoursite.com/img/redux.jpg">
+  
+  
+  
   <title>Redux 学习总结 - wpf的博客</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  
-    
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/foundation.min.css" />
-  
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
 
-  
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
 
 
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"always","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
 <meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
-  <header style="height: 70vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>Wangpf's blog</strong>&nbsp;</a>
+    <a class="navbar-brand" href="/">
+      <strong>Wangpf&#39;s blog</strong>
+    </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -131,13 +188,15 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -146,82 +205,100 @@
   </div>
 </nav>
 
-    <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/article.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
-            <span class="h2" id="subtitle">
-              
-            </span>
+  
 
-            
-              
-  <div class="mt-3 post-meta">
-    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2021-01-31 09:52" pubdate>
-      2021年1月31日 上午
-    </time>
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/article.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Redux 学习总结"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-01-31 09:52" pubdate>
+          2021年1月31日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          4.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          39 分钟
+        
+      </span>
+    
+
+    
+    
   </div>
 
 
-<div class="mt-1">
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      1.5k 字
-    </span>
-  
+        
+      </div>
 
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
       
-      
-      20
-       分钟
-    </span>
-  
-
-  
-  
+    </div>
+  </div>
 </div>
 
-            
-          </div>
+</div>
 
-          
-        </div>
-      </div>
-    </div>
   </header>
 
   <main>
     
       
 
-  <div class="container-fluid">
-    <div class="row">
-      <div class="d-none d-lg-block col-lg-2"></div>
-      <div class="col-lg-8 nopadding-md">
-        <div class="container nopadding-md" id="board-ctn">
-          <div class="py-5" id="board">
-            <article class="post-content mx-auto" id="post">
-              <!-- SEO header -->
-              <h1 style="display: none">
-                Redux 学习总结
-              </h1>
-              
-                  <div class="markdown-body" id="post-body">
-                    <h2 id="redux-是什么"><a href="#redux-是什么" class="headerlink" title="redux 是什么"></a>redux 是什么</h2><ol>
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Redux 学习总结</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="redux-是什么"><a href="#redux-是什么" class="headerlink" title="redux 是什么"></a>redux 是什么</h2><ol>
 <li>rduex是一个专门用于做状态管理的JS库（注意:不是React插件库）</li>
 <li>它可以在任何框架里使用，也可以在原生JS中使用，但基本与react搭配使用</li>
 <li>作用:集中式管理 多个组件共享的状态</li>
 </ol>
-<h2 id="redux原理"><a href="#redux原理" class="headerlink" title="redux原理"></a>redux原理</h2><p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/894ca0cbc1f349af965aaa07bb97386b~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="redux原理图"></p>
+<h2 id="redux原理"><a href="#redux原理" class="headerlink" title="redux原理"></a>redux原理</h2><p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/894ca0cbc1f349af965aaa07bb97386b~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload alt="redux原理图"></p>
 <p>看图很抽象，需要用一个生活中的例子来形象表达出来，估计会理解的更深。</p>
 <p>比如： 我饿了，去餐馆吃饭，我给服务员说我要一份蛋炒饭，然后服务员把菜单传给餐馆老板，老板通知厨师要求做一份蛋炒饭，厨师做完蛋炒饭后再交给老板，然后我自己去取餐。</p>
 <p>现在，我就是：React Components ， 服务员就是 Action Creators ， 餐馆老板就是: Store, 后厨就是：Reducers 。</p>
@@ -269,50 +346,11 @@
 </li>
 </ol>
 <p>小试牛刀，按照上面步骤，相应代码如下：</p>
-<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-comment">// count_reducer JS文件</span>
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">countReducer</span>(<span class="hljs-params">preState =<span class="hljs-number">0</span>, action</span>) &#123;
-  <span class="hljs-keyword">const</span> &#123; type, data &#125; = action
-  <span class="hljs-keyword">const</span> typeMap = &#123;
-    <span class="hljs-string">&quot;increment&quot;</span>: preState + data,
-    <span class="hljs-string">&quot;decrement&quot;</span>: preState - data
-  &#125;
-  <span class="hljs-keyword">if</span> (type <span class="hljs-keyword">in</span> typeMap) &#123;
-    <span class="hljs-keyword">return</span> typeMap[type]
-  &#125; <span class="hljs-keyword">else</span> &#123;
-    <span class="hljs-keyword">return</span> preState
-  &#125;
-&#125;
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> countReducer</code></pre></div>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-comment">// count_reducer JS文件</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">countReducer</span>(<span class="hljs-params">preState =<span class="hljs-number">0</span>, action</span>) &#123;<br>  <span class="hljs-keyword">const</span> &#123; type, data &#125; = action<br>  <span class="hljs-keyword">const</span> typeMap = &#123;<br>    <span class="hljs-string">&quot;increment&quot;</span>: preState + data,<br>    <span class="hljs-string">&quot;decrement&quot;</span>: preState - data<br>  &#125;<br>  <span class="hljs-keyword">if</span> (type <span class="hljs-keyword">in</span> typeMap) &#123;<br>    <span class="hljs-keyword">return</span> typeMap[type]<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-keyword">return</span> preState<br>  &#125;<br>&#125;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> countReducer<br></code></pre></td></tr></table></figure>
 
-<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-comment">// store js文件</span>
-<span class="hljs-keyword">import</span> &#123; createStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;redux&#x27;</span>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-comment">// store js文件</span><br><span class="hljs-keyword">import</span> &#123; createStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;redux&#x27;</span><br><br><span class="hljs-keyword">import</span> countReducer <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./count_reducer&#x27;</span><br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">createStore</span>(countReducer)<br></code></pre></td></tr></table></figure>
 
-<span class="hljs-keyword">import</span> countReducer <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./count_reducer&#x27;</span>
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">createStore</span>(countReducer)</code></pre></div>
-
-<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-comment">// 组件 方法代码</span>
-
-<span class="hljs-comment">// render 方法中的  &lt;h2&gt;当前求和为：&#123;store.getState()&#125;&lt;/h2&gt;</span>
-
-  <span class="hljs-title function_">componentDidMount</span>(<span class="hljs-params"></span>) &#123;
-    store.<span class="hljs-title function_">subscribe</span>(<span class="hljs-function">() =&gt;</span> &#123;
-      <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setState</span>(&#123;&#125;)
-    &#125;)
-  &#125;
-
-  <span class="hljs-comment">// 加法</span>
-  increment = <span class="hljs-function">() =&gt;</span> &#123;
-    <span class="hljs-keyword">const</span> &#123; value &#125; = <span class="hljs-variable language_">this</span>.<span class="hljs-property">currentNum</span>
-    store.<span class="hljs-title function_">dispatch</span>(&#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;increment&quot;</span>, <span class="hljs-attr">data</span>: value * <span class="hljs-number">1</span> &#125;)
-  &#125;
-
-  <span class="hljs-comment">// 减法</span>
-  decrement = <span class="hljs-function">() =&gt;</span> &#123;
-    <span class="hljs-keyword">const</span> &#123; value &#125; = <span class="hljs-variable language_">this</span>.<span class="hljs-property">currentNum</span>
-    store.<span class="hljs-title function_">dispatch</span>(&#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;decrement&quot;</span>, <span class="hljs-attr">data</span>: value * <span class="hljs-number">1</span> &#125;)
-  &#125;
-</code></pre></div>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-comment">// 组件 方法代码</span><br><br><span class="hljs-comment">// render 方法中的  &lt;h2&gt;当前求和为：&#123;store.getState()&#125;&lt;/h2&gt;</span><br><br>  <span class="hljs-title function_">componentDidMount</span>(<span class="hljs-params"></span>) &#123;<br>    store.<span class="hljs-title function_">subscribe</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setState</span>(&#123;&#125;)<br>    &#125;)<br>  &#125;<br><br>  <span class="hljs-comment">// 加法</span><br>  increment = <span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> &#123; value &#125; = <span class="hljs-variable language_">this</span>.<span class="hljs-property">currentNum</span><br>    store.<span class="hljs-title function_">dispatch</span>(&#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;increment&quot;</span>, <span class="hljs-attr">data</span>: value * <span class="hljs-number">1</span> &#125;)<br>  &#125;<br><br>  <span class="hljs-comment">// 减法</span><br>  decrement = <span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> &#123; value &#125; = <span class="hljs-variable language_">this</span>.<span class="hljs-property">currentNum</span><br>    store.<span class="hljs-title function_">dispatch</span>(&#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;decrement&quot;</span>, <span class="hljs-attr">data</span>: value * <span class="hljs-number">1</span> &#125;)<br>  &#125;<br><br></code></pre></td></tr></table></figure>
 
 <p>目前我们还没有用上 action 这个概念， 所以把代码优化一下：</p>
 <p>优化步骤：</p>
@@ -328,36 +366,7 @@
 </li>
 </ol>
 <p>代码如下(我放在一起了)：</p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// constant.js</span>
-<span class="hljs-comment">// 该模块是用于 定义action对象中的type类型的常量值，目的只有一个：便于管理的同时防止单词写错</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">INCREMENT</span> = <span class="hljs-string">&#x27;increment&#x27;</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">DECREMENT</span> = <span class="hljs-string">&#x27;decrement&#x27;</span>
-
-
-<span class="hljs-comment">// action.js</span>
-<span class="hljs-keyword">import</span> &#123; <span class="hljs-variable constant_">INCREMENT</span>,<span class="hljs-variable constant_">DECREMENT</span>&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./constant&#x27;</span>
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">createIncrementAction</span> = data =&gt; (&#123; <span class="hljs-attr">type</span>: <span class="hljs-variable constant_">INCREMENT</span>, data&#125;)
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">createDecrementAction</span> = data =&gt; (&#123; <span class="hljs-attr">type</span>: <span class="hljs-variable constant_">DECREMENT</span>, data&#125;)
-
-
-<span class="hljs-comment">// reducer.js 代码部分优化</span>
-<span class="hljs-comment">// 把原来的字符串改为变量名</span>
- <span class="hljs-keyword">const</span> typeMap = &#123;
-    [<span class="hljs-variable constant_">INCREMENT</span>]: preState + data,
-    [<span class="hljs-variable constant_">DECREMENT</span>]: preState - data
-  &#125;
-
-<span class="hljs-comment">// 组件  实现方法代码优化</span>
-  increment = <span class="hljs-function">() =&gt;</span> &#123;
-    <span class="hljs-keyword">const</span> &#123; value &#125; = <span class="hljs-variable language_">this</span>.<span class="hljs-property">currentNum</span>
-    store.<span class="hljs-title function_">dispatch</span>(<span class="hljs-title function_">createIncrementAction</span>(value * <span class="hljs-number">1</span>))
-  &#125;
-  decrement = <span class="hljs-function">() =&gt;</span> &#123;
-    <span class="hljs-keyword">const</span> &#123; value &#125; = <span class="hljs-variable language_">this</span>.<span class="hljs-property">currentNum</span>
-    store.<span class="hljs-title function_">dispatch</span>(<span class="hljs-title function_">createDecrementAction</span>(value * <span class="hljs-number">1</span>))
-  &#125;
-</code></pre></div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// constant.js</span><br><span class="hljs-comment">// 该模块是用于 定义action对象中的type类型的常量值，目的只有一个：便于管理的同时防止单词写错</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">INCREMENT</span> = <span class="hljs-string">&#x27;increment&#x27;</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">DECREMENT</span> = <span class="hljs-string">&#x27;decrement&#x27;</span><br><br><br><span class="hljs-comment">// action.js</span><br><span class="hljs-keyword">import</span> &#123; <span class="hljs-variable constant_">INCREMENT</span>,<span class="hljs-variable constant_">DECREMENT</span>&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./constant&#x27;</span><br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">createIncrementAction</span> = data =&gt; (&#123; <span class="hljs-attr">type</span>: <span class="hljs-variable constant_">INCREMENT</span>, data&#125;)<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">createDecrementAction</span> = data =&gt; (&#123; <span class="hljs-attr">type</span>: <span class="hljs-variable constant_">DECREMENT</span>, data&#125;)<br><br><br><span class="hljs-comment">// reducer.js 代码部分优化</span><br><span class="hljs-comment">// 把原来的字符串改为变量名</span><br> <span class="hljs-keyword">const</span> typeMap = &#123;<br>    [<span class="hljs-variable constant_">INCREMENT</span>]: preState + data,<br>    [<span class="hljs-variable constant_">DECREMENT</span>]: preState - data<br>  &#125;<br><br><span class="hljs-comment">// 组件  实现方法代码优化</span><br>  increment = <span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> &#123; value &#125; = <span class="hljs-variable language_">this</span>.<span class="hljs-property">currentNum</span><br>    store.<span class="hljs-title function_">dispatch</span>(<span class="hljs-title function_">createIncrementAction</span>(value * <span class="hljs-number">1</span>))<br>  &#125;<br>  decrement = <span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> &#123; value &#125; = <span class="hljs-variable language_">this</span>.<span class="hljs-property">currentNum</span><br>    store.<span class="hljs-title function_">dispatch</span>(<span class="hljs-title function_">createDecrementAction</span>(value * <span class="hljs-number">1</span>))<br>  &#125;<br><br></code></pre></td></tr></table></figure>
 
 
 <p>以上就 过了一遍如何使用<strong>redux</strong>的一个简单流程。</p>
@@ -365,29 +374,12 @@
 <p><strong>什么时候需要异步action：</strong> 想要对状态进行操作，但是具体的数据需要靠异步任务返回。</p>
 <p>具体步骤：</p>
 <ol>
-<li>npm install redux-thunk， 并在store中配置它<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> &#123; createStore,applyMiddleware &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;redux&#x27;</span>
-<span class="hljs-comment">// 用于支持异步action</span>
-<span class="hljs-keyword">import</span> thunk <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;redux-thunk&#x27;</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">createStore</span>(countReducer,<span class="hljs-title function_">applyMiddleware</span>(thunk))</code></pre></div></li>
+<li>npm install redux-thunk， 并在store中配置它<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> &#123; createStore,applyMiddleware &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;redux&#x27;</span><br><span class="hljs-comment">// 用于支持异步action</span><br><span class="hljs-keyword">import</span> thunk <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;redux-thunk&#x27;</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">createStore</span>(countReducer,<span class="hljs-title function_">applyMiddleware</span>(thunk))<br></code></pre></td></tr></table></figure></li>
 <li>创建action的函数不再返回一般对象，而是一个函数，因为函数可以写异步任务。</li>
 <li>异步任务有结果后，发布一个同步的action去真正操作数据</li>
 </ol>
 <p>案例代码如下：</p>
-<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-comment">// action.js</span>
-<span class="hljs-comment">// 处理 异步    它必须返回的是一个 函数</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">createIncrementAsyncAction</span> = (<span class="hljs-params">data,time</span>) =&gt; &#123;
-  <span class="hljs-keyword">return</span> <span class="hljs-function">(<span class="hljs-params">dispatch</span>) =&gt;</span> &#123;
-    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
-      <span class="hljs-title function_">dispatch</span>(&#123; <span class="hljs-attr">type</span>: <span class="hljs-variable constant_">DECREMENT</span>, data &#125;)
-     &#125;,time)
-   &#125;
-&#125;
-
-<span class="hljs-comment">// 组件内的</span>
-  incrementAsync = <span class="hljs-function">() =&gt;</span> &#123;
-    <span class="hljs-keyword">const</span> &#123; value &#125; = <span class="hljs-variable language_">this</span>.<span class="hljs-property">currentNum</span>
-    store.<span class="hljs-title function_">dispatch</span>(<span class="hljs-title function_">createIncrementAsyncAction</span>(value * <span class="hljs-number">1</span>, <span class="hljs-number">500</span>))
-  &#125;</code></pre></div>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-comment">// action.js</span><br><span class="hljs-comment">// 处理 异步    它必须返回的是一个 函数</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">createIncrementAsyncAction</span> = (<span class="hljs-params">data,time</span>) =&gt; &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-function">(<span class="hljs-params">dispatch</span>) =&gt;</span> &#123;<br>    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>      <span class="hljs-title function_">dispatch</span>(&#123; <span class="hljs-attr">type</span>: <span class="hljs-variable constant_">DECREMENT</span>, data &#125;)<br>     &#125;,time)<br>   &#125;<br>&#125;<br><br><span class="hljs-comment">// 组件内的</span><br>  incrementAsync = <span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> &#123; value &#125; = <span class="hljs-variable language_">this</span>.<span class="hljs-property">currentNum</span><br>    store.<span class="hljs-title function_">dispatch</span>(<span class="hljs-title function_">createIncrementAsyncAction</span>(value * <span class="hljs-number">1</span>, <span class="hljs-number">500</span>))<br>  &#125;<br></code></pre></td></tr></table></figure>
 
 
 <p><strong>总结:</strong> 其实我们完全可以自己等待异步任务的结果后再去发布同步action，所以感觉这个 异步action不太重要，了解即可。</p>
@@ -397,179 +389,189 @@
 </ol>
 <h3 id="需要明确俩个核心："><a href="#需要明确俩个核心：" class="headerlink" title="需要明确俩个核心："></a>需要明确俩个核心：</h3><p><strong>Provider 和 connect</strong></p>
 <h4 id="Provider"><a href="#Provider" class="headerlink" title="Provider"></a>Provider</h4><p><strong>Provider</strong> 的目的是让所有组件都能够访问到redux中的数据。</p>
-<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-title class_">ReactDOM</span>.<span class="hljs-title function_">render</span>(
-  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Provider</span> <span class="hljs-attr">store</span>=<span class="hljs-string">&#123;store&#125;</span>&gt;</span></span>
-<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">App</span> /&gt;</span></span>
-<span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">Provider</span>&gt;</span></span>,
-  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;root&quot;</span>)
-)</code></pre></div>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-title class_">ReactDOM</span>.<span class="hljs-title function_">render</span>(<br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Provider</span> <span class="hljs-attr">store</span>=<span class="hljs-string">&#123;store&#125;</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">App</span> /&gt;</span></span><br><span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">Provider</span>&gt;</span></span>,<br>  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;root&quot;</span>)<br>)<br></code></pre></td></tr></table></figure>
 <h4 id="connect"><a href="#connect" class="headerlink" title="connect"></a>connect</h4><p>首先，它的使用是这样子的：</p>
-<div class="hljs"><pre><code class="hljs js"><span class="hljs-title function_">connect</span>(mapStateToProps, mapDispatchToProps)(component)</code></pre></div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">connect</span>(mapStateToProps, mapDispatchToProps)(component)<br></code></pre></td></tr></table></figure>
 
 <p><strong>mapStateToProps:</strong></p>
 <ul>
 <li>中文意思: 把state映射到props中。</li>
 <li>映射状态，返回值是一个对象</li>
 </ul>
-<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-comment">// 容器组件：</span>
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">mapStateToProps</span>(<span class="hljs-params">state</span>) &#123;
-  <span class="hljs-comment">// 比如 state = &#123; a:123 &#125;</span>
-  <span class="hljs-keyword">return</span> &#123; <span class="hljs-attr">foo</span>: state.<span class="hljs-property">a</span> &#125;
-&#125;
-
-<span class="hljs-comment">//  UI组件：</span>
-<span class="hljs-title function_">render</span>(<span class="hljs-params"></span>)&#123;
- <span class="hljs-keyword">return</span> (
-  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>&#123; this.props.foo &#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>  <span class="hljs-comment">// 123</span>
- )
-&#125;</code></pre></div>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-comment">// 容器组件：</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">mapStateToProps</span>(<span class="hljs-params">state</span>) &#123;<br>  <span class="hljs-comment">// 比如 state = &#123; a:123 &#125;</span><br>  <span class="hljs-keyword">return</span> &#123; <span class="hljs-attr">foo</span>: state.<span class="hljs-property">a</span> &#125;<br>&#125;<br><br><span class="hljs-comment">//  UI组件：</span><br><span class="hljs-title function_">render</span>(<span class="hljs-params"></span>)&#123;<br> <span class="hljs-keyword">return</span> (<br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>&#123; this.props.foo &#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>  <span class="hljs-comment">// 123</span><br> )<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><strong>mapDispatchToProps：</strong></p>
 <ul>
 <li>中文意思:把各种dispatch也映射到props中的供你使用</li>
 <li>映射操作状态的方法，返回值是一个对象</li>
 </ul>
-<div class="hljs"><pre><code class="hljs jsx"><span class="hljs-comment">// 容器组件：</span>
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">mapDispatchToProps</span>(<span class="hljs-params">dispatch</span>) &#123;
-  <span class="hljs-keyword">return</span> &#123;
-     <span class="hljs-attr">add</span>: <span class="hljs-function"><span class="hljs-params">number</span> =&gt;</span> <span class="hljs-title function_">dispatch</span>(&#123;<span class="hljs-attr">type</span>:<span class="hljs-string">&quot;increment&quot;</span>&#125;,number),
-  &#125;
-&#125;
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-comment">// 容器组件：</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">mapDispatchToProps</span>(<span class="hljs-params">dispatch</span>) &#123;<br>  <span class="hljs-keyword">return</span> &#123;<br>     <span class="hljs-attr">add</span>: <span class="hljs-function"><span class="hljs-params">number</span> =&gt;</span> <span class="hljs-title function_">dispatch</span>(&#123;<span class="hljs-attr">type</span>:<span class="hljs-string">&quot;increment&quot;</span>&#125;,number),<br>  &#125;<br>&#125;<br><br><span class="hljs-comment">//  UI组件：</span><br>&lt;button onClick=&#123;<span class="hljs-variable language_">this</span>.<span class="hljs-property">props</span>.<span class="hljs-title function_">add</span>(<span class="hljs-number">1</span>)&#125;&gt; + &lt;/button&gt;<br></code></pre></td></tr></table></figure>
 
-<span class="hljs-comment">//  UI组件：</span>
-&lt;button onClick=&#123;<span class="hljs-variable language_">this</span>.<span class="hljs-property">props</span>.<span class="hljs-title function_">add</span>(<span class="hljs-number">1</span>)&#125;&gt; + &lt;/button&gt;</code></pre></div>
-
-                  </div>
-                  <hr>
-                  <div>
-                    <div class="post-metas mb-3">
-                      
-                        <div class="post-meta mr-3">
-                          <i class="iconfont icon-category"></i>
-                          
-                            <a class="hover-with-bg" href="/categories/React/">
-                              React
-                            </a>
-                            
-                            <a class="hover-with-bg" href="/categories/React/Redux/">
-                              Redux
-                            </a>
-                            
-                        </div>
-                        
-                          
-                            <div class="post-meta">
-                              <i class="iconfont icon-tags"></i>
-                              
-                                <a class="hover-with-bg" href="/tags/React/">
-                                  React
-                                </a>
-                                
-                                <a class="hover-with-bg" href="/tags/Redux/">
-                                  Redux
-                                </a>
-                                
-                            </div>
-                            
-                    </div>
-                    
-                        
-                          <div class="post-prevnext row">
-                            <article class="post-prev col-6">
-                              
-                                
-                                  <a href="/2021/02/02/50-React%20Hooks/">
-                                    <i class="iconfont icon-arrowleft"></i>
-                                    <span class="hidden-mobile">
-                                      React Hooks 学习总结
-                                    </span>
-                                    <span class="visible-mobile">
-                                      上一篇
-                                    </span>
-                                  </a>
-                                  
-                            </article>
-                            <article class="post-next col-6">
-                              
-                                
-                                  <a href="/2021/01/26/48-%E8%99%9A%E6%8B%9FDOM/">
-                                    <span class="hidden-mobile">
-                                      虚拟DOM和diff算法以及关于key的问题（学习总结）
-                                    </span>
-                                    <span class="visible-mobile">
-                                      下一篇
-                                    </span>
-                                    <i class="iconfont icon-arrowright"></i>
-                                  </a>
-                                  
-                            </article>
-                          </div>
-                          
-                  </div>
-
-                  
-                    <!-- Comments -->
-                    <article class="comments" id="comments">
-                      
-                        
-  <div id="vcomments"></div>
-  <script type="text/javascript">
-    function loadValine() {
-      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
-        new Valine({
-          el: "#vcomments",
-          app_id: "hjxsDRXYScicliqD8I8JqoTu-gzGzoHsz",
-          app_key: "qUcAEReEqeEVp5wwXJ41uCCp",
-          placeholder: "说点什么",
-          path: window.location.pathname,
-          avatar: "retro",
-          meta: ["nick","mail","link"],
-          pageSize: "10",
-          lang: "zh-CN",
-          highlight: true,
-          recordIP: false,
-          serverURLs: "",
-        });
-      });
-    }
-    waitElementVisible('vcomments', loadValine);
-  </script>
-  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
-      powered by Valine.</a></noscript>
-
-
-                    </article>
-                    
-            </article>
-          </div>
-        </div>
-      </div>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
       
-        <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-          <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/React/" class="category-chain-item">React</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/React/Redux/" class="category-chain-item">Redux</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/React/">#React</a>
+      
+        <a href="/tags/Redux/">#Redux</a>
+      
+    </div>
+  
 </div>
 
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/02/02/50-React%20Hooks/" title="React Hooks 学习总结">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">React Hooks 学习总结</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/01/26/48-%E8%99%9A%E6%8B%9FDOM/" title="虚拟DOM和diff算法以及关于key的问题（学习总结）">
+                        <span class="hidden-mobile">虚拟DOM和diff算法以及关于key的问题（学习总结）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments">
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.17/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"hjxsDRXYScicliqD8I8JqoTu-gzGzoHsz","appKey":"qUcAEReEqeEVp5wwXJ41uCCp","path":"window.location.pathname","placeholder":"说点什么","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":null,"emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"hjxsDRXYScicliqD8I8JqoTu-gzGzoHsz","appkey":"qUcAEReEqeEVp5wwXJ41uCCp"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
         </div>
-        
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
     </div>
   </div>
+</div>
 
-  <!-- Custom -->
+
+
+
+
   
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
 
     
-  </main>
 
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -582,260 +584,161 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
-  
 
-  
+    
 
-  
+    
+  </main>
 
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
-    
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
-    
-
-    
-  </div>
-</footer>
-
-<!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
-
-<!-- Plugins -->
-
-
   
-    
-      <script  src="/js/lazyload.js" ></script>
-    
   
+  
+  
+</div>
 
+  </footer>
 
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
   <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
 
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
       }
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "Redux 学习总结&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "always",
+      var text = subtitle.getAttribute('data-typed-text');
       
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
+        typing(text);
+      
+    })(window, document);
   </script>
 
 
+
+
+  
+    
+      <script  src="/js/img-lazyload.js" ></script>
+    
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
-  <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
-      }
-    );
-  </script>
 
 
 
 
 
-
-
-  
-  
-    <script>
-      !function (e, t, a) {
-        function r() {
-          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
-          requestAnimationFrame(r)
-        }
-
-        function n() {
-          var t = "function" == typeof e.onclick && e.onclick;
-          e.onclick = function (e) {
-            t && t(), o(e)
-          }
-        }
-
-        function o(e) {
-          var a = t.createElement("div");
-          a.className = "heart", s.push({
-            el: a,
-            x: e.clientX - 5,
-            y: e.clientY - 5,
-            scale: 1,
-            alpha: 1,
-            color: c()
-          }), t.body.appendChild(a)
-        }
-
-        function i(e) {
-          var a = t.createElement("style");
-          a.type = "text/css";
-          try {
-            a.appendChild(t.createTextNode(e))
-          } catch (t) {
-            a.styleSheet.cssText = e
-          }
-          t.getElementsByTagName("head")[0].appendChild(a)
-        }
-
-        function c() {
-          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
-        }
-
-        var s = [];
-        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
-          setTimeout(e, 1e3 / 60)
-        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
-      }(window, document);
-    </script>
-  
-
-
-
-
-
-
-
-
-
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
 
 
   
 
-  
-
-  
-
-  
-
-  
-
-  
-
-
-
-
-
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

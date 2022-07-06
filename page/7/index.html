@@ -1,53 +1,106 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/boshi.jpeg">
-  <link rel="icon" type="image/png" href="/img/boshi.jpeg">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <link rel="icon" href="/img/boshi.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
   <meta name="author" content="wangpf">
   <meta name="keywords" content="">
+  
+    <meta property="og:type" content="website">
+<meta property="og:title" content="wpf的博客">
+<meta property="og:url" content="http://yoursite.com/page/7/index.html">
+<meta property="og:site_name" content="wpf的博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="wangpf">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
   <title>wpf的博客</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
 
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
 
 
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"always","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
 <meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
-  <header style="height: 100vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>Wangpf's blog</strong>&nbsp;</a>
+    <a class="navbar-brand" href="/">
+      <strong>Wangpf&#39;s blog</strong>
+    </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -121,13 +174,15 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -136,34 +191,40 @@
   </div>
 </nav>
 
-    <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/wallhaven-xlq1rv.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
-            <span class="h2" id="subtitle">
-              
-            </span>
+  
 
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/wallhaven-xlq1rv.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
           
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
+            <span id="subtitle" data-typed-text="Wangpf坚信每一天都是美好的"></span>
           
         </div>
+
+        
       </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          style=margin-top:0>
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
           
           <div class="container">
             <div class="row">
@@ -182,44 +243,18 @@
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/08/23/13.git/">git</a>
+        
+        <a href="/2020/08/23/13.git/" target="_self">
+          git
+        </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/08/23/13.git/">
-          
-          
-            
-          
-          
-维基百科 - Git
-
-学习资源介绍
-Git教程 - 廖雪峰
-Pro Git
-git - 简明指南
-猴子都能懂的GIT入门
-
-Git 简介
-是什么
-Git 也是一个版本控制管理软件
-
-
-有什么用，可以解决什么问题
-保存历史记录
-多人协作
-
-
-有了 SVN，为啥要学 Git
-Git 火
-Git 相对于 SVN 来说，更强大，用户也非常多
-
-
-怎么用
-Git 的诞生
-http://www.liaox
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/08/23/13.git/" target="_self">
+        <div>
+          维基百科 - Git  学习资源介绍 Git教程 - 廖雪峰 Pro Git git - 简明指南 猴子都能懂的GIT入门  Git 简介 是什么 Git 也是一个版本控制管理软件   有什么用，可以解决什么问题 保存历史记录 多人协作   有了 SVN，为啥要学 Git Git 火 Git 相对于 SVN 来说，更强大，用户也非常多   怎么用 Git 的诞生 http:&#x2F;&#x2F;www.liaox
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -231,26 +266,50 @@ http://www.liaox
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/git/">git</a>
-            
-              <a href="/categories/git/github/">github</a>
-            
-              <a href="/categories/git/github/hexo/">hexo</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/git/" class="category-chain-item">git</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/git/github/" class="category-chain-item">github</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/git/github/hexo/" class="category-chain-item">hexo</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/git/">git</a>
+              <a href="/tags/git/">#git</a>
             
-              <a href="/tags/github/">github</a>
+              <a href="/tags/github/">#github</a>
             
-              <a href="/tags/hexo/">hexo</a>
+              <a href="/tags/hexo/">#hexo</a>
             
           </div>
         
@@ -269,36 +328,18 @@ http://www.liaox
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/08/22/12-SVN/">SVN</a>
+        
+        <a href="/2020/08/22/12-SVN/" target="_self">
+          SVN
+        </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/08/22/12-SVN/">
-          
-          
-            
-          
-          什么是版本控制？版本管理就是管理更新的历史记录，它给我们提供了一些在软件开发过程中必不可少的功能，例如：
-
-记录一款软件添加或更改源代码的过程
-回滚到特定阶段，恢复误删除的文件
-合并多人协作的文件等
-多人协同，文件传输
-
-版本控制分类
-集中式
-SVN
-
-
-分布式
-Git
-
-
-
-
-SVNSVN 全称 Apache Subversion，是一个开放源代码的集中式版本管理系统。在 2000 年由 Col
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/08/22/12-SVN/" target="_self">
+        <div>
+          什么是版本控制？版本管理就是管理更新的历史记录，它给我们提供了一些在软件开发过程中必不可少的功能，例如：  记录一款软件添加或更改源代码的过程 回滚到特定阶段，恢复误删除的文件 合并多人协作的文件等 多人协同，文件传输  版本控制分类 集中式 SVN   分布式 Git     SVNSVN 全称 Apache Subversion，是一个开放源代码的集中式版本管理系统。在 2000 年由 Col
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -310,18 +351,32 @@ SVNSVN 全称 Apache Subversion，是一个开放源代码的集中式版本管�
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/SVN/">SVN</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/SVN/" class="category-chain-item">SVN</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/SVN/">SVN</a>
+              <a href="/tags/SVN/">#SVN</a>
             
           </div>
         
@@ -340,40 +395,18 @@ SVNSVN 全称 Apache Subversion，是一个开放源代码的集中式版本管�
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/08/18/11.%E6%80%BBNode%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93/">Node基础总结</a>
+        
+        <a href="/2020/08/18/11.%E6%80%BBNode%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93/" target="_self">
+          Node基础总结
+        </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/08/18/11.%E6%80%BBNode%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93/">
-          
-          
-            
-          
-          为什么要学习Node.js
-企业需求
-具有服务端开发经验更改
-front-end
-back-end
-全栈开发工程师
-基本的网站开发能力
-服务端
-前端
-运维部署
-
-
-多人社区
-
-
-
-
-Node.js是什么
-Node.js是JavaScript 运行时
-通俗易懂的讲，Node.js是JavaScript的运行平台
-Node.js既不是语言，也不是框架，它是一个平台
-浏览器中的JavaScript
-Ec
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/08/18/11.%E6%80%BBNode%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93/" target="_self">
+        <div>
+          为什么要学习Node.js 企业需求 具有服务端开发经验更改 front-end back-end 全栈开发工程师 基本的网站开发能力 服务端 前端 运维部署   多人社区     Node.js是什么 Node.js是JavaScript 运行时 通俗易懂的讲，Node.js是JavaScript的运行平台 Node.js既不是语言，也不是框架，它是一个平台 浏览器中的JavaScript Ec
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -385,28 +418,42 @@ Ec
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/Nodejs/">Nodejs</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Nodejs/" class="category-chain-item">Nodejs</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/mongoose/">mongoose</a>
+              <a href="/tags/mongoose/">#mongoose</a>
             
-              <a href="/tags/promise/">promise</a>
+              <a href="/tags/promise/">#promise</a>
             
-              <a href="/tags/es6/">es6</a>
+              <a href="/tags/es6/">#es6</a>
             
-              <a href="/tags/node/">node</a>
+              <a href="/tags/node/">#node</a>
             
-              <a href="/tags/express/">express</a>
+              <a href="/tags/express/">#express</a>
             
-              <a href="/tags/body-parse/">body-parse</a>
+              <a href="/tags/body-parse/">#body-parse</a>
             
           </div>
         
@@ -425,22 +472,18 @@ Ec
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/08/12/10.promise/">回调地狱（callback hell） 和 promise</a>
+        
+        <a href="/2020/08/12/10.promise/" target="_self">
+          回调地狱（callback hell） 和 promise
+        </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/08/12/10.promise/">
-          
-          
-            
-          
-          1. callback hell  回调地狱1.1 没有顺序的读取 a  b  c 三个文件const fs = require(&#x27;fs&#x27;)
-
-fs.readFile(&#x27;./a.txt&#x27;, &#x27;utf8&#x27;, function (err, data) &#123;
-    if (err) &#123;
-        // return c
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/08/12/10.promise/" target="_self">
+        <div>
+          1. callback hell  回调地狱1.1 没有顺序的读取 a  b  c 三个文件123456789101112131415161718192021222324252627282930313233const fs &#x3D; require(&amp;#x27;fs&amp;#x27;)fs.readFile(&amp;#x27;.&#x2F;a.txt&amp;#x27;, &amp;#x27;utf8&amp;#x27;, function (er
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -452,20 +495,34 @@ fs.readFile(&#x27;./a.txt&#x27;, &#x27;utf8&#x27;, function (err, data) &#123;
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/JavaScript/">JavaScript</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/JavaScript/" class="category-chain-item">JavaScript</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/promise/">promise</a>
+              <a href="/tags/promise/">#promise</a>
             
-              <a href="/tags/es6/">es6</a>
+              <a href="/tags/es6/">#es6</a>
             
           </div>
         
@@ -484,26 +541,18 @@ fs.readFile(&#x27;./a.txt&#x27;, &#x27;utf8&#x27;, function (err, data) &#123;
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/08/12/09.Mongodb%20%E6%95%B0%E6%8D%AE%E5%BA%93/">Mongodb数据库的基本使用</a>
+        
+        <a href="/2020/08/12/09.Mongodb%20%E6%95%B0%E6%8D%AE%E5%BA%93/" target="_self">
+          Mongodb数据库的基本使用
+        </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/08/12/09.Mongodb%20%E6%95%B0%E6%8D%AE%E5%BA%93/">
-          
-          
-            
-          
-          Mongodb数据库的基本概念
-可以有多个数据库
-一个数据库中可以有多个集合（表）
-一个集合中可以有多个文档（表记录）
-文档结构灵活，没有任何限制
-Mongodb非常灵活，不需要像  MySQL 一样先创建数据库、表、设计表结构
-这里只需要：当你需要插入数据的时候，只需要指定往哪个数据库的哪个集合操作就可以了
-一切都有Mongodb 来帮你自动完成建库建表这些事儿&#123;
-    qq:&#1
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/08/12/09.Mongodb%20%E6%95%B0%E6%8D%AE%E5%BA%93/" target="_self">
+        <div>
+          Mongodb数据库的基本概念 可以有多个数据库 一个数据库中可以有多个集合（表） 一个集合中可以有多个文档（表记录） 文档结构灵活，没有任何限制 Mongodb非常灵活，不需要像  MySQL 一样先创建数据库、表、设计表结构 这里只需要：当你需要插入数据的时候，只需要指定往哪个数据库的哪个集合操作就可以了 一切都有Mongodb 来帮你自动完成建库建表这些事儿12345678910111213
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -515,22 +564,36 @@ Mongodb非常灵活，不需要像  MySQL 一样先创建数据库、表、设�
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/Mongodb/">Mongodb</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Mongodb/" class="category-chain-item">Mongodb</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Node/">Node</a>
+              <a href="/tags/Node/">#Node</a>
             
-              <a href="/tags/Mongodb/">Mongodb</a>
+              <a href="/tags/Mongodb/">#Mongodb</a>
             
-              <a href="/tags/mongoose/">mongoose</a>
+              <a href="/tags/mongoose/">#mongoose</a>
             
           </div>
         
@@ -549,27 +612,18 @@ Mongodb非常灵活，不需要像  MySQL 一样先创建数据库、表、设�
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/08/08/07.Express%E7%9A%84%E4%BD%BF%E7%94%A8/">Express的使用⭐⭐⭐</a>
+        
+        <a href="/2020/08/08/07.Express%E7%9A%84%E4%BD%BF%E7%94%A8/" target="_self">
+          Express的使用⭐⭐⭐
+        </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/08/08/07.Express%E7%9A%84%E4%BD%BF%E7%94%A8/">
-          
-          
-            
-          
-          07.Express 的使用1.安装expressnpm install express --save
-2.简单使用express//0.安装
-
-//1. 引入包
-const express = require(&#x27;express&#x27;);
-
-// 2. 创建服务器应用程序  也就是原来的 http.createServer
-const app = express();
-
-// 以g
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/08/08/07.Express%E7%9A%84%E4%BD%BF%E7%94%A8/" target="_self">
+        <div>
+          07.Express 的使用1.安装express1npm install express --save 2.简单使用express123456789101112131415&#x2F;&#x2F;0.安装&#x2F;&#x2F;1. 引入包const express &#x3D; require(&amp;#x27;express&amp;#x27;);&#x2F;&#x2F; 2. 创建服务器应用程序  也就是原来的 http.createServerconst app &#x3D; e
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -581,24 +635,38 @@ const app = express();
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/Nodejs/">Nodejs</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Nodejs/" class="category-chain-item">Nodejs</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Node/">Node</a>
+              <a href="/tags/Node/">#Node</a>
             
-              <a href="/tags/Express/">Express</a>
+              <a href="/tags/Express/">#Express</a>
             
-              <a href="/tags/art-template/">art-template</a>
+              <a href="/tags/art-template/">#art-template</a>
             
-              <a href="/tags/express-session/">express-session</a>
+              <a href="/tags/express-session/">#express-session</a>
             
           </div>
         
@@ -617,26 +685,18 @@ const app = express();
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/08/08/06.%E6%A8%A1%E5%9D%97%E7%B3%BB%E7%BB%9F/">Node的模板系统</a>
+        
+        <a href="/2020/08/08/06.%E6%A8%A1%E5%9D%97%E7%B3%BB%E7%BB%9F/" target="_self">
+          Node的模板系统
+        </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/08/08/06.%E6%A8%A1%E5%9D%97%E7%B3%BB%E7%BB%9F/">
-          
-          
-            
-          
-          06.模块系统在node中JavaScript还有一个很重要的概念：模块系统
-
-模块作用域
-使用require方法用来加载模块
-使用exports 接口对象用来到处模块中的成员1.加载require语法：const 自定义变量名称 = require(&#x27;模块&#x27;)
-俩个作用：
-执行被加载模块中的代码
-得到被加载模块中的 exports导出接口对象2.导出 exports
-node
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/08/08/06.%E6%A8%A1%E5%9D%97%E7%B3%BB%E7%BB%9F/" target="_self">
+        <div>
+          06.模块系统在node中JavaScript还有一个很重要的概念：模块系统  模块作用域 使用require方法用来加载模块 使用exports 接口对象用来到处模块中的成员1.加载require语法：1const 自定义变量名称 &#x3D; require(&amp;#x27;模块&amp;#x27;) 俩个作用： 执行被加载模块中的代码 得到被加载模块中的 exports导出接口对象2.导出 exports nod
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -648,18 +708,32 @@ node
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/Nodejs/">Nodejs</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Nodejs/" class="category-chain-item">Nodejs</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Node/">Node</a>
+              <a href="/tags/Node/">#Node</a>
             
           </div>
         
@@ -678,22 +752,18 @@ node
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/08/06/03.%E7%AE%80%E5%8D%95%E7%BB%93%E5%90%88fs%E6%A8%A1%E5%9D%97%E6%9D%A5%E8%AE%BF%E9%97%AE%E4%B8%8D%E5%90%8C%E8%B5%84%E6%BA%90%E5%AE%9E%E4%BE%8B/">使用Node来简单结合fs模块来访问不同资源实例</a>
+        
+        <a href="/2020/08/06/03.%E7%AE%80%E5%8D%95%E7%BB%93%E5%90%88fs%E6%A8%A1%E5%9D%97%E6%9D%A5%E8%AE%BF%E9%97%AE%E4%B8%8D%E5%90%8C%E8%B5%84%E6%BA%90%E5%AE%9E%E4%BE%8B/" target="_self">
+          使用Node来简单结合fs模块来访问不同资源实例
+        </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/08/06/03.%E7%AE%80%E5%8D%95%E7%BB%93%E5%90%88fs%E6%A8%A1%E5%9D%97%E6%9D%A5%E8%AE%BF%E9%97%AE%E4%B8%8D%E5%90%8C%E8%B5%84%E6%BA%90%E5%AE%9E%E4%BE%8B/">
-          
-          
-            
-          
-          简单结合fs模块来访问不同资源实例const http = require(&#x27;http&#x27;);
-const fs = require(&#x27;fs&#x27;);
-const server = http.createServer();
-server.on(&#x27;request&#x27;, (req, res) =&gt; &#123;
-    const url = 
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/08/06/03.%E7%AE%80%E5%8D%95%E7%BB%93%E5%90%88fs%E6%A8%A1%E5%9D%97%E6%9D%A5%E8%AE%BF%E9%97%AE%E4%B8%8D%E5%90%8C%E8%B5%84%E6%BA%90%E5%AE%9E%E4%BE%8B/" target="_self">
+        <div>
+          简单结合fs模块来访问不同资源实例1234567891011121314151617181920212223242526272829303132333435const http &#x3D; require(&amp;#x27;http&amp;#x27;);const fs &#x3D; require(&amp;#x27;fs&amp;#x27;);const server &#x3D; http.createServer();server.on(&amp;#x
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -705,18 +775,32 @@ server.on(&#x27;request&#x27;, (req, res) =&gt; &#123;
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/Nodejs/">Nodejs</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Nodejs/" class="category-chain-item">Nodejs</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Node/">Node</a>
+              <a href="/tags/Node/">#Node</a>
             
           </div>
         
@@ -735,22 +819,18 @@ server.on(&#x27;request&#x27;, (req, res) =&gt; &#123;
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/08/05/04.%E6%A8%A1%E4%BB%BFApache%E5%8A%9F%E8%83%BD%E6%9D%A5%E5%AE%8C%E6%88%90%E7%9B%AE%E5%BD%95%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93/">使用Node来模仿Apache功能来完成目录列表渲染</a>
+        
+        <a href="/2020/08/05/04.%E6%A8%A1%E4%BB%BFApache%E5%8A%9F%E8%83%BD%E6%9D%A5%E5%AE%8C%E6%88%90%E7%9B%AE%E5%BD%95%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93/" target="_self">
+          使用Node来模仿Apache功能来完成目录列表渲染
+        </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/08/05/04.%E6%A8%A1%E4%BB%BFApache%E5%8A%9F%E8%83%BD%E6%9D%A5%E5%AE%8C%E6%88%90%E7%9B%AE%E5%BD%95%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93/">
-          
-          
-            
-          
-          模仿Apache功能来完成目录列表渲染
-fs.readdir   这个API用来读取文件目录const fs = require(&#x27;fs&#x27;);
-fs.readdir(&#x27;F:/nodejs/Node_test&#x27;, (err, files) =&gt; &#123;
-    if (err) &#123;
-        return res.end(&#x27
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/08/05/04.%E6%A8%A1%E4%BB%BFApache%E5%8A%9F%E8%83%BD%E6%9D%A5%E5%AE%8C%E6%88%90%E7%9B%AE%E5%BD%95%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93/" target="_self">
+        <div>
+          模仿Apache功能来完成目录列表渲染 fs.readdir   这个API用来读取文件目录1234567const fs &#x3D; require(&amp;#x27;fs&amp;#x27;);fs.readdir(&amp;#x27;F:&#x2F;nodejs&#x2F;Node_test&amp;#x27;, (err, files) &#x3D;&gt; &amp;#123;    if (err) &amp;#123;        return res.end(&amp;
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -762,18 +842,32 @@ fs.readdir(&#x27;F:/nodejs/Node_test&#x27;, (err, files) =&gt; &#123;
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/Nodejs/">Nodejs</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Nodejs/" class="category-chain-item">Nodejs</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Node/">Node</a>
+              <a href="/tags/Node/">#Node</a>
             
           </div>
         
@@ -792,21 +886,18 @@ fs.readdir(&#x27;F:/nodejs/Node_test&#x27;, (err, files) =&gt; &#123;
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/08/05/05.%E7%95%99%E8%A8%80%E6%9D%BF%E5%8A%9F%E8%83%BD%E7%9A%84%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">使用Node来留言板功能的简单实现</a>
+        
+        <a href="/2020/08/05/05.%E7%95%99%E8%A8%80%E6%9D%BF%E5%8A%9F%E8%83%BD%E7%9A%84%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/" target="_self">
+          使用Node来留言板功能的简单实现
+        </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/08/05/05.%E7%95%99%E8%A8%80%E6%9D%BF%E5%8A%9F%E8%83%BD%E7%9A%84%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
-          
-          
-            
-          
-          留言板功能的简单实现
-先来说一下url模块
-const url = require(&#x27;url&#x27;)
-let obj = url.parse(&#x27;http://localhost:3000/pinglun?name=%E7%8E%8B%E9%B9%8F%E9%A3%9E&amp;message=%E7%8E%8B%E9%B9%8F%E9%A3%9E%E7%8E%8B%E9%
-        </a>
-      </p>
+      
+      <a class="index-excerpt " href="/2020/08/05/05.%E7%95%99%E8%A8%80%E6%9D%BF%E5%8A%9F%E8%83%BD%E7%9A%84%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/" target="_self">
+        <div>
+          留言板功能的简单实现 先来说一下url模块 1234567const url &#x3D; require(&amp;#x27;url&amp;#x27;)let obj &#x3D; url.parse(&amp;#x27;http:&#x2F;&#x2F;localhost:3000&#x2F;pinglun?name&#x3D;%E7%8E%8B%E9%B9%8F%E9%A3%9E&amp;message&#x3D;%E7%8E%8B%E9%B9%8F%E9%A3%9E%E7%8E%
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -818,20 +909,34 @@ let obj = url.parse(&#x27;http://localhost:3000/pinglun?name=%E7%8E%8B%E9%B9%8F%
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/Nodejs/">Nodejs</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Nodejs/" class="category-chain-item">Nodejs</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Node/">Node</a>
+              <a href="/tags/Node/">#Node</a>
             
-              <a href="/tags/art-template%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/">art-template模板引擎</a>
+              <a href="/tags/art-template%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/">#art-template模板引擎</a>
             
           </div>
         
@@ -843,15 +948,9 @@ let obj = url.parse(&#x27;http://localhost:3000/pinglun?name=%E7%8E%8B%E9%B9%8F%
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/6/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/page/6/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/#board">5</a><a class="page-number" href="/page/6/#board">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/#board">8</a><a class="extend next" rel="next" href="/page/8/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
-  
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
-      ele.href += '#board';
-    }
-  </script>
 
 
 
@@ -861,16 +960,15 @@ let obj = url.parse(&#x27;http://localhost:3000/pinglun?name=%E7%8E%8B%E9%B9%8F%
         </div>
       </div>
     
-  </main>
 
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -883,204 +981,93 @@ let obj = url.parse(&#x27;http://localhost:3000/pinglun?name=%E7%8E%8B%E9%B9%8F%
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
-  
 
-  
+    
 
-  
+    
+  </main>
 
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
-    
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
-    
-
-    
-  </div>
-</footer>
-
-<!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
-
-<!-- Plugins -->
-
-
   
-    
   
+  
+  
+</div>
 
+  </footer>
 
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-
-
-
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
   <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "Wangpf坚信每一天都是美好的&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
   </script>
 
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    
+  
 
 
 
 
   <script  src="/js/local-search.js" ></script>
-  <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
 
 
 
 
 
-
-
-
-
-  
-  
-    <script>
-      !function (e, t, a) {
-        function r() {
-          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
-          requestAnimationFrame(r)
-        }
-
-        function n() {
-          var t = "function" == typeof e.onclick && e.onclick;
-          e.onclick = function (e) {
-            t && t(), o(e)
-          }
-        }
-
-        function o(e) {
-          var a = t.createElement("div");
-          a.className = "heart", s.push({
-            el: a,
-            x: e.clientX - 5,
-            y: e.clientY - 5,
-            scale: 1,
-            alpha: 1,
-            color: c()
-          }), t.body.appendChild(a)
-        }
-
-        function i(e) {
-          var a = t.createElement("style");
-          a.type = "text/css";
-          try {
-            a.appendChild(t.createTextNode(e))
-          } catch (t) {
-            a.styleSheet.cssText = e
-          }
-          t.getElementsByTagName("head")[0].appendChild(a)
-        }
-
-        function c() {
-          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
-        }
-
-        var s = [];
-        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
-          setTimeout(e, 1e3 / 60)
-        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
-      }(window, document);
-    </script>
-  
-
-
-
-
-
-
-
-
-
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
 
 
   
 
-  
-
-  
-
-  
-
-  
-
-  
-
-
-
-
-
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>
