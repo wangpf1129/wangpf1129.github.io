@@ -39,7 +39,7 @@ fun_features: # 一些好玩的功能
     icon: '' # 可选：§ | # | ❡ 等，留空则为默认效果
   mouse_click: # 鼠标点击动效
     enable: true
-    style: love # 目前设置两个值：values（价值观词汇） | love（爱心）
+    style: values # 目前设置两个值：values（价值观词汇） | love（爱心）
 
 dark_mode: # 主题暗色模式，开启后菜单中会出现切换按钮，用户浏览器会存储切换选项，并且会遵循 prefers-color-scheme 自动切换
   enable: true
@@ -158,7 +158,7 @@ scroll_down_arrow: # 向下滚动的箭头
   banner_height_limit: 90 # 头图高度不小于指定比例，才显示箭头
   scroll_after_turning_page: true # 翻页后自动滚动
 
-banner_parallax: true # 头图滚动视差
+banner:parallax: true # 头图滚动视差
 
 #---------------------------
 # 页脚
@@ -166,7 +166,7 @@ banner_parallax: true # 头图滚动视差
 #---------------------------
 footer:
   statistics: # 展示网站的 PV、UV 统计数
-    enable: true
+    enable: false
     source: 'busuanzi' # 统计数据来源，可选：busuanzi | leancloud，使用 leancloud 需要在 web_analytics 中设置 api 参数，使用 busuanzi 注意可能间歇抽风
     pv_format: '总访问量 {} 次' # 显示的文本，{}是数字的占位符（必须包含)，下同
     uv_format: '总访客数 {} 人'

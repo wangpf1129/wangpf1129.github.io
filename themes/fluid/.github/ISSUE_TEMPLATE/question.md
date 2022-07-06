@@ -4,7 +4,7 @@ about: Ask a question about use, need help
 ---
 
 #### Make sure
-- [ ] Upgrade the latest [release](https://github.com/fluid-dev/hexo-theme-fluid/releases).
+- [ ] Upgrade the latest [release](https://github.com/fluid-dev/hexo-theme-fluid/releases)
 - [ ] No solution found in [documentations](https://hexo.fluid-dev.com/docs/en/)
 
 #### Describe the question
